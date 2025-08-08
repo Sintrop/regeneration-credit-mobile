@@ -1,28 +1,22 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
+import { LogBox } from 'react-native';
 
-import { NewAppScreen } from '@react-native/new-app-screen';
-import { StatusBar, StyleSheet, useColorScheme, View } from 'react-native';
+import { HomeScreen } from './src/screens/HomeScreen/HomeScreen';
+import { MMProvider } from './src/providers/Metamask';
+
+LogBox.ignoreLogs([
+  'Possible Unhandled Promise Rejection',
+  'Message ignored because invalid key exchange status',
+  "MetaMask: 'ethereum._metamask' exposes",
+  '`new NativeEventEmitter()` was called with a non-null',
+  'Sender: Failed to send batch Error',
+]);
 
 function App() {
-  const isDarkMode = useColorScheme() === 'dark';
-
   return (
-    <View style={styles.container}>
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <NewAppScreen templateFileName="App.tsx" />
-    </View>
+    <MMProvider>
+      <HomeScreen />
+    </MMProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-});
 
 export default App;
