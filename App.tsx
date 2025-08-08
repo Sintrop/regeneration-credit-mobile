@@ -1,7 +1,7 @@
 import { LogBox } from 'react-native';
-
-import { HomeScreen } from './src/screens/HomeScreen/HomeScreen';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { MMProvider } from './src/providers/Metamask';
+import { AppRoutes } from './src/routes/AppRoutes';
 
 LogBox.ignoreLogs([
   'Possible Unhandled Promise Rejection',
@@ -14,7 +14,9 @@ LogBox.ignoreLogs([
 function App() {
   return (
     <MMProvider>
-      <HomeScreen />
+      <SafeAreaProvider>
+        <AppRoutes />
+      </SafeAreaProvider>
     </MMProvider>
   );
 }
