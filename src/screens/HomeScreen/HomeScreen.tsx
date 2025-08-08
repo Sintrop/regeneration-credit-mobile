@@ -2,9 +2,11 @@ import { useEffect } from 'react';
 import { Alert, Button, Text } from 'react-native';
 import { useSDK } from '@metamask/sdk-react';
 import { Screen } from '@components';
+import { useTranslation } from 'react-i18next';
 
 export function HomeScreen() {
   const { sdk } = useSDK();
+  const { t } = useTranslation();
 
   useEffect(() => {
     console.log(sdk);
@@ -21,7 +23,7 @@ export function HomeScreen() {
 
   return (
     <Screen home>
-      <Text className='text-red-500'>Sintrop mobile</Text>
+      <Text className='text-red-500'>{t("homeScreen.title")}</Text>
       <Button title="connect" onPress={connectWallet} />
     </Screen>
   );

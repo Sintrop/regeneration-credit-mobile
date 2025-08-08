@@ -4,6 +4,7 @@ import { MMProvider } from './src/providers/Metamask';
 import { AppRoutes } from '@routes';
 
 import "./global.css";
+import "./src/lang/i18n";
 
 LogBox.ignoreLogs([
   'Possible Unhandled Promise Rejection',
