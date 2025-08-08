@@ -3,6 +3,8 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { MMProvider } from './src/providers/Metamask';
 import { AppRoutes } from './src/routes/AppRoutes';
 
+import "./global.css";
+
 LogBox.ignoreLogs([
   'Possible Unhandled Promise Rejection',
   'Message ignored because invalid key exchange status',

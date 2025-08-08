@@ -17,15 +17,20 @@
     "@react-navigation/native-stack": "^7.3.24",
     "eciesjs": "^0.4.15",
     "ethers": "^5.7.2",
+    "nativewind": "^4.1.23",
     "node-libs-react-native": "^1.2.1",
+    "prettier-plugin-tailwindcss": "^0.5.14",
     "react": "19.1.0",
     "react-native": "0.80.2",
     "react-native-background-timer": "^2.4.1",
     "react-native-get-random-values": "^1.11.0",
     "react-native-randombytes": "^3.6.2",
-    "react-native-safe-area-context": "^5.6.0",
+    "react-native-reanimated": "^4.0.1",
+    "react-native-safe-area-context": "^5.4.0",
     "react-native-screens": "^4.13.1",
-    "react-native-url-polyfill": "^2.0.0"
+    "react-native-url-polyfill": "^2.0.0",
+    "react-native-worklets": "^0.4.1",
+    "tailwindcss": "^3.4.17"
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",

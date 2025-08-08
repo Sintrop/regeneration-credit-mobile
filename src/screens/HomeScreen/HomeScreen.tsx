@@ -15,12 +15,12 @@ export function HomeScreen() {
     }
 
     const accounts = await sdk.connect();
-    console.log(accounts);
+    Alert.alert(accounts[0])
   }
 
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>Sintrop mobile</Text>
+      <Text className='text-red-500'>Sintrop mobile</Text>
       <Button title="connect" onPress={connectWallet} />
     </View>
   );
