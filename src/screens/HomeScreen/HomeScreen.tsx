@@ -1,6 +1,7 @@
-import { Alert, Button, Text, View } from 'react-native';
-import { useSDK } from '@metamask/sdk-react';
 import { useEffect } from 'react';
+import { Alert, Button, Text } from 'react-native';
+import { useSDK } from '@metamask/sdk-react';
+import { Screen } from '@components';
 
 export function HomeScreen() {
   const { sdk } = useSDK();
@@ -19,9 +20,9 @@ export function HomeScreen() {
   }
 
   return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+    <Screen home>
       <Text className='text-red-500'>Sintrop mobile</Text>
       <Button title="connect" onPress={connectWallet} />
-    </View>
+    </Screen>
   );
 }
