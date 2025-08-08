@@ -1,7 +1,7 @@
 import { LogBox } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { MMProvider } from './src/providers/Metamask';
-import { AppRoutes } from './src/routes/AppRoutes';
+import { AppRoutes } from '@routes';
 
 import "./global.css";
 
