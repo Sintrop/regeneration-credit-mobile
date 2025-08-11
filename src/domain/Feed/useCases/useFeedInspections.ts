@@ -2,12 +2,13 @@
 import { useEffect, useState } from "react";
 import { feedService } from "../feedService";
 import { paginateList } from "@utils";
+import { useSettingsContext } from "@hooks";
 
 interface Props {
-  rpc: string;
   itemsPerPage: number;
 }
-export function useFeedInspections({ rpc, itemsPerPage }: Props) {
+export function useFeedInspections({ itemsPerPage }: Props) {
+  const { rpc } = useSettingsContext();
   const [loading, setLoading] = useState<boolean>(false);
   const [idsInspections, setIdsInspections] = useState<number[]>([]);
   const [idsPage, setIdsPage] = useState<number[]>([]);
