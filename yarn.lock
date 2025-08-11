@@ -2567,6 +2567,11 @@
   resolved "https://registry.npmjs.org/@types/react-native-background-timer/-/react-native-background-timer-2.0.2.tgz"
   integrity sha512-cMAep0M5yqUHjiiRPvGiviqiJYdI45KSjbI5ufsIFSQGFwHwrHJC/8yawNhy0G3Gix6fufWLsEj6jC5niUNHiQ==
 
+"@types/react-native-sqlite-storage@^6.0.5":
+  version "6.0.5"
+  resolved "https://registry.npmjs.org/@types/react-native-sqlite-storage/-/react-native-sqlite-storage-6.0.5.tgz"
+  integrity sha512-1gPwgYil6pHV/EDF816M8KmVsQC5nGMTAm8OMC25GbyuBaXFn7sdguMq6A2owtXB8c4qsH2tOEIQNetbOquawA==
+
 "@types/react-test-renderer@^19.1.0":
   version "19.1.0"
   resolved "https://registry.npmjs.org/@types/react-test-renderer/-/react-test-renderer-19.1.0.tgz"
@@ -7722,6 +7727,11 @@ react-native-screens@^4.13.1, "react-native-screens@>= 4.0.0":
     react-native-is-edge-to-edge "^1.2.1"
     warn-once "^0.1.0"
 
+react-native-sqlite-storage@^6.0.1:
+  version "6.0.1"
+  resolved "https://registry.npmjs.org/react-native-sqlite-storage/-/react-native-sqlite-storage-6.0.1.tgz"
+  integrity sha512-1tDFjrint6X6qSYKf3gDyz+XB+X79jfiL6xTugKHPRtF0WvqMtVgdLuNqZunIXjNEvNtNVEbXaeZ6MsguFu00A==
+
 react-native-url-polyfill@^2.0.0:
   version "2.0.0"
   resolved "https://registry.npmjs.org/react-native-url-polyfill/-/react-native-url-polyfill-2.0.0.tgz"
@@ -7745,7 +7755,7 @@ react-native-worklets@^0.4.1, react-native-worklets@>=0.3.0:
     "@babel/preset-typescript" "^7.16.7"
     convert-source-map "^2.0.0"
 
-react-native@*, "react-native@^0.0.0-0 || >=0.60 <1.0", react-native@>=0.47.0, react-native@>=0.56, react-native@0.80.2:
+react-native@*, "react-native@^0.0.0-0 || >=0.60 <1.0", react-native@>=0.14.0, react-native@>=0.47.0, react-native@>=0.56, react-native@0.80.2:
   version "0.80.2"
   resolved "https://registry.npmjs.org/react-native/-/react-native-0.80.2.tgz"
   integrity sha512-6ySV4qTJo/To3lgpG/9Mcg/ZtvExqOVZuT7JVGcO5rS2Bjvl/yUAkQF0hTnbRb2Ch6T5MlKghrM4OeHX+KA9Pg==

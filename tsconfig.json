@@ -9,7 +9,10 @@
       "@hooks": ["src/hooks"],
       "@domain": ["src/domain"],
       "@utils": ["src/utils"],
-      "@contracts": ["src/contracts"]
+      "@contracts": ["src/contracts"],
+      "@contexts": ["src/contexts"],
+      "@providers": ["src/providers"],
+      "@services": ["src/services"]
     }
   }
 }

@@ -1,7 +1,11 @@
+import { useEffect } from 'react';
 import { LogBox } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
-import { MMProvider } from './src/providers/Metamask';
+
+import { MMProvider } from '@providers';
 import { AppRoutes } from '@routes';
+import { SettingsProvider } from '@contexts';
+import { feedDB } from '@services';
 
 import "./global.css";
 import "./src/lang/i18n";
@@ -15,10 +19,16 @@ LogBox.ignoreLogs([
 ]);
 
 function App() {
+  useEffect(() => {
+    feedDB.createTables();
+  }, []);
+
   return (
     <MMProvider>
       <SafeAreaProvider>
-        <AppRoutes />
+        <SettingsProvider>
+          <AppRoutes />
+        </SettingsProvider>
       </SafeAreaProvider>
     </MMProvider>
   );

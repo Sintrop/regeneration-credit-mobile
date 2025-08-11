@@ -1,16 +1,12 @@
-import { useEffect } from 'react';
-import { Alert, Button, Text } from 'react-native';
-import { useSDK } from '@metamask/sdk-react';
+/* eslint-disable react-hooks/exhaustive-deps */
+import { Text } from 'react-native';
 import { Screen } from '@components';
-import { useTranslation } from 'react-i18next';
-import { rcService } from '@domain';
+import { useSettingsContext } from '@hooks';
 
 
 export function HomeScreen() {
-  useEffect(() => {
-    rcService.getBalance({ address: "0xe9fd93F68131ebbC1C273E34288139C012698eaE", rpc: "https://sequoiarpc.sintrop.com"})
-  }, []);
-
+  const { rpc } = useSettingsContext();
+  
   return (
     <Screen home>
       <Text>Teste</Text>
