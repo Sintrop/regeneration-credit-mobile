@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { LogBox } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
 
 import { MMProvider } from '@providers';
 import { AppRoutes } from '@routes';
@@ -18,6 +19,8 @@ LogBox.ignoreLogs([
   'Sender: Failed to send batch Error',
 ]);
 
+const queryClient = new QueryClient();
+
 function App() {
   useEffect(() => {
     feedDB.createTables();
@@ -26,9 +29,11 @@ function App() {
   return (
     <MMProvider>
       <SafeAreaProvider>
-        <SettingsProvider>
-          <AppRoutes />
-        </SettingsProvider>
+        <QueryClientProvider client={queryClient}>
+          <SettingsProvider>
+            <AppRoutes />
+          </SettingsProvider>
+        </QueryClientProvider>
       </SafeAreaProvider>
     </MMProvider>
   );
