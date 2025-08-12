@@ -2,6 +2,9 @@
   "translation": {
     "homeScreen": {
       "title": "Regeneration Credit"
+    },
+    "feed": {
+      "requestedAnInspection": "Requested an inspection"
     }
   }
 }

@@ -1,1 +1,1 @@
-export type FeedItemTypes = "inspection"
+export type FeedItemTypes = "inspection" | "publish"

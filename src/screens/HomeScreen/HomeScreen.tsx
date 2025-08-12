@@ -9,7 +9,7 @@ export function HomeScreen() {
   
   return (
     <Screen home>
-      <View className='gap-5'>
+      <View className='gap-3 pt-3'>
         {idsPage.map((item, index) => (
           <FeedItem type='inspection' id={item} key={index} />
         ))}
