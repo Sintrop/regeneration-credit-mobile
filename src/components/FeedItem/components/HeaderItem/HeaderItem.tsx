@@ -1,6 +1,6 @@
 import { View } from "react-native";
-import { Text } from "@components";
-import Jazzicon from "react-native-jazzicon";
+
+import { Avatar, Text } from "@components";
 import { Loading } from "./Loading";
 
 interface Props {
@@ -17,9 +17,7 @@ export function HeaderItem({ address, name, photo, createdAt, isLoading }: Props
   
   return (
     <View className="flex-row w-full gap-3">
-      <View className="w-[50] h-[50] rounded-full overflow-hidden relative">
-        <Jazzicon address={address} size={50} />
-      </View>
+      <Avatar address={address ? address : ""} photoHash={photo} size={50} />
 
       <View className="mt-[-3]">
         <Text className="font-bold text-white">{name}</Text>

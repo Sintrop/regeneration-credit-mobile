@@ -4,7 +4,17 @@
       "title": "Regeneration Credit"
     },
     "feed": {
-      "requestedAnInspection": "Requested an inspection"
+      "requestedAnInspection": "Requested an inspection",
+      "acceptedInspection": "Accepted inspection"
+    },
+    "common": {
+      "regenerator": "Regenerator",
+      "inspector": "Inspector",
+      "researcher": "Researcher",
+      "developer": "Developer",
+      "contributor": "Contributor",
+      "activist": "Activist",
+      "supporter": "Supporter"
     }
   }
 }
