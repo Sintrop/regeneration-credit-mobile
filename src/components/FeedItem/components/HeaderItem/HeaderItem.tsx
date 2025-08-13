@@ -16,7 +16,7 @@ export function HeaderItem({ address, name, photo, createdAt, isLoading }: Props
   }
   
   return (
-    <View className="flex-row w-full gap-3">
+    <View className="flex-row w-full gap-3 border-b pb-3 border-card-secondary">
       <Avatar address={address ? address : ""} photoHash={photo} size={50} />
 
       <View className="mt-[-3]">

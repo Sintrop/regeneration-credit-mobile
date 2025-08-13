@@ -7,8 +7,8 @@ export function RequestedInspection() {
   const { t } = useTranslation();
 
   return (
-    <View className="flex-row items-center justify-between px-3 h-10 rounded-2xl bg-orange-400">
-      <Text className="font-bold text-white">{t("feed.requestedAnInspection")}</Text>
+    <View className="flex-row items-center justify-between px-3 h-10 rounded-2xl border-2 border-orange-400">
+      <Text className="font-bold text-orange-400">{t("feed.requestedAnInspection")}</Text>
     </View>
   )
 }

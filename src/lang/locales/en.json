@@ -5,7 +5,9 @@
     },
     "feed": {
       "requestedAnInspection": "Requested an inspection",
-      "acceptedInspection": "Accepted inspection"
+      "acceptedInspection": "Accepted inspection",
+      "realizedInspection": "Realized inspection",
+      "rScore": "Score"
     },
     "common": {
       "regenerator": "Regenerator",
@@ -14,7 +16,10 @@
       "developer": "Developer",
       "contributor": "Contributor",
       "activist": "Activist",
-      "supporter": "Supporter"
+      "supporter": "Supporter",
+      "inspection": "Inspection",
+      "biodiversity": "Biodiversity",
+      "trees": "Trees"
     }
   }
 }
