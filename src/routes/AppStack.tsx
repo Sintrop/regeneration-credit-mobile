@@ -1,8 +1,11 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { HomeScreen } from '@screens';
+import { HomeScreen, UserDetailsScreen } from '@screens';
 
 export type AppStackParamsList = {
   HomeScreen: undefined;
+  UserDetailsScreen: {
+    address: string;
+  }
 };
 const Stack = createNativeStackNavigator<AppStackParamsList>();
 
@@ -15,6 +18,7 @@ export function AppStack() {
       }}
     >
       <Stack.Screen name="HomeScreen" component={HomeScreen} />
+      <Stack.Screen name="UserDetailsScreen" component={UserDetailsScreen} />
     </Stack.Navigator>
   );
 }

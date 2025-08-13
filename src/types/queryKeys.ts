@@ -2,5 +2,6 @@ export enum QueryKeys {
   GetInspection = 'GetInspection',
   GetUser = 'GetUser',
   GetBasicDataUser = 'GetBasicDataUser',
-  GetInspector = 'GetInspector'
+  GetInspector = 'GetInspector',
+  GetRegenerator = 'GetRegenerator'
 }

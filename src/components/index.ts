@@ -4,3 +4,5 @@ export * from "./StatusBar/StatusBar";
 export * from "./Text/Text";
 export * from "./FeedItem/FeedItem";
 export * from "./Avatar/Avatar";
+export * from "./Profile/Profile";
+export * from "./UserTypeText/UserTypeText";

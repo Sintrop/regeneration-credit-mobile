@@ -9,6 +9,10 @@
       "realizedInspection": "Realized inspection",
       "rScore": "Score"
     },
+    "userDetails": {
+      "title": "User details",
+      "errorOnGetUser": "Error on get user"
+    },
     "common": {
       "regenerator": "Regenerator",
       "inspector": "Inspector",
@@ -19,7 +23,8 @@
       "supporter": "Supporter",
       "inspection": "Inspection",
       "biodiversity": "Biodiversity",
-      "trees": "Trees"
+      "trees": "Trees",
+      "tryAgain": "Try again"
     }
   }
 }

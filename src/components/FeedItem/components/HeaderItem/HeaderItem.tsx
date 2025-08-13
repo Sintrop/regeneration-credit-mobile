@@ -1,7 +1,10 @@
-import { View } from "react-native";
+import { TouchableOpacity, View } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 
 import { Avatar, Text } from "@components";
 import { Loading } from "./Loading";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { AppStackParamsList } from "@routes";
 
 interface Props {
   address?: string;
@@ -10,13 +13,25 @@ interface Props {
   photo?: string;
   createdAt?: number;
 }
+
+type NavigationProps = NativeStackNavigationProp<AppStackParamsList, "HomeScreen">
 export function HeaderItem({ address, name, photo, createdAt, isLoading }: Props) {
+  const navigation = useNavigation<NavigationProps>();
+
+  function handleGoToUserDetails() {
+    if (!address) return;
+    navigation.navigate("UserDetailsScreen", { address });
+  }
+
   if (isLoading){
     return <Loading />
   }
   
   return (
-    <View className="flex-row w-full gap-3 border-b pb-3 border-card-secondary">
+    <TouchableOpacity
+      className="flex-row w-full gap-3 border-b pb-3 border-card-secondary"
+      onPress={handleGoToUserDetails}
+    >
       <Avatar address={address ? address : ""} photoHash={photo} size={50} />
 
       <View className="mt-[-3]">
@@ -24,6 +39,6 @@ export function HeaderItem({ address, name, photo, createdAt, isLoading }: Props
         <Text className="text-white text-sm">{address}</Text>
         <Text className="text-white text-xs">{createdAt}</Text>
       </View>
-    </View>
+    </TouchableOpacity>
   )
 }

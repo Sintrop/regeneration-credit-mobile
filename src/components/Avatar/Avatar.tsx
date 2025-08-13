@@ -6,18 +6,19 @@ import { useSettingsContext } from "@hooks";
 interface Props {
   address: string;
   photoHash?: string;
-  size?: number
+  size?: number;
+  withBorder?: boolean;
 }
-export function Avatar({ address, photoHash, size = 20 }: Props) {
+export function Avatar({ address, photoHash, size = 20, withBorder }: Props) {
   const { ipfsGateway } = useSettingsContext();
 
   return (
-    <View className={`w-[${size}] h-[${size}] rounded-full overflow-hidden relative`}>
+    <View className={`w-[${size}] h-[${size}] rounded-full relative overflow-hidden ${withBorder && "border-4 border-white"}`}>
       <Jazzicon address={address} size={size} />
       {photoHash && (
         <Image 
           source={{ uri: `${ipfsGateway}/ipfs/${photoHash}` }}
-          className="w-full h-full rounded-full absolute z-10 top-0 left-0"
+          className="w-full h-full rounded-full absolute z-10"
           resizeMode="cover"
         />
       )}

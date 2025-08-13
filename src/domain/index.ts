@@ -10,6 +10,7 @@ export * from "./CommunityRules/useCases/useGetUser";
 
 export * from "./RegeneratorRules/types";
 export * from "./RegeneratorRules/regeneratorService";
+export * from "./RegeneratorRules/useCases/useGetRegenerator";
 
 export * from "./InspectorRules/types";
 export * from "./InspectorRules/inspectorService";

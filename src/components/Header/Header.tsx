@@ -1,12 +1,15 @@
 import { ReactNode } from "react";
-import { View, Image } from "react-native";
+import { View, Image, TouchableOpacity } from "react-native";
 import { Text } from "@components";
 
 //@ts-ignore
 import RCIcon from "../../assets/images/rc.png";
+import { useNavigation } from "@react-navigation/native";
 
 export interface HeaderProps {
-  home?: boolean
+  home?: boolean;
+  title?: string;
+  showBackButton?: boolean;
 }
 
 function Container({ children }: { children: ReactNode }) {
@@ -16,7 +19,14 @@ function Container({ children }: { children: ReactNode }) {
     </View>
   )
 }
-export function Header({ home }: HeaderProps) {
+
+export function Header({ home, title, showBackButton }: HeaderProps) {
+  const navigation = useNavigation();
+
+  function handleGoBack() {
+    navigation.goBack();
+  }
+
   if (home) {
     return (
       <Container>
@@ -27,10 +37,23 @@ export function Header({ home }: HeaderProps) {
       </Container>
     )
   }
-  return (
-    <View className="flex-row items-center justify-between px-5 h-20 w-full bg-green-header">
 
-      <Text>Regeneration Credit</Text>
-    </View>
+  return (
+    <Container>
+      <View className="w-10">
+        {showBackButton && (
+          <TouchableOpacity
+            className="w-5 h-5 bg-white"
+            onPress={handleGoBack}
+          >
+
+          </TouchableOpacity>
+        )}
+      </View> 
+
+      <Text className="text-white font-bold">{title}</Text>
+      
+      <View className="w-10"/>
+    </Container>
   )
 }
