@@ -22,8 +22,9 @@
       "inspectedAt": "Inspected at",
       "inspectedAtEra": "Inspected at era",
       "validationsCount": "Validations count",
-      "proofPhotos": "Proof photos",
-      "justificationReport": "Justification report"
+      "proofPhotosReport": "Proof photos report",
+      "justificationReport": "Justification report",
+      "reports": "Reports"
     },
     "profile": {
       "hashProofPhoto": "Proof photo",
@@ -40,6 +41,9 @@
       "level": "Level",
       "": "",
       "": ""
+    },
+    "pdfView": {
+      "title": "PDF View"
     },
     "common": {
       "regenerator": "Regenerator",

@@ -6,6 +6,7 @@ import { DataItem, Text } from "@components";
 
 import { Regenerator } from "./Regenerator";
 import { Inspector } from "./Inspector";
+import { Reports } from "./Reports";
 
 interface Props {
   id: number
@@ -38,19 +39,22 @@ export function Inspection({ id }: Props) {
           />
         </View>
 
+        <DataItem title="ID" value={id} />
         <DataItem title={t("resourceScreen.createdAt")} value={inspection?.createdAt} />
         <DataItem title={t("resourceScreen.acceptedAt")} value={inspection?.acceptedAt} />
         <DataItem title={t("resourceScreen.inspectedAt")} value={inspection?.inspectedAt} />
         <DataItem title={t("resourceScreen.inspectedAtEra")} value={inspection?.inspectedAtEra} />
         <DataItem title={t("resourceScreen.validationsCount")} value={inspection?.validationsCount} />
-        <DataItem title={t("resourceScreen.proofPhotos")} value={inspection?.proofPhotos} />
-        <DataItem title={t("resourceScreen.justificationReport")} value={inspection?.justificationReport} />
       </View>
 
       {inspection && (
         <View className="gap-3">
           <Regenerator address={inspection.regenerator} />
           <Inspector address={inspection.inspector} />
+          <Reports 
+            proofPhotos={inspection.proofPhotos} 
+            justificationReport={inspection.justificationReport}
+          />
         </View>
       )}
     </View>
