@@ -1,6 +1,6 @@
 import { Image, View } from "react-native";
 
-import { Text, UserTypeText } from "@components";
+import { Text, UserTypeText, UserTypeTextType } from "@components";
 
 //@ts-ignore
 import BGFlorest from "../../../../assets/images/bg-florest.jpg";
@@ -11,7 +11,7 @@ interface Props {
   address: string;
   name: string;
   photoHash: string;
-  userType: number;
+  userType: UserTypeTextType;
   bannerUrl?: string;
 }
 export function HeaderProfile({ address, photoHash, name, userType }: Props) {
@@ -39,6 +39,7 @@ export function HeaderProfile({ address, photoHash, name, userType }: Props) {
         </View>
 
         <Text className="font-bold text-white text-2xl">{name}</Text>
+        <Text className="text-white">{address}</Text>
         <UserTypeText userType={userType} className="text-gray-300 text-sm"/>
       </View>      
     </View>

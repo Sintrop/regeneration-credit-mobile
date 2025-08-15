@@ -13,6 +13,16 @@
       "title": "User details",
       "errorOnGetUser": "Error on get user"
     },
+    "profile": {
+      "hashProofPhoto": "Proof photo",
+      "totalArea": "Total area",
+      "regenerationScore": "Regeneration score",
+      "totalInspections": "Total inspections",
+      "lastRequestAt": "Last requested at",
+      "registeredAt": "Registered at",
+      "coordinatesCount": "Coordinates count",
+      "": ""
+    },
     "common": {
       "regenerator": "Regenerator",
       "inspector": "Inspector",

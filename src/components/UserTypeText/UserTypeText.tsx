@@ -19,4 +19,4 @@ const userTypeToText = {
   1: "regenerator",
   2: "inspector"
 }
-type UserTypeTextType = keyof typeof userTypeToText
+export type UserTypeTextType = keyof typeof userTypeToText
