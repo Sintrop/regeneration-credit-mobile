@@ -6,3 +6,5 @@ export * from "./FeedItem/FeedItem";
 export * from "./Avatar/Avatar";
 export * from "./Profile/Profile";
 export * from "./UserTypeText/UserTypeText";
+export * from "./DataItem/DataItem";
+export * from "./User/User";

@@ -1,8 +1,10 @@
 import { View } from "react-native";
-import { useGetRegenerator } from "@domain";
-import { HeaderProfile } from "../HeaderProfile/HeaderProfile";
-import { DataItem } from "../DataItem/DataItem";
 import { useTranslation } from "react-i18next";
+
+import { useGetRegenerator } from "@domain";
+import { DataItem } from "@components";
+
+import { HeaderProfile } from "../HeaderProfile/HeaderProfile";
 
 interface Props {
   address: string

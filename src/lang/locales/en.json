@@ -13,6 +13,18 @@
       "title": "User details",
       "errorOnGetUser": "Error on get user"
     },
+    "resourceScreen" : {
+      "title": "Resource details",
+      "inspectionData": "Inspection data",
+      "rScore": "Score",
+      "createdAt": "Created at",
+      "acceptedAt": "Accepted at",
+      "inspectedAt": "Inspected at",
+      "inspectedAtEra": "Inspected at era",
+      "validationsCount": "Validations count",
+      "proofPhotos": "Proof photos",
+      "justificationReport": "Justification report"
+    },
     "profile": {
       "hashProofPhoto": "Proof photo",
       "totalArea": "Total area",

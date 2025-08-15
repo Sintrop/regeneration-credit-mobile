@@ -17,7 +17,11 @@ export function ResourceScreen({ route }: ScreenProps) {
 
   const ResourceComponent = resources[resourceType];
   return (
-    <Screen title={t("resourceScreen.title")} showBackButton>
+    <Screen 
+      title={t("resourceScreen.title")} 
+      showBackButton
+      scrollable
+    >
       <ResourceComponent id={id} />
     </Screen>
   )
