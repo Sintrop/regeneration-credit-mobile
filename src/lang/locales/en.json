@@ -21,6 +21,12 @@
       "lastRequestAt": "Last requested at",
       "registeredAt": "Registered at",
       "coordinatesCount": "Coordinates count",
+      "lastAcceptedAt": "Last accepted at",
+      "lastRealizedAt": "Last realized at",
+      "lastInspection": "Last isnpection",
+      "giveUps": "Give ups",
+      "level": "Level",
+      "": "",
       "": ""
     },
     "common": {

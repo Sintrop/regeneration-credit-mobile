@@ -1,3 +1,4 @@
+import { Inspector } from "./components/Inspector/Inspector";
 import { Regenerator } from "./components/Regenerator/Regenerator";
 
 interface Props {
@@ -10,6 +11,7 @@ export function Profile({ address, userType }: Props) {
 }
 
 const userData = {
-  1: Regenerator
+  1: Regenerator,
+  2: Inspector
 }
 type UserTypeToUserData = keyof typeof userData

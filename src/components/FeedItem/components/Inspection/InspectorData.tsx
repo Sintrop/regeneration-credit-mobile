@@ -1,16 +1,26 @@
-import { View } from "react-native";
+import { TouchableOpacity, View } from "react-native";
 import { useTranslation } from "react-i18next";
 import ContentLoader, {Rect, Circle} from 'react-content-loader/native';
 
 import { Avatar, Text } from "@components";
 import { useGetInspector } from "@domain";
+import { useNavigation } from "@react-navigation/native";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { AppStackParamsList } from "@routes";
 
 interface Props {
   address: string;
 }
+
+type NavigationProps = NativeStackNavigationProp<AppStackParamsList, "HomeScreen">
 export function InspectorData({ address }: Props) {
+  const navigation = useNavigation<NavigationProps>();
   const { t } = useTranslation();
-  const { inspector, isLoading } = useGetInspector({ address })
+  const { inspector, isLoading } = useGetInspector({ address });
+
+  function handleGoToUserDetails() {
+    navigation.navigate("UserDetailsScreen", { address });
+  }
 
   return (
     <View className="gap-1">
@@ -21,11 +31,14 @@ export function InspectorData({ address }: Props) {
       {isLoading ? (
         <Loading />
       ) : (
-        <View className="flex-row items-center gap-2">
+        <TouchableOpacity
+          className="flex-row items-center gap-2"
+          onPress={handleGoToUserDetails}
+        >
           <Avatar address={address} photoHash={inspector?.proofPhoto} size={30} />
 
           <Text className="text-white text-sm">{inspector?.name}</Text>
-        </View>
+        </TouchableOpacity>
       )}
     </View>
   )
