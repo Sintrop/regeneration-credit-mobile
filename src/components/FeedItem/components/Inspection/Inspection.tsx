@@ -47,7 +47,7 @@ export function Inspection({ id }: BaseComponentsProps) {
         )}
       </View>
 
-      <FooterItem />
+      <FooterItem resourceType="inspection" id={id} />
     </View>
   );
 }
