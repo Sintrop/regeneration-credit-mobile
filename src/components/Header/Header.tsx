@@ -1,10 +1,11 @@
 import { ReactNode } from "react";
 import { View, Image, TouchableOpacity } from "react-native";
-import { Text } from "@components";
+import { useNavigation } from "@react-navigation/native";
+
+import { Icon, Text } from "@components";
 
 //@ts-ignore
 import RCIcon from "../../assets/images/rc.png";
-import { useNavigation } from "@react-navigation/native";
 
 export interface HeaderProps {
   home?: boolean;
@@ -43,10 +44,10 @@ export function Header({ home, title, showBackButton }: HeaderProps) {
       <View className="w-10">
         {showBackButton && (
           <TouchableOpacity
-            className="w-5 h-5 bg-white"
+            className=""
             onPress={handleGoBack}
           >
-
+            <Icon name="chevronLeft" size={25}/>
           </TouchableOpacity>
         )}
       </View> 

@@ -1,4 +1,4 @@
-import { FileIcon } from "@icons";
+import { FileIcon, ChevronLeftIcon } from "@icons";
 
 export interface IconSvgProps {
   color?: string;
@@ -19,6 +19,7 @@ export function Icon({ name, color, size }: Props) {
 }
 
 const icons = {
-  file: FileIcon
+  file: FileIcon,
+  chevronLeft: ChevronLeftIcon
 }
 export type IconsName = keyof typeof icons;
