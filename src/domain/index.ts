@@ -18,6 +18,7 @@ export * from "./InspectorRules/useCases/useGetInspector";
 export * from "./DeveloperRules/types";
 export * from "./DeveloperRules/developerService";
 export * from "./DeveloperRules/useCases/useGetReport";
+export * from "./DeveloperRules/useCases/useGetDeveloper";
 
 export * from "./Feed/feedService";
 export * from "./Feed/useCases/useFeedInspections";

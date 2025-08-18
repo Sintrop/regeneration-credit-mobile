@@ -24,7 +24,11 @@
       "validationsCount": "Validations count",
       "proofPhotosReport": "Proof photos report",
       "justificationReport": "Justification report",
-      "reports": "Reports"
+      "reports": "Reports",
+      "reportData": "Report data",
+      "invalidatedAt": "Invalidated at",
+      "file": "File",
+      "seeReport": "See report"
     },
     "profile": {
       "hashProofPhoto": "Proof photo",
@@ -56,7 +60,9 @@
       "inspection": "Inspection",
       "biodiversity": "Biodiversity",
       "trees": "Trees",
-      "tryAgain": "Try again"
+      "tryAgain": "Try again",
+      "report": "Report",
+      "description": "Description"
     }
   }
 }
