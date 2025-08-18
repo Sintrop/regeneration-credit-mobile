@@ -8,3 +8,4 @@ export * from "./Profile/Profile";
 export * from "./UserTypeText/UserTypeText";
 export * from "./DataItem/DataItem";
 export * from "./User/User";
+export * from "./Icon/Icon";

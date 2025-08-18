@@ -3,7 +3,7 @@ import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { useTranslation } from "react-i18next";
 
-import { Text } from "@components";
+import { Icon, IconsName, Text } from "@components";
 import { AppStackParamsList } from "@routes";
 import { useSettingsContext } from "@hooks";
 
@@ -33,11 +33,13 @@ export function Reports({ justificationReport, proofPhotos }: Props) {
         <ButtonReport
           title={t("resourceScreen.justificationReport")}
           onPress={() => handleGoToPdfView(justificationReport)}
+          icon="file"
         />
 
         <ButtonReport
           title={t("resourceScreen.proofPhotosReport")}
           onPress={() => handleGoToPdfView(proofPhotos)}
+          icon="file"
         />
       </View>
 
@@ -59,14 +61,15 @@ export function Reports({ justificationReport, proofPhotos }: Props) {
 
 interface ButtonReportProps extends TouchableOpacityProps {
   title: string;
+  icon: IconsName;
 }
-function ButtonReport({ title, ...buttonProps }: ButtonReportProps) {
+function ButtonReport({ title, icon, ...buttonProps }: ButtonReportProps) {
   return (
     <TouchableOpacity
       className="w-28 p-3 rounded-2xl items-center gap-2"
       {...buttonProps}
     >
-      <View className="w-20 h-20 bg-white"/>
+      <Icon name={icon} size={80} />
       <Text className="text-sm text-white text-center">{title}</Text>
     </TouchableOpacity>
   )
