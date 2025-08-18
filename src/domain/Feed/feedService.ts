@@ -1,4 +1,4 @@
-import { inspectionService } from "@domain"
+import { developerService, inspectionService } from "@domain"
 
 async function getListIdsInspections(rpc: string): Promise<number[]> {
   const totalInspections = await inspectionService.getTotalInspections({ rpc })
@@ -8,12 +8,15 @@ async function getListIdsInspections(rpc: string): Promise<number[]> {
 
 interface ReturnGetTotalResourcesProps {
   inspectionsCount: number;
+  reportsCount: number;
 }
 async function getTotalResources({ rpc }: { rpc: string }): Promise<ReturnGetTotalResourcesProps> {
   const inspectionsCount = await inspectionService.getTotalInspections({ rpc });
+  const reportsCount = await developerService.getTotalReports({ rpc });
 
   return {
-    inspectionsCount
+    inspectionsCount,
+    reportsCount
   }
 }
 

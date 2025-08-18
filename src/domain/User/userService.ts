@@ -1,4 +1,4 @@
-import { BasicUserProps, inspectorService, regeneratorService } from "@domain";
+import { BasicUserProps, developerService, inspectorService, regeneratorService } from "@domain";
 
 interface GetBasicDataProps {
   rpc: string;
@@ -23,6 +23,15 @@ async function getBasicData({ address, rpc, userType }: GetBasicDataProps): Prom
 
   if (userType === 2) {
     const response = await inspectorService.getInspector({ rpc, address })
+    basicData = {
+      address,
+      name: response.name,
+      photo: response.proofPhoto
+    }
+  }
+
+  if (userType === 4) {
+    const response = await developerService.getDeveloper({ rpc, address })
     basicData = {
       address,
       name: response.name,

@@ -3,6 +3,7 @@ import InspectionRulesJson from "./InspectionRules.json";
 import CommunityRulesJson from "./CommunityRules.json";
 import RegeneratorRulesJson from "./RegeneratorRules.json";
 import InspectorRulesJson from "./InspectorRules.json";
+import DeveloperRulesJson from "./DeveloperRules.json";
 
 export const RegenerationCredit = {
   abi: RegenerationCreditJson.abi,
@@ -23,4 +24,8 @@ export const RegeneratorRules = {
 export const InspectorRules = {
   abi: InspectorRulesJson.abi,
   address: "0x2621E0e0a62b707eF55090d600177d48eD674f2c"
+}
+export const DeveloperRules = {
+  abi: DeveloperRulesJson.abi,
+  address: "0xc928D575Fe6462897D26AB73D4A0f616347C92d2"
 }

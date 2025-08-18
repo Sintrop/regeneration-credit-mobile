@@ -19,7 +19,7 @@ async function createTable() {
   const query = `
     CREATE TABLE IF NOT EXISTS Feed (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
-      resource_id INTEGER UNIQUE,
+      resource_id INTEGER,
       resource_type TEXT,
       created_at INTEGER
     );
@@ -39,7 +39,12 @@ async function insertResourceFeed({ createdAt, resourceId, resourceType }: Inser
     INSERT INTO Feed (resource_id, resource_type, created_at)
     VALUES (?, ?, ?);
   `;
-  await database.executeSql(query, [resourceId, resourceType, createdAt]);
+
+  try {
+    await database.executeSql(query, [resourceId, resourceType, createdAt]);
+  } catch (e) {
+    console.log(e)
+  }
 };
 
 async function getFeed(): Promise<FeedDBProps[]> {

@@ -11,7 +11,7 @@ export function HomeScreen() {
 
   function renderItemFeed({ item }: ListRenderItemInfo<FeedItemProps>) {
     return (
-      <FeedItem key={item.id} id={item.id} type={item.resourceType} />
+      <FeedItem key={item.id} id={item.resourceId} type={item.resourceType} />
     )
   }
 

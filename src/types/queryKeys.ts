@@ -3,5 +3,7 @@ export enum QueryKeys {
   GetUser = 'GetUser',
   GetBasicDataUser = 'GetBasicDataUser',
   GetInspector = 'GetInspector',
-  GetRegenerator = 'GetRegenerator'
+  GetRegenerator = 'GetRegenerator',
+  GetDeveloper = 'GetDeveloper',
+  GetReport = 'GetReport'
 }

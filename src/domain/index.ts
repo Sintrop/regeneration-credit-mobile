@@ -1,5 +1,4 @@
 export * from "./RegenerationCredit/rcService";
-export * from "./RegenerationCredit/types";
 
 export * from "./InspectionRules/inspectionService";
 export * from "./InspectionRules/types";
@@ -16,8 +15,11 @@ export * from "./InspectorRules/types";
 export * from "./InspectorRules/inspectorService";
 export * from "./InspectorRules/useCases/useGetInspector";
 
+export * from "./DeveloperRules/types";
+export * from "./DeveloperRules/developerService";
+export * from "./DeveloperRules/useCases/useGetReport";
+
 export * from "./Feed/feedService";
-export * from "./Feed/types";
 export * from "./Feed/useCases/useFeedInspections";
 export * from "./Feed/useCases/useFeed";
 

@@ -4,11 +4,12 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { feedService } from "../feedService";
 import { useSettingsContext } from "@hooks";
 import { databaseService, FeedItemProps, database } from "@database";
-import { inspectionService } from "@domain";
+import { developerService, inspectionService } from "@domain";
 import { paginateList } from "@utils";
 
 interface TotalResourcesSaved {
   inspections: number;
+  reports: number;
 }
 
 export function useFeed() {
@@ -31,7 +32,6 @@ export function useFeed() {
     const paginate = paginateList<FeedItemProps>({ atualPage, itemsPerPage, list: response });
     setListPage(paginate.list);
     setList(response);
-
     setTotalPages(paginate.totalPages);
   }
 
@@ -48,6 +48,13 @@ export function useFeed() {
       await saveTotalResourcesFeed({ ...totalSaved, inspections: inspectionsCount });
     }
 
+    //Check reports
+    if (totalSaved.reports < totalResources.reportsCount) {
+      const reportsCount = totalResources.reportsCount;
+      await registerReports({ reportsCount });
+      await saveTotalResourcesFeed({ ...totalSaved, reports: reportsCount });
+    }
+
     getFeedList();
     setIsLoading(false);
   }
@@ -60,7 +67,8 @@ export function useFeed() {
     }
 
     return {
-      inspections: 0
+      inspections: 0,
+      reports: 0
     }
   }
 
@@ -81,6 +89,24 @@ export function useFeed() {
           createdAt: inspection.createdAt,
           resourceId: id,
           resourceType: "inspection"
+        })
+      }
+    }
+  }
+
+  async function registerReports({ reportsCount }: { reportsCount: number }) {
+    const ids = Array.from({ length: reportsCount }, (_, i) => i + 1).slice(0, 9);
+
+    for (let i = 0; i < ids.length; i++) {
+      const id = ids[i];
+      const exists = await database.checkResourceExists({ id, resourceType: "report" });
+
+      if (!exists) {
+        const report = await developerService.getReport({ rpc, reportId: id });
+        await database.insertResourceFeed({
+          createdAt: report.createdAtBlockNumber,
+          resourceId: id,
+          resourceType: "report"
         })
       }
     }
