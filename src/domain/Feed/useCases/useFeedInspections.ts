@@ -23,7 +23,6 @@ export function useFeedInspections({ itemsPerPage }: Props) {
     setLoading(true);
     const response = await feedService.getListIdsInspections(rpc)
     setIdsInspections(response);
-    console.log(response)
 
     const paginate = paginateList<number>({ atualPage, itemsPerPage, list: response })
     setIdsPage(paginate.list);

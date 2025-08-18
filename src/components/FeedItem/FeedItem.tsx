@@ -1,14 +1,14 @@
 import { ComponentType } from "react";
 import { View } from "react-native";
-import { FeedItemTypes } from "@domain";
 import { Inspection } from "./components/Inspection/Inspection";
+import { ResourcesTypes } from "@database";
 
 export interface BaseComponentsProps {
   id: number
 }
 
 interface Props {
-  type: FeedItemTypes;
+  type: ResourcesTypes;
   id: number
 }
 export function FeedItem({ id, type }: Props) {
@@ -20,6 +20,6 @@ export function FeedItem({ id, type }: Props) {
   )
 }
 
-const componentByType: Record<FeedItemTypes, ComponentType<BaseComponentsProps>> = {
+const componentByType: Record<ResourcesTypes, ComponentType<BaseComponentsProps>> = {
   inspection: Inspection
 }

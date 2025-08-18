@@ -19,6 +19,7 @@ export * from "./InspectorRules/useCases/useGetInspector";
 export * from "./Feed/feedService";
 export * from "./Feed/types";
 export * from "./Feed/useCases/useFeedInspections";
+export * from "./Feed/useCases/useFeed";
 
 export * from "./User/types";
 export * from "./User/userService";
