@@ -5,5 +5,7 @@ export enum QueryKeys {
   GetInspector = 'GetInspector',
   GetRegenerator = 'GetRegenerator',
   GetDeveloper = 'GetDeveloper',
-  GetReport = 'GetReport'
+  GetReport = 'GetReport',
+  GetResearcher = 'GetResearcher',
+  GetResearch = 'GetResearch'
 }

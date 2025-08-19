@@ -4,12 +4,13 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { feedService } from "../feedService";
 import { useSettingsContext } from "@hooks";
 import { databaseService, FeedItemProps, database } from "@database";
-import { developerService, inspectionService } from "@domain";
+import { developerService, inspectionService, researcherService } from "@domain";
 import { paginateList } from "@utils";
 
 interface TotalResourcesSaved {
   inspections: number;
   reports: number;
+  researches: number;
 }
 
 export function useFeed() {
@@ -55,6 +56,13 @@ export function useFeed() {
       await saveTotalResourcesFeed({ ...totalSaved, reports: reportsCount });
     }
 
+    //Check researches
+    if (totalSaved.researches < totalResources.researchesCount) {
+      const researchesCount = totalResources.researchesCount;
+      await registerResearches({ researchesCount });
+      await saveTotalResourcesFeed({ ...totalSaved, researches: researchesCount });
+    }
+
     getFeedList();
     setIsLoading(false);
   }
@@ -68,7 +76,8 @@ export function useFeed() {
 
     return {
       inspections: 0,
-      reports: 0
+      reports: 0,
+      researches: 0
     }
   }
 
@@ -89,6 +98,24 @@ export function useFeed() {
           createdAt: inspection.createdAt,
           resourceId: id,
           resourceType: "inspection"
+        })
+      }
+    }
+  }
+
+  async function registerResearches({ researchesCount }: { researchesCount: number }) {
+    const ids = Array.from({ length: researchesCount }, (_, i) => i + 1).slice(0, 9);
+
+    for (let i = 0; i < ids.length; i++) {
+      const id = ids[i];
+      const exists = await database.checkResourceExists({ id, resourceType: "research" });
+
+      if (!exists) {
+        const research = await researcherService.getResearch({ rpc, researchId: id });
+        await database.insertResourceFeed({
+          createdAt: research.createdAt,
+          resourceId: id,
+          resourceType: "research"
         })
       }
     }

@@ -3,6 +3,7 @@ import { View } from "react-native";
 import { Inspection } from "./components/Inspection/Inspection";
 import { ResourcesTypes } from "@database";
 import { Report } from "./components/Report/Report";
+import { Research } from "./components/Research/Research";
 
 export interface BaseComponentsProps {
   id: number
@@ -23,5 +24,6 @@ export function FeedItem({ id, type }: Props) {
 
 const componentByType: Record<ResourcesTypes, ComponentType<BaseComponentsProps>> = {
   inspection: Inspection,
-  report: Report
+  report: Report,
+  research: Research
 }

@@ -22,6 +22,11 @@ export * from "./DeveloperRules/useCases/useGetDeveloper";
 
 export * from "./ResearcherRules/types";
 export * from "./ResearcherRules/researcherService";
+export * from "./ResearcherRules/useCases/useGetResearch";
+export * from "./ResearcherRules/useCases/useGetResearcher";
+
+export * from "./ContributorRules/types";
+export * from "./ContributorRules/contributorService";
 
 export * from "./Feed/feedService";
 export * from "./Feed/useCases/useFeedInspections";

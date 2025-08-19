@@ -6,10 +6,12 @@ import { AppStackParamsList } from "@routes";
 
 import { Inspection } from "./components/Inspection/Inspection";
 import { Report } from "./components/Report/Report";
+import { Research } from "./components/Research/Research";
 
 const resources = {
   inspection: Inspection,
-  report: Report
+  report: Report,
+  research: Research
 }
 export type ResourcesTypes = keyof typeof resources;
 

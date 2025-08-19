@@ -33,9 +33,9 @@ export const DeveloperRules = {
 }
 export const ResearcherRules = {
   abi: ResearcherRulesJson.abi,
-  address: "0xc928D575Fe6462897D26AB73D4A0f616347C92d2"
+  address: "0x277655892f94c980c3aBe3d3c656D8eE6Ebc2a8d"
 }
 export const ContributorRules = {
   abi: ContributorRulesJson.abi,
-  address: "0xc928D575Fe6462897D26AB73D4A0f616347C92d2"
+  address: "0x8921b40802C2e0Ed909FA8726E21026315bf9949"
 }

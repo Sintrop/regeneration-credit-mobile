@@ -2,6 +2,7 @@ import Web3 from "web3";
 
 import { ResearcherRules } from "@contracts";
 import { CalculatorItemContractProps, EvaluationMethodContractProps, ResearchContractProps, ResearcherContractProps } from "./types";
+import { bigNumberToFloat } from "@utils";
 
 interface GetResearcherProps {
   rpc: string;
@@ -51,10 +52,33 @@ async function getEvaluationMethod({ rpc, methodId }: GetEvaluationMethodProps):
   return response;
 }
 
+async function researchesTotalCount({ rpc }: { rpc: string }): Promise<number> {
+  const provider = new Web3(new Web3.providers.HttpProvider(rpc));
+  const contract = new provider.eth.Contract(ResearcherRules.abi, ResearcherRules.address);
+  const response = await contract.methods.researchesTotalCount().call() as string;
+  return bigNumberToFloat(response);
+}
+
+async function calculatorItemsCount({ rpc }: { rpc: string }): Promise<number> {
+  const provider = new Web3(new Web3.providers.HttpProvider(rpc));
+  const contract = new provider.eth.Contract(ResearcherRules.abi, ResearcherRules.address);
+  const response = await contract.methods.calculatorItemsCount().call() as string;
+  return bigNumberToFloat(response);
+}
+
+async function evaluationMethodsCount({ rpc }: { rpc: string }): Promise<number> {
+  const provider = new Web3(new Web3.providers.HttpProvider(rpc));
+  const contract = new provider.eth.Contract(ResearcherRules.abi, ResearcherRules.address);
+  const response = await contract.methods.evaluationMethodsCount().call() as string;
+  return bigNumberToFloat(response);
+}
 
 export const researcherContract = {
   getResearcher,
   getResearch,
   getCalculatorItem,
-  getEvaluationMethod
+  getEvaluationMethod,
+  researchesTotalCount,
+  calculatorItemsCount,
+  evaluationMethodsCount
 }

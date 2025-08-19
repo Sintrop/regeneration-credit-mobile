@@ -29,8 +29,26 @@ async function getCalculatorItem({ itemId, rpc }: GetCalculatorItemProps): Promi
   return researcherAdapter.parseCalculatorItem(response);
 }
 
+async function getTotalResearches({ rpc }: { rpc: string }): Promise<number> {
+  const response = await researcherContract.researchesTotalCount({ rpc });
+  return response;
+}
+
+async function getTotalCalculatorItems({ rpc }: { rpc: string }): Promise<number> {
+  const response = await researcherContract.calculatorItemsCount({ rpc });
+  return response;
+}
+
+async function getTotalEvaluationMethods({ rpc }: { rpc: string }): Promise<number> {
+  const response = await researcherContract.evaluationMethodsCount({ rpc });
+  return response;
+}
+
 export const researcherService = {
   getResearcher,
   getResearch,
-  getCalculatorItem
+  getCalculatorItem,
+  getTotalCalculatorItems,
+  getTotalResearches,
+  getTotalEvaluationMethods
 }
