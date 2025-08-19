@@ -18,6 +18,10 @@ export function UserTypeText({ userType, ...textProps}: Props) {
 const userTypeToText = {
   1: "regenerator",
   2: "inspector",
-  4: "developer"
+  3: "researcher",
+  4: "developer",
+  5: "contributor",
+  6: "activist",
+  7: "supporter"
 }
 export type UserTypeTextType = keyof typeof userTypeToText

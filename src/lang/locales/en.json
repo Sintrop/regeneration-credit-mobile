@@ -46,7 +46,10 @@
       "giveUps": "Give ups",
       "level": "Level",
       "lastPublishedAt": "Last published at",
-      "totalReports": "Total reports"
+      "totalReports": "Total reports",
+      "canPublishMethod": "Can publish method",
+      "lastCalculatorItemAt": "Last calculator item at",
+      "publishedResearches": "Published researches"
     },
     "pdfView": {
       "title": "PDF View"
