@@ -20,6 +20,9 @@ export * from "./DeveloperRules/developerService";
 export * from "./DeveloperRules/useCases/useGetReport";
 export * from "./DeveloperRules/useCases/useGetDeveloper";
 
+export * from "./ResearcherRules/types";
+export * from "./ResearcherRules/researcherService";
+
 export * from "./Feed/feedService";
 export * from "./Feed/useCases/useFeedInspections";
 export * from "./Feed/useCases/useFeed";
