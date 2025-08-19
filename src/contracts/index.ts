@@ -5,6 +5,7 @@ import RegeneratorRulesJson from "./RegeneratorRules.json";
 import InspectorRulesJson from "./InspectorRules.json";
 import DeveloperRulesJson from "./DeveloperRules.json";
 import ResearcherRulesJson from "./ResearcherRules.json";
+import ContributorRulesJson from "./ContributorRules.json";
 
 export const RegenerationCredit = {
   abi: RegenerationCreditJson.abi,
@@ -32,5 +33,9 @@ export const DeveloperRules = {
 }
 export const ResearcherRules = {
   abi: ResearcherRulesJson.abi,
+  address: "0xc928D575Fe6462897D26AB73D4A0f616347C92d2"
+}
+export const ContributorRules = {
+  abi: ContributorRulesJson.abi,
   address: "0xc928D575Fe6462897D26AB73D4A0f616347C92d2"
 }
