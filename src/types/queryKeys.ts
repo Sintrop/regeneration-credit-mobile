@@ -7,5 +7,7 @@ export enum QueryKeys {
   GetDeveloper = 'GetDeveloper',
   GetReport = 'GetReport',
   GetResearcher = 'GetResearcher',
-  GetResearch = 'GetResearch'
+  GetResearch = 'GetResearch',
+  GetContributor = 'GetContributor',
+  GetContribution = 'GetContribution',
 }

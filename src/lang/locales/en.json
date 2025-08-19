@@ -30,7 +30,9 @@
       "file": "File",
       "seeReport": "See report",
       "seeResearch": "See research",
-      "researchData": "Research data"
+      "researchData": "Research data",
+      "contributionData": "Contribution data",
+      "seeContribution": "See contribution"
     },
     "profile": {
       "hashProofPhoto": "Proof photo",

@@ -27,6 +27,8 @@ export * from "./ResearcherRules/useCases/useGetResearcher";
 
 export * from "./ContributorRules/types";
 export * from "./ContributorRules/contributorService";
+export * from "./ContributorRules/useCases/useGetContribution";
+export * from "./ContributorRules/useCases/useGetContributor";
 
 export * from "./Feed/feedService";
 export * from "./Feed/useCases/useFeedInspections";

@@ -4,13 +4,14 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { feedService } from "../feedService";
 import { useSettingsContext } from "@hooks";
 import { databaseService, FeedItemProps, database } from "@database";
-import { developerService, inspectionService, researcherService } from "@domain";
+import { contributorService, developerService, inspectionService, researcherService } from "@domain";
 import { paginateList } from "@utils";
 
 interface TotalResourcesSaved {
   inspections: number;
   reports: number;
   researches: number;
+  contributions: number;
 }
 
 export function useFeed() {
@@ -63,6 +64,13 @@ export function useFeed() {
       await saveTotalResourcesFeed({ ...totalSaved, researches: researchesCount });
     }
 
+    //Check contributions
+    if (totalSaved.contributions < totalResources.contributionsCount) {
+      const contributionsCount = totalResources.contributionsCount;
+      await registerContributions({ contributionsCount });
+      await saveTotalResourcesFeed({ ...totalSaved, contributions: contributionsCount });
+    }
+
     getFeedList();
     setIsLoading(false);
   }
@@ -77,7 +85,8 @@ export function useFeed() {
     return {
       inspections: 0,
       reports: 0,
-      researches: 0
+      researches: 0,
+      contributions: 0
     }
   }
 
@@ -116,6 +125,24 @@ export function useFeed() {
           createdAt: research.createdAt,
           resourceId: id,
           resourceType: "research"
+        })
+      }
+    }
+  }
+
+  async function registerContributions({ contributionsCount }: { contributionsCount: number }) {
+    const ids = Array.from({ length: contributionsCount }, (_, i) => i + 1).slice(0, 9);
+
+    for (let i = 0; i < ids.length; i++) {
+      const id = ids[i];
+      const exists = await database.checkResourceExists({ id, resourceType: "contribution" });
+
+      if (!exists) {
+        const contribution = await contributorService.getContribution({ rpc, contributionId: id });
+        await database.insertResourceFeed({
+          createdAt: contribution.createdAt,
+          resourceId: id,
+          resourceType: "contribution"
         })
       }
     }

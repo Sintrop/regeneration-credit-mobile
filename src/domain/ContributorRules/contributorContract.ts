@@ -2,6 +2,7 @@ import Web3 from "web3";
 
 import { ContributorRules } from "@contracts";
 import { ContributionContractProps, ContributorContractProps } from "./types";
+import { bigNumberToFloat } from "@utils";
 
 interface GetContributorProps {
   rpc: string;
@@ -27,7 +28,15 @@ async function getContribution({ rpc, contributionId }: GetContributionProps): P
   return response;
 }
 
+async function contributionsTotalCount({ rpc }: { rpc: string }): Promise<number> {
+  const provider = new Web3(new Web3.providers.HttpProvider(rpc));
+  const contract = new provider.eth.Contract(ContributorRules.abi, ContributorRules.address);
+  const response = await contract.methods.contributionsTotalCount().call() as string;
+  return bigNumberToFloat(response);
+}
+
 export const contributorContract = {
   getContributor,
-  getContribution
+  getContribution,
+  contributionsTotalCount
 }

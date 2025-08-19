@@ -20,7 +20,13 @@ async function getContribution({ contributionId, rpc }: GetContributionProps): P
   return contributorAdapter.parseContribution(response);
 }
 
+async function getTotalContributions({ rpc }: { rpc: string }): Promise<number> {
+  const response = await contributorContract.contributionsTotalCount({ rpc });
+  return response;
+}
+
 export const contributorService = {
   getContributor,
-  getContribution
+  getContribution,
+  getTotalContributions
 }
