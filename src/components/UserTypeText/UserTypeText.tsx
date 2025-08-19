@@ -17,6 +17,7 @@ export function UserTypeText({ userType, ...textProps}: Props) {
 
 const userTypeToText = {
   1: "regenerator",
-  2: "inspector"
+  2: "inspector",
+  4: "developer"
 }
 export type UserTypeTextType = keyof typeof userTypeToText

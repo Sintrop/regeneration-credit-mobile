@@ -43,8 +43,8 @@
       "lastInspection": "Last isnpection",
       "giveUps": "Give ups",
       "level": "Level",
-      "": "",
-      "": ""
+      "lastPublishedAt": "Last published at",
+      "totalReports": "Total reports"
     },
     "pdfView": {
       "title": "PDF View"
