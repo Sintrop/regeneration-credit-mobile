@@ -44,7 +44,7 @@
       "coordinatesCount": "Coordinates count",
       "lastAcceptedAt": "Last accepted at",
       "lastRealizedAt": "Last realized at",
-      "lastInspection": "Last isnpection",
+      "lastInspection": "Last inspection",
       "giveUps": "Give ups",
       "level": "Level",
       "lastPublishedAt": "Last published at",
@@ -52,7 +52,9 @@
       "canPublishMethod": "Can publish method",
       "lastCalculatorItemAt": "Last calculator item at",
       "publishedResearches": "Published researches",
-      "about": "About"
+      "about": "About",
+      "regenerationArea": "Regeneration area",
+      "coordinates": "Coordiantes"
     },
     "pdfView": {
       "title": "PDF View"

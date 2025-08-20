@@ -37,3 +37,13 @@ export interface RegeneratorProps {
   createdAt: number;
   coordinatesCount: number;
 }
+
+export interface CoordinateContractProps {
+  latitude: string;
+  longitude: string;
+}
+
+export interface CoordinateProps {
+  latitude: number;
+  longitude: number;
+}

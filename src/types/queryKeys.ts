@@ -11,4 +11,5 @@ export enum QueryKeys {
   GetContributor = 'GetContributor',
   GetContribution = 'GetContribution',
   ProjectDescription = 'ProjectDescription',
+  Coordinates = 'Coordinates',
 }

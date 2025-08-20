@@ -1,6 +1,6 @@
 import { regeneratorAdapter } from "./regeneratorAdapter";
 import { regeneratorContract } from "./regeneratorContract";
-import { RegeneratorProps } from "./types";
+import { CoordinateProps, RegeneratorProps } from "./types";
 
 interface GetRegeneratorProps {
   rpc: string;
@@ -19,7 +19,18 @@ async function getProjectDescription({ address, rpc }: GetProjectDescriptionProp
   const response = await regeneratorContract.projectDescriptions({ rpc, address })
   return response;
 }
+
+interface GetCoordinatesProps {
+  rpc: string;
+  address: string;
+}
+async function getCoordinates({ address, rpc }: GetCoordinatesProps): Promise<CoordinateProps[]> {
+  const response = await regeneratorContract.getCoordinates({ rpc, address })
+  return response.map(regeneratorAdapter.parseCoordinate);
+}
+
 export const regeneratorService = {
   getRegenerator,
-  getProjectDescription
+  getProjectDescription,
+  getCoordinates
 }

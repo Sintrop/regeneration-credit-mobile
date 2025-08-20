@@ -6,6 +6,7 @@ import { DataItem } from "@components";
 
 import { HeaderProfile } from "../HeaderProfile/HeaderProfile";
 import { AboutSection } from "../AboutSection/AboutSection";
+import { RegenerationArea } from "./RegenerationArea";
 
 interface Props {
   address: string
@@ -28,7 +29,7 @@ export function Regenerator({ address }: Props) {
         userType={1}
       />
 
-      <View className="gap-5 px-2">
+      <View className="gap-3 px-2">
         <AboutSection text={projectDescription} isLoading={isLoadingDescription} />
         
         <View className="gap-1 p-5 rounded-2xl bg-card-primary">
@@ -41,6 +42,8 @@ export function Regenerator({ address }: Props) {
           <DataItem title={t("profile.coordinatesCount")} value={regenerator.coordinatesCount} />
           <DataItem title={t("profile.registeredAt")} value={regenerator.createdAt} />
         </View>
+
+        <RegenerationArea address={address} />
       </View>
     </View>
   )
