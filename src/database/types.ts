@@ -12,4 +12,4 @@ export interface FeedItemProps {
   createdAt: number;
 }
 
-export type ResourcesTypes = "inspection" | "report" | "research" | "contribution"
+export type ResourcesTypes = "inspection" | "report" | "research" | "contribution" | "calculatorItem"

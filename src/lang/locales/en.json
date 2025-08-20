@@ -72,7 +72,8 @@
       "description": "Description",
       "title": "Title",
       "thesis": "Thesis",
-      "research": "Research"
+      "research": "Research",
+      "contribution": "Contribution"
     }
   }
 }
