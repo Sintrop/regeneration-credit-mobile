@@ -10,4 +10,5 @@ export enum QueryKeys {
   GetResearch = 'GetResearch',
   GetContributor = 'GetContributor',
   GetContribution = 'GetContribution',
+  ProjectDescription = 'ProjectDescription',
 }

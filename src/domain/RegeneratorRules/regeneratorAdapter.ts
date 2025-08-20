@@ -4,7 +4,7 @@ import { RegeneratorContractProps, RegeneratorProps } from "./types";
 function parseFromContract(data: RegeneratorContractProps): RegeneratorProps {
   return {
     id: bigNumberToFloat(data.id),
-    address: data.regeneratorAddress,
+    address: data.regeneratorWallet,
     coordinatesCount: bigNumberToFloat(data.coordinatesCount),
     createdAt: bigNumberToFloat(data.createdAt),
     lastRequestAt: bigNumberToFloat(data.lastRequestAt),

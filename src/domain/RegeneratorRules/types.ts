@@ -1,6 +1,6 @@
 export interface RegeneratorContractProps {
   id: string;
-  regeneratorAddress: string;
+  regeneratorWallet: string;
   name: string;
   proofPhoto: string;
   totalArea: string;

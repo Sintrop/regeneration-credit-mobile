@@ -8,9 +8,12 @@ interface Props {
 }
 export function DataItem({ title, value, suffix}: Props) {
   return (
-    <View className="flex-row items-center gap-1 w-full">
+    <View className="flex-row items-center gap-1 w-full overflow-hidden">
       <Text className="font-bold text-white">{title}: </Text>
-      <Text className="text-white text-ellipsis truncate max-w-[80%]">
+      <Text 
+        className="text-white text-ellipsis truncate max-w-[75%]"
+        numberOfLines={1}
+      >
         {value} {suffix && suffix}
       </Text>
     </View>

@@ -27,7 +27,7 @@ export function Researcher({ address }: Props) {
       />
 
       <View className="gap-5 px-2">
-        <View className="gap-1 p-3 rounded-2xl bg-card-primary">
+        <View className="gap-1 p-5 rounded-2xl bg-card-primary">
           <DataItem title="ID" value={researcher.id} />
           <DataItem title={t("profile.hashProofPhoto")} value={researcher.proofPhoto} />
           <DataItem title={t("profile.level")} value={researcher.pool.level} />

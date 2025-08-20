@@ -51,7 +51,8 @@
       "totalReports": "Total reports",
       "canPublishMethod": "Can publish method",
       "lastCalculatorItemAt": "Last calculator item at",
-      "publishedResearches": "Published researches"
+      "publishedResearches": "Published researches",
+      "about": "About"
     },
     "pdfView": {
       "title": "PDF View"
