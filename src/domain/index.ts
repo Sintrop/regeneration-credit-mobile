@@ -6,6 +6,7 @@ export * from "./InspectionRules/useCases/useGetInspection";
 
 export * from "./CommunityRules/communityService";
 export * from "./CommunityRules/useCases/useGetUser";
+export * from "./CommunityRules/useCases/useInvitation";
 
 export * from "./RegeneratorRules/types";
 export * from "./RegeneratorRules/regeneratorService";

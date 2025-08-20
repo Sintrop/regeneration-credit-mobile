@@ -6,6 +6,7 @@ import InspectorRulesJson from "./InspectorRules.json";
 import DeveloperRulesJson from "./DeveloperRules.json";
 import ResearcherRulesJson from "./ResearcherRules.json";
 import ContributorRulesJson from "./ContributorRules.json";
+import InvitationRulesJson from "./InvitationRules.json";
 
 export const RegenerationCredit = {
   abi: RegenerationCreditJson.abi,
@@ -38,4 +39,8 @@ export const ResearcherRules = {
 export const ContributorRules = {
   abi: ContributorRulesJson.abi,
   address: "0x8921b40802C2e0Ed909FA8726E21026315bf9949"
+}
+export const InvitationRules = {
+  abi: InvitationRulesJson.abi,
+  address: "0xf8bb802C5065ED167Dc3534aBe383FFdf16BA17B"
 }

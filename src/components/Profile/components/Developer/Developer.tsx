@@ -5,6 +5,7 @@ import { useGetDeveloper } from "@domain";
 import { DataItem } from "@components";
 
 import { HeaderProfile } from "../HeaderProfile/HeaderProfile";
+import { Invitation } from "../Invitation/Invitation";
 
 interface Props {
   address: string
@@ -18,7 +19,7 @@ export function Developer({ address }: Props) {
   if (!developer || isError) return <View />
 
   return (
-    <View className="gap-5">
+    <View className="gap-3">
       <HeaderProfile
         address={address}
         name={developer?.name}
@@ -26,7 +27,7 @@ export function Developer({ address }: Props) {
         userType={4}
       />
 
-      <View className="gap-5 px-2">
+      <View className="gap-3 px-2">
         <View className="gap-1 p-5 rounded-2xl bg-card-primary">
           <DataItem title="ID" value={developer.id} />
           <DataItem title={t("profile.hashProofPhoto")} value={developer.proofPhoto} />
@@ -35,6 +36,8 @@ export function Developer({ address }: Props) {
           <DataItem title={t("profile.totalReports")} value={developer.totalReports} />
           <DataItem title={t("profile.registeredAt")} value={developer.createdAt} />
         </View>
+
+        <Invitation address={address} />
       </View>
     </View>
   )

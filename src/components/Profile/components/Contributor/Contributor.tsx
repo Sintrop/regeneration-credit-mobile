@@ -5,6 +5,7 @@ import { useGetContributor } from "@domain";
 import { DataItem } from "@components";
 
 import { HeaderProfile } from "../HeaderProfile/HeaderProfile";
+import { Invitation } from "../Invitation/Invitation";
 
 interface Props {
   address: string
@@ -18,7 +19,7 @@ export function Contributor({ address }: Props) {
   if (!contributor || isError) return <View />
 
   return (
-    <View className="gap-5">
+    <View className="gap-3">
       <HeaderProfile
         address={address}
         name={contributor?.name}
@@ -26,7 +27,7 @@ export function Contributor({ address }: Props) {
         userType={5}
       />
 
-      <View className="gap-5 px-2">
+      <View className="gap-3 px-2">
         <View className="gap-1 p-5 rounded-2xl bg-card-primary">
           <DataItem title="ID" value={contributor.id} />
           <DataItem title={t("profile.hashProofPhoto")} value={contributor.proofPhoto} />
@@ -34,6 +35,8 @@ export function Contributor({ address }: Props) {
           <DataItem title={t("profile.lastPublishedAt")} value={contributor.lastPublishedAt} />
           <DataItem title={t("profile.registeredAt")} value={contributor.createdAt} />
         </View>
+
+        <Invitation address={address} />
       </View>
     </View>
   )

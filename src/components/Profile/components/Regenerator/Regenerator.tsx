@@ -7,6 +7,7 @@ import { DataItem } from "@components";
 import { HeaderProfile } from "../HeaderProfile/HeaderProfile";
 import { AboutSection } from "../AboutSection/AboutSection";
 import { RegenerationArea } from "./RegenerationArea";
+import { Invitation } from "../Invitation/Invitation";
 
 interface Props {
   address: string
@@ -21,7 +22,7 @@ export function Regenerator({ address }: Props) {
   if (!regenerator || isError) return <View />
 
   return (
-    <View className="gap-5">
+    <View className="gap-3">
       <HeaderProfile
         address={address}
         name={regenerator?.name}
@@ -44,6 +45,7 @@ export function Regenerator({ address }: Props) {
         </View>
 
         <RegenerationArea address={address} />
+        <Invitation address={address} />
       </View>
     </View>
   )

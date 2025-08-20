@@ -54,7 +54,12 @@
       "publishedResearches": "Published researches",
       "about": "About",
       "regenerationArea": "Regeneration area",
-      "coordinates": "Coordiantes"
+      "coordinates": "Coordiantes",
+      "invitation": "Invitation",
+      "inviter": "Inviter",
+      "invitedAt": "Invited at",
+      "": "",
+      "": ""
     },
     "pdfView": {
       "title": "PDF View"
