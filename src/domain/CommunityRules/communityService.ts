@@ -1,6 +1,6 @@
 import { bigNumberToFloat } from "@utils";
 import { communityContract } from "./communityContract";
-import { InvitationProps } from "./types";
+import { DelationProps, InvitationProps } from "./types";
 import { communityAdapter } from "./communityAdapter";
 
 interface GetUserProps {
@@ -21,7 +21,17 @@ async function getInvitation({ rpc, address }: GetInvitationProps): Promise<Invi
   return communityAdapter.parseInvitation(response);
 }
 
+interface GetDelationsProps {
+  rpc: string;
+  address: string;
+}
+async function getDelations({ rpc, address }: GetDelationsProps): Promise<DelationProps[]> {
+  const response = await communityContract.getUserDelations({ rpc, address });
+  return response.map(communityAdapter.parseDelation);
+}
+
 export const communityService = {
   getUser,
-  getInvitation
+  getInvitation,
+  getDelations
 }

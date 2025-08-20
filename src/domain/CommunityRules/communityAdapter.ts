@@ -1,5 +1,5 @@
 import { bigNumberToFloat } from "@utils";
-import { InvitationContractProps, InvitationProps } from "./types";
+import { DelationContractProps, DelationProps, InvitationContractProps, InvitationProps } from "./types";
 
 function parseInvitation(data: InvitationContractProps): InvitationProps {
   return {
@@ -10,6 +10,18 @@ function parseInvitation(data: InvitationContractProps): InvitationProps {
   }
 }
 
+function parseDelation(data: DelationContractProps): DelationProps {
+  return {
+    id: bigNumberToFloat(data.id),
+    createdAt: 0,
+    informer: data.informer,
+    reported: data.reported,
+    testimony: data.testimony,
+    title: data.title
+  }
+}
+
 export const communityAdapter = {
-  parseInvitation
+  parseInvitation,
+  parseDelation
 }

@@ -6,6 +6,7 @@ import { DataItem } from "@components";
 
 import { HeaderProfile } from "../HeaderProfile/HeaderProfile";
 import { Invitation } from "../Invitation/Invitation";
+import { UserDelations } from "../UserDelations/UserDelations";
 
 interface Props {
   address: string
@@ -38,6 +39,7 @@ export function Developer({ address }: Props) {
         </View>
 
         <Invitation address={address} />
+        <UserDelations address={address} />
       </View>
     </View>
   )

@@ -4,9 +4,11 @@ export * from "./InspectionRules/inspectionService";
 export * from "./InspectionRules/types";
 export * from "./InspectionRules/useCases/useGetInspection";
 
+export * from "./CommunityRules/types";
 export * from "./CommunityRules/communityService";
 export * from "./CommunityRules/useCases/useGetUser";
 export * from "./CommunityRules/useCases/useInvitation";
+export * from "./CommunityRules/useCases/useUserDelations";
 
 export * from "./RegeneratorRules/types";
 export * from "./RegeneratorRules/regeneratorService";

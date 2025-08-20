@@ -58,8 +58,8 @@
       "invitation": "Invitation",
       "inviter": "Inviter",
       "invitedAt": "Invited at",
-      "": "",
-      "": ""
+      "delations": "Delations",
+      "noUserDelations": "No user delations"
     },
     "pdfView": {
       "title": "PDF View"

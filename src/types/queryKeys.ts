@@ -13,4 +13,5 @@ export enum QueryKeys {
   ProjectDescription = 'ProjectDescription',
   Coordinates = 'Coordinates',
   Invitation = 'Invitation',
+  UserDelations = 'UserDelations',
 }

@@ -1,7 +1,7 @@
 import Web3 from "web3";
 
 import { CommunityRules } from "@contracts";
-import { InvitationContractProps } from "./types";
+import { DelationContractProps, InvitationContractProps } from "./types";
 
 interface GetUserProps {
   rpc: string;
@@ -27,7 +27,21 @@ async function getInvitation({ rpc, address }: GetInvitationProps): Promise<Invi
   return response;
 }
 
+interface GetDelationsProps {
+  rpc: string;
+  address: string;
+}
+async function getUserDelations({ rpc, address }: GetDelationsProps): Promise<DelationContractProps[]> {
+  const provider = new Web3(new Web3.providers.HttpProvider(rpc));
+  const contract = new provider.eth.Contract(CommunityRules.abi, CommunityRules.address);
+
+  const response = await contract.methods.getUserDelations(address).call() as DelationContractProps[];
+  return response;
+}
+
+
 export const communityContract = {
   getUser,
-  getInvitation
+  getInvitation,
+  getUserDelations
 }
