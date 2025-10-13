@@ -2,6 +2,61 @@
   "translation": {
     "homeScreen": {
       "title": "Regeneration Credit"
+    },
+    "feed": {
+      "requestedAnInspection": "Requested an inspection",
+      "acceptedInspection": "Accepted inspection",
+      "realizedInspection": "Realized inspection",
+      "rScore": "Score"
+    },
+    "userDetails": {
+      "title": "User details",
+      "errorOnGetUser": "Error on get user"
+    },
+    "resourceScreen" : {
+      "title": "Resource details",
+      "inspectionData": "Inspection data",
+      "rScore": "Score",
+      "createdAt": "Created at",
+      "acceptedAt": "Accepted at",
+      "inspectedAt": "Inspected at",
+      "inspectedAtEra": "Inspected at era",
+      "validationsCount": "Validations count",
+      "proofPhotosReport": "Proof photos report",
+      "justificationReport": "Justification report",
+      "reports": "Reports"
+    },
+    "profile": {
+      "hashProofPhoto": "Proof photo",
+      "totalArea": "Total area",
+      "regenerationScore": "Regeneration score",
+      "totalInspections": "Total inspections",
+      "lastRequestAt": "Last requested at",
+      "registeredAt": "Registered at",
+      "coordinatesCount": "Coordinates count",
+      "lastAcceptedAt": "Last accepted at",
+      "lastRealizedAt": "Last realized at",
+      "lastInspection": "Last isnpection",
+      "giveUps": "Give ups",
+      "level": "Level",
+      "": "",
+      "": ""
+    },
+    "pdfView": {
+      "title": "PDF View"
+    },
+    "common": {
+      "regenerator": "Regenerator",
+      "inspector": "Inspector",
+      "researcher": "Researcher",
+      "developer": "Developer",
+      "contributor": "Contributor",
+      "activist": "Activist",
+      "supporter": "Supporter",
+      "inspection": "Inspection",
+      "biodiversity": "Biodiversity",
+      "trees": "Trees",
+      "tryAgain": "Try again"
     }
   }
 }

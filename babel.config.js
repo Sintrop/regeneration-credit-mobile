@@ -15,7 +15,9 @@ module.exports = {
         '@domain': './src/domain',
         '@contexts': './src/contexts',
         '@providers': './src/providers',
-        '@services': './src/services'
+        '@services': './src/services',
+        '@types': './src/types',
+        '@icons': './src/assets/icons'
       },
     }],
   ]

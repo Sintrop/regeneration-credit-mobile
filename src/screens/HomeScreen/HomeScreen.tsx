@@ -1,19 +1,26 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { Text } from 'react-native';
-import { Screen } from '@components';
-import { useSettingsContext } from '@hooks';
+import { FlatList, ListRenderItemInfo } from 'react-native';
+
+import { Screen, FeedItem } from '@components';
 import { useFeedInspections } from '@domain';
 
 
 export function HomeScreen() {
-  const { rpc } = useSettingsContext();
-  const { idsPage } = useFeedInspections({ rpc, itemsPerPage: 10 });
+  const { idsPage } = useFeedInspections({ itemsPerPage: 10 });
   
+  function renderItemFeed({ item, index }: ListRenderItemInfo<number>) {
+    return (
+      <FeedItem key={index} id={item} type="inspection" />
+    )
+  }
   return (
     <Screen home>
-      {idsPage.map((item, index) => (
-        <Text key={index}>{item}</Text>
-      ))}
+      <FlatList
+        data={idsPage}
+        keyExtractor={(item) => item.toString()}
+        renderItem={renderItemFeed}
+        contentContainerClassName="pt-3 gap-3 pb-10"
+      />
     </Screen>
   );
 }
