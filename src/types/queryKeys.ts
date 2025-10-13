@@ -14,4 +14,5 @@ export enum QueryKeys {
   Coordinates = 'Coordinates',
   Invitation = 'Invitation',
   UserDelations = 'UserDelations',
+  UserInspections = 'UserInspections',
 }

@@ -3,6 +3,7 @@ export * from "./RegenerationCredit/rcService";
 export * from "./InspectionRules/inspectionService";
 export * from "./InspectionRules/types";
 export * from "./InspectionRules/useCases/useGetInspection";
+export * from "./InspectionRules/useCases/useUserInspections";
 
 export * from "./CommunityRules/types";
 export * from "./CommunityRules/communityService";

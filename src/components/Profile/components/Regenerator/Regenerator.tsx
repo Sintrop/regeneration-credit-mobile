@@ -9,6 +9,7 @@ import { AboutSection } from "../AboutSection/AboutSection";
 import { RegenerationArea } from "./RegenerationArea";
 import { Invitation } from "../Invitation/Invitation";
 import { UserDelations } from "../UserDelations/UserDelations";
+import { UserInspections } from "../UserInspections/UserInspections";
 
 interface Props {
   address: string
@@ -48,6 +49,7 @@ export function Regenerator({ address }: Props) {
         <RegenerationArea address={address} />
         <Invitation address={address} />
         <UserDelations address={address} />
+        <UserInspections address={address} />
       </View>
     </View>
   )
