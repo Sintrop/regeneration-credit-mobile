@@ -49,3 +49,17 @@ export interface ReportProps {
   invalidatedAt: number;
   createdAtBlockNumber: number;
 }
+
+export interface ReportAddedEvent {
+  id: string;
+  developerAddress: string;
+  description: string;
+  blockNumber: string;
+}
+
+export interface ReportAdded {
+  id: number;
+  address: string;
+  description: string;
+  createdAt: number;
+}

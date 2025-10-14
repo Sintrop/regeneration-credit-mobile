@@ -26,6 +26,7 @@ export * from "./DeveloperRules/types";
 export * from "./DeveloperRules/developerService";
 export * from "./DeveloperRules/useCases/useGetReport";
 export * from "./DeveloperRules/useCases/useGetDeveloper";
+export * from "./DeveloperRules/events/useReportAdded";
 
 export * from "./ResearcherRules/types";
 export * from "./ResearcherRules/researcherService";

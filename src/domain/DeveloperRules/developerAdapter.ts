@@ -1,5 +1,5 @@
 import { bigNumberToFloat } from "@utils";
-import { DeveloperContractProps, DeveloperProps, ReportContractProps, ReportProps } from "./types";
+import { DeveloperContractProps, DeveloperProps, ReportAdded, ReportAddedEvent, ReportContractProps, ReportProps } from "./types";
 
 function parseFromContract(data: DeveloperContractProps): DeveloperProps {
   return {
@@ -30,7 +30,18 @@ function parseReport(data: ReportContractProps): ReportProps {
     valid: data.valid
   }
 }
+
+function parseReportAdded(data: ReportAddedEvent): ReportAdded {
+  return {
+    id: bigNumberToFloat(data.id),
+    address: data.developerAddress,
+    createdAt: bigNumberToFloat(data.blockNumber),
+    description: data.description,
+  }
+}
+
 export const developerAdapter = {
   parseFromContract,
-  parseReport
+  parseReport,
+  parseReportAdded
 }

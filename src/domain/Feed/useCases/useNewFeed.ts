@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { FeedItemProps } from "@database";
-import { feedAdapter, useOffsets, useRealizedInspections } from "@domain";
+import { feedAdapter, useOffsets, useRealizedInspections, useReportAdded } from "@domain";
 import { paginateList } from "@utils";
 import { useEffect, useState } from "react";
 
@@ -17,12 +17,13 @@ export function useNewFeed(): ReturnUseNewFeed {
   const [totalPages, setTotalPages] = useState<number>(1);
   const [atualPage, setAtualPage] = useState<number>(1);
 
-  const { offsets, isLoading: isLoadingOffsets } = useOffsets()
-  const { realizedInspections, isLoading: isLoadingRealizedInspections } = useRealizedInspections()
+  const { offsets, isLoading: isLoadingOffsets } = useOffsets();
+  const { realizedInspections, isLoading: isLoadingRealizedInspections } = useRealizedInspections();
+  const { reports, isLoading: isLoadingReports } = useReportAdded();
 
   useEffect(() => {
     createFeedList()
-  }, [offsets, realizedInspections])
+  }, [offsets, realizedInspections, reports])
 
   function createFeedList() {
     const newListFeed: FeedItemProps[] = [];
@@ -30,7 +31,10 @@ export function useNewFeed(): ReturnUseNewFeed {
     newListFeed.push(...realizedInspectionsFeed);
 
     const offsetsFeed = offsets.map(feedAdapter.parseOffsetToFeed);
-    newListFeed.push(...offsetsFeed)
+    newListFeed.push(...offsetsFeed);
+
+    const reportsFeed = reports.map(feedAdapter.parseReportAddedToFeed);
+    newListFeed.push(...reportsFeed);
 
     const sortedList = newListFeed.sort((a, b) => b.createdAt - a.createdAt)
     const paginate = paginateList<FeedItemProps>({ atualPage, itemsPerPage, list: sortedList });
@@ -48,7 +52,7 @@ export function useNewFeed(): ReturnUseNewFeed {
   }
 
   return {
-    isLoading: isLoadingOffsets || isLoadingRealizedInspections,
+    isLoading: isLoadingOffsets || isLoadingRealizedInspections || isLoadingReports,
     list: listPage,
     nextPage: handleNextPage
   }
