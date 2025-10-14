@@ -2,16 +2,20 @@
 import { ActivityIndicator, FlatList, ListRenderItemInfo, View } from 'react-native';
 
 import { Screen, FeedItem } from '@components';
-import { useFeed } from '@domain';
+import { useNewFeed } from '@domain';
 import { FeedItemProps } from '@database';
 
-
 export function HomeScreen() {
-  const { list, isLoading } = useFeed();
+  const { list, isLoading } = useNewFeed()
 
   function renderItemFeed({ item }: ListRenderItemInfo<FeedItemProps>) {
     return (
-      <FeedItem key={item.id} id={item.resourceId} type={item.resourceType} />
+      <FeedItem 
+        key={item.id} 
+        id={item.resourceId} 
+        type={item.resourceType} 
+        additionalData={item?.additionalData} 
+      />
     )
   }
 

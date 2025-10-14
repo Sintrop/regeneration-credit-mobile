@@ -7,7 +7,9 @@
       "requestedAnInspection": "Requested an inspection",
       "acceptedInspection": "Accepted inspection",
       "realizedInspection": "Realized inspection",
-      "rScore": "Score"
+      "rScore": "Score",
+      "burnedTokens": "Burned tokens",
+      "compensatedItem": "Compensated item"
     },
     "userDetails": {
       "title": "User details",

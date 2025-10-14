@@ -4,6 +4,7 @@ export * from "./InspectionRules/inspectionService";
 export * from "./InspectionRules/types";
 export * from "./InspectionRules/useCases/useGetInspection";
 export * from "./InspectionRules/useCases/useUserInspections";
+export * from "./InspectionRules/events/useRealizedInspections";
 
 export * from "./CommunityRules/types";
 export * from "./CommunityRules/communityService";
@@ -38,9 +39,17 @@ export * from "./ContributorRules/useCases/useGetContribution";
 export * from "./ContributorRules/useCases/useGetContributor";
 
 export * from "./Feed/feedService";
+export * from "./Feed/feedAdapter";
 export * from "./Feed/useCases/useFeedInspections";
 export * from "./Feed/useCases/useFeed";
+export * from "./Feed/useCases/useNewFeed";
 
 export * from "./User/types";
 export * from "./User/userService";
 export * from "./User/useCases/useUserBasicData";
+
+export * from "./SupporterRules/types";
+export * from "./SupporterRules/supporterAdapter";
+export * from "./SupporterRules/supporterService";
+export * from "./SupporterRules/events/useOffsets";
+export * from "./SupporterRules/useCases/useGetOffset";

@@ -10,6 +10,7 @@ export interface FeedItemProps {
   resourceId: number;
   resourceType: ResourcesTypes;
   createdAt: number;
+  additionalData?: string;
 }
 
-export type ResourcesTypes = "inspection" | "report" | "research" | "contribution" | "calculatorItem"
+export type ResourcesTypes = "inspection" | "report" | "research" | "contribution" | "offset"
