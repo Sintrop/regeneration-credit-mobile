@@ -12,7 +12,7 @@ export interface SettingsContextProps {
 export const SettingsContext = createContext({} as SettingsContextProps);
 
 export function SettingsProvider({ children }: SettingsProviderProps) {
-  const [rpc, setRpc] = useState("https://sequoiarpc.sintrop.com");
+  const [rpc, setRpc] = useState("https://rpc.sintrop.com");
   const [ipfsGateway, setIpfsGateway] = useState("https://ipfs.sintrop.com");
 
   return (
