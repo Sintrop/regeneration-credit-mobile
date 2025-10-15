@@ -1,6 +1,6 @@
 export interface RegeneratorContractProps {
   id: string;
-  regeneratorAddress: string;
+  regeneratorWallet: string;
   name: string;
   proofPhoto: string;
   totalArea: string;
@@ -36,4 +36,14 @@ export interface RegeneratorProps {
   }
   createdAt: number;
   coordinatesCount: number;
+}
+
+export interface CoordinateContractProps {
+  latitude: string;
+  longitude: string;
+}
+
+export interface CoordinateProps {
+  latitude: number;
+  longitude: number;
 }

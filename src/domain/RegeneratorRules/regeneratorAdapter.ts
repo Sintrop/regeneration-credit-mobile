@@ -1,10 +1,10 @@
 import { bigNumberToFloat } from "@utils";
-import { RegeneratorContractProps, RegeneratorProps } from "./types";
+import { CoordinateContractProps, CoordinateProps, RegeneratorContractProps, RegeneratorProps } from "./types";
 
 function parseFromContract(data: RegeneratorContractProps): RegeneratorProps {
   return {
     id: bigNumberToFloat(data.id),
-    address: data.regeneratorAddress,
+    address: data.regeneratorWallet,
     coordinatesCount: bigNumberToFloat(data.coordinatesCount),
     createdAt: bigNumberToFloat(data.createdAt),
     lastRequestAt: bigNumberToFloat(data.lastRequestAt),
@@ -23,6 +23,14 @@ function parseFromContract(data: RegeneratorContractProps): RegeneratorProps {
   }
 }
 
+function parseCoordinate(data: CoordinateContractProps): CoordinateProps {
+  return {
+    latitude: parseFloat(data.latitude),
+    longitude: parseFloat(data.longitude)
+  }
+}
+
 export const regeneratorAdapter = {
-  parseFromContract
+  parseFromContract,
+  parseCoordinate
 }

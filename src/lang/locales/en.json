@@ -7,7 +7,9 @@
       "requestedAnInspection": "Requested an inspection",
       "acceptedInspection": "Accepted inspection",
       "realizedInspection": "Realized inspection",
-      "rScore": "Score"
+      "rScore": "Score",
+      "burnedTokens": "Burned tokens",
+      "compensatedItem": "Compensated item"
     },
     "userDetails": {
       "title": "User details",
@@ -24,7 +26,15 @@
       "validationsCount": "Validations count",
       "proofPhotosReport": "Proof photos report",
       "justificationReport": "Justification report",
-      "reports": "Reports"
+      "reports": "Reports",
+      "reportData": "Report data",
+      "invalidatedAt": "Invalidated at",
+      "file": "File",
+      "seeReport": "See report",
+      "seeResearch": "See research",
+      "researchData": "Research data",
+      "contributionData": "Contribution data",
+      "seeContribution": "See contribution"
     },
     "profile": {
       "hashProofPhoto": "Proof photo",
@@ -36,11 +46,22 @@
       "coordinatesCount": "Coordinates count",
       "lastAcceptedAt": "Last accepted at",
       "lastRealizedAt": "Last realized at",
-      "lastInspection": "Last isnpection",
+      "lastInspection": "Last inspection",
       "giveUps": "Give ups",
       "level": "Level",
-      "": "",
-      "": ""
+      "lastPublishedAt": "Last published at",
+      "totalReports": "Total reports",
+      "canPublishMethod": "Can publish method",
+      "lastCalculatorItemAt": "Last calculator item at",
+      "publishedResearches": "Published researches",
+      "about": "About",
+      "regenerationArea": "Regeneration area",
+      "coordinates": "Coordiantes",
+      "invitation": "Invitation",
+      "inviter": "Inviter",
+      "invitedAt": "Invited at",
+      "delations": "Delations",
+      "noUserDelations": "No user delations"
     },
     "pdfView": {
       "title": "PDF View"
@@ -56,7 +77,13 @@
       "inspection": "Inspection",
       "biodiversity": "Biodiversity",
       "trees": "Trees",
-      "tryAgain": "Try again"
+      "tryAgain": "Try again",
+      "report": "Report",
+      "description": "Description",
+      "title": "Title",
+      "thesis": "Thesis",
+      "research": "Research",
+      "contribution": "Contribution"
     }
   }
 }

@@ -17,7 +17,8 @@ module.exports = {
         '@providers': './src/providers',
         '@services': './src/services',
         '@types': './src/types',
-        '@icons': './src/assets/icons'
+        '@icons': './src/assets/icons',
+        '@database': './src/database',
       },
     }],
   ]

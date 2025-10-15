@@ -3,10 +3,17 @@ import { NativeStackScreenProps } from "@react-navigation/native-stack";
 
 import { Screen } from "@components";
 import { AppStackParamsList } from "@routes";
+
 import { Inspection } from "./components/Inspection/Inspection";
+import { Report } from "./components/Report/Report";
+import { Research } from "./components/Research/Research";
+import { Contribution } from "./components/Contribution/Contribution";
 
 const resources = {
-  inspection: Inspection
+  inspection: Inspection,
+  report: Report,
+  research: Research,
+  contribution: Contribution
 }
 export type ResourcesTypes = keyof typeof resources;
 

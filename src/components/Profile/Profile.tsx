@@ -1,5 +1,8 @@
+import { Contributor } from "./components/Contributor/Contributor";
+import { Developer } from "./components/Developer/Developer";
 import { Inspector } from "./components/Inspector/Inspector";
 import { Regenerator } from "./components/Regenerator/Regenerator";
+import { Researcher } from "./components/Researcher/Researcher";
 
 interface Props {
   address: string;
@@ -12,6 +15,9 @@ export function Profile({ address, userType }: Props) {
 
 const userData = {
   1: Regenerator,
-  2: Inspector
+  2: Inspector,
+  3: Researcher,
+  4: Developer,
+  5: Contributor
 }
 type UserTypeToUserData = keyof typeof userData

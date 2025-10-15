@@ -6,7 +6,7 @@ import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
 import { MMProvider } from '@providers';
 import { AppRoutes } from '@routes';
 import { SettingsProvider } from '@contexts';
-import { feedDB } from '@services';
+import { database } from '@database';
 
 import "./global.css";
 import "./src/lang/i18n";
@@ -23,8 +23,13 @@ const queryClient = new QueryClient();
 
 function App() {
   useEffect(() => {
-    feedDB.createTables();
+    initDatabase()
   }, []);
+
+  async function initDatabase() {
+    await database.openDB();
+    await database.createTable();
+  }
 
   return (
     <MMProvider>

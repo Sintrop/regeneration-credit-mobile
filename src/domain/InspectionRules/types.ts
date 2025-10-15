@@ -34,3 +34,24 @@ export interface InspectionProps {
   invalidatedAt: number;
   status: InspectionStatus;
 }
+
+export interface InspectionRealizedEventProps {
+  inspectionId: string;
+  inspectorAddress: string;
+  regeneratorAddress: string;
+  treesResult: string;
+  biodiversityResult: string;
+  regenerationScore: string;
+  inspectedAt: string;
+}
+
+export interface InspectionRealizedProps {
+  inspectionId: number;
+  inspectorAddress: string;
+  regeneratorAddress: string;
+  treesResult: number;
+  biodiversityResult: number;
+  regenerationScore: number;
+  inspectedAt: number;
+  blockNumber: number;
+}
