@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import { ActivityIndicator, FlatList, ListRenderItemInfo, View } from 'react-native';
 
 import { Screen, FeedItem } from '@components';
