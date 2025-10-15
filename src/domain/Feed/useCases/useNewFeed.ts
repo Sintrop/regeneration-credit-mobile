@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { FeedItemProps } from "@database";
-import { feedAdapter, useOffsets, useRealizedInspections, useReportAdded } from "@domain";
+import { feedAdapter, useOffsets, useRealizedInspections, useReportAdded, useResearchsPublished } from "@domain";
 import { paginateList } from "@utils";
 import { useEffect, useState } from "react";
 
@@ -20,6 +20,7 @@ export function useNewFeed(): ReturnUseNewFeed {
   const { offsets, isLoading: isLoadingOffsets } = useOffsets();
   const { realizedInspections, isLoading: isLoadingRealizedInspections } = useRealizedInspections();
   const { reports, isLoading: isLoadingReports } = useReportAdded();
+  const { researchs, isLoading: isLoadingResearchs } = useResearchsPublished();
 
   useEffect(() => {
     createFeedList()
@@ -35,6 +36,9 @@ export function useNewFeed(): ReturnUseNewFeed {
 
     const reportsFeed = reports.map(feedAdapter.parseReportAddedToFeed);
     newListFeed.push(...reportsFeed);
+
+    const researchsFeed = researchs.map(feedAdapter.parseResearchPublishedToFeed);
+    newListFeed.push(...researchsFeed);
 
     const sortedList = newListFeed.sort((a, b) => b.createdAt - a.createdAt)
     const paginate = paginateList<FeedItemProps>({ atualPage, itemsPerPage, list: sortedList });
@@ -52,7 +56,7 @@ export function useNewFeed(): ReturnUseNewFeed {
   }
 
   return {
-    isLoading: isLoadingOffsets || isLoadingRealizedInspections || isLoadingReports,
+    isLoading: isLoadingOffsets || isLoadingRealizedInspections || isLoadingReports || isLoadingResearchs,
     list: listPage,
     nextPage: handleNextPage
   }

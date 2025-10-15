@@ -33,6 +33,7 @@ export * from "./ResearcherRules/researcherService";
 export * from "./ResearcherRules/useCases/useGetResearch";
 export * from "./ResearcherRules/useCases/useGetResearcher";
 export * from "./ResearcherRules/useCases/useGetCalculatorItem";
+export * from "./ResearcherRules/events/useResearchsPublished";
 
 export * from "./ContributorRules/types";
 export * from "./ContributorRules/contributorService";

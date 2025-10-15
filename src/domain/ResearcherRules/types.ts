@@ -58,6 +58,18 @@ export interface ResearchProps {
   createdAt: number;
 }
 
+export interface ResearchPublishedEventProps {
+  researchId: string;
+  researcher: string;
+  publishedAt: string;
+}
+
+export interface ResearchPublishedProps {
+  researchId: number;
+  researcher: string;
+  publishedAt: number;
+}
+
 export interface CalculatorItemContractProps {
   id: string;
   createdBy: string;
