@@ -47,3 +47,17 @@ export interface ContributionProps {
   invalidatedAt: number;
   createdAt: number;
 }
+
+export interface ContributionAddedEventProps {
+  id: string;
+  contributorAddress: string;
+  description: string;
+  blockNumber: string;
+}
+
+export interface ContributionAddedProps {
+  id: number;
+  address: string;
+  description: string;
+  blockNumber: number;
+}

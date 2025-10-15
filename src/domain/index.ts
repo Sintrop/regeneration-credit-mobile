@@ -39,6 +39,7 @@ export * from "./ContributorRules/types";
 export * from "./ContributorRules/contributorService";
 export * from "./ContributorRules/useCases/useGetContribution";
 export * from "./ContributorRules/useCases/useGetContributor";
+export * from "./ContributorRules/events/useContributionAdded";
 
 export * from "./Feed/feedService";
 export * from "./Feed/feedAdapter";

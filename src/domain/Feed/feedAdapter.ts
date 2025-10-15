@@ -3,6 +3,7 @@ import { InspectionRealizedProps } from "../InspectionRules/types";
 import { OffsetProps } from "../SupporterRules/types";
 import { ReportAdded } from "../DeveloperRules/types";
 import { ResearchPublishedProps } from "../ResearcherRules/types";
+import { ContributionAddedProps } from "../ContributorRules/types";
 
 function parseRealizedInspectionToFeed(data: InspectionRealizedProps): FeedItemProps {
   return {
@@ -43,9 +44,20 @@ function parseResearchPublishedToFeed(data: ResearchPublishedProps): FeedItemPro
   }
 }
 
+function parseContributionAddedToFeed(data: ContributionAddedProps): FeedItemProps {
+  return {
+    id: parseInt(`${data.blockNumber}${data.id}`, 10),
+    createdAt: data.blockNumber,
+    resourceId: data.id,
+    resourceType: "contribution",
+    additionalData: JSON.stringify(data)
+  }
+}
+
 export const feedAdapter = {
   parseRealizedInspectionToFeed,
   parseOffsetToFeed,
   parseReportAddedToFeed,
-  parseResearchPublishedToFeed
+  parseResearchPublishedToFeed,
+  parseContributionAddedToFeed
 }

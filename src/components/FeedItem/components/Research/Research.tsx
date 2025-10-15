@@ -1,17 +1,14 @@
 import { View } from "react-native";
 
 import { useGetResearch, useUserBasicData } from "@domain";
-import { Text } from "@components";
+import { BaseComponentsProps, Text } from "@components";
 
 import { LoadingFeedItem } from "../LoadingFeedItem";
 import { HeaderItem } from "../HeaderItem/HeaderItem";
 import { useTranslation } from "react-i18next";
 import { FooterItem } from "../FooterItem/FooterItem";
 
-interface Props {
-  id: number
-}
-export function Research({ id }: Props) {
+export function Research({ id }: BaseComponentsProps) {
   const { t } = useTranslation();
   const { research, isLoading: isLoadingResearch } = useGetResearch({ researchId: id });
   const { user, isLoading: isLoadingUser } = useUserBasicData({ address: research?.researcher, userType: 3 });
@@ -45,7 +42,7 @@ export function Research({ id }: Props) {
         </Text>
 
         <View className="absolute top-0 right-0">
-          <Text className="text-white">Valid: {research?.valid.toString()}</Text>
+          <Text className="text-white">Valid: {research?.valid}</Text>
         </View>
       </View>
       
