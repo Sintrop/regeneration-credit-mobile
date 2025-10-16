@@ -1,7 +1,10 @@
-import { SupporterRules } from "@contracts";
-import { useSDK } from "@metamask/sdk-react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import { useEffect } from "react";
 import { Alert } from "react-native";
-import Web3 from "web3";
+import { useSDK } from "@metamask/sdk-react";
+
+import { SupporterRules } from "@contracts";
+import { useTxContext } from "@hooks";
 
 interface AddSupporterProps {
   name: string;
@@ -13,7 +16,14 @@ interface ReturnUseAddSupporter {
   addSupporter: (data: AddSupporterProps) => void;
 }
 export function useAddSupporter(): ReturnUseAddSupporter {
+  const { sendTransaction, registerContinueAction } = useTxContext();
   const { provider: ethereum } = useSDK();
+
+  useEffect(() => {
+    registerContinueAction(() => {
+      Alert.alert('ok', 'continue with success')
+    })
+  }, []);
 
   async function handleAddSupporter(data: AddSupporterProps) {
     if (!ethereum) {
@@ -21,23 +31,13 @@ export function useAddSupporter(): ReturnUseAddSupporter {
       return;
     }
 
-    const web3 = new Web3(ethereum as any);
-    const accounts = await web3.eth.getAccounts();
-    const contract = new web3.eth.Contract(SupporterRules.abi, SupporterRules.address);
-
-    try {
-      const response = await ethereum.request({
-        method: 'eth_sendTransaction',
-        params: [{
-          from: accounts[0],
-          to: SupporterRules.address,
-          data: contract.methods.addSupporter(data.name, data.description, data.profilePhoto).encodeABI(),
-        }],
-      });
-      console.log(response)
-    } catch (e) {
-      console.log(e)
-    }
+    sendTransaction({
+      interactWithContract: true,
+      contractAbi: SupporterRules.abi,
+      contractAddress: SupporterRules.address,
+      methodName: 'addSupporter',
+      params: [data.name, data.description, data.profilePhoto]
+    })
   }
 
   return {

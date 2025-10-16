@@ -5,7 +5,7 @@ import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
 
 import { MMProvider } from '@providers';
 import { AppRoutes } from '@routes';
-import { SettingsProvider, UserProvider } from '@contexts';
+import { SettingsProvider, TxProvider, UserProvider } from '@contexts';
 import { database } from '@database';
 
 import "./global.css";
@@ -37,7 +37,9 @@ function App() {
         <QueryClientProvider client={queryClient}>
           <SettingsProvider>
             <UserProvider>
-              <AppRoutes />
+              <TxProvider>
+                <AppRoutes />
+              </TxProvider>
             </UserProvider>
           </SettingsProvider>
         </QueryClientProvider>
