@@ -56,3 +56,4 @@ export * from "./SupporterRules/supporterAdapter";
 export * from "./SupporterRules/supporterService";
 export * from "./SupporterRules/events/useOffsets";
 export * from "./SupporterRules/useCases/useGetOffset";
+export * from "./SupporterRules/useCases/useAddSupporter";

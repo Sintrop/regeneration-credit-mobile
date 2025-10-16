@@ -1,8 +1,16 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { HomeScreen, PdfViewScreen, ResourceScreen, ResourcesTypes, UserDetailsScreen } from '@screens';
+import { 
+  HomeScreen, 
+  PdfViewScreen, 
+  RegisterScreen, 
+  ResourceScreen, 
+  ResourcesTypes, 
+  UserDetailsScreen 
+} from '@screens';
 
 export type AppStackParamsList = {
   HomeScreen: undefined;
+  RegisterScreen: undefined;
   UserDetailsScreen: {
     address: string;
   }
@@ -28,6 +36,7 @@ export function AppStack() {
       <Stack.Screen name="UserDetailsScreen" component={UserDetailsScreen} />
       <Stack.Screen name="ResourceScreen" component={ResourceScreen} />
       <Stack.Screen name="PdfViewScreen" component={PdfViewScreen} />
+      <Stack.Screen name="RegisterScreen" component={RegisterScreen} />
     </Stack.Navigator>
   );
 }

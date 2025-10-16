@@ -1,5 +1,6 @@
 import { createContext, ReactNode, useEffect } from "react";
 import { useSDK } from "@metamask/sdk-react";
+import { useGetUser } from "@domain";
 
 export interface UserProviderProps {
   children: ReactNode;
@@ -9,8 +10,9 @@ export interface UserContextProps {
   address: string;
   isConnected: boolean;
   connecting: boolean;
+  userType: number;
   handleConnect: () => void;
-  addOrSwitchToSintropChain: () => void;
+  switchToSintropChain: () => void;
   sendTransaction: () => void;
 }
 
@@ -24,6 +26,7 @@ export function UserProvider({ children }: UserProviderProps) {
     connected,
     connecting
   } = useSDK();
+  const { userType } = useGetUser({ address: account })
 
   useEffect(() => {
     console.log(ethereum)
@@ -33,12 +36,13 @@ export function UserProvider({ children }: UserProviderProps) {
     try {
       const accounts = (await sdk?.connect()) as string[];
       console.log(accounts[0]);
+      switchToSintropChain();
     } catch (e) {
       console.log('ERROR', e);
     }
   }
 
-  async function addOrSwitchToSintropChain() {
+  async function switchToSintropChain() {
     try {
       const result = await ethereum?.request({
         method: 'wallet_switchEthereumChain',
@@ -82,8 +86,9 @@ export function UserProvider({ children }: UserProviderProps) {
         address: account as string, 
         isConnected: connected, 
         connecting,
+        userType,
         handleConnect, 
-        addOrSwitchToSintropChain,
+        switchToSintropChain,
         sendTransaction
       }}
     >

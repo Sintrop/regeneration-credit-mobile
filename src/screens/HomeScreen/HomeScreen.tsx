@@ -3,9 +3,18 @@ import { ActivityIndicator, FlatList, ListRenderItemInfo, View } from 'react-nat
 import { Screen, FeedItem } from '@components';
 import { useNewFeed } from '@domain';
 import { FeedItemProps } from '@database';
+import { UserWithoutRegister } from './components/UserWithoutRegister';
 
 export function HomeScreen() {
   const { list, isLoading } = useNewFeed()
+
+  function headerList() {
+    return (
+      <View className='px-3'>
+        <UserWithoutRegister />
+      </View>
+    )
+  }
 
   function renderItemFeed({ item }: ListRenderItemInfo<FeedItemProps>) {
     return (
@@ -25,6 +34,7 @@ export function HomeScreen() {
         keyExtractor={item => item.id.toString()}
         renderItem={renderItemFeed}
         contentContainerClassName="pt-3 gap-3 pb-10"
+        ListHeaderComponent={headerList}
         ListEmptyComponent={<EmptyList isLoading={isLoading}/>}
       />
     </Screen>
