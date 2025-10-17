@@ -1,28 +1,16 @@
 import { useState } from "react";
-import { ScrollView, TouchableOpacity, View } from "react-native";
+import { View } from "react-native";
 import { useTranslation } from "react-i18next";
 
-import { Avatar, ChainSwitch, Screen, Select, Text, TextInput } from "@components";
+import { Avatar, Screen, Select, Text, TextInput } from "@components";
 import { useUserContext } from "@hooks";
-import { useAddSupporter } from "@domain";
-import { ProofPhoto } from "./components/ProofPhoto";
+import { RegistrationsType, UserRegistration } from "./components/UserRegistration/UserRegistration";
 
 export function RegisterScreen() {
   const { address, isConnected } = useUserContext();
   const { t } = useTranslation();
   const [userType, setUserType] = useState(0);
   const [name, setName] = useState("");
-  const [description, setDescription] = useState("");
-
-  const { addSupporter } = useAddSupporter()
-
-  function test() {
-    addSupporter({
-      name,
-      description,
-      profilePhoto: ''
-    })
-  }
 
   if (isConnected) {
     return (
@@ -35,6 +23,7 @@ export function RegisterScreen() {
       </Screen>
     )
   }
+
   return (
     <Screen showBackButton title={t('register.title')} scrollable>
       <View className="gap-5">
@@ -56,8 +45,12 @@ export function RegisterScreen() {
             label={t('register.selectAnOption')}
             options={[
               {value: 0, label: t('register.touchToSelect'), default: true},
-              {value: 4, label: t('common.developer')},
+              {value: 1, label: t('common.regenerator')},
               {value: 2, label: t('common.inspector')},
+              {value: 3, label: t('common.researcher')},
+              {value: 4, label: t('common.developer')},
+              {value: 5, label: t('common.contributor')},
+              {value: 6, label: t('common.activist')},
               {value: 7, label: t('common.supporter')},
             ]}
           />
@@ -73,26 +66,9 @@ export function RegisterScreen() {
           />
         </View>
 
-        <View className="p-3 rounded-2xl bg-card-primary">
-          <TextInput
-            label={t('register.description')}
-            value={description}
-            onChangeText={setDescription}
-            className="w-full h-12 rounded-2xl bg-card-secondary text-white px-3"
-            placeholder={t('common.typeHere')}
-          />
-        </View>
-
-        <ProofPhoto />
-
-        <ChainSwitch />
-
-        <TouchableOpacity
-          className="w-full h-12 rounded-2xl items-center justify-center bg-green-primary"
-          onPress={test}
-        >
-          <Text className="text-white font-semibold">{t('register.title')}</Text>
-        </TouchableOpacity>
+        {userType !== 0 && (
+          <UserRegistration userType={userType as RegistrationsType} name={name} />
+        )}
       </View>
     </Screen>
   )

@@ -8,7 +8,10 @@ import { launchImageLibrary } from 'react-native-image-picker';
 import { CameraComponent, Text } from "@components";
 import { useAppSafeArea } from "@hooks";
 
-export function ProofPhoto() {
+interface Props {
+  changePhoto: (uri: string) => void;
+}
+export function ProofPhoto({ changePhoto }: Props) {
   const { bottom } = useAppSafeArea();
   const modalChoosePhoto = useRef<Modalize>(null);
   const { t } = useTranslation();
@@ -30,6 +33,7 @@ export function ProofPhoto() {
     modalChoosePhoto.current?.close();
     setShowCamera(false);
     setImage(imageUri);
+    changePhoto(imageUri);
   }
   
   return (

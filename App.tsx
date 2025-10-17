@@ -3,6 +3,7 @@ import { LogBox } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import Toast from 'react-native-toast-message';
 
 import { MMProvider } from '@providers';
 import { AppRoutes } from '@routes';
@@ -41,6 +42,7 @@ function App() {
               <UserProvider>
                 <TxProvider>
                   <AppRoutes />
+                  <Toast />
                 </TxProvider>
               </UserProvider>
             </SettingsProvider>
