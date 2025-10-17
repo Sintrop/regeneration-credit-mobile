@@ -1,20 +1,25 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from "react";
-import { TouchableOpacity, View } from "react-native";
+import { View } from "react-native";
 import { useTranslation } from "react-i18next";
+import Toast from "react-native-toast-message";
 
-import { Text, TextInput } from "@components";
+import { TextInput } from "@components";
 import { useAddSupporter } from "@domain";
-import { useSettingsContext, useTxContext } from "@hooks";
+import { useResetNavigation, useSettingsContext, useTxContext, useUserContext } from "@hooks";
 import { uploadToIpfs } from "@services";
 
 import { BaseRegistrationProps } from "./UserRegistration";
 import { ProofPhoto } from "../ProofPhoto";
-import Toast from "react-native-toast-message";
+import { RegisterBtn } from "../RegisterBtn";
 
 export function Supporter({ name }: BaseRegistrationProps) {
+  const { resetToHomeScreen } = useResetNavigation();
   const { ipfsApi } = useSettingsContext();
+  const { refetchUser } = useUserContext();
   const { t } = useTranslation();
+
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const [description, setDescription] = useState<string>('');
   const [proofPhoto, setProofPhoto] = useState<string | null>(null);
 
@@ -27,19 +32,30 @@ export function Supporter({ name }: BaseRegistrationProps) {
       Toast.show({
         type: 'success',
         text1: t('register.successRegister')
-      })
+      });
+      refetchUser();
+      resetToHomeScreen();
     })
   }, []);
 
   async function handleAddSupporter() {
     let proofPhotoHash = '';
-
+    setIsLoading(true);
     if (proofPhoto) {
       const response = await uploadToIpfs({
         ipfsApiUrl: ipfsApi,
         file: proofPhoto
       })
-      if (response.success) proofPhotoHash = response.hash;
+      if (response.success) {
+        proofPhotoHash = response.hash;
+      } else {
+        Toast.show({
+          type: 'error',
+          text1: t('common.erroOnUploadFileToIpfs')
+        })
+        setIsLoading(false);
+        return
+      }
     }
 
     addSupporter({
@@ -47,6 +63,7 @@ export function Supporter({ name }: BaseRegistrationProps) {
       description,
       profilePhoto: proofPhotoHash
     })
+    setIsLoading(false);
   }
 
   return (
@@ -63,13 +80,12 @@ export function Supporter({ name }: BaseRegistrationProps) {
 
       <ProofPhoto changePhoto={setProofPhoto} />
 
-      <TouchableOpacity
-        className="w-full h-12 rounded-2xl items-center justify-center bg-green-primary mb-10 disabled:opacity-50"
+      <RegisterBtn
+        label={t('register.title')}
         onPress={handleAddSupporter}
         disabled={!name.trim() || !description.trim()}
-      >
-        <Text className="text-white font-semibold">{t('register.title')}</Text>
-      </TouchableOpacity>
+        isLoading={isLoading}
+      />
     </View>
   )
 }

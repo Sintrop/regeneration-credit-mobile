@@ -14,6 +14,7 @@ export interface UserContextProps {
   handleConnect: () => void;
   switchToSintropChain: () => void;
   sendTransaction: () => void;
+  refetchUser: () => void;
 }
 
 export const UserContext = createContext({} as UserContextProps);
@@ -26,7 +27,7 @@ export function UserProvider({ children }: UserProviderProps) {
     connected,
     connecting
   } = useSDK();
-  const { userType } = useGetUser({ address: account })
+  const { userType, refetch: refetchUserType } = useGetUser({ address: account })
 
   useEffect(() => {
     console.log(ethereum)
@@ -80,6 +81,10 @@ export function UserProvider({ children }: UserProviderProps) {
     }
   };
 
+  function refetchUser() {
+    refetchUserType();
+  }
+
   return (
     <UserContext.Provider
       value={{ 
@@ -89,7 +94,8 @@ export function UserProvider({ children }: UserProviderProps) {
         userType,
         handleConnect, 
         switchToSintropChain,
-        sendTransaction
+        sendTransaction,
+        refetchUser
       }}
     >
       {children}
