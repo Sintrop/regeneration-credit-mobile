@@ -101,35 +101,47 @@ export function TxProvider({ children }: TxProviderProps) {
   }
 
   async function watchTransaction(txHash: string) {
-    const receipt = await getReceiptTx(txHash);
-    if (receipt && receipt.result.status === '0x1') {
-      setIsSuccess(true);
-      setIsError(false);
-      setIsLoading(false);
-    } else if (receipt && receipt.result.status === '0x0') {
-      setIsSuccess(false);
-      setIsError(true);
-      setIsLoading(false);
+    const response = await getReceiptTx(txHash);
+    if (response.hasReceipt) {
+      if (response.successTx) {
+        setIsSuccess(true);
+        setIsError(false);
+        setIsLoading(false);
+      } else {
+        setIsSuccess(false);
+        setIsError(true);
+        setIsLoading(false);
+      }
     } else {
       setTimeout(() => watchTransaction(txHash), 2000);
     }
   }
 
-  async function getReceiptTx(txHash: string): Promise<{jsonRpc: string; id: number; result: ReceiptTxProps}> {
-    const response = await fetch(rpc, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        jsonrpc: "2.0",
-        method: "eth_getTransactionReceipt",
-        params: [txHash],
-        id: 0,
+  async function getReceiptTx(txHash: string): Promise<{ hasReceipt: boolean; successTx: boolean}> {
+    try {
+      const response = await fetch(rpc, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          jsonrpc: "2.0",
+          method: "eth_getTransactionReceipt",
+          params: [txHash],
+          id: 0,
+        })
       })
-    })
-    const data = await response.json();
-    return data
+      const data = await response.json() as {jsonRpc: string; id: number; result: ReceiptTxProps};
+      return {
+        hasReceipt: true,
+        successTx: data.result.status === '0x1'
+      }
+    } catch (e) {
+      return {
+        hasReceipt: false,
+        successTx: false,
+      }
+    }
   }
 
   function handleContinue() {
