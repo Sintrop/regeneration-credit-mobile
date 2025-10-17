@@ -3,7 +3,7 @@ import { ActivityIndicator, FlatList, ListRenderItemInfo, View } from 'react-nat
 import { Screen, FeedItem } from '@components';
 import { useNewFeed } from '@domain';
 import { FeedItemProps } from '@database';
-//import { UserWithoutRegister } from './components/UserWithoutRegister';
+import { UserWithoutRegister } from './components/UserWithoutRegister';
 
 export function HomeScreen() {
   const { list, isLoading } = useNewFeed()
@@ -11,7 +11,7 @@ export function HomeScreen() {
   function headerList() {
     return (
       <View className='px-3'>
-        {/* <UserWithoutRegister /> */}
+        <UserWithoutRegister />
       </View>
     )
   }

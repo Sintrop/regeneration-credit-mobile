@@ -2,14 +2,14 @@ import { useState } from "react";
 import { ScrollView, TouchableOpacity, View } from "react-native";
 import { useTranslation } from "react-i18next";
 
-import { Avatar, ChainSwitch, Screen, Text, TextInput } from "@components";
+import { Avatar, ChainSwitch, Screen, Select, Text, TextInput } from "@components";
 import { useUserContext } from "@hooks";
 import { useAddSupporter } from "@domain";
 
 export function RegisterScreen() {
   const { address, isConnected } = useUserContext();
   const { t } = useTranslation();
-  const userType =7;
+  const [userType, setUserType] = useState(0);
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
 
@@ -23,7 +23,7 @@ export function RegisterScreen() {
     })
   }
 
-  if (!isConnected) {
+  if (isConnected) {
     return (
       <Screen showBackButton title={t('register.title')}>
         <View className="flex-1 w-full h-screen items-center justify-center">
@@ -53,13 +53,17 @@ export function RegisterScreen() {
           </View>
 
           <View className="gap-2 p-3 rounded-2xl bg-card-primary">
-            <Text className="text-gray-300">
-              {t('register.selectAnUserType')}
-            </Text>
-
-            <View className="flex-row items-center gap-2">
-              <Text className="text-white">Supporter</Text>
-            </View>
+            <Select
+              onChange={setUserType}
+              value={userType}
+              label={t('register.selectAnOption')}
+              options={[
+                {value: 0, label: t('register.touchToSelect'), default: true},
+                {value: 4, label: t('common.developer')},
+                {value: 2, label: t('common.inspector')},
+                {value: 7, label: t('common.supporter')},
+              ]}
+            />
           </View>
 
           <View className="p-3 rounded-2xl bg-card-primary">
