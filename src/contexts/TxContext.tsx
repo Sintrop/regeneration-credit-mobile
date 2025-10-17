@@ -53,9 +53,9 @@ export function TxProvider({ children }: TxProviderProps) {
   const { provider: ethereum } = useSDK();
   const [hash, setHash] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const [showModalTx, setShowModalTx] = useState(true);
+  const [showModalTx, setShowModalTx] = useState(false);
   const [isError, setIsError] = useState(false);
-  const [isSuccess, setIsSuccess] = useState(true);
+  const [isSuccess, setIsSuccess] = useState(false);
   const [onContinueSuccessAction, setOnContinueSuccessAction] = useState<(() => void) | null>(null);
 
   useEffect(() => {
