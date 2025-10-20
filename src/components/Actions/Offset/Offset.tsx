@@ -16,7 +16,7 @@ interface Props {
   item: CalculatorItemProps
 }
 
-export function Offset({ children }: Props) {
+export function Offset({ children, item }: Props) {
   
   const offsetModal = useRef<Modalize>(null);
 
@@ -45,7 +45,7 @@ export function Offset({ children }: Props) {
           adjustToContentHeight
           modalStyle={{ backgroundColor: 'transparent' }}
         >
-          <OffsetModalContent />
+          <OffsetModalContent item={item} />
         </Modalize>
       </Portal>
     </View>

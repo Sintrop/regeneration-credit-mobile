@@ -3,10 +3,14 @@ import { useTranslation } from "react-i18next";
 
 import { useAppSafeArea, useUserContext } from "@hooks";
 import { Text } from "@components";
-import { useApprovedTokens } from "@domain";
+import { CalculatorItemProps, useApprovedTokens } from "@domain";
 import { ApproveTokens } from "./ApproveTokens";
+import { OffsetTokens } from "./OffsetTokens";
 
-export function OffsetModalContent() {
+interface Props {
+  item: CalculatorItemProps
+}
+export function OffsetModalContent({ item }: Props) {
   const { address } = useUserContext();
   const { t } = useTranslation();
   const { bottom } = useAppSafeArea();
@@ -33,7 +37,11 @@ export function OffsetModalContent() {
           {approvedTokens < 1 ? (
             <ApproveTokens refetchApprovedTokens={refetchApprovedTokens} />
           ) : (
-            <View></View>
+            <OffsetTokens
+              refetchApprovedTokens={refetchApprovedTokens}
+              approvedTokens={approvedTokens}
+              item={item}
+            />
           )}
         </>
       )}
