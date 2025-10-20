@@ -1,7 +1,12 @@
 {
   "translation": {
     "homeScreen": {
-      "title": "Regeneration Credit"
+      "title": "Regeneration Credit",
+      "userWithoutRegister": "User without register",
+      "descriptionRegister": "To perform some actions in the system you need to register",
+      "register": "Register",
+      "": "",
+      "": ""
     },
     "feed": {
       "requestedAnInspection": "Requested an inspection",
@@ -86,7 +91,9 @@
       "contribution": "Contribution",
       "yourBalance": "Your balance",
       "typeHere": "Type here",
-      "insufficientBalance": "Insufficient balance"
+      "insufficientBalance": "Insufficient balance",
+      "youAreNotConnected": "You are not connected",
+      "errorOnUploadFileToIpfs": "Error on upload file to IPFS"
     },
     "offset": {
       "title": "Offset",
@@ -105,6 +112,26 @@
     "impactCalculator": {
       "title": "Impact calculator",
       "calculatorItems": "Calculator items"
+    },
+    "register": {
+      "title": "Register",
+      "walletConnected": "Wallet connected",
+      "selectAnOption": "Select an option",
+      "name": "Name",
+      "successRegister": "Success register",
+      "description": "Description",
+      "profilePhoto": "Profile photo (Optional)",
+      "proofPhoto": "Proof photo",
+      "selectAnotherImage": "Select another image",
+      "selectImage": "Select image",
+      "selectPhotoSource": "Select photo source",
+      "textConfirmSelectPhotoSource": "Confirm the origin of the photo",
+      "gallery": "Gallery",
+      "camera": "Camera",
+      "": "",
+      "": "",
+      "": "",
+      "": ""
     }
   }
 }

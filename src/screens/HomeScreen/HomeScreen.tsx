@@ -8,25 +8,39 @@ import { AppStackParamsList } from '@routes';
 
 import { UserWithoutRegister } from './components/UserWithoutRegister';
 import { useUserContext } from '@hooks';
+import { useTranslation } from 'react-i18next';
 
 type ScreenProps = NativeStackScreenProps<AppStackParamsList, 'HomeScreen'>
 export function HomeScreen({ navigation }: ScreenProps) {
+  const { t } = useTranslation();
   const { list, isLoading } = useNewFeed();
   const { isConnected, userType } = useUserContext();
 
   function headerList() {
     return (
       <View className='px-3'>
-        {isConnected && userType === 0 && (
-          <UserWithoutRegister />
+        {isConnected && (
+          <>
+            {userType === 0 && (
+              <UserWithoutRegister />
+            )}
+          </>
         )}
 
-        <TouchableOpacity
-          className='w-full h-12 rounded-2xl items-center justify-center flex-row bg-red-500'
-          onPress={() => navigation.navigate('ImpactCalculatorScreen')}
-        >
-          <Text className='text-white'>Impact Calculator</Text>
-        </TouchableOpacity>
+        <View className='flex-row justify-center/ gap-4'>
+          <TouchableOpacity
+            className='w-[48%] h-12 rounded-2xl items-center justify-center flex-row bg-card-primary'
+            onPress={() => navigation.navigate('ImpactCalculatorScreen')}
+          >
+            <Text className='text-white'>{t('impactCalculator.title')}</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            className='w-[48%] h-12 rounded-2xl items-center justify-center flex-row bg-card-primary'
+            onPress={() => navigation.navigate('ImpactCalculatorScreen')}
+          >
+            <Text className='text-white'>{t('myTokens.title')}</Text>
+          </TouchableOpacity>
+        </View>
       </View>
     )
   }

@@ -18,17 +18,17 @@ export function UserWithoutRegister() {
     navigation.navigate("RegisterScreen");
   }
 
-  if (true) {
+  if (isConnected && userType === 0) {
     return (
       <View className="border-2 border-white rounded-2xl w-full p-3">
-        <Text className="text-white font-semibold">{t('home.userWithoutRegister')}</Text>
-        <Text className="text-gray-300">{t('home.descriptionRegsiter')}</Text>
+        <Text className="text-white font-semibold">{t('homeScreen.userWithoutRegister')}</Text>
+        <Text className="text-gray-300">{t('homeScreen.descriptionRegister')}</Text>
 
         <TouchableOpacity
           className="w-full h-12 rounded-2xl items-center justify-center bg-blue-primary mt-3"
           onPress={handleGoToRegister}
         >
-          <Text className="font-semibold text-white">{t('home.register')}</Text>
+          <Text className="font-semibold text-white">{t('homeScreen.register')}</Text>
         </TouchableOpacity>
       </View>
     )

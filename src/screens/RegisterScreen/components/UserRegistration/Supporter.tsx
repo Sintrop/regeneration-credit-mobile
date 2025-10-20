@@ -51,7 +51,7 @@ export function Supporter({ name }: BaseRegistrationProps) {
       } else {
         Toast.show({
           type: 'error',
-          text1: t('common.erroOnUploadFileToIpfs')
+          text1: t('common.errorOnUploadFileToIpfs')
         })
         setIsLoading(false);
         return
@@ -78,7 +78,7 @@ export function Supporter({ name }: BaseRegistrationProps) {
         />
       </View>
 
-      <ProofPhoto changePhoto={setProofPhoto} />
+      <ProofPhoto changePhoto={setProofPhoto} optional />
 
       <RegisterBtn
         label={t('register.title')}

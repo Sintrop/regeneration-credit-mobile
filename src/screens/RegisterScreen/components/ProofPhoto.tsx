@@ -10,8 +10,9 @@ import { useAppSafeArea } from "@hooks";
 
 interface Props {
   changePhoto: (uri: string) => void;
+  optional?: boolean;
 }
-export function ProofPhoto({ changePhoto }: Props) {
+export function ProofPhoto({ changePhoto, optional }: Props) {
   const { bottom } = useAppSafeArea();
   const modalChoosePhoto = useRef<Modalize>(null);
   const { t } = useTranslation();
@@ -38,7 +39,7 @@ export function ProofPhoto({ changePhoto }: Props) {
   
   return (
     <View className="p-3 rounded-2xl bg-card-primary">
-      <Text className="text-gray-300 mb-3">{t('register.proofPhoto')}</Text>
+      <Text className="text-gray-300 mb-3">{optional ? t('register.profilePhoto') : t('register.proofPhoto')}</Text>
 
       {image && (
         <Image

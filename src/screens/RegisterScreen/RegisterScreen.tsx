@@ -17,7 +17,7 @@ export function RegisterScreen() {
       <Screen showBackButton title={t('register.title')}>
         <View className="flex-1 w-full h-screen items-center justify-center">
           <Text className="text-white text-center">
-            {t('register.youAreNotConnected')}
+            {t('common.youAreNotConnected')}
           </Text>
         </View>
       </Screen>
@@ -45,12 +45,12 @@ export function RegisterScreen() {
             label={t('register.selectAnOption')}
             options={[
               {value: 0, label: t('register.touchToSelect'), default: true},
-              {value: 1, label: t('common.regenerator')},
-              {value: 2, label: t('common.inspector')},
-              {value: 3, label: t('common.researcher')},
-              {value: 4, label: t('common.developer')},
-              {value: 5, label: t('common.contributor')},
-              {value: 6, label: t('common.activist')},
+              // {value: 1, label: t('common.regenerator')},
+              // {value: 2, label: t('common.inspector')},
+              // {value: 3, label: t('common.researcher')},
+              // {value: 4, label: t('common.developer')},
+              // {value: 5, label: t('common.contributor')},
+              // {value: 6, label: t('common.activist')},
               {value: 7, label: t('common.supporter')},
             ]}
           />
