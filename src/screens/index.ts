@@ -3,3 +3,4 @@ export * from "./UserDetailsScreen/UserDetailsScreen";
 export * from "./ResourceScreen/ResourceScreen";
 export * from "./PdfViewScreen/PdfViewScreen";
 export * from "./RegisterScreen/RegisterScreen";
+export * from "./ImpactCalculatorScreen/ImpactCalculatorScreen";

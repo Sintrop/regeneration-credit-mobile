@@ -1,17 +1,28 @@
-import { ActivityIndicator, FlatList, ListRenderItemInfo, View } from 'react-native';
+import { ActivityIndicator, FlatList, ListRenderItemInfo, TouchableOpacity, View } from 'react-native';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
 
-import { Screen, FeedItem } from '@components';
+import { Screen, FeedItem, Text } from '@components';
 import { useNewFeed } from '@domain';
 import { FeedItemProps } from '@database';
+import { AppStackParamsList } from '@routes';
+
 import { UserWithoutRegister } from './components/UserWithoutRegister';
 
-export function HomeScreen() {
+type ScreenProps = NativeStackScreenProps<AppStackParamsList, 'HomeScreen'>
+export function HomeScreen({ navigation }: ScreenProps) {
   const { list, isLoading } = useNewFeed()
 
   function headerList() {
     return (
       <View className='px-3'>
         <UserWithoutRegister />
+
+        <TouchableOpacity
+          className='w-full h-12 rounded-2xl items-center justify-center flex-row bg-red-500'
+          onPress={() => navigation.navigate('ImpactCalculatorScreen')}
+        >
+          <Text className='text-white'>Impact Calculator</Text>
+        </TouchableOpacity>
       </View>
     )
   }
