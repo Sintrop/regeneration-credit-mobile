@@ -15,5 +15,7 @@ export enum QueryKeys {
   Invitation = 'Invitation',
   UserDelations = 'UserDelations',
   UserInspections = 'UserInspections',
-  GetOffset = 'GetOffset'
+  GetOffset = 'GetOffset',
+  ApprovedTokens = 'ApprovedTokens',
+  GetBalance = 'GetBalance'
 }

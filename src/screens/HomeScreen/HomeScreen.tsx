@@ -7,15 +7,19 @@ import { FeedItemProps } from '@database';
 import { AppStackParamsList } from '@routes';
 
 import { UserWithoutRegister } from './components/UserWithoutRegister';
+import { useUserContext } from '@hooks';
 
 type ScreenProps = NativeStackScreenProps<AppStackParamsList, 'HomeScreen'>
 export function HomeScreen({ navigation }: ScreenProps) {
-  const { list, isLoading } = useNewFeed()
+  const { list, isLoading } = useNewFeed();
+  const { isConnected, userType } = useUserContext();
 
   function headerList() {
     return (
       <View className='px-3'>
-        <UserWithoutRegister />
+        {isConnected && userType === 0 && (
+          <UserWithoutRegister />
+        )}
 
         <TouchableOpacity
           className='w-full h-12 rounded-2xl items-center justify-center flex-row bg-red-500'

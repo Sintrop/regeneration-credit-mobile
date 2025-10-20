@@ -84,6 +84,10 @@
       "thesis": "Thesis",
       "research": "Research",
       "contribution": "Contribution"
+    },
+    "offset": {
+      "title": "Offset",
+      "description": "Allows a supporter to burn tokens to compensate for a specific item's degradation, with a message to the community. Before calling this function, supporters must approve the SupporterRules contract to burn the tokens."
     }
   }
 }

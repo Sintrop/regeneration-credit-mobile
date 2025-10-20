@@ -1,4 +1,6 @@
 export * from "./RegenerationCredit/rcService";
+export * from "./RegenerationCredit/useCases/useApprovedTokens";
+export * from "./RegenerationCredit/useCases/useBalance";
 
 export * from "./InspectionRules/inspectionService";
 export * from "./InspectionRules/types";
