@@ -3,6 +3,7 @@ import { Developer } from "./components/Developer/Developer";
 import { Inspector } from "./components/Inspector/Inspector";
 import { Regenerator } from "./components/Regenerator/Regenerator";
 import { Researcher } from "./components/Researcher/Researcher";
+import { Supporter } from "./components/Supporter/Supporter";
 
 interface Props {
   address: string;
@@ -18,6 +19,7 @@ const userData = {
   2: Inspector,
   3: Researcher,
   4: Developer,
-  5: Contributor
+  5: Contributor,
+  7: Supporter
 }
 type UserTypeToUserData = keyof typeof userData

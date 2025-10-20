@@ -4,10 +4,11 @@ import { Header, HeaderProps, StatusBar } from "@components";
 import { useAppSafeArea } from "@hooks";
 
 interface Props extends HeaderProps {
-  children: ReactNode
-  scrollable?: boolean
+  children: ReactNode;
+  scrollable?: boolean;
+  withoutPadding?: boolean;
 }
-export function Screen({ children, scrollable, ...headerProps }: Props) {
+export function Screen({ children, scrollable, withoutPadding, ...headerProps }: Props) {
   const { bottom } = useAppSafeArea();
 
   return (
@@ -21,7 +22,7 @@ export function Screen({ children, scrollable, ...headerProps }: Props) {
         {scrollable ? (
           <ScrollView 
             showsVerticalScrollIndicator={false}
-            className="px-3 pt-5"
+            className={withoutPadding ? 'px-0 pt-0' : 'px-3 pt-5'}
           >
             {children}
             <View style={{ marginBottom: bottom }}/>
