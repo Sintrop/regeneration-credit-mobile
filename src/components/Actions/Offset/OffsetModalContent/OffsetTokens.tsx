@@ -107,7 +107,7 @@ export function OffsetTokens({ refetchApprovedTokens, approvedTokens, item }: Pr
         />
 
         {insufficientBalance && (
-          <Text className="text-red-400">{t('common.insufficientApprovedTokens')}!</Text>
+          <Text className="text-red-400">{t('offset.insufficientApprovedTokens')}!</Text>
         )}
 
         <TextInput

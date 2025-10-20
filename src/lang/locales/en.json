@@ -83,11 +83,28 @@
       "title": "Title",
       "thesis": "Thesis",
       "research": "Research",
-      "contribution": "Contribution"
+      "contribution": "Contribution",
+      "yourBalance": "Your balance",
+      "typeHere": "Type here",
+      "insufficientBalance": "Insufficient balance"
     },
     "offset": {
       "title": "Offset",
-      "description": "Allows a supporter to burn tokens to compensate for a specific item's degradation, with a message to the community. Before calling this function, supporters must approve the SupporterRules contract to burn the tokens."
+      "description": "Allows a supporter to burn tokens to compensate for a specific item's degradation, with a message to the community. Before calling this function, supporters must approve the SupporterRules contract to burn the tokens.",
+      "approveTokens": "Approve tokens",
+      "howMuchDoYouWantToApprove": "How much do you want to aprove?",
+      "approvedTokens": "Approved tokens",
+      "calculatorItem": "Calculator item",
+      "howMuchDoYouWantToOffsetForThisItem": "How much do you want to offset for this item?",
+      "insufficientApprovedTokens": "Insufficient approved tokens",
+      "labelInputDescription": "Message (Optional)",
+      "madeOffset": "Made offset",
+      "": "",
+      "": ""
+    },
+    "impactCalculator": {
+      "title": "Impact calculator",
+      "calculatorItems": "Calculator items"
     }
   }
 }
