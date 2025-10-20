@@ -24,8 +24,12 @@ interface OffsetButtonProps {
 }
 function OffsetButton({ openModal }: OffsetButtonProps) {
   return (
-    <TouchableOpacity onPress={openModal}>
-      <Text>Offset</Text>
+    <TouchableOpacity 
+      onPress={openModal}
+      className="px-5 h-8 rounded-2xl bg-green-primary items-center justify-center"
+      hitSlop={5}
+    >
+      <Text className="text-white font-semibold">Offset</Text>
     </TouchableOpacity>
   )
 }
