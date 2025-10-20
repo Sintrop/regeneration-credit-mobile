@@ -1,7 +1,7 @@
 import { ActivityIndicator, FlatList, ListRenderItemInfo, TouchableOpacity, View } from 'react-native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 
-import { Screen, FeedItem, Text } from '@components';
+import { Screen, FeedItem, Text, Icon } from '@components';
 import { useNewFeed } from '@domain';
 import { FeedItemProps } from '@database';
 import { AppStackParamsList } from '@routes';
@@ -29,13 +29,14 @@ export function HomeScreen({ navigation }: ScreenProps) {
 
         <View className='flex-row justify-center/ gap-4'>
           <TouchableOpacity
-            className='w-[48%] h-12 rounded-2xl items-center justify-center flex-row bg-card-primary'
+            className='w-[48%] h-12 rounded-2xl items-center justify-center flex-row gap-3 bg-card-primary'
             onPress={() => navigation.navigate('ImpactCalculatorScreen')}
           >
+            <Icon name="impactCalculator" size={20} />
             <Text className='text-white'>{t('impactCalculator.title')}</Text>
           </TouchableOpacity>
           <TouchableOpacity
-            className='w-[48%] h-12 rounded-2xl items-center justify-center flex-row bg-card-primary'
+            className='w-[48%] h-12 rounded-2xl items-center justify-center flex-row gap-3 bg-card-primary'
             onPress={() => navigation.navigate('ImpactCalculatorScreen')}
           >
             <Text className='text-white'>{t('myTokens.title')}</Text>
