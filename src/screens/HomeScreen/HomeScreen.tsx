@@ -27,6 +27,8 @@ export function HomeScreen({ navigation }: ScreenProps) {
           </>
         )}
 
+        {/* <UserWithoutRegister /> */}
+
         <View className='flex-row justify-center/ gap-4'>
           <TouchableOpacity
             className='w-[48%] h-12 rounded-2xl items-center justify-center flex-row gap-3 bg-card-primary'

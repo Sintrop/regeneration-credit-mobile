@@ -18,9 +18,9 @@ export function UserWithoutRegister() {
     navigation.navigate("RegisterScreen");
   }
 
-  if (isConnected && userType === 0) {
+  if (true) {
     return (
-      <View className="border-2 border-white rounded-2xl w-full p-3">
+      <View className="border-2 border-white rounded-2xl w-full p-3 mb-3">
         <Text className="text-white font-semibold">{t('homeScreen.userWithoutRegister')}</Text>
         <Text className="text-gray-300">{t('homeScreen.descriptionRegister')}</Text>
 

@@ -46,7 +46,7 @@ export function RegisterScreen() {
             options={[
               {value: 0, label: t('register.touchToSelect'), default: true},
               // {value: 1, label: t('common.regenerator')},
-              // {value: 2, label: t('common.inspector')},
+              {value: 2, label: t('common.inspector')},
               // {value: 3, label: t('common.researcher')},
               // {value: 4, label: t('common.developer')},
               // {value: 5, label: t('common.contributor')},

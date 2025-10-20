@@ -128,9 +128,9 @@
       "textConfirmSelectPhotoSource": "Confirm the origin of the photo",
       "gallery": "Gallery",
       "camera": "Camera",
-      "": "",
-      "": "",
-      "": "",
+      "touchToSelect": "Touch to select",
+      "invitationDescription": "To register in the system you need to have an invitation",
+      "invitationTitle": "Invitation",
       "": ""
     },
     "myTokens": {
