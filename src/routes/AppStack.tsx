@@ -2,6 +2,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { 
   HomeScreen, 
   ImpactCalculatorScreen, 
+  MyTokensScreen, 
   PdfViewScreen, 
   RegisterScreen, 
   ResourceScreen, 
@@ -13,6 +14,7 @@ export type AppStackParamsList = {
   HomeScreen: undefined;
   RegisterScreen: undefined;
   ImpactCalculatorScreen: undefined;
+  MyTokensScreen: undefined;
   UserDetailsScreen: {
     address: string;
   }
@@ -40,6 +42,7 @@ export function AppStack() {
       <Stack.Screen name="PdfViewScreen" component={PdfViewScreen} />
       <Stack.Screen name="RegisterScreen" component={RegisterScreen} />
       <Stack.Screen name="ImpactCalculatorScreen" component={ImpactCalculatorScreen} />
+      <Stack.Screen name="MyTokensScreen" component={MyTokensScreen} />
     </Stack.Navigator>
   );
 }

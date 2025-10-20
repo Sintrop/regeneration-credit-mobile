@@ -132,6 +132,11 @@
       "": "",
       "": "",
       "": ""
+    },
+    "myTokens": {
+      "title": "My tokens",
+      "showBalance": "Show balance",
+      "hideBalance": "Hide balance"
     }
   }
 }

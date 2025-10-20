@@ -1,4 +1,4 @@
-import { createContext, ReactNode, useEffect } from "react";
+import { createContext, ReactNode } from "react";
 import { useSDK } from "@metamask/sdk-react";
 import { useGetUser } from "@domain";
 
@@ -11,6 +11,7 @@ export interface UserContextProps {
   isConnected: boolean;
   connecting: boolean;
   userType: number;
+  balanceSIN: number;
   handleConnect: () => void;
   switchToSintropChain: () => void;
   sendTransaction: () => void;
@@ -25,13 +26,11 @@ export function UserProvider({ children }: UserProviderProps) {
     provider: ethereum,
     account,
     connected,
-    connecting
+    connecting,
+    balance,
   } = useSDK();
   const { userType, refetch: refetchUserType } = useGetUser({ address: account })
-
-  useEffect(() => {
-    console.log(ethereum)
-  }, [ethereum])
+  const balanceSIN = balance ? parseInt(balance, 16) / 10 ** 18 : 0;
 
   async function handleConnect() {
     try {
@@ -95,7 +94,8 @@ export function UserProvider({ children }: UserProviderProps) {
         handleConnect, 
         switchToSintropChain,
         sendTransaction,
-        refetchUser
+        refetchUser,
+        balanceSIN
       }}
     >
       {children}

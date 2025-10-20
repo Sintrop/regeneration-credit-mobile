@@ -37,8 +37,9 @@ export function HomeScreen({ navigation }: ScreenProps) {
           </TouchableOpacity>
           <TouchableOpacity
             className='w-[48%] h-12 rounded-2xl items-center justify-center flex-row gap-3 bg-card-primary'
-            onPress={() => navigation.navigate('ImpactCalculatorScreen')}
+            onPress={() => navigation.navigate('MyTokensScreen')}
           >
+            <Icon name="tokens" size={20} />
             <Text className='text-white'>{t('myTokens.title')}</Text>
           </TouchableOpacity>
         </View>
