@@ -43,18 +43,21 @@ export function Invitation({ userType, invitationIsOk }: Props) {
         <View className="gap-2">
           {invitation ? (
             <>
-              {invitation?.userType === 0 ? (
-                <Text className="text-red-500">{t('register.youDoNotHaveAnInvitation')}</Text>
-              ) : (
-                <Text className="text-white">{t('register.youHaveInvitation')}</Text>
-              )}
+              <View>
+                <Text className="text-gray-300 text-sm">{t('register.isThereAnInvitation')}</Text>
+                {invitation?.userType === 0 ? (
+                  <Text className="text-red-500">{t('common.no')}</Text>
+                ) : (
+                  <Text className="text-white">{t('common.yes')}</Text>
+                )}
+              </View>
 
               {invitation?.userType !== 0 && (
                 <View>
                   <Text className="text-gray-300 text-sm">{t('common.activist')}</Text>
                   <Text className="text-white" numberOfLines={1}>{invitation?.inviter}</Text>
 
-                  <Text className="text-gray-300 text-sm mt-3">{t('common.toRegisterAs')}</Text>
+                  <Text className="text-gray-300 text-sm mt-3">{t('register.toRegisterAs')}</Text>
                   <Text className="text-white">{invitation?.userType}</Text>
 
                   {invitation?.userType !== userType && (

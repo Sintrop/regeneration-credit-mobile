@@ -93,7 +93,9 @@
       "typeHere": "Type here",
       "insufficientBalance": "Insufficient balance",
       "youAreNotConnected": "You are not connected",
-      "errorOnUploadFileToIpfs": "Error on upload file to IPFS"
+      "errorOnUploadFileToIpfs": "Error on upload file to IPFS",
+      "yes": "Yes",
+      "no": "No"
     },
     "offset": {
       "title": "Offset",
@@ -131,7 +133,14 @@
       "touchToSelect": "Touch to select",
       "invitationDescription": "To register in the system you need to have an invitation",
       "invitationTitle": "Invitation",
-      "": ""
+      "youDoNotHaveAnInvitation": "You do not have an invitation",
+      "youHaveInvitation": "You have invitation",
+      "toRegisterAs": "To register as",
+      "tryDiferentUserType": "You are trying to register for a different user type than the one you were invited to, please select the correct user type.",
+      "vacanciesTitle": "Vacancies",
+      "vacanciesDescription": "The system has a vacancy system based on the number of registered regenerators",
+      "isThereAnInvitation": "Is there an invitation?",
+      "isThereAnVacancie": "Is there an vacancie?"
     },
     "myTokens": {
       "title": "My tokens",
