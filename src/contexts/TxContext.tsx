@@ -180,7 +180,7 @@ export function TxProvider({ children }: TxProviderProps) {
           <View className="bg-card-primary w-[90%] p-3 rounded-2xl">
             <View className="w-full flex-row items-center justify-between">
               <View className=""/>
-              <Text className="text-white">transaction</Text>
+              <Text className="text-white">{t('tx.title')}</Text>
               <View className=""/>
             </View>
 

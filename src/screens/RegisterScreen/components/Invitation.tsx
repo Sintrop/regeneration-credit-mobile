@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { ActivityIndicator, View } from "react-native";
 import { useTranslation } from "react-i18next";
 
-import { Text } from "@components";
+import { Text, UserTypeText } from "@components";
 import { useUserContext } from "@hooks";
 import { useInvitation } from "@domain";
 
@@ -58,7 +58,8 @@ export function Invitation({ userType, invitationIsOk }: Props) {
                   <Text className="text-white" numberOfLines={1}>{invitation?.inviter}</Text>
 
                   <Text className="text-gray-300 text-sm mt-3">{t('register.toRegisterAs')}</Text>
-                  <Text className="text-white">{invitation?.userType}</Text>
+                  {/* @ts-ignore */}
+                  <UserTypeText userType={invitation?.userType} className="text-white" />
 
                   {invitation?.userType !== userType && (
                     <Text className="text-red-500">{t('register.tryDiferentUserType')}</Text>

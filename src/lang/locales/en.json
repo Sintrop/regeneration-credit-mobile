@@ -95,7 +95,8 @@
       "youAreNotConnected": "You are not connected",
       "errorOnUploadFileToIpfs": "Error on upload file to IPFS",
       "yes": "Yes",
-      "no": "No"
+      "no": "No",
+      "continue": "Continue"
     },
     "offset": {
       "title": "Offset",
@@ -146,6 +147,16 @@
       "title": "My tokens",
       "showBalance": "Show balance",
       "hideBalance": "Hide balance"
+    },
+    "tx": {
+      "title": "Transaction",
+      "confirmInYourWallet": "Confirm in your wallet",
+      "processingTransaction": "Processing transaction",
+      "transactionHash": "Transaction hash",
+      "txSuccess": "Transaction completed successfully",
+      "txFailed": "Error performing transaction",
+      "": "",
+      "": ""
     }
   }
 }
