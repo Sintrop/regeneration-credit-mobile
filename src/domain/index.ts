@@ -63,3 +63,5 @@ export * from "./SupporterRules/events/useOffsets";
 export * from "./SupporterRules/useCases/useGetOffset";
 export * from "./SupporterRules/useCases/useAddSupporter";
 export * from "./SupporterRules/useCases/useGetSupporter";
+
+export * from "./ActivistRules/useCases/useAddActivist";

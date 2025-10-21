@@ -50,7 +50,7 @@ export function RegisterScreen() {
               // {value: 3, label: t('common.researcher')},
               // {value: 4, label: t('common.developer')},
               // {value: 5, label: t('common.contributor')},
-              // {value: 6, label: t('common.activist')},
+              {value: 6, label: t('common.activist')},
               {value: 7, label: t('common.supporter')},
             ]}
           />
