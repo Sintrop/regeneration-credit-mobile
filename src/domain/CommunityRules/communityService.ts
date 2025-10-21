@@ -30,8 +30,18 @@ async function getDelations({ rpc, address }: GetDelationsProps): Promise<Delati
   return response.map(communityAdapter.parseDelation);
 }
 
+interface GetUserTypesCountProps {
+  rpc: string;
+  userType: number;
+}
+async function getUserTypesCount({ rpc, userType }: GetUserTypesCountProps): Promise<number> {
+  const response = await communityContract.userTypesCount({ rpc, userType });
+  return bigNumberToFloat(response);
+}
+
 export const communityService = {
   getUser,
   getInvitation,
-  getDelations
+  getDelations,
+  getUserTypesCount
 }

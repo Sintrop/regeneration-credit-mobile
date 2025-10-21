@@ -18,5 +18,6 @@ export enum QueryKeys {
   UserInspections = 'UserInspections',
   GetOffset = 'GetOffset',
   ApprovedTokens = 'ApprovedTokens',
-  GetBalance = 'GetBalance'
+  GetBalance = 'GetBalance',
+  UserTypesCount = 'UserTypesCount'
 }

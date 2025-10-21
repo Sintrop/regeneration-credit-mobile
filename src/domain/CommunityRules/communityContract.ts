@@ -39,9 +39,21 @@ async function getUserDelations({ rpc, address }: GetDelationsProps): Promise<De
   return response;
 }
 
+interface UserTypesCountProps {
+  rpc: string;
+  userType: number;
+}
+async function userTypesCount({ rpc, userType }: UserTypesCountProps): Promise<string> {
+  const provider = new Web3(new Web3.providers.HttpProvider(rpc));
+  const contract = new provider.eth.Contract(CommunityRules.abi, CommunityRules.address);
+
+  const response = await contract.methods.userTypesCount(userType).call() as string;
+  return response;
+}
 
 export const communityContract = {
   getUser,
   getInvitation,
-  getUserDelations
+  getUserDelations,
+  userTypesCount
 }
