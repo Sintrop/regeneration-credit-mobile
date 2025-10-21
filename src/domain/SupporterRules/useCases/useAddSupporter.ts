@@ -1,5 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-import { useEffect } from "react";
 import { Alert } from "react-native";
 import { useSDK } from "@metamask/sdk-react";
 
@@ -16,14 +14,8 @@ interface ReturnUseAddSupporter {
   addSupporter: (data: AddSupporterProps) => void;
 }
 export function useAddSupporter(): ReturnUseAddSupporter {
-  const { sendTransaction, registerContinueAction } = useTxContext();
+  const { sendTransaction } = useTxContext();
   const { provider: ethereum } = useSDK();
-
-  useEffect(() => {
-    registerContinueAction(() => {
-      Alert.alert('ok', 'continue with success')
-    })
-  }, []);
 
   async function handleAddSupporter(data: AddSupporterProps) {
     if (!ethereum) {

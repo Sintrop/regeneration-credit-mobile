@@ -24,6 +24,7 @@ export * from "./RegeneratorRules/useCases/useCoordinates";
 export * from "./InspectorRules/types";
 export * from "./InspectorRules/inspectorService";
 export * from "./InspectorRules/useCases/useGetInspector";
+export * from "./InspectorRules/useCases/useAddInspector";
 
 export * from "./DeveloperRules/types";
 export * from "./DeveloperRules/developerService";

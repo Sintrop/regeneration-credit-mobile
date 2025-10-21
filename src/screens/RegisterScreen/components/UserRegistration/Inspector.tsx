@@ -1,8 +1,11 @@
-import { useState } from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import { useEffect, useState } from "react";
 import { View } from "react-native";
 import { useTranslation } from "react-i18next";
+import Toast from "react-native-toast-message";
 
-import { useUploadToIpfs } from "@hooks";
+import { useResetNavigation, useTxContext, useUploadToIpfs, useUserContext } from "@hooks";
+import { useAddInspector } from "@domain";
 
 import { BaseRegistrationProps } from "./UserRegistration";
 import { Invitation } from "../Invitation";
@@ -11,12 +14,29 @@ import { ProofPhoto } from "../ProofPhoto";
 import { RegisterBtn } from "../RegisterBtn";
 
 export function Inspector({ name }: BaseRegistrationProps) {
+  const { refetchUser} = useUserContext();
   const { t } = useTranslation();
+  const { resetToHomeScreen } = useResetNavigation();
+
   const [invitationIsOk, setInvitationIsOk] = useState<boolean>(false);
   const [vacancieIsOk, setVacancieIsOk] = useState<boolean>(false);
   const [proofPhoto, setProofPhoto] = useState<string | null>(null);
   
   const { upload, uploading } = useUploadToIpfs();
+  const { addInspector } = useAddInspector();
+  const { registerContinueAction } = useTxContext();
+
+  useEffect(() => {
+    registerContinueAction(() => {
+      //action success
+      Toast.show({
+        type: 'success',
+        text1: t('register.successRegister')
+      });
+      refetchUser();
+      resetToHomeScreen();
+    })
+  }, []);
 
   async function handleRegister() {
     if (!proofPhoto) return;
@@ -24,6 +44,10 @@ export function Inspector({ name }: BaseRegistrationProps) {
     const response = await upload({ uri: proofPhoto });
     if (!response.isSuccess) return;
 
+    addInspector({
+      name,
+      proofPhoto: response.hash
+    });
   }
 
   return (
