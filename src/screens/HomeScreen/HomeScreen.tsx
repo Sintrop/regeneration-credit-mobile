@@ -1,7 +1,7 @@
 import { ActivityIndicator, FlatList, ListRenderItemInfo, TouchableOpacity, View } from 'react-native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 
-import { Screen, FeedItem, Text, Icon } from '@components';
+import { Screen, FeedItem, Text, Icon, Actions } from '@components';
 import { useNewFeed } from '@domain';
 import { FeedItemProps } from '@database';
 import { AppStackParamsList } from '@routes';
@@ -61,15 +61,21 @@ export function HomeScreen({ navigation }: ScreenProps) {
   }
 
   return (
-    <Screen home>
-      <FlatList
-        data={list}
-        keyExtractor={item => item.id.toString()}
-        renderItem={renderItemFeed}
-        contentContainerClassName="pt-3 gap-3 pb-10"
-        ListHeaderComponent={headerList}
-        ListEmptyComponent={<EmptyList isLoading={isLoading}/>}
-      />
+    <Screen home >
+      <View className='relative flex-1'>
+        <FlatList
+          data={list}
+          keyExtractor={item => item.id.toString()}
+          renderItem={renderItemFeed}
+          contentContainerClassName="pt-3 gap-3 pb-10"
+          ListHeaderComponent={headerList}
+          ListEmptyComponent={<EmptyList isLoading={isLoading}/>}
+        />
+
+        <View className='absolute right-4 bottom-16'>
+          <Actions />
+        </View>
+      </View>
     </Screen>
   );
 }

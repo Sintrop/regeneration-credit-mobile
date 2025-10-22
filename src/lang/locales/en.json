@@ -96,7 +96,8 @@
       "errorOnUploadFileToIpfs": "Error on upload file to IPFS",
       "yes": "Yes",
       "no": "No",
-      "continue": "Continue"
+      "continue": "Continue",
+      "invalidAddress": "Invalid address"
     },
     "offset": {
       "title": "Offset",
@@ -157,6 +158,23 @@
       "txFailed": "Error performing transaction",
       "": "",
       "": ""
+    },
+    "actions": {
+      "title": "Actions",
+      "userActions": "User actions",
+      "inviteSupporter": "Invite supporter",
+      "walletWantToInvite": "Wallet you want to invite",
+      "invite": "Invite",
+      "inviteSent": "Invite sent",
+      "": "",
+      "": "",
+      "": "",
+      "": "",
+      "": "",
+      "": ""
+    },
+    "actionsDescriptions": {
+      "inviteSupporter": "Allows a user to attempt to invite another wallet to the community."
     }
   }
 }
