@@ -9,6 +9,7 @@ import { useAppSafeArea, useUserContext } from "@hooks";
 
 import { SupporterActions } from "./SupporterActions";
 import { ActivistActions } from "./ActivistActions";
+import { InspectorActions } from "./InspectorActions";
 
 export function Actions() {
   const { bottom } = useAppSafeArea();
@@ -71,13 +72,13 @@ export function ActionItem({ label, onPress }: ActionItemProps) {
 }
 
 const userActions = {
-  0: SupporterActions,
+  0: InspectorActions,
   1: SupporterActions,
   2: SupporterActions,
   3: SupporterActions,
   4: SupporterActions,
   5: SupporterActions,
-  6: SupporterActions,
-  7: ActivistActions,
+  6: ActivistActions,
+  7: SupporterActions,
 }
 type UserActions = keyof typeof userActions;

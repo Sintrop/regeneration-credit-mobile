@@ -76,6 +76,8 @@ export function HomeScreen({ navigation }: ScreenProps) {
           {isConnected && userType !== 0 && (
             <Actions />
           )}
+            <Actions />
+
         </View>
       </View>
     </Screen>

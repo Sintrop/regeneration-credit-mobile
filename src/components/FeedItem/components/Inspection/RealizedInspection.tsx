@@ -48,7 +48,7 @@ interface ResultItemProps {
 function ResultItem({ title, value }: ResultItemProps) {
   return (
     <View className="w-28 p-3 border-2 border-white rounded-2xl items-center">
-      <Text className="font-bold text-white text-4xl">{value}</Text>
+      <Text className="font-bold text-white text-3xl">{value}</Text>
       <Text className="text-sm text-white text-center">{title}</Text>
     </View>
   )

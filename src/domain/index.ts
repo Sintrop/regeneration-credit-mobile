@@ -6,6 +6,7 @@ export * from "./InspectionRules/inspectionService";
 export * from "./InspectionRules/types";
 export * from "./InspectionRules/useCases/useGetInspection";
 export * from "./InspectionRules/useCases/useUserInspections";
+export * from "./InspectionRules/useCases/useRealizeInspection";
 export * from "./InspectionRules/events/useRealizedInspections";
 
 export * from "./CommunityRules/types";
