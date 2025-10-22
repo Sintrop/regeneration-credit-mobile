@@ -6,7 +6,9 @@ import { Modalize } from "react-native-modalize";
 
 import { Text } from "@components";
 import { useAppSafeArea, useUserContext } from "@hooks";
+
 import { SupporterActions } from "./SupporterActions";
+import { ActivistActions } from "./ActivistActions";
 
 export function Actions() {
   const { bottom } = useAppSafeArea();
@@ -76,6 +78,6 @@ const userActions = {
   4: SupporterActions,
   5: SupporterActions,
   6: SupporterActions,
-  7: SupporterActions,
+  7: ActivistActions,
 }
 type UserActions = keyof typeof userActions;

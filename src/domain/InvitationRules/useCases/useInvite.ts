@@ -25,11 +25,12 @@ export function useInvite(): ReturnUseInvite {
       return;
     }
 
+    const methodName = data.userType === 1 || data.userType === 2 ? 'inviteRegeneratorInspector' : 'invite';
     sendTransaction({
       interactWithContract: true,
       contractAbi: InvitationRules.abi,
       contractAddress: InvitationRules.address,
-      methodName: 'invite',
+      methodName,
       params: [data.address, data.userType]
     })
   }

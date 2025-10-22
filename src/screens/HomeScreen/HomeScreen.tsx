@@ -73,7 +73,9 @@ export function HomeScreen({ navigation }: ScreenProps) {
         />
 
         <View className='absolute right-4 bottom-16'>
-          <Actions />
+          {isConnected && userType !== 0 && (
+            <Actions />
+          )}
         </View>
       </View>
     </Screen>

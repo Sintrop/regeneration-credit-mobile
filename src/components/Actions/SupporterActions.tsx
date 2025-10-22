@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 
 import { ActionItem } from "@components";
 
-import { InviteSupporter } from "./InviteSupporter/InviteSupporter";
+import { InviteSupporter } from "./Invite/InviteSupporter";
 
 export function SupporterActions() {
   const { t } = useTranslation();

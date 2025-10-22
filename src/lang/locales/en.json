@@ -166,15 +166,18 @@
       "walletWantToInvite": "Wallet you want to invite",
       "invite": "Invite",
       "inviteSent": "Invite sent",
-      "": "",
-      "": "",
-      "": "",
+      "inviteRegenerator": "Invite regenerator",
+      "inviteInspector": "Invite inspector",
+      "inviteActivist": "Invite activist",
       "": "",
       "": "",
       "": ""
     },
     "actionsDescriptions": {
-      "inviteSupporter": "Allows a user to attempt to invite another wallet to the community."
+      "inviteSupporter": "Supporters can invite Supporters to the system, respecting the specific supporter delay.",
+      "inviteRegenerator": "Activists can invite Regenerators to the system, respecting the specific activist delay.",
+      "inviteInspector": "Activists can invite Inspectors to the system, respecting the specific activist delay.",
+      "inviteActivist": "Activists can invite Activists to the system, respecting the specific activist delay."
     }
   }
 }
