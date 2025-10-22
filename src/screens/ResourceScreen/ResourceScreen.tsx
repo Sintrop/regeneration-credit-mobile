@@ -28,6 +28,7 @@ export function ResourceScreen({ route }: ScreenProps) {
       title={t("resourceScreen.title")} 
       showBackButton
       scrollable
+      withoutPadding
     >
       <ResourceComponent id={id} />
     </Screen>
