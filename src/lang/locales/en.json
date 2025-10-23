@@ -195,6 +195,11 @@
       "": "",
       "": "",
       "": ""
+    },
+    "map": {
+      "clearSelection": "Clear selection",
+      "removeLastPoint": "Remove last point",
+      "": ""
     }
   }
 }

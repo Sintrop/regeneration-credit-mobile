@@ -6,7 +6,13 @@ import { Map } from "@components";
 export function Regenerator({}: BaseRegistrationProps) {
   return (
     <View>
-      <Map />
+      <Map
+        mapStyle={{ width: '100%', height: 300 }} 
+        showMarkers 
+        showPolyline 
+        collectCoords 
+        showDeleteButtons
+      />
     </View>
   )
 }
