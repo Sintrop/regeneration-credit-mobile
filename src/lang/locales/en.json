@@ -176,9 +176,9 @@
       "biodiversityResult": "Biodiversity result",
       "proofPhotosInspection": "Proof photos report",
       "realizedInspection": "Realized inspection",
-      "": "",
-      "": "",
-      "": "",
+      "acceptInspection": "Accept inspection",
+      "acceptedInspection": "Accepted inspection",
+      "accept": "Accept",
       "": ""
     },
     "actionsDescriptions": {
@@ -186,7 +186,8 @@
       "inviteRegenerator": "Activists can invite Regenerators to the system, respecting the specific activist delay.",
       "inviteInspector": "Activists can invite Inspectors to the system, respecting the specific activist delay.",
       "inviteActivist": "Activists can invite Activists to the system, respecting the specific activist delay.",
-      "realizeInspection": "Inspectors must evaluate the amount of trees and species of the regeneration area. How many trees, palm trees and other plants over 1m high and 3cm in diameter there is in the regenerating area? Justify your answer in the report. How many different species of those plants/trees were found? Each different species is equivalent to one unity and only trees and plants managed or planted by the regenerator should be counted. Justify your answer in the report. Max result of 200.000 trees and 300 biodiversity. Zero score means invalid inspection. NOTE: If the inspector finds something suspicous about the inspected regenerator, such as invalid area, suspicious of fake account, or if the Regenerator is not findable, inspectors are encourage to realize passing 0 as values with his justification at the report to avoid being penalized."
+      "realizeInspection": "Inspectors must evaluate the amount of trees and species of the regeneration area. How many trees, palm trees and other plants over 1m high and 3cm in diameter there is in the regenerating area? Justify your answer in the report. How many different species of those plants/trees were found? Each different species is equivalent to one unity and only trees and plants managed or planted by the regenerator should be counted. Justify your answer in the report. Max result of 200.000 trees and 300 biodiversity. Zero score means invalid inspection. NOTE: If the inspector finds something suspicous about the inspected regenerator, such as invalid area, suspicious of fake account, or if the Regenerator is not findable, inspectors are encourage to realize passing 0 as values with his justification at the report to avoid being penalized.",
+      "acceptInspection": "Inspectors must only accept inspections they are capable of performing, being aware of the safety risks and responsibilities. By accepting an inspection, inspectors agree that the they are responsible for their own safety at the data collection. It is recommended to use long sleeves clothes, hats, boots that can prevent bites from animals, gloves to protect from spines and any other useful safety equipment, such as machetes or pepper spray. Accepting an inspection counts as a 'give-up' until realized. Inspectors can only accept one open inspection at a time and cannot inspect the same regenerator twice. They must also adhere to specific delays and security windows."
     },
     "fileInput": {
       "selectAnother": "Select another",

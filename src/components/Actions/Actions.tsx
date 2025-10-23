@@ -72,13 +72,17 @@ export function ActionItem({ label, onPress }: ActionItemProps) {
 }
 
 const userActions = {
-  0: InspectorActions,
-  1: SupporterActions,
-  2: SupporterActions,
-  3: SupporterActions,
-  4: SupporterActions,
-  5: SupporterActions,
+  0: WithoutActions,
+  1: WithoutActions,
+  2: InspectorActions,
+  3: WithoutActions,
+  4: WithoutActions,
+  5: WithoutActions,
   6: ActivistActions,
   7: SupporterActions,
 }
 type UserActions = keyof typeof userActions;
+
+function WithoutActions() {
+  return <View />
+}
