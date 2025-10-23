@@ -14,6 +14,7 @@ export * from "./ChainSwitch/ChainSwitch";
 export * from "./Select/Select";
 export * from "./Camera/Camera";
 export * from "./FileInput/FileInput";
+export * from "./Map/Map";
 
 export * from "./Actions/Actions";
 export * from "./Actions/Offset/Offset";

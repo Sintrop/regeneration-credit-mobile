@@ -4,6 +4,8 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import Toast from 'react-native-toast-message';
+import Mapbox from "@rnmapbox/maps";
+import Config from 'react-native-config';
 
 import { MMProvider } from '@providers';
 import { AppRoutes } from '@routes';
@@ -25,7 +27,8 @@ const queryClient = new QueryClient();
 
 function App() {
   useEffect(() => {
-    initDatabase()
+    initDatabase();
+    Mapbox.setAccessToken(Config.MAPBOX_ACCESS_TOKEN);
   }, []);
 
   async function initDatabase() {
