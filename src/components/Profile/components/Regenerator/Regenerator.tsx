@@ -38,7 +38,7 @@ export function Regenerator({ address }: Props) {
         <View className="gap-1 p-5 rounded-2xl bg-card-primary">
           <DataItem title="ID" value={regenerator.id} />
           <DataItem title={t("profile.hashProofPhoto")} value={regenerator.proofPhoto} />
-          <DataItem title={t("profile.totalArea")} value={regenerator.totalArea} suffix="m2" />
+          <DataItem title={t("profile.totalArea")} value={regenerator.totalArea} suffix="m²" />
           <DataItem title={t("profile.regenerationScore")} value={regenerator.regenerationScore.score} />
           <DataItem title={t("profile.totalInspections")} value={regenerator.totalInspections} />
           <DataItem title={t("profile.lastRequestAt")} value={regenerator.lastRequestAt} />
@@ -46,7 +46,7 @@ export function Regenerator({ address }: Props) {
           <DataItem title={t("profile.registeredAt")} value={regenerator.createdAt} />
         </View>
 
-        <RegenerationArea address={address} />
+        <RegenerationArea address={address} totalArea={regenerator.totalArea} />
         <Invitation address={address} />
         <UserDelations address={address} />
         <UserInspections address={address} />

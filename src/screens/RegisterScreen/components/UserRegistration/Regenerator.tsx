@@ -99,7 +99,7 @@ export function Regenerator({ name, changeScrollEnabled }: BaseRegistrationProps
             ))}
 
             <Text className="text-white mt-3">
-              {t('register.areaSize')}: {Intl.NumberFormat('pt-BR').format(areaSize)} m2
+              {t('register.areaSize')}: {Intl.NumberFormat('pt-BR').format(areaSize)} m²
             </Text>
           </View>
         )}

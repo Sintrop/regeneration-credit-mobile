@@ -1,13 +1,14 @@
 import { View } from "react-native";
 import { useTranslation } from "react-i18next";
 
-import { Text } from "@components";
+import { Map, Text } from "@components";
 import { useCoordinates } from "@domain";
 
 interface Props {
   address: string;
+  totalArea: number;
 }
-export function RegenerationArea({ address }: Props) {
+export function RegenerationArea({ address, totalArea }: Props) {
   const { t } = useTranslation();
   const { coordinates } = useCoordinates({ address });
 
@@ -16,7 +17,13 @@ export function RegenerationArea({ address }: Props) {
       <Text className="font-bold text-white text-xl">
         {t("profile.regenerationArea")}
       </Text>
-      <Text className="text-gray-300 text-sm">
+      <Map
+        coords={coordinates}
+        showMarkers
+        showPolyline
+        mapStyle={{ width: '100%', height: 250 }}
+      />
+      <Text className="text-gray-300 text-sm mt-2">
         {t("profile.coordinates")}
       </Text>
 
@@ -25,6 +32,10 @@ export function RegenerationArea({ address }: Props) {
           Lat: {item.latitude}, Lng: {item.longitude}
         </Text>
       ))}
+
+      <Text className="mt-2 text-white">
+        {t('profile.totalArea')}: {Intl.NumberFormat('pt-BR').format(totalArea)} m²
+      </Text>
     </View>
   );
 }
