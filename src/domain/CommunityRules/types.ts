@@ -28,3 +28,14 @@ export interface DelationProps {
   testimony: string;
   createdAt: number;
 }
+
+export interface UserRegisteredEventProps {
+  addr: string;
+  userType: string;
+}
+export interface UserRegisteredProps {
+  id: number;
+  address: string;
+  userType: number;
+  blockNumber: number;
+} 

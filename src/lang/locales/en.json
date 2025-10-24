@@ -14,7 +14,13 @@
       "realizedInspection": "Realized inspection",
       "rScore": "Score",
       "burnedTokens": "Burned tokens",
-      "compensatedItem": "Compensated item"
+      "compensatedItem": "Compensated item", 
+      "newUser": "New user",
+      "theUser": "The user",
+      "registeredAs": "registered as",
+      "": "",
+      "": "",
+      "": ""
     },
     "userDetails": {
       "title": "User details",

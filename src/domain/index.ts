@@ -17,6 +17,7 @@ export * from "./CommunityRules/useCases/useGetUser";
 export * from "./CommunityRules/useCases/useInvitation";
 export * from "./CommunityRules/useCases/useUserDelations";
 export * from "./CommunityRules/useCases/useUserTypesCount";
+export * from "./CommunityRules/events/useUserRegistered";
 
 export * from "./RegeneratorRules/types";
 export * from "./RegeneratorRules/regeneratorService";

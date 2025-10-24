@@ -1,10 +1,11 @@
 import { TouchableOpacity, View } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 
 import { Avatar, Text } from "@components";
-import { Loading } from "./Loading";
-import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { AppStackParamsList } from "@routes";
+
+import { Loading } from "./Loading";
 
 interface Props {
   address?: string;
@@ -36,7 +37,7 @@ export function HeaderItem({ address, name, photo, createdAt, isLoading }: Props
 
       <View className="mt-[-3]">
         <Text className="font-bold text-white">{name}</Text>
-        <Text className="text-white text-sm">{address}</Text>
+        <Text className="text-white text-sm max-w-[95%]" numberOfLines={1}>{address}</Text>
         <Text className="text-white text-xs">{createdAt}</Text>
       </View>
     </TouchableOpacity>
