@@ -2,12 +2,12 @@ import { Children, cloneElement, isValidElement, ReactNode, useEffect, useRef, u
 import { TouchableOpacity, View } from "react-native";
 import { Modalize } from "react-native-modalize";
 import { Portal } from "react-native-portalize";
-
-import { useAppSafeArea, useTxContext } from "@hooks";
-import { Text, TextInput } from "@components";
 import { useTranslation } from "react-i18next";
 import { utils } from "web3";
 import Toast from "react-native-toast-message";
+
+import { useAppSafeArea, useKeyboardStatus, useTxContext } from "@hooks";
+import { Text, TextInput } from "@components";
 import { useInvite } from "@domain";
 
 interface ModalControls {
@@ -22,6 +22,8 @@ interface Props {
 export function InviteActivist({ children }: Props) {
   const { t } = useTranslation();
   const { bottom } = useAppSafeArea();
+  const { keyboardHeight, keyboardOpen } = useKeyboardStatus();
+  const paddingBottom = keyboardOpen ? keyboardHeight + 100 : bottom + 20;
   const { registerContinueAction } = useTxContext();
   const modal = useRef<Modalize>(null);
 
@@ -76,7 +78,7 @@ export function InviteActivist({ children }: Props) {
         >
           <View 
             className="rounded-t-2xl p-5 bg-card-primary"
-            style={{ paddingBottom: bottom + 20 }}
+            style={{ paddingBottom }}
           >
             <Text className="text-white text-center">{t('actions.inviteActivist')}</Text>
 

@@ -5,7 +5,7 @@ import { Portal } from "react-native-portalize";
 import { useTranslation } from "react-i18next";
 import Toast from "react-native-toast-message";
 
-import { useAppSafeArea, useTxContext } from "@hooks";
+import { useAppSafeArea, useKeyboardStatus, useTxContext } from "@hooks";
 import { Text, TextInput } from "@components";
 import { useAcceptInspection } from "@domain";
 
@@ -21,6 +21,8 @@ interface Props {
 export function AcceptInspection({ children }: Props) {
   const { t } = useTranslation();
   const { bottom } = useAppSafeArea();
+  const { keyboardHeight, keyboardOpen } = useKeyboardStatus();
+  const paddingBottom = keyboardOpen ? keyboardHeight + 100 : bottom + 20;
   const { registerContinueAction } = useTxContext();
   const modal = useRef<Modalize>(null);
 
@@ -72,7 +74,7 @@ export function AcceptInspection({ children }: Props) {
         >
           <View 
             className="rounded-t-2xl p-5 bg-card-primary"
-            style={{ paddingBottom: bottom + 20 }}
+            style={{ paddingBottom }}
           >
             <Text className="text-white text-center">{t('actions.acceptInspection')}</Text>
 
