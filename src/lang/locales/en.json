@@ -161,8 +161,10 @@
       "transactionHash": "Transaction hash",
       "txSuccess": "Transaction completed successfully",
       "txFailed": "Error performing transaction",
-      "": "",
-      "": ""
+      "hashCopiedToTransferArea": "Hash copied to transfer area",
+      "viewOnExplorer": "View on explorer",
+      "errorOnGetErrorMessage": "Error on get error message",
+      "errorDetails": "Error details"
     },
     "actions": {
       "title": "Actions",

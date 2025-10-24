@@ -1,12 +1,15 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { createContext, ReactNode, useEffect, useState } from "react";
-import { ActivityIndicator, Alert, Modal, TouchableOpacity, View } from "react-native";
+import { ActivityIndicator, Alert, Linking, Modal, TouchableOpacity, View } from "react-native";
 import { useTranslation } from "react-i18next";
 import { useSDK } from "@metamask/sdk-react";
 import Web3 from "web3";
+import Clipboard from "@react-native-clipboard/clipboard";
+import { ethers } from "ethers";
 
-import { Text } from "@components";
+import { Icon, Text } from "@components";
 import { useSettingsContext } from "@hooks";
+import Toast from "react-native-toast-message";
 
 interface SendTransactionProps {
   contractAddress?: string;
@@ -34,6 +37,13 @@ interface ReceiptTxProps {
   type: string;
 }
 
+interface TraceTxProps {
+  gas: string;
+  failed: string;
+  returnValue: string;
+  structLogs: []
+}
+
 interface TxProviderProps {
   children: ReactNode;
 }
@@ -56,6 +66,8 @@ export function TxProvider({ children }: TxProviderProps) {
   const [showModalTx, setShowModalTx] = useState(false);
   const [isError, setIsError] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+  const [isLoadingError, setIsLoadingError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
   const [onContinueSuccessAction, setOnContinueSuccessAction] = useState<(() => void) | null>(null);
 
   useEffect(() => {
@@ -111,6 +123,7 @@ export function TxProvider({ children }: TxProviderProps) {
         setIsSuccess(false);
         setIsError(true);
         setIsLoading(false);
+        getError(txHash);
       }
     } else {
       setTimeout(() => watchTransaction(txHash), 2000);
@@ -141,6 +154,38 @@ export function TxProvider({ children }: TxProviderProps) {
         hasReceipt: false,
         successTx: false,
       }
+    }
+  }
+
+  async function getError(txHash: string) {
+    try {
+      setIsLoadingError(true);
+      const response = await fetch(rpc, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          jsonrpc: "2.0",
+          method: "debug_traceTransaction",
+          params: [txHash],
+          id: 0,
+        })
+      })
+      const data = await response.json() as {jsonRpc: string; id: number; result: TraceTxProps};
+      const iface = new ethers.Interface(["error Error(string)"]);
+      const decodedValue = iface.parseError("0x" + data?.result?.returnValue);
+
+      if (decodedValue) {
+        if (decodedValue.args && decodedValue.args.length > 0){
+          setErrorMessage(decodedValue?.args[0]);
+        }
+      }
+    } catch (e) {
+      console.log(e);
+      setErrorMessage(t('tx.errorOnGetErrorMessage'))
+    } finally {
+      setIsLoadingError(false);
     }
   }
 
@@ -199,38 +244,38 @@ export function TxProvider({ children }: TxProviderProps) {
                       </Text>
                     </View>
 
-                    <View className="gap-1 w-full">
-                      <Text className="text-gray-300 text-sm">
-                        {t('tx.transactionHash')}
-                      </Text>
-                      <View className="flex-row items-center gap-3">
-                        <Text className="text-white" numberOfLines={1}>{hash}</Text>
-                      </View>
-                    </View>
+                    <AreaHash hash={hash} />
                   </View>
                 )}
               </View>
             ) : (
-              <View className="h-[200] items-center justify-center w-full">
-                <View className="gap-5">
+              <View className="h-[250] items-center justify-center w-full">
+                <View className="gap-5 w-full">
                   {isSuccess && (
                     <Text className="text-green-500 font-semibold text-center">
                       {t('tx.txSuccess')}
                     </Text>
                   )}
                   {isError && (
-                    <Text className="text-red-500 font-semibold text-center">
-                      {t('tx.txFailed')}
-                    </Text>
-                  )}
-                  <View className="gap-1 w-full">
-                    <Text className="text-gray-300 text-sm">
-                      {t('tx.transactionHash')}
-                    </Text>
-                    <View className="flex-row items-center gap-3">
-                      <Text className="text-white" numberOfLines={1}>{hash}</Text>
+                    <View className="w-full items-center gap-5">
+                      <Text className="text-red-500 font-semibold text-center">
+                        {t('tx.txFailed')}
+                      </Text>
+
+                      <View className="gap-1 w-full">
+                        <Text className="text-gray-300 text-sm">
+                          {t('tx.errorDetails')}
+                        </Text>
+
+                        {isLoadingError ? (
+                          <ActivityIndicator size={40} color="white" />
+                        ) : (
+                          <Text className="text-red-500" numberOfLines={2}>{errorMessage}</Text>
+                        )}
+                      </View>
                     </View>
-                  </View>
+                  )}
+                  <AreaHash hash={hash} />
                 </View>
 
                 <TouchableOpacity
@@ -247,5 +292,51 @@ export function TxProvider({ children }: TxProviderProps) {
         </View>
       </Modal>
     </TxContext.Provider>
+  )
+}
+
+interface AreaHashProps {
+  hash: string;
+}
+function AreaHash({hash}: AreaHashProps) {
+  const { t } = useTranslation();
+  const { explorerUrl } = useSettingsContext();
+
+  async function handleCopyHash() {
+    Clipboard.setString(hash);
+    Toast.show({
+      type: 'success',
+      text1: t('tx.hashCopiedToTransferArea')
+    })
+  }
+
+  function handleOpenOnExplorer() {
+    Linking.openURL(`${explorerUrl}/tx/${hash}`)
+  }
+
+  return (
+    <View className="gap-1 w-full">
+      <Text className="text-gray-300 text-sm">
+        {t('tx.transactionHash')}
+      </Text>
+      <View className="flex-row items-center gap-3">
+        <Text className="text-white max-w-[90%]" numberOfLines={1}>{hash}</Text>
+        <TouchableOpacity
+          hitSlop={5}
+          onPress={handleCopyHash}
+        >
+          <Icon name="copy" size={30} />
+        </TouchableOpacity>
+      </View>
+
+      <TouchableOpacity
+        className="flex-row items-center justify-center gap-3"
+        onPress={handleOpenOnExplorer}
+      >
+        <Text className="text-white underline">
+          {t('tx.viewOnExplorer')}
+        </Text>
+      </TouchableOpacity>
+    </View>
   )
 }
