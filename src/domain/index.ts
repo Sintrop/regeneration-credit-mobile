@@ -71,5 +71,6 @@ export * from "./SupporterRules/useCases/useGetSupporter";
 
 export * from "./ActivistRules/activistService";
 export * from "./ActivistRules/useCases/useAddActivist";
+export * from "./ActivistRules/useCases/useActivist";
 
 export * from "./InvitationRules/useCases/useInvite";
