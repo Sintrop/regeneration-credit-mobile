@@ -69,6 +69,7 @@ export * from "./SupporterRules/useCases/useGetOffset";
 export * from "./SupporterRules/useCases/useAddSupporter";
 export * from "./SupporterRules/useCases/useGetSupporter";
 
+export * from "./ActivistRules/activistService";
 export * from "./ActivistRules/useCases/useAddActivist";
 
 export * from "./InvitationRules/useCases/useInvite";

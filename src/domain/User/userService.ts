@@ -1,4 +1,4 @@
-import { BasicUserProps, contributorService, developerService, inspectorService, regeneratorService, researcherService, supporterService } from "@domain";
+import { activistService, BasicUserProps, contributorService, developerService, inspectorService, regeneratorService, researcherService, supporterService } from "@domain";
 
 interface GetBasicDataProps {
   rpc: string;
@@ -50,6 +50,15 @@ async function getBasicData({ address, rpc, userType }: GetBasicDataProps): Prom
 
   if (userType === 5) {
     const response = await contributorService.getContributor({ rpc, address })
+    basicData = {
+      address,
+      name: response.name,
+      photo: response.proofPhoto
+    }
+  }
+
+  if (userType === 6) {
+    const response = await activistService.getActivist({ rpc, address })
     basicData = {
       address,
       name: response.name,
