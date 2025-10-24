@@ -72,7 +72,11 @@
       "inviter": "Inviter",
       "invitedAt": "Invited at",
       "delations": "Delations",
-      "noUserDelations": "No user delations"
+      "noUserDelations": "No user delations",
+      "inspections": "Inspections",
+      "noUserInspections": "No user inspections",
+      "inspection": "Inspection",
+      "seeMore": "See more"
     },
     "pdfView": {
       "title": "PDF View"

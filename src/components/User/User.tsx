@@ -36,7 +36,7 @@ export function User({ address, name, photo, isLoading }: Props) {
 
       <View className="mt-[-3]">
         <Text className="font-bold text-white">{name}</Text>
-        <Text className="text-white text-sm">{address}</Text>
+        <Text className="text-white text-sm max-w-[95%]" numberOfLines={1}>{address}</Text>
       </View>
     </TouchableOpacity>
   )

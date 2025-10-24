@@ -24,7 +24,7 @@ export function Regenerator({ address }: Props) {
   if (!regenerator || isError) return <View />
 
   return (
-    <View className="gap-3">
+    <View className="gap-3 mb-5">
       <HeaderProfile
         address={address}
         name={regenerator?.name}
