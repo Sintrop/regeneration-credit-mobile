@@ -1,12 +1,16 @@
 import { ReactNode } from "react";
 import { View, Image, TouchableOpacity, ActivityIndicator } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 
 import { Avatar, Icon, Text } from "@components";
 import { useUserContext } from "@hooks";
+import { AppStackParamsList } from "@routes";
 
 //@ts-ignore
 import RCIcon from "../../assets/images/rc.png";
+
+type NavigationProps = NativeStackNavigationProp<AppStackParamsList, 'HomeScreen'>
 
 export interface HeaderProps {
   home?: boolean;
@@ -24,10 +28,14 @@ function Container({ children }: { children: ReactNode }) {
 
 export function Header({ home, title, showBackButton }: HeaderProps) {
   const { isConnected, handleConnect, address, connecting } = useUserContext();
-  const navigation = useNavigation();
+  const navigation = useNavigation<NavigationProps>();
 
   function handleGoBack() {
     navigation.goBack();
+  }
+
+  function handleGoToProfile() {
+    navigation.navigate('ProfileScreen', { address })
   }
 
   if (home) {
@@ -40,7 +48,10 @@ export function Header({ home, title, showBackButton }: HeaderProps) {
 
         <View className="flex items-center gap-3">
           {isConnected ? (
-            <TouchableOpacity className="flex-row items-center gap-2">
+            <TouchableOpacity 
+              className="flex-row items-center gap-2"
+              onPress={handleGoToProfile}
+            >
               <Text className="max-w-[80] text-white" numberOfLines={1}>{address}</Text>
               <Avatar address={address} size={25} />
             </TouchableOpacity>

@@ -4,6 +4,7 @@ import {
   ImpactCalculatorScreen, 
   MyTokensScreen, 
   PdfViewScreen, 
+  ProfileScreen, 
   RegisterScreen, 
   ResourceScreen, 
   ResourcesTypes, 
@@ -16,6 +17,9 @@ export type AppStackParamsList = {
   ImpactCalculatorScreen: undefined;
   MyTokensScreen: undefined;
   UserDetailsScreen: {
+    address: string;
+  }
+  ProfileScreen: {
     address: string;
   }
   ResourceScreen: {
@@ -38,6 +42,7 @@ export function AppStack() {
     >
       <Stack.Screen name="HomeScreen" component={HomeScreen} />
       <Stack.Screen name="UserDetailsScreen" component={UserDetailsScreen} />
+      <Stack.Screen name="ProfileScreen" component={ProfileScreen} />
       <Stack.Screen name="ResourceScreen" component={ResourceScreen} />
       <Stack.Screen name="PdfViewScreen" component={PdfViewScreen} />
       <Stack.Screen name="RegisterScreen" component={RegisterScreen} />

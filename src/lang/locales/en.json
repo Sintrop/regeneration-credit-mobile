@@ -48,6 +48,7 @@
       "seeContribution": "See contribution"
     },
     "profile": {
+      "title": "Profile",
       "hashProofPhoto": "Proof photo",
       "totalArea": "Total area",
       "regenerationScore": "Regeneration score",
