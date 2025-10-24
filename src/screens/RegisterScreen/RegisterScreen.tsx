@@ -11,6 +11,7 @@ export function RegisterScreen() {
   const { t } = useTranslation();
   const [userType, setUserType] = useState(0);
   const [name, setName] = useState("");
+  const [scrollEnabled, setScrollEnabled] = useState<boolean>(true);
 
   if (isConnected) {
     return (
@@ -25,7 +26,7 @@ export function RegisterScreen() {
   }
 
   return (
-    <Screen showBackButton title={t('register.title')} scrollable>
+    <Screen showBackButton title={t('register.title')} scrollable scrollEnabled={scrollEnabled}>
       <View className="gap-5">
         <View className="gap-2 p-3 rounded-2xl bg-card-primary">
           <Text className="text-gray-300">
@@ -67,7 +68,11 @@ export function RegisterScreen() {
         </View>
 
         {userType !== 0 && (
-          <UserRegistration userType={userType as RegistrationsType} name={name} />
+          <UserRegistration 
+            userType={userType as RegistrationsType} 
+            name={name}
+            changeScrollEnabled={setScrollEnabled} 
+          />
         )}
       </View>
     </Screen>

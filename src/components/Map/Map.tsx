@@ -19,6 +19,7 @@ interface Props {
   showDeleteButtons?: boolean;
   mapStyle?: ViewStyle;
   zoom?: number;
+  disableScroll?: (disabled: boolean) => void;
 }
 export function Map({ 
   onChangeCoords, 
@@ -30,7 +31,8 @@ export function Map({
   coords, 
   zoom = 14,
   description,
-  label
+  label,
+  disableScroll
 }: Props) {
   const { t } = useTranslation();
   const [markers, setMarkers] = useState<CoordinateProps[]>([]);
@@ -98,6 +100,9 @@ export function Map({
 
           handlePressMap(coord)
         }}
+        onTouchStart={() => disableScroll && disableScroll(true)}
+        onTouchEnd={() => disableScroll && disableScroll(false)}
+        onTouchCancel={() => disableScroll && disableScroll(false)}
       >
         {mapPosition && (
           <Camera

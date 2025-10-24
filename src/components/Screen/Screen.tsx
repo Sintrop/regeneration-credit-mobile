@@ -7,8 +7,9 @@ interface Props extends HeaderProps {
   children: ReactNode;
   scrollable?: boolean;
   withoutPadding?: boolean;
+  scrollEnabled?: boolean;
 }
-export function Screen({ children, scrollable, withoutPadding, ...headerProps }: Props) {
+export function Screen({ children, scrollable, withoutPadding, scrollEnabled = true, ...headerProps }: Props) {
   const { bottom } = useAppSafeArea();
 
   return (
@@ -23,6 +24,7 @@ export function Screen({ children, scrollable, withoutPadding, ...headerProps }:
           <ScrollView 
             showsVerticalScrollIndicator={false}
             className={withoutPadding ? 'px-0 pt-0' : 'px-3 pt-5'}
+            scrollEnabled={scrollEnabled}
           >
             {children}
             <View style={{ marginBottom: bottom }}/>

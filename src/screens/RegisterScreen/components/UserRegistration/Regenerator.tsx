@@ -11,13 +11,15 @@ import { CoordinateProps, useAddRegenerator } from "@domain";
 import { BaseRegistrationProps } from "./UserRegistration";
 import { ProofPhoto } from "../ProofPhoto";
 import { RegisterBtn } from "../RegisterBtn";
+import { Invitation } from "../Invitation";
 
-export function Regenerator({ name }: BaseRegistrationProps) {
+export function Regenerator({ name, changeScrollEnabled }: BaseRegistrationProps) {
   const { t } = useTranslation();
   const [coordinates, setCoordinates] = useState<CoordinateProps[]>([]);
   const areaSize = calculateArea(coordinates);
   const [description, setDescription] = useState<string>('');
   const [proofPhoto, setProofPhoto] = useState<string | null>(null);
+  const [inviteIsOk, setInviteIsOk] = useState<boolean>(false);
 
   const { addRegenerator } = useAddRegenerator();
   const { resetToHomeScreen } = useResetNavigation();
@@ -56,6 +58,7 @@ export function Regenerator({ name }: BaseRegistrationProps) {
 
   return (
     <View className="gap-5 mb-5">
+      <Invitation invitationIsOk={setInviteIsOk} userType={1} />
       <View className="p-3 rounded-2xl bg-card-primary">
         <TextInput
           label={t('register.projectDescription')}
@@ -79,6 +82,7 @@ export function Regenerator({ name }: BaseRegistrationProps) {
           collectCoords 
           showDeleteButtons
           zoom={17}
+          disableScroll={(disabled) => changeScrollEnabled && changeScrollEnabled(!disabled)}
         />
 
         {coordinates.length > 0 && (
@@ -104,7 +108,7 @@ export function Regenerator({ name }: BaseRegistrationProps) {
       <RegisterBtn
         label={t('register.title')}
         onPress={handleRegister}
-        disabled={!name.trim() || !description.trim() || !proofPhoto || coordinates.length < 3 || areaSize < 3500}
+        disabled={!name.trim() || !description.trim() || !proofPhoto || coordinates.length < 3 || areaSize < 3500 || !inviteIsOk}
         isLoading={uploading}
       />
     </View>

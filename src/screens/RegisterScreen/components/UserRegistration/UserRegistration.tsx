@@ -8,14 +8,15 @@ import { Supporter } from "./Supporter";
 
 export interface BaseRegistrationProps {
   name: string;
+  changeScrollEnabled?: (enable: boolean) => void;
 }
 interface Props extends BaseRegistrationProps {
   userType: RegistrationsType;
 }
 
-export function UserRegistration({ userType, name }: Props) {
+export function UserRegistration({ userType, name, changeScrollEnabled }: Props) {
   const Component = users[userType];
-  return <Component name={name} />
+  return <Component name={name} changeScrollEnabled={changeScrollEnabled} />
 }
 
 const users = {
