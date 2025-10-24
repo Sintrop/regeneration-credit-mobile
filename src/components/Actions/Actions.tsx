@@ -10,6 +10,7 @@ import { useAppSafeArea, useUserContext } from "@hooks";
 import { SupporterActions } from "./SupporterActions";
 import { ActivistActions } from "./ActivistActions";
 import { InspectorActions } from "./InspectorActions";
+import { RegeneratorActions } from "./RegeneratorActions";
 
 export function Actions() {
   const { bottom } = useAppSafeArea();
@@ -73,7 +74,7 @@ export function ActionItem({ label, onPress }: ActionItemProps) {
 
 const userActions = {
   0: WithoutActions,
-  1: WithoutActions,
+  1: RegeneratorActions,
   2: InspectorActions,
   3: WithoutActions,
   4: WithoutActions,

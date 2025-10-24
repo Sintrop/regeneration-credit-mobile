@@ -13,7 +13,7 @@ export function RegisterScreen() {
   const [name, setName] = useState("");
   const [scrollEnabled, setScrollEnabled] = useState<boolean>(true);
 
-  if (isConnected) {
+  if (!isConnected) {
     return (
       <Screen showBackButton title={t('register.title')}>
         <View className="flex-1 w-full h-screen items-center justify-center">

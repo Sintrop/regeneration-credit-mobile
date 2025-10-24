@@ -8,6 +8,7 @@ export * from "./InspectionRules/useCases/useGetInspection";
 export * from "./InspectionRules/useCases/useUserInspections";
 export * from "./InspectionRules/useCases/useRealizeInspection";
 export * from "./InspectionRules/useCases/useAcceptInspection";
+export * from "./InspectionRules/useCases/useRequestInspection";
 export * from "./InspectionRules/events/useRealizedInspections";
 
 export * from "./CommunityRules/types";
