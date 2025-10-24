@@ -2,19 +2,24 @@ import { TouchableOpacity, View } from "react-native";
 
 import { Offset, Text } from "@components";
 import { CalculatorItemProps } from "@domain";
+import { useUserContext } from "@hooks";
 
 interface Props {
   item: CalculatorItemProps;
 }
 
 export function CalculatorItem({ item }: Props) {
+  const { userType } = useUserContext();
+
   return (
     <View className="flex-row items-center justify-between h-12 px-3 border-b border-card-secondary">
       <Text className="text-white">{item.item}</Text>
 
-      <Offset item={item}>
-        <OffsetButton />
-      </Offset>
+      {userType === 7 && (
+        <Offset item={item}>
+          <OffsetButton />
+        </Offset>
+      )}
     </View>
   )
 }
