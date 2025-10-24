@@ -22,6 +22,7 @@ export * from "./RegeneratorRules/regeneratorService";
 export * from "./RegeneratorRules/useCases/useGetRegenerator";
 export * from "./RegeneratorRules/useCases/useProjectDescription";
 export * from "./RegeneratorRules/useCases/useCoordinates";
+export * from "./RegeneratorRules/useCases/useAddRegenerator";
 
 export * from "./InspectorRules/types";
 export * from "./InspectorRules/inspectorService";

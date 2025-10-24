@@ -30,7 +30,15 @@ function parseCoordinate(data: CoordinateContractProps): CoordinateProps {
   }
 }
 
+function parseCoordinateToRegister(data: CoordinateProps): CoordinateContractProps {
+  return {
+    latitude: data.latitude.toString(),
+    longitude: data.longitude.toString()
+  }
+}
+
 export const regeneratorAdapter = {
   parseFromContract,
-  parseCoordinate
+  parseCoordinate,
+  parseCoordinateToRegister
 }

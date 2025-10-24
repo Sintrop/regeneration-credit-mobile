@@ -4,18 +4,15 @@ import {Camera, MapView, PointAnnotation, StyleURL} from "@rnmapbox/maps";
 import { useTranslation } from "react-i18next";
 
 import { Text } from "@components";
+import { CoordinateProps } from "@domain";
 
 import { Polyline } from "./Polyline";
 
-interface CoordProps {
-  latitude: number;
-  longitude: number;
-}
 interface Props {
-  coords?: CoordProps[];
+  coords?: CoordinateProps[];
   label?: string;
   description?: string;
-  onChangeCoords?: (coords: CoordProps[]) => void;
+  onChangeCoords?: (coords: CoordinateProps[]) => void;
   showMarkers?: boolean;
   showPolyline?: boolean;
   collectCoords?: boolean;
@@ -36,9 +33,9 @@ export function Map({
   label
 }: Props) {
   const { t } = useTranslation();
-  const [markers, setMarkers] = useState<CoordProps[]>([]);
+  const [markers, setMarkers] = useState<CoordinateProps[]>([]);
   const [pathPolyline, setPathPolyline] = useState<[number, number][]>([]);
-  const [mapPosition, setMapPosition] = useState<CoordProps | null>();
+  const [mapPosition, setMapPosition] = useState<CoordinateProps | null>();
 
   useEffect(() => {
     if(coords) setMarkers(coords)
@@ -64,7 +61,7 @@ export function Map({
     setPathPolyline(array);
   }
 
-  function handlePressMap(coord: CoordProps) {
+  function handlePressMap(coord: CoordinateProps) {
     if (collectCoords) {
       setMarkers((value) => [...value, coord])
     }

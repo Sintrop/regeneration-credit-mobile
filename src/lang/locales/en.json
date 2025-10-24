@@ -142,7 +142,12 @@
       "vacanciesTitle": "Vacancies",
       "vacanciesDescription": "The system has a vacancy system based on the number of registered regenerators",
       "isThereAnInvitation": "Is there an invitation?",
-      "isThereAnVacancie": "Is there an vacancie?"
+      "isThereAnVacancie": "Is there an vacancie?",
+      "projectDescription": "Project description",
+      "regenerationArea": "Regeneration area",
+      "descriptionRegenerationArea": "Description",
+      "coordinates": "Coordinates",
+      "areaSize": "Area size"
     },
     "myTokens": {
       "title": "My tokens",
