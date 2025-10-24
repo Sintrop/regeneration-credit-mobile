@@ -13,8 +13,14 @@ import { useTranslation } from 'react-i18next';
 type ScreenProps = NativeStackScreenProps<AppStackParamsList, 'HomeScreen'>
 export function HomeScreen({ navigation }: ScreenProps) {
   const { t } = useTranslation();
-  const { list, isLoading } = useNewFeed();
+  const { list, isLoading, nextPage, atualPage, totalPages } = useNewFeed();
   const { isConnected, userType } = useUserContext();
+
+  function handleNextPage() {
+    if (atualPage < totalPages){
+      nextPage();
+    }
+  }
 
   function headerList() {
     return (
@@ -70,6 +76,8 @@ export function HomeScreen({ navigation }: ScreenProps) {
           contentContainerClassName="pt-3 gap-3 pb-10"
           ListHeaderComponent={headerList}
           ListEmptyComponent={<EmptyList isLoading={isLoading}/>}
+          onEndReachedThreshold={0.5}
+          onEndReached={handleNextPage}
         />
 
         <View className='absolute right-4 bottom-16'>

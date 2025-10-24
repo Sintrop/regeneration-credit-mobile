@@ -8,6 +8,8 @@ interface ReturnUseNewFeed {
   isLoading: boolean;
   list: FeedItemProps[];
   nextPage: () => void;
+  atualPage: number;
+  totalPages: number;
 }
 export function useNewFeed(): ReturnUseNewFeed {
   const itemsPerPage = 10;
@@ -66,6 +68,8 @@ export function useNewFeed(): ReturnUseNewFeed {
   return {
     isLoading: isLoadingOffsets || isLoadingRealizedInspections || isLoadingReports || isLoadingResearchs || isLoadingContributions || isLoadingUsersRegistered,
     list: listPage,
-    nextPage: handleNextPage
+    nextPage: handleNextPage,
+    atualPage,
+    totalPages
   }
 }
