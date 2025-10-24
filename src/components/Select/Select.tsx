@@ -4,7 +4,7 @@ import { Modalize } from "react-native-modalize";
 import { Portal } from "react-native-portalize";
 import { useTranslation } from "react-i18next";
 
-import { Text } from "@components";
+import { Icon, Text } from "@components";
 import { useAppSafeArea } from "@hooks";
 
 interface OptionProps {
@@ -49,6 +49,7 @@ export function Select({ onChange, options, value, label }: Props) {
         onPress={handleOpenModal}
       >
         <Text className="text-white">{selectedOption?.label}</Text>
+        <Icon name="arrowDown" />
       </TouchableOpacity>
 
       <Portal>
