@@ -126,7 +126,8 @@
     },
     "impactCalculator": {
       "title": "Impact calculator",
-      "calculatorItems": "Calculator items"
+      "calculatorItems": "Calculator items",
+      "descOffset": "Allows a backer to burn tokens to offset the degradation of a specific item, or for the backer to declare a reduction pledge for a specific calculator item."
     },
     "register": {
       "title": "Register",

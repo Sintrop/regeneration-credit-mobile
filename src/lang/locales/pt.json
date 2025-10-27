@@ -126,7 +126,8 @@
     },
     "impactCalculator": {
       "title": "Calculadora de impacto",
-      "calculatorItems": "Itens da calculadora"
+      "calculatorItems": "Itens da calculadora",
+      "descOffset": "Permite que um apoiador queime tokens para compensar a degradação de um item específico ou que o apoiador declare um compromisso de redução para um item específico da calculadora."
     },
     "register": {
       "title": "Registrar",
