@@ -2,10 +2,14 @@ import { useEffect } from 'react';
 import { LogBox } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import Toast from 'react-native-toast-message';
+import Mapbox from "@rnmapbox/maps";
+import Config from 'react-native-config';
 
 import { MMProvider } from '@providers';
 import { AppRoutes } from '@routes';
-import { SettingsProvider } from '@contexts';
+import { SettingsProvider, TxProvider, UserProvider } from '@contexts';
 import { database } from '@database';
 
 import "./global.css";
@@ -23,7 +27,8 @@ const queryClient = new QueryClient();
 
 function App() {
   useEffect(() => {
-    initDatabase()
+    initDatabase();
+    Mapbox.setAccessToken(Config.MAPBOX_ACCESS_TOKEN);
   }, []);
 
   async function initDatabase() {
@@ -34,11 +39,18 @@ function App() {
   return (
     <MMProvider>
       <SafeAreaProvider>
-        <QueryClientProvider client={queryClient}>
-          <SettingsProvider>
-            <AppRoutes />
-          </SettingsProvider>
-        </QueryClientProvider>
+        <GestureHandlerRootView>
+          <QueryClientProvider client={queryClient}>
+            <SettingsProvider>
+              <UserProvider>
+                <TxProvider>
+                  <AppRoutes />
+                  <Toast />
+                </TxProvider>
+              </UserProvider>
+            </SettingsProvider>
+          </QueryClientProvider>
+        </GestureHandlerRootView>
       </SafeAreaProvider>
     </MMProvider>
   );

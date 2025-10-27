@@ -1,4 +1,4 @@
-package com.regenerationcredit
+package com.sintrop.activistapp
 
 import android.app.Application
 import com.facebook.react.PackageList

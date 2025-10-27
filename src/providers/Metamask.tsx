@@ -15,7 +15,7 @@ const SdkConfig = ({ children }: { children: React.ReactNode }) => {
       debug={debug}
       sdkOptions={{
         readonlyRPCMap: {
-          '0x640': 'https://sequoiarpc.sintrop.com',
+          '0x3D171': 'https://rpc.sintrop.com',
         },
         logging: {
           developerMode: true,

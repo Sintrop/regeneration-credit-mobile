@@ -8,6 +8,7 @@ import { Report } from "./components/Report/Report";
 import { Research } from "./components/Research/Research";
 import { Contribution } from "./components/Contribution/Contribution";
 import { Offset } from "./components/Offset/Offset";
+import { UserRegistered } from "./components/UserRegistered/UserRegistered";
 
 export interface BaseComponentsProps {
   id: number;
@@ -33,5 +34,6 @@ const componentByType: Record<ResourcesTypes, ComponentType<BaseComponentsProps>
   report: Report,
   research: Research,
   contribution: Contribution,
-  offset: Offset
+  offset: Offset,
+  "user-registered": UserRegistered
 }

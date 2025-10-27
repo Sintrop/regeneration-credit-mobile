@@ -40,7 +40,7 @@ export function UserDetailsScreen({ route }: ScreenProps) {
   }
 
   return (
-    <Screen title={t("userDetails.title")} showBackButton scrollable >
+    <Screen title={t("userDetails.title")} showBackButton scrollable withoutPadding >
       <Profile address={address} userType={userType} />
     </Screen>
   );

@@ -1,9 +1,14 @@
 export * from "./RegenerationCredit/rcService";
+export * from "./RegenerationCredit/useCases/useApprovedTokens";
+export * from "./RegenerationCredit/useCases/useBalance";
 
 export * from "./InspectionRules/inspectionService";
 export * from "./InspectionRules/types";
 export * from "./InspectionRules/useCases/useGetInspection";
 export * from "./InspectionRules/useCases/useUserInspections";
+export * from "./InspectionRules/useCases/useRealizeInspection";
+export * from "./InspectionRules/useCases/useAcceptInspection";
+export * from "./InspectionRules/useCases/useRequestInspection";
 export * from "./InspectionRules/events/useRealizedInspections";
 
 export * from "./CommunityRules/types";
@@ -11,16 +16,20 @@ export * from "./CommunityRules/communityService";
 export * from "./CommunityRules/useCases/useGetUser";
 export * from "./CommunityRules/useCases/useInvitation";
 export * from "./CommunityRules/useCases/useUserDelations";
+export * from "./CommunityRules/useCases/useUserTypesCount";
+export * from "./CommunityRules/events/useUserRegistered";
 
 export * from "./RegeneratorRules/types";
 export * from "./RegeneratorRules/regeneratorService";
 export * from "./RegeneratorRules/useCases/useGetRegenerator";
 export * from "./RegeneratorRules/useCases/useProjectDescription";
 export * from "./RegeneratorRules/useCases/useCoordinates";
+export * from "./RegeneratorRules/useCases/useAddRegenerator";
 
 export * from "./InspectorRules/types";
 export * from "./InspectorRules/inspectorService";
 export * from "./InspectorRules/useCases/useGetInspector";
+export * from "./InspectorRules/useCases/useAddInspector";
 
 export * from "./DeveloperRules/types";
 export * from "./DeveloperRules/developerService";
@@ -33,6 +42,7 @@ export * from "./ResearcherRules/researcherService";
 export * from "./ResearcherRules/useCases/useGetResearch";
 export * from "./ResearcherRules/useCases/useGetResearcher";
 export * from "./ResearcherRules/useCases/useGetCalculatorItem";
+export * from "./ResearcherRules/useCases/useCalculatorItemsList";
 export * from "./ResearcherRules/events/useResearchsPublished";
 
 export * from "./ContributorRules/types";
@@ -56,3 +66,11 @@ export * from "./SupporterRules/supporterAdapter";
 export * from "./SupporterRules/supporterService";
 export * from "./SupporterRules/events/useOffsets";
 export * from "./SupporterRules/useCases/useGetOffset";
+export * from "./SupporterRules/useCases/useAddSupporter";
+export * from "./SupporterRules/useCases/useGetSupporter";
+
+export * from "./ActivistRules/activistService";
+export * from "./ActivistRules/useCases/useAddActivist";
+export * from "./ActivistRules/useCases/useActivist";
+
+export * from "./InvitationRules/useCases/useInvite";

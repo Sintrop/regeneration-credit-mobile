@@ -1,4 +1,15 @@
-import { FileIcon, ChevronLeftIcon } from "@icons";
+import { 
+  FileIcon, 
+  ChevronLeftIcon, 
+  MyTokensIcon, 
+  ImpactCalculatorIcon, 
+  CopyIcon,
+  HideIcon,
+  ShowIcon,
+  ArrowDown,
+  ArrowUpIcon,
+  ArrowRightIcon
+} from "@icons";
 
 export interface IconSvgProps {
   color?: string;
@@ -20,6 +31,14 @@ export function Icon({ name, color, size }: Props) {
 
 const icons = {
   file: FileIcon,
-  chevronLeft: ChevronLeftIcon
+  chevronLeft: ChevronLeftIcon,
+  tokens: MyTokensIcon,
+  impactCalculator: ImpactCalculatorIcon,
+  copy: CopyIcon,
+  hide: HideIcon,
+  show: ShowIcon,
+  arrowDown: ArrowDown,
+  arrowUp: ArrowUpIcon,
+  arrowRight: ArrowRightIcon
 }
 export type IconsName = keyof typeof icons;

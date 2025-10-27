@@ -1,10 +1,14 @@
 import { NavigationContainer } from '@react-navigation/native';
+import { Host } from 'react-native-portalize';
+
 import { AppStack } from './AppStack';
 
 export function AppRoutes() {
   return (
     <NavigationContainer>
-      <AppStack />
+      <Host>
+        <AppStack />
+      </Host>
     </NavigationContainer>
   );
 }

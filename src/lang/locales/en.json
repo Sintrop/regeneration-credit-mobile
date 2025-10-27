@@ -1,7 +1,12 @@
 {
   "translation": {
     "homeScreen": {
-      "title": "Regeneration Credit"
+      "title": "Regeneration Credit",
+      "userWithoutRegister": "User without register",
+      "descriptionRegister": "To perform some actions in the system you need to register",
+      "register": "Register",
+      "": "",
+      "": ""
     },
     "feed": {
       "requestedAnInspection": "Requested an inspection",
@@ -9,7 +14,13 @@
       "realizedInspection": "Realized inspection",
       "rScore": "Score",
       "burnedTokens": "Burned tokens",
-      "compensatedItem": "Compensated item"
+      "compensatedItem": "Compensated item", 
+      "newUser": "New user",
+      "theUser": "The user",
+      "registeredAs": "registered as",
+      "": "",
+      "": "",
+      "": ""
     },
     "userDetails": {
       "title": "User details",
@@ -37,6 +48,7 @@
       "seeContribution": "See contribution"
     },
     "profile": {
+      "title": "Profile",
       "hashProofPhoto": "Proof photo",
       "totalArea": "Total area",
       "regenerationScore": "Regeneration score",
@@ -56,12 +68,16 @@
       "publishedResearches": "Published researches",
       "about": "About",
       "regenerationArea": "Regeneration area",
-      "coordinates": "Coordiantes",
+      "coordinates": "Coordinates",
       "invitation": "Invitation",
       "inviter": "Inviter",
       "invitedAt": "Invited at",
       "delations": "Delations",
-      "noUserDelations": "No user delations"
+      "noUserDelations": "No user delations",
+      "inspections": "Inspections",
+      "noUserInspections": "No user inspections",
+      "inspection": "Inspection",
+      "seeMore": "See more"
     },
     "pdfView": {
       "title": "PDF View"
@@ -83,7 +99,127 @@
       "title": "Title",
       "thesis": "Thesis",
       "research": "Research",
-      "contribution": "Contribution"
+      "contribution": "Contribution",
+      "yourBalance": "Your balance",
+      "typeHere": "Type here",
+      "insufficientBalance": "Insufficient balance",
+      "youAreNotConnected": "You are not connected",
+      "errorOnUploadFileToIpfs": "Error on upload file to IPFS",
+      "yes": "Yes",
+      "no": "No",
+      "continue": "Continue",
+      "invalidAddress": "Invalid address"
+    },
+    "offset": {
+      "title": "Offset",
+      "description": "Allows a supporter to burn tokens to compensate for a specific item's degradation, with a message to the community. Before calling this function, supporters must approve the SupporterRules contract to burn the tokens.",
+      "approveTokens": "Approve tokens",
+      "howMuchDoYouWantToApprove": "How much do you want to aprove?",
+      "approvedTokens": "Approved tokens",
+      "calculatorItem": "Calculator item",
+      "howMuchDoYouWantToOffsetForThisItem": "How much do you want to offset for this item?",
+      "insufficientApprovedTokens": "Insufficient approved tokens",
+      "labelInputDescription": "Message (Optional)",
+      "madeOffset": "Made offset",
+      "": "",
+      "": ""
+    },
+    "impactCalculator": {
+      "title": "Impact calculator",
+      "calculatorItems": "Calculator items"
+    },
+    "register": {
+      "title": "Register",
+      "walletConnected": "Wallet connected",
+      "selectAnOption": "Select an option",
+      "name": "Name",
+      "successRegister": "Success register",
+      "description": "Description",
+      "profilePhoto": "Profile photo (Optional)",
+      "proofPhoto": "Proof photo",
+      "selectAnotherImage": "Select another image",
+      "selectImage": "Select image",
+      "selectPhotoSource": "Select photo source",
+      "textConfirmSelectPhotoSource": "Confirm the origin of the photo",
+      "gallery": "Gallery",
+      "camera": "Camera",
+      "touchToSelect": "Touch to select",
+      "invitationDescription": "To register in the system you need to have an invitation",
+      "invitationTitle": "Invitation",
+      "youDoNotHaveAnInvitation": "You do not have an invitation",
+      "youHaveInvitation": "You have invitation",
+      "toRegisterAs": "To register as",
+      "tryDiferentUserType": "You are trying to register for a different user type than the one you were invited to, please select the correct user type.",
+      "vacanciesTitle": "Vacancies",
+      "vacanciesDescription": "The system has a vacancy system based on the number of registered regenerators",
+      "isThereAnInvitation": "Is there an invitation?",
+      "isThereAnVacancie": "Is there an vacancie?",
+      "projectDescription": "Project description",
+      "regenerationArea": "Regeneration area",
+      "descriptionRegenerationArea": "Description",
+      "coordinates": "Coordinates",
+      "areaSize": "Area size"
+    },
+    "myTokens": {
+      "title": "My tokens",
+      "showBalance": "Show balance",
+      "hideBalance": "Hide balance"
+    },
+    "tx": {
+      "title": "Transaction",
+      "confirmInYourWallet": "Confirm in your wallet",
+      "processingTransaction": "Processing transaction",
+      "transactionHash": "Transaction hash",
+      "txSuccess": "Transaction completed successfully",
+      "txFailed": "Error performing transaction",
+      "hashCopiedToTransferArea": "Hash copied to transfer area",
+      "viewOnExplorer": "View on explorer",
+      "errorOnGetErrorMessage": "Error on get error message",
+      "errorDetails": "Error details"
+    },
+    "actions": {
+      "title": "Actions",
+      "userActions": "User actions",
+      "inviteSupporter": "Invite supporter",
+      "walletWantToInvite": "Wallet you want to invite",
+      "invite": "Invite",
+      "inviteSent": "Invite sent",
+      "inviteRegenerator": "Invite regenerator",
+      "inviteInspector": "Invite inspector",
+      "inviteActivist": "Invite activist",
+      "realizeInspection": "Realize inspection",
+      "reportInspection": "Report inspection",
+      "inspectionId": "Inspection ID",
+      "treesResult": "Trees result",
+      "biodiversityResult": "Biodiversity result",
+      "proofPhotosInspection": "Proof photos report",
+      "realizedInspection": "Realized inspection",
+      "acceptInspection": "Accept inspection",
+      "acceptedInspection": "Accepted inspection",
+      "accept": "Accept",
+      "requestInspection": "Request inspection",
+      "requestedInspection": "Requested inspection"
+    },
+    "actionsDescriptions": {
+      "inviteSupporter": "Supporters can invite Supporters to the system, respecting the specific supporter delay.",
+      "inviteRegenerator": "Activists can invite Regenerators to the system, respecting the specific activist delay.",
+      "inviteInspector": "Activists can invite Inspectors to the system, respecting the specific activist delay.",
+      "inviteActivist": "Activists can invite Activists to the system, respecting the specific activist delay.",
+      "realizeInspection": "Inspectors must evaluate the amount of trees and species of the regeneration area. How many trees, palm trees and other plants over 1m high and 3cm in diameter there is in the regenerating area? Justify your answer in the report. How many different species of those plants/trees were found? Each different species is equivalent to one unity and only trees and plants managed or planted by the regenerator should be counted. Justify your answer in the report. Max result of 200.000 trees and 300 biodiversity. Zero score means invalid inspection. NOTE: If the inspector finds something suspicous about the inspected regenerator, such as invalid area, suspicious of fake account, or if the Regenerator is not findable, inspectors are encourage to realize passing 0 as values with his justification at the report to avoid being penalized.",
+      "acceptInspection": "Inspectors must only accept inspections they are capable of performing, being aware of the safety risks and responsibilities. By accepting an inspection, inspectors agree that the they are responsible for their own safety at the data collection. It is recommended to use long sleeves clothes, hats, boots that can prevent bites from animals, gloves to protect from spines and any other useful safety equipment, such as machetes or pepper spray. Accepting an inspection counts as a 'give-up' until realized. Inspectors can only accept one open inspection at a time and cannot inspect the same regenerator twice. They must also adhere to specific delays and security windows.",
+      "requestInspection": "Regenerators agree to receive an inspector to assess their registered area. They can make an allowedInitialRequests number of requests without delay. After that, they must wait timeBetweenInspections blocks between requests. A hard limit of 6 total inspections is enforced."
+    },
+    "fileInput": {
+      "selectAnother": "Select another",
+      "selectFile": "Select file",
+      "": "",
+      "": "",
+      "": ""
+    },
+    "map": {
+      "clearSelection": "Clear selection",
+      "removeLastPoint": "Remove last point",
+      "": ""
     }
   }
 }

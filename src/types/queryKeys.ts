@@ -9,11 +9,16 @@ export enum QueryKeys {
   GetResearcher = 'GetResearcher',
   GetResearch = 'GetResearch',
   GetContributor = 'GetContributor',
+  GetSupporter = 'GetSupporter',
   GetContribution = 'GetContribution',
   ProjectDescription = 'ProjectDescription',
   Coordinates = 'Coordinates',
   Invitation = 'Invitation',
   UserDelations = 'UserDelations',
   UserInspections = 'UserInspections',
-  GetOffset = 'GetOffset'
+  GetOffset = 'GetOffset',
+  ApprovedTokens = 'ApprovedTokens',
+  GetBalance = 'GetBalance',
+  UserTypesCount = 'UserTypesCount',
+  GetActivist = 'GetActivist'
 }

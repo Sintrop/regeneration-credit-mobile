@@ -15,7 +15,7 @@ export function useGetUser({ address }: Props) {
   });
 
   return {
-    userType: data,
+    userType: data ? data : 0,
     isError,
     isLoading,
     refetch

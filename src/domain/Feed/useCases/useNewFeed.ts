@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { FeedItemProps } from "@database";
-import { feedAdapter, useContributionAdded, useOffsets, useRealizedInspections, useReportAdded, useResearchsPublished } from "@domain";
+import { feedAdapter, useContributionAdded, useOffsets, useRealizedInspections, useReportAdded, useResearchsPublished, useUserRegistered } from "@domain";
 import { paginateList } from "@utils";
 import { useEffect, useState } from "react";
 
@@ -8,6 +8,8 @@ interface ReturnUseNewFeed {
   isLoading: boolean;
   list: FeedItemProps[];
   nextPage: () => void;
+  atualPage: number;
+  totalPages: number;
 }
 export function useNewFeed(): ReturnUseNewFeed {
   const itemsPerPage = 10;
@@ -22,10 +24,11 @@ export function useNewFeed(): ReturnUseNewFeed {
   const { reports, isLoading: isLoadingReports } = useReportAdded();
   const { researchs, isLoading: isLoadingResearchs } = useResearchsPublished();
   const { contributions, isLoading: isLoadingContributions } = useContributionAdded();
+  const { usersRegistered, isLoading: isLoadingUsersRegistered } = useUserRegistered();
 
   useEffect(() => {
     createFeedList()
-  }, [offsets, realizedInspections, reports, researchs, contributions])
+  }, [offsets, realizedInspections, reports, researchs, contributions, usersRegistered])
 
   function createFeedList() {
     const newListFeed: FeedItemProps[] = [];
@@ -44,6 +47,9 @@ export function useNewFeed(): ReturnUseNewFeed {
     const contributionsFeed = contributions.map(feedAdapter.parseContributionAddedToFeed);
     newListFeed.push(...contributionsFeed);
 
+    const usersRegisteredFeed = usersRegistered.map(feedAdapter.parseUserRegisteredToFeed);
+    newListFeed.push(...usersRegisteredFeed);
+
     const sortedList = newListFeed.sort((a, b) => b.createdAt - a.createdAt)
     const paginate = paginateList<FeedItemProps>({ atualPage, itemsPerPage, list: sortedList });
     setList(sortedList);
@@ -60,8 +66,10 @@ export function useNewFeed(): ReturnUseNewFeed {
   }
 
   return {
-    isLoading: isLoadingOffsets || isLoadingRealizedInspections || isLoadingReports || isLoadingResearchs || isLoadingContributions,
+    isLoading: isLoadingOffsets || isLoadingRealizedInspections || isLoadingReports || isLoadingResearchs || isLoadingContributions || isLoadingUsersRegistered,
     list: listPage,
-    nextPage: handleNextPage
+    nextPage: handleNextPage,
+    atualPage,
+    totalPages
   }
 }
