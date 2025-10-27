@@ -134,8 +134,6 @@
       "descOffset": "Permite que um apoiador queime tokens para compensar a degradação de um item específico ou que o apoiador declare um compromisso de redução para um item específico da calculadora.",
       "burnTokens": "Queimar tokens",
       "descBurnTokens": "Compense a degradação ambiental queimando tokens do Crédito de Regeneração. Queimar tokens os remove permanentemente de circulação e aumenta seu certificado de compensação."
-      "title": "Calcul. de impacto",
-      "calculatorItems": "Itens da calculadora"
     },
     "register": {
       "title": "Registrar",
