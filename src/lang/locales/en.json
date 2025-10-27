@@ -130,7 +130,10 @@
     },
     "impactCalculator": {
       "title": "Impact calculator",
-      "calculatorItems": "Calculator items"
+      "calculatorItems": "Calculator items",
+      "descOffset": "Allows a backer to burn tokens to offset the degradation of a specific item, or for the backer to declare a reduction pledge for a specific calculator item.",
+      "burnTokens": "Burn tokens",
+      "descBurnTokens": "Compensate your environmental degradation by burning Regeneration Credit tokens. Burning tokens permanently removes them from circulation and increases your compensation certificate."
     },
     "register": {
       "title": "Register",
@@ -211,7 +214,9 @@
       "acceptedInspection": "Accepted inspection",
       "accept": "Accept",
       "requestInspection": "Request inspection",
-      "requestedInspection": "Requested inspection"
+      "requestedInspection": "Requested inspection",
+      "burnTokens": "Burn tokens",
+      "howMuchDoYouWantToBurn": "How much do you want to burn?"
     },
     "actionsDescriptions": {
       "inviteSupporter": "Supporters can invite Supporters to the system, respecting the specific supporter delay.",
@@ -220,7 +225,8 @@
       "inviteActivist": "Activists can invite Activists to the system, respecting the specific activist delay.",
       "realizeInspection": "Inspectors must evaluate the amount of trees and species of the regeneration area. How many trees, palm trees and other plants over 1m high and 3cm in diameter there is in the regenerating area? Justify your answer in the report. How many different species of those plants/trees were found? Each different species is equivalent to one unity and only trees and plants managed or planted by the regenerator should be counted. Justify your answer in the report. Max result of 200.000 trees and 300 biodiversity. Zero score means invalid inspection. NOTE: If the inspector finds something suspicous about the inspected regenerator, such as invalid area, suspicious of fake account, or if the Regenerator is not findable, inspectors are encourage to realize passing 0 as values with his justification at the report to avoid being penalized.",
       "acceptInspection": "Inspectors must only accept inspections they are capable of performing, being aware of the safety risks and responsibilities. By accepting an inspection, inspectors agree that the they are responsible for their own safety at the data collection. It is recommended to use long sleeves clothes, hats, boots that can prevent bites from animals, gloves to protect from spines and any other useful safety equipment, such as machetes or pepper spray. Accepting an inspection counts as a 'give-up' until realized. Inspectors can only accept one open inspection at a time and cannot inspect the same regenerator twice. They must also adhere to specific delays and security windows.",
-      "requestInspection": "Regenerators agree to receive an inspector to assess their registered area. They can make an allowedInitialRequests number of requests without delay. After that, they must wait timeBetweenInspections blocks between requests. A hard limit of 6 total inspections is enforced."
+      "requestInspection": "Regenerators agree to receive an inspector to assess their registered area. They can make an allowedInitialRequests number of requests without delay. After that, they must wait timeBetweenInspections blocks between requests. A hard limit of 6 total inspections is enforced.",
+      "burnTokens": "Compensate your environmental degradation by burning Regeneration Credit tokens. Burning tokens permanently removes them from circulation and increases your compensation certificate."
     },
     "fileInput": {
       "selectAnother": "Select another",

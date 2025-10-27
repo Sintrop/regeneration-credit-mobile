@@ -130,6 +130,11 @@
     },
     "impactCalculator": {
       "title": "Calcul. de impacto",
+      "calculatorItems": "Itens da calculadora",
+      "descOffset": "Permite que um apoiador queime tokens para compensar a degradação de um item específico ou que o apoiador declare um compromisso de redução para um item específico da calculadora.",
+      "burnTokens": "Queimar tokens",
+      "descBurnTokens": "Compense a degradação ambiental queimando tokens do Crédito de Regeneração. Queimar tokens os remove permanentemente de circulação e aumenta seu certificado de compensação."
+      "title": "Calcul. de impacto",
       "calculatorItems": "Itens da calculadora"
     },
     "register": {
@@ -211,7 +216,10 @@
       "acceptedInspection": "Inspeção aceita",
       "accept": "Aceitar",
       "requestInspection": "Solicitar inspeção",
-      "requestedInspection": "Inspeção solicitada"
+      "requestedInspection": "Inspeção solicitada",
+      "burnTokens": "Queimar tokens",
+      "howMuchDoYouWantToBurn": "Quantos tokens você quer queimar?",
+      "burnedTokens": "Tokens queimados"
     },
     "actionsDescriptions": {
       "inviteSupporter": "Apoiadores podem convidar Apoiadores para o sistema, respeitando o atraso específico de apoiador.",
@@ -220,7 +228,8 @@
       "inviteActivist": "Ativistas podem convidar Ativistas para o sistema, respeitando o atraso específico de ativista.",
       "realizeInspection": "Inspetores devem avaliar a quantidade de árvores e espécies da área de regeneração. Quantas árvores, palmeiras e outras plantas com mais de 1m de altura e 3cm de diâmetro existem na área em regeneração? Justifique sua resposta no relatório. Quantas espécies diferentes dessas plantas/árvores foram encontradas? Cada espécie diferente equivale a uma unidade e apenas árvores e plantas manejadas ou plantadas pelo regenerador devem ser contadas. Justifique sua resposta no relatório. Resultado máximo de 200.000 árvores e 300 biodiversidade. Pontuação zero significa inspeção inválida. NOTA: Se o inspetor encontrar algo suspeito sobre o regenerador inspecionado, como área inválida, suspeita de conta falsa, ou se o Regenerador não for encontrado, os inspetores são encorajados a realizar passando 0 como valores com sua justificativa no relatório para evitar ser penalizado.",
       "acceptInspection": "Inspetores devem aceitar apenas inspeções que são capazes de realizar, estando cientes dos riscos de segurança e responsabilidades. Ao aceitar uma inspeção, os inspetores concordam que são responsáveis por sua própria segurança na coleta de dados. É recomendado usar roupas de manga comprida, chapéus, botas que possam prevenir picadas de animais, luvas para proteger de espinhos e qualquer outro equipamento de segurança útil, como facões ou spray de pimenta. Aceitar uma inspeção conta como uma 'desistência' até ser realizada. Inspetores podem aceitar apenas uma inspeção aberta por vez e não podem inspecionar o mesmo regenerador duas vezes. Eles também devem aderir a atrasos específicos e janelas de segurança.",
-      "requestInspection": "Regeneradores concordam em receber um inspetor para avaliar sua área registrada. Eles podem fazer um número allowedInitialRequests de solicitações sem atraso. Depois disso, devem aguardar timeBetweenInspections blocos entre solicitações. Um limite rígido de 6 inspeções totais é aplicado."
+      "requestInspection": "Regeneradores concordam em receber um inspetor para avaliar sua área registrada. Eles podem fazer um número allowedInitialRequests de solicitações sem atraso. Depois disso, devem aguardar timeBetweenInspections blocos entre solicitações. Um limite rígido de 6 inspeções totais é aplicado.",
+      "burnTokens": "Compense a degradação ambiental queimando tokens do Crédito de Regeneração. Queimar tokens os remove permanentemente de circulação e aumenta seu certificado de compensação."
     },
     "fileInput": {
       "selectAnother": "Selecionar outro",
