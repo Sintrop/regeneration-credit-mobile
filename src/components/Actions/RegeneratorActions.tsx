@@ -4,12 +4,16 @@ import { useTranslation } from "react-i18next";
 import { ActionItem } from "@components";
 
 import { RequestInspection } from "./RequestInspection/RequestInspection";
+import { BurnTokens } from "./BurnTokens/BurnTokens";
 
 export function RegeneratorActions() {
   const { t } = useTranslation();
 
   return (
     <View>
+      <BurnTokens>
+        <ActionButton label={t('actions.burnTokens')}/>
+      </BurnTokens>
       <RequestInspection>
         <ActionButton label={t('actions.requestInspection')}/>
       </RequestInspection>

@@ -6,12 +6,16 @@ import { ActionItem } from "@components";
 import { InviteRegenerator } from "./Invite/InviteRegenerator";
 import { InviteInspector } from "./Invite/InviteInspector";
 import { InviteActivist } from "./Invite/InviteActivist";
+import { BurnTokens } from "./BurnTokens/BurnTokens";
 
 export function ActivistActions() {
   const { t } = useTranslation();
 
   return (
     <View>
+      <BurnTokens>
+        <ActionButton label={t('actions.burnTokens')}/>
+      </BurnTokens>
       <InviteRegenerator>
         <ActionButton label={t('actions.inviteRegenerator')}/>
       </InviteRegenerator>
