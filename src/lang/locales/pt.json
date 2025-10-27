@@ -108,7 +108,11 @@
       "yes": "Sim",
       "no": "Não",
       "continue": "Continuar",
-      "invalidAddress": "Endereço inválido"
+      "invalidAddress": "Endereço inválido",
+      "block": "Bloco",
+      "value": "Valor",
+      "copiedToClipboard": "Copiado para à área de transferência",
+      "you": "Você"
     },
     "offset": {
       "title": "Compensação",
@@ -170,7 +174,9 @@
       "noReceivedCommissions": "Nenhuma comissão recebida",
       "from": "De",
       "to": "Para",
-      "onlyRcTxsWillBeShowHere": "Apenas as transações do (RC) serão mostradas aqui"
+      "onlyRcTxsWillBeShowHere": "Apenas as transações do (RC) serão mostradas aqui",
+      "txDetails": "Dados da transação",
+      "txHash": "Hash da transação"
     },
     "tx": {
       "title": "Transação",
