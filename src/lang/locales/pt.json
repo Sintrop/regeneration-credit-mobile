@@ -169,7 +169,8 @@
       "noTxs": "Nenhuma transação",
       "noReceivedCommissions": "Nenhuma comissão recebida",
       "from": "De",
-      "to": "Para"
+      "to": "Para",
+      "onlyRcTxsWillBeShowHere": "Apenas as transações do (RC) serão mostradas aqui"
     },
     "tx": {
       "title": "Transação",

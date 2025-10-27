@@ -169,7 +169,8 @@
       "noTxs": "No transactions",
       "noReceivedCommissions": "No received commissions",
       "from": "From",
-      "to": "To"
+      "to": "To",
+      "onlyRcTxsWillBeShowHere": "Only (RC) transactions will be show here"
     },
     "tx": {
       "title": "Transaction",

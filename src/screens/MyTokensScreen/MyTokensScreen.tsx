@@ -68,10 +68,16 @@ interface HeaderListProps {
   changeTab: (tab: Tabs) => void;
 }
 function HeaderList({ changeTab, selectedTab }: HeaderListProps) {
+  const { t } = useTranslation();
+
   return (
     <View className="gap-5">
       <Balance />
       <SelectorTab selectedTab={selectedTab} changeTab={changeTab} />
+
+      {selectedTab === 'txs' && (
+        <Text className="text-white text-center mb-2">{t('myTokens.onlyRcTxsWillBeShowHere')}</Text>
+      )}
     </View>
   )
 }

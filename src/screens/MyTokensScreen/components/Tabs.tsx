@@ -15,7 +15,7 @@ export function SelectorTab({ changeTab, selectedTab }: Props) {
   const { userType } = useUserContext();
 
   return (
-    <View className="flex-row items-center gap-5 mb-3">
+    <View className="flex-row items-center gap-5">
       <Tab 
         isSelected={selectedTab === 'txs'}
         onPress={() => changeTab('txs')}
