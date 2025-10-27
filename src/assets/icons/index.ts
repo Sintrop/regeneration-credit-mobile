@@ -8,3 +8,5 @@ export * from "./ArrowDown";
 export * from "./ArrowRight";
 export * from "./ArrowUp";
 export * from "./Hide";
+export * from "./Rc";
+export * from "./Sin";

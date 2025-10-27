@@ -108,7 +108,11 @@
       "yes": "Sim",
       "no": "Não",
       "continue": "Continuar",
-      "invalidAddress": "Endereço inválido"
+      "invalidAddress": "Endereço inválido",
+      "block": "Bloco",
+      "value": "Valor",
+      "copiedToClipboard": "Copiado para à área de transferência",
+      "you": "Você"
     },
     "offset": {
       "title": "Compensação",
@@ -125,11 +129,13 @@
       "": ""
     },
     "impactCalculator": {
-      "title": "Calculadora de impacto",
+      "title": "Calcul. de impacto",
       "calculatorItems": "Itens da calculadora",
       "descOffset": "Permite que um apoiador queime tokens para compensar a degradação de um item específico ou que o apoiador declare um compromisso de redução para um item específico da calculadora.",
       "burnTokens": "Queimar tokens",
       "descBurnTokens": "Compense a degradação ambiental queimando tokens do Crédito de Regeneração. Queimar tokens os remove permanentemente de circulação e aumenta seu certificado de compensação."
+      "title": "Calcul. de impacto",
+      "calculatorItems": "Itens da calculadora"
     },
     "register": {
       "title": "Registrar",
@@ -166,7 +172,16 @@
     "myTokens": {
       "title": "Meus tokens",
       "showBalance": "Mostrar saldo",
-      "hideBalance": "Ocultar saldo"
+      "hideBalance": "Ocultar saldo",
+      "txs": "Transações",
+      "commissions": "Comissões",
+      "noTxs": "Nenhuma transação",
+      "noReceivedCommissions": "Nenhuma comissão recebida",
+      "from": "De",
+      "to": "Para",
+      "onlyRcTxsWillBeShowHere": "Apenas as transações do (RC) serão mostradas aqui",
+      "txDetails": "Dados da transação",
+      "txHash": "Hash da transação"
     },
     "tx": {
       "title": "Transação",
