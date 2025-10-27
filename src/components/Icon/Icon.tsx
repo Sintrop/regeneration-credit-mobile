@@ -8,7 +8,9 @@ import {
   ShowIcon,
   ArrowDown,
   ArrowUpIcon,
-  ArrowRightIcon
+  ArrowRightIcon,
+  RcIcon,
+  SinIcon
 } from "@icons";
 
 export interface IconSvgProps {
@@ -39,6 +41,8 @@ const icons = {
   show: ShowIcon,
   arrowDown: ArrowDown,
   arrowUp: ArrowUpIcon,
-  arrowRight: ArrowRightIcon
+  arrowRight: ArrowRightIcon,
+  rc: RcIcon,
+  sin: SinIcon
 }
 export type IconsName = keyof typeof icons;

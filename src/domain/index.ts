@@ -65,6 +65,7 @@ export * from "./SupporterRules/types";
 export * from "./SupporterRules/supporterAdapter";
 export * from "./SupporterRules/supporterService";
 export * from "./SupporterRules/events/useOffsets";
+export * from "./SupporterRules/events/useCommissions";
 export * from "./SupporterRules/useCases/useGetOffset";
 export * from "./SupporterRules/useCases/useAddSupporter";
 export * from "./SupporterRules/useCases/useGetSupporter";
@@ -74,3 +75,6 @@ export * from "./ActivistRules/useCases/useAddActivist";
 export * from "./ActivistRules/useCases/useActivist";
 
 export * from "./InvitationRules/useCases/useInvite";
+
+export * from "./Tx/types";
+export * from "./Tx/events/useTransfers";
