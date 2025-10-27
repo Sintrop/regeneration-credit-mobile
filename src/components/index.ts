@@ -18,3 +18,4 @@ export * from "./Map/Map";
 
 export * from "./Actions/Actions";
 export * from "./Actions/Offset/Offset";
+export * from "./Actions/BurnTokens/BurnTokens";
