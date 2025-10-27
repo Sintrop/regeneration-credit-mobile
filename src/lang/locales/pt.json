@@ -125,7 +125,7 @@
       "": ""
     },
     "impactCalculator": {
-      "title": "Calculadora de impacto",
+      "title": "Calcul. de impacto",
       "calculatorItems": "Itens da calculadora"
     },
     "register": {
@@ -163,7 +163,13 @@
     "myTokens": {
       "title": "Meus tokens",
       "showBalance": "Mostrar saldo",
-      "hideBalance": "Ocultar saldo"
+      "hideBalance": "Ocultar saldo",
+      "txs": "Transações",
+      "commissions": "Comissões",
+      "noTxs": "Nenhuma transação",
+      "noReceivedCommissions": "Nenhuma comissão recebida",
+      "from": "De",
+      "to": "Para"
     },
     "tx": {
       "title": "Transação",

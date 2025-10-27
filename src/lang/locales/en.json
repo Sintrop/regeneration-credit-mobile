@@ -163,7 +163,13 @@
     "myTokens": {
       "title": "My tokens",
       "showBalance": "Show balance",
-      "hideBalance": "Hide balance"
+      "hideBalance": "Hide balance",
+      "txs": "Transactions",
+      "commissions": "Commissions",
+      "noTxs": "No transactions",
+      "noReceivedCommissions": "No received commissions",
+      "from": "From",
+      "to": "To"
     },
     "tx": {
       "title": "Transaction",
