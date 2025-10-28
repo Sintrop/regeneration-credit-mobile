@@ -1,8 +1,10 @@
-import { Screen, Text } from "@components";
-import { useTranslation } from "react-i18next";
 import { View } from "react-native";
-import { UserItem } from "./components/UserItem";
+import { useTranslation } from "react-i18next";
+
+import { Screen, Text } from "@components";
 import { useUsersCount } from "@domain";
+
+import { UserItem } from "./components/UserItem";
 
 export function CommunityScreen(){
   const { t } = useTranslation();

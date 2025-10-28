@@ -1,4 +1,4 @@
-import { ActivityIndicator, FlatList, ListRenderItemInfo, TouchableOpacity, View } from 'react-native';
+import { FlatList, ListRenderItemInfo, TouchableOpacity, View } from 'react-native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { useTranslation } from 'react-i18next';
 
@@ -9,11 +9,12 @@ import { AppStackParamsList } from '@routes';
 import { useUserContext } from '@hooks';
 
 import { UserWithoutRegister } from './components/UserWithoutRegister';
+import { LoadingFeed } from './components/LoadingFeed';
 
 type ScreenProps = NativeStackScreenProps<AppStackParamsList, 'HomeScreen'>
 export function HomeScreen({ navigation }: ScreenProps) {
   const { t } = useTranslation();
-  const { list, isLoading, nextPage, atualPage, totalPages } = useNewFeed();
+  const { list, isLoading, nextPage, atualPage, totalPages, refresh } = useNewFeed();
   const { isConnected, userType } = useUserContext();
 
   function handleNextPage() {
@@ -83,7 +84,7 @@ export function HomeScreen({ navigation }: ScreenProps) {
   }
 
   return (
-    <Screen home >
+    <Screen home scrollEnabled={list.length > 0} >
       <View className='relative flex-1'>
         <FlatList
           data={list}
@@ -91,9 +92,11 @@ export function HomeScreen({ navigation }: ScreenProps) {
           renderItem={renderItemFeed}
           contentContainerClassName="pt-3 gap-3 pb-10"
           ListHeaderComponent={headerList}
-          ListEmptyComponent={<EmptyList isLoading={isLoading}/>}
+          ListEmptyComponent={<EmptyList isLoading={true}/>}
           onEndReachedThreshold={0.5}
           onEndReached={handleNextPage}
+          refreshing={isLoading}
+          onRefresh={refresh}
         />
 
         <View className='absolute right-4 bottom-16'>
@@ -110,10 +113,14 @@ export function HomeScreen({ navigation }: ScreenProps) {
 interface EmptyListProps {
   isLoading: boolean
 }
-function EmptyList({}: EmptyListProps) {
-  return (
-    <View className='flex-1 items-center justify-center'>
-      <ActivityIndicator size={50} />
-    </View>
-  )
+function EmptyList({ isLoading }: EmptyListProps) {
+  if (isLoading) {
+    return (
+      <View className='flex-1 w-full h-full'>
+        <LoadingFeed />
+      </View>
+    )
+  }
+
+  return <View />
 }

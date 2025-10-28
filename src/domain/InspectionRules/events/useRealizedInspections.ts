@@ -8,7 +8,8 @@ import { InspectionRealizedProps } from '../types'
 
 interface ReturnUseRealizedInspecitions {
   isLoading: boolean
-  realizedInspections: InspectionRealizedProps[]
+  realizedInspections: InspectionRealizedProps[];
+  refetch: () => void;
 }
 export function useRealizedInspections(): ReturnUseRealizedInspecitions {
   const [realizedInspections, setRealizedInspections] = useState<InspectionRealizedProps[]>([])
@@ -44,9 +45,15 @@ export function useRealizedInspections(): ReturnUseRealizedInspecitions {
     setRealizedInspections(newArray)
   }
 
+  function refetch() {
+    setRealizedInspections([]);
+    handleGetEvents();
+  }
+
   return {
     isLoading: false,
-    realizedInspections
+    realizedInspections,
+    refetch
   }
 }
 

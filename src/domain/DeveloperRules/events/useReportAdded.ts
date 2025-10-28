@@ -7,8 +7,9 @@ import { DeveloperRules } from '@contracts'
 import { ReportAdded } from '../types'
 
 interface ReturnUseReportAdded {
-  isLoading: boolean
-  reports: ReportAdded[]
+  isLoading: boolean;
+  reports: ReportAdded[];
+  refetch: () => void;
 }
 export function useReportAdded(): ReturnUseReportAdded {
   const [reports, setReports] = useState<ReportAdded[]>([])
@@ -40,9 +41,15 @@ export function useReportAdded(): ReturnUseReportAdded {
     setReports(newArray)
   }
 
+  function refetch() {
+    setReports([]);
+    handleGetEvents();
+  }
+
   return {
     isLoading: false,
-    reports
+    reports,
+    refetch
   }
 }
 
