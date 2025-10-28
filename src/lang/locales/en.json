@@ -113,7 +113,9 @@
       "value": "Value",
       "copiedToClipboard": "Copied to clipboard!",
       "you": "You",
-      "inspections": "Inspections"
+      "inspections": "Inspections",
+      "area": "Area",
+      "carbon": "Carbon"
     },
     "offset": {
       "title": "Offset",

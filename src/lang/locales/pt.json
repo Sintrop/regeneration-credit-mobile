@@ -113,7 +113,9 @@
       "value": "Valor",
       "copiedToClipboard": "Copiado para à área de transferência",
       "you": "Você",
-      "inspections": "Inspeções"
+      "inspections": "Inspeções",
+      "area": "Área",
+      "carbon": "Carbono"
     },
     "offset": {
       "title": "Compensação",

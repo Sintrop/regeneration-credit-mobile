@@ -23,6 +23,7 @@ export function TokenImpact() {
           <ImpactItem 
             label={t('common.carbon')}
             value={carbon}
+            suffix="g"
           />
         </View>
         <View className="flex-row gap-3 w-full">
@@ -33,6 +34,7 @@ export function TokenImpact() {
           <ImpactItem 
             label={t('common.area')}
             value={area}
+            suffix="m²"
           />
         </View>
       </View>
