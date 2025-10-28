@@ -19,25 +19,25 @@ export function ImpactPerToken() {
       <View className="flex-row gap-3 w-full">
         <ImpactItem 
           label={t('common.carbon')}
-          value={Intl.NumberFormat('pt-BR').format(carbon)}
+          value={carbon}
           suffix="g"
           isLoading={isLoading}
         />
         <ImpactItem 
           label={t('common.trees')}
-          value={Intl.NumberFormat('pt-BR').format(trees)}
+          value={trees}
           isLoading={isLoading}
         />
       </View>
       <View className="flex-row gap-3 w-full mt-2">
         <ImpactItem 
           label={t('common.biodiversity')}
-          value={Intl.NumberFormat('pt-BR').format(biodiversity)}
+          value={biodiversity}
           isLoading={isLoading}
         />
         <ImpactItem 
           label={t('common.area')}
-          value={Intl.NumberFormat('pt-BR').format(area)}
+          value={area}
           suffix="m²"
           isLoading={isLoading}
         />
