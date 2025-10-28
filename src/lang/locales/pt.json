@@ -136,7 +136,8 @@
       "burnTokens": "Queimar tokens",
       "descBurnTokens": "Compense a degradação ambiental queimando tokens do Crédito de Regeneração. Queimar tokens os remove permanentemente de circulação e aumenta seu certificado de compensação.",
       "tokenImpact": "Impacto do token",
-      "totalImpactEra": "Impacto total da era"
+      "totalImpactEra": "Impacto total da era",
+      "impactPerToken": "Impacto por token"
     },
     "register": {
       "title": "Registrar",

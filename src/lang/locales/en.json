@@ -136,7 +136,8 @@
       "burnTokens": "Burn tokens",
       "descBurnTokens": "Compensate your environmental degradation by burning Regeneration Credit tokens. Burning tokens permanently removes them from circulation and increases your compensation certificate.",
       "tokenImpact": "Token impact",
-      "totalImpactEra": "Total impact era"
+      "totalImpactEra": "Total impact era",
+      "impactPerToken": "Impact per token"
     },
     "register": {
       "title": "Register",

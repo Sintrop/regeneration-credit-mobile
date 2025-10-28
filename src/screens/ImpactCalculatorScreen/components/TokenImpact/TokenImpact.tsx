@@ -1,33 +1,40 @@
 import { View } from "react-native";
 import { useTranslation } from "react-i18next";
 
-import { Text } from "@components";
-import { useImpactPerEra } from "@domain";
+import { Icon, Text } from "@components";
+import { useImpactPerToken } from "@domain";
 
 export function TokenImpact() {
   const { t } = useTranslation();
-  const { impactPerEra } = useImpactPerEra({ era: 1 });
+  const { carbon, trees, biodiversity, area } = useImpactPerToken();
 
   return (
     <View>
-      <Text className="text-white text-center">{t('impactCalculator.tokenImpact')}</Text>
-
-      <Text className="text-gray-300">{t('impactCalculator.totalImpactEra')} 1</Text>
-      <View className="mt-1 gap-3">
+      <View className="flex-row items-center gap-2">
+        <Icon name='rc' />
+        <Text className="text-white">{t('impactCalculator.impactPerToken')}</Text>
+      </View>
+      <View className="mt-2 gap-3">
         <View className="flex-row gap-3 w-full">
           <ImpactItem 
             label={t('common.trees')}
-            value={impactPerEra?.totalTress}
+            value={trees}
           />
           <ImpactItem 
-            label={t('common.biodiversity')}
-            value={impactPerEra?.totalBiodiversity}
+            label={t('common.carbon')}
+            value={carbon}
           />
         </View>
-        <ImpactItem 
-          label={t('common.inspections')}
-          value={impactPerEra?.totalInspections}
-        />
+        <View className="flex-row gap-3 w-full">
+          <ImpactItem 
+            label={t('common.biodiversity')}
+            value={biodiversity}
+          />
+          <ImpactItem 
+            label={t('common.area')}
+            value={area}
+          />
+        </View>
       </View>
     </View>
   );
