@@ -112,7 +112,8 @@
       "block": "Bloco",
       "value": "Valor",
       "copiedToClipboard": "Copiado para à área de transferência",
-      "you": "Você"
+      "you": "Você",
+      "inspections": "Inspeções"
     },
     "offset": {
       "title": "Compensação",
@@ -133,7 +134,9 @@
       "calculatorItems": "Itens da calculadora",
       "descOffset": "Permite que um apoiador queime tokens para compensar a degradação de um item específico ou que o apoiador declare um compromisso de redução para um item específico da calculadora.",
       "burnTokens": "Queimar tokens",
-      "descBurnTokens": "Compense a degradação ambiental queimando tokens do Crédito de Regeneração. Queimar tokens os remove permanentemente de circulação e aumenta seu certificado de compensação."
+      "descBurnTokens": "Compense a degradação ambiental queimando tokens do Crédito de Regeneração. Queimar tokens os remove permanentemente de circulação e aumenta seu certificado de compensação.",
+      "tokenImpact": "Impacto do token",
+      "totalImpactEra": "Impacto total da era"
     },
     "register": {
       "title": "Registrar",

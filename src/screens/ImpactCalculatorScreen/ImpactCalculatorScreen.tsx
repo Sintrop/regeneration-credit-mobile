@@ -5,6 +5,7 @@ import { Screen } from "@components";
 
 import { CalculatorItems } from "./components/CalculatorItems/CalculatorItems";
 import { BurnTokens } from "./components/BurnTokens";
+import { TokenImpact } from "./components/TokenImpact/TokenImpact";
 
 export function ImpactCalculatorScreen() {
   const { t } = useTranslation();
@@ -12,6 +13,7 @@ export function ImpactCalculatorScreen() {
   return (
     <Screen title={t('impactCalculator.title')} scrollable showBackButton>
       <View className="gap-5">
+        <TokenImpact />
         <BurnTokens />
         <CalculatorItems />
       </View>

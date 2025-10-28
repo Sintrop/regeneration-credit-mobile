@@ -55,3 +55,15 @@ export interface InspectionRealizedProps {
   inspectedAt: number;
   blockNumber: number;
 }
+
+export interface ImpactPerEraContractProps {
+  trees: string;
+  biodiversity: string;
+  realizedInspections: string;
+}
+
+export interface ImpactPerEraProps {
+  totalTress: number;
+  totalBiodiversity: number;
+  totalInspections: number;
+}

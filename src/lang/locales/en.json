@@ -112,7 +112,8 @@
       "block": "Block",
       "value": "Value",
       "copiedToClipboard": "Copied to clipboard!",
-      "you": "You"
+      "you": "You",
+      "inspections": "Inspections"
     },
     "offset": {
       "title": "Offset",
@@ -133,7 +134,9 @@
       "calculatorItems": "Calculator items",
       "descOffset": "Allows a backer to burn tokens to offset the degradation of a specific item, or for the backer to declare a reduction pledge for a specific calculator item.",
       "burnTokens": "Burn tokens",
-      "descBurnTokens": "Compensate your environmental degradation by burning Regeneration Credit tokens. Burning tokens permanently removes them from circulation and increases your compensation certificate."
+      "descBurnTokens": "Compensate your environmental degradation by burning Regeneration Credit tokens. Burning tokens permanently removes them from circulation and increases your compensation certificate.",
+      "tokenImpact": "Token impact",
+      "totalImpactEra": "Total impact era"
     },
     "register": {
       "title": "Register",
