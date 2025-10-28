@@ -1,5 +1,6 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { 
+  CommunityScreen,
   HomeScreen, 
   ImpactCalculatorScreen, 
   MyTokensScreen, 
@@ -18,6 +19,7 @@ export type AppStackParamsList = {
   ImpactCalculatorScreen: undefined;
   MyTokensScreen: undefined;
   TokenImpactScreen: undefined;
+  CommunityScreen: undefined;
   UserDetailsScreen: {
     address: string;
   }
@@ -51,6 +53,7 @@ export function AppStack() {
       <Stack.Screen name="ImpactCalculatorScreen" component={ImpactCalculatorScreen} />
       <Stack.Screen name="MyTokensScreen" component={MyTokensScreen} />
       <Stack.Screen name="TokenImpactScreen" component={TokenImpactScreen} />
+      <Stack.Screen name="CommunityScreen" component={CommunityScreen} />
     </Stack.Navigator>
   );
 }

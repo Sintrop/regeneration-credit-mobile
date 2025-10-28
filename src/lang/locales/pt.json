@@ -257,6 +257,34 @@
       "impactPerToken": "Impacto por token",
       "totalImpact": "Impacto total",
       "totalImpactPerEra": "Impacto total por era"
+    },
+    "community": {
+      "title": "Comunidade",
+      "description": "A comunidade do Crédito de Regeneração é composta por estes sete grupos. Para se candidatar a um usuário, conecte sua carteira e preencha os campos obrigatórios. O número de vagas para cada tipo específico é proporcional ao número de produtores registrados, seguindo a proporção.",
+      "regenerators": "Regeneradores",
+      "supporters": "Apoiadores",
+      "inspectors": "Inspetores",
+      "researchers": "Pesquisadores",
+      "developers": "Desenvolvedores",
+      "contributors": "Contribuidores",
+      "activists": "Ativistas",
+      "seeRegenerators": "Ver regeneradores",
+      "seeSupporters": "Ver apoiadores",
+      "seeInspectors": "Ver inspetores",
+      "seeResearchers": "Ver pesquisadores",
+      "seeDevelopers": "Ver desenvolvedores",
+      "seeContributors": "Ver contribuidores",
+      "seeActivists": "Ver ativistas",
+      "registered": "Registrado",
+      "activeUsers": "Usuários ativos",
+      "totalUsers": "Total de usuários",
+      "descRegenerators": "Regeneradores são indivíduos, famílias ou grupos que fornecem serviços de regeneração de ecossistemas para uma área.",
+      "descInspectors": "Os inspetores são os principais responsáveis ​​por coletar dados dos regeneradores e realizar inspeções, que podem estar sujeitas a penalidades por não conformidade.",
+      "descResearchers": "Os pesquisadores são os principais responsáveis ​​pelo desenvolvimento da calculadora de impacto do projeto, pela criação e aprimoramento de métodos de avaliação e pela submissão de pesquisas, que estão sujeitas a mecanismos de validação e penalidade.",
+      "descDevelopers": "Os desenvolvedores são os principais responsáveis ​​pelo desenvolvimento do projeto por meio do envio de relatórios de desenvolvimento, que estão sujeitos a mecanismos de validação e penalidade.",
+      "descContributors": "Os colaboradores realizam contribuições genéricas ao projeto e estão sujeitos a mecanismos de validação e penalidade.",
+      "descActivists": "Os ativistas são responsáveis ​​por convidar novos Regeneradores e Inspetores, e eles ganham recompensas com base na aprovação dos usuários convidados.",
+      "descSupporters": ""
     }
   }
 }

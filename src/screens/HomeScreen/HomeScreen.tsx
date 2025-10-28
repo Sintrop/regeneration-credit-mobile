@@ -1,14 +1,14 @@
 import { ActivityIndicator, FlatList, ListRenderItemInfo, TouchableOpacity, View } from 'react-native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { useTranslation } from 'react-i18next';
 
 import { Screen, FeedItem, Text, Icon, Actions } from '@components';
 import { useNewFeed } from '@domain';
 import { FeedItemProps } from '@database';
 import { AppStackParamsList } from '@routes';
+import { useUserContext } from '@hooks';
 
 import { UserWithoutRegister } from './components/UserWithoutRegister';
-import { useUserContext } from '@hooks';
-import { useTranslation } from 'react-i18next';
 
 type ScreenProps = NativeStackScreenProps<AppStackParamsList, 'HomeScreen'>
 export function HomeScreen({ navigation }: ScreenProps) {
@@ -53,19 +53,19 @@ export function HomeScreen({ navigation }: ScreenProps) {
         </View>
         <View className='flex-row justify-center gap-4 mt-2'>
           <TouchableOpacity
-            className='w-full h-12 rounded-2xl items-center justify-center flex-row gap-3 bg-card-primary'
+            className='flex-1 h-12 rounded-2xl items-center justify-center flex-row gap-3 bg-card-primary'
             onPress={() => navigation.navigate('TokenImpactScreen')}
           >
             <Icon name="rcStats" size={20} />
             <Text className='text-white'>{t('tokenImpact.title')}</Text>
           </TouchableOpacity>
-          {/* <TouchableOpacity
-            className='w-[48%] h-12 rounded-2xl items-center justify-center flex-row gap-3 bg-card-primary'
-            onPress={() => navigation.navigate('MyTokensScreen')}
+          <TouchableOpacity
+            className='flex-1 h-12 rounded-2xl items-center justify-center flex-row gap-3 bg-card-primary'
+            onPress={() => navigation.navigate('CommunityScreen')}
           >
-            <Icon name="tokens" size={20} />
-            <Text className='text-white'>{t('myTokens.title')}</Text>
-          </TouchableOpacity> */}
+            <Icon name="community" size={20} />
+            <Text className='text-white'>{t('community.title')}</Text>
+          </TouchableOpacity>
         </View>
       </View>
     )

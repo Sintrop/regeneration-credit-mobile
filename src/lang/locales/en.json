@@ -256,6 +256,33 @@
       "impactPerToken": "Impact per token",
       "totalImpact": "Total impact",
       "totalImpactPerEra": "Total impact per era"
+    },
+    "community": {
+      "title": "Community",
+      "description": "The Regeneration Credit community is made up of these seven groups. To apply to become a user, connect your wallet and fill out the required fields. The number of vacancies for each specific type is proportional to the number of registered producers, following the proportion.",
+      "regenerators": "Regenerators",
+      "supporters": "Supporters",
+      "inspectors": "Inspectors",
+      "researchers": "Researchers",
+      "developers": "Developers",
+      "contributors": "Contributors",
+      "activists": "Activists",
+      "seeRegenerators": "See regenerators",
+      "seeSupporters": "See supporters",
+      "seeInspectors": "See inspectors",
+      "seeResearchers": "See researchers",
+      "seeDevelopers": "See developers",
+      "seeContributors": "See contributors",
+      "seeActivists": "See activists",
+      "activeUsers": "Active users",
+      "totalUsers": "Total users",
+      "descRegenerators": "Regenerators are individuals, families, or groups providing ecosystem regeneration services to an area.",
+      "descInspectors": "Inspectors are primarily responsible for collecting data from regenerators. and performing inspections, which may be subject to penalties for non-compliance.",
+      "descResearchers": "Researchers are primarily responsible for the development of the project impact calculator, for the creation and improvement of evaluation methods and through submitting researches, which are subject to validation and penalty mechanisms.",
+      "descDevelopers": "Developers are primarily responsible for the development of the project through submitting development reports, which are subject to validation and penalty mechanisms.",
+      "descContributors": "Contributors perform generic contributions to the project and are subject to validation and penalty mechanisms.",
+      "descActivists": "Activists are responsible for inviting new Regenerators and Inspectors, and they earn rewards based on the approval of their invited users.",
+      "descSupporters": ""
     }
   }
 }
