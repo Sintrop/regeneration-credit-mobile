@@ -35,7 +35,7 @@ export function HomeScreen({ navigation }: ScreenProps) {
 
         {/* <UserWithoutRegister /> */}
 
-        <View className='flex-row justify-center/ gap-4'>
+        <View className='flex-row justify-center gap-4'>
           <TouchableOpacity
             className='w-[48%] h-12 rounded-2xl items-center justify-center flex-row gap-3 bg-card-primary'
             onPress={() => navigation.navigate('ImpactCalculatorScreen')}
@@ -50,6 +50,22 @@ export function HomeScreen({ navigation }: ScreenProps) {
             <Icon name="tokens" size={20} />
             <Text className='text-white'>{t('myTokens.title')}</Text>
           </TouchableOpacity>
+        </View>
+        <View className='flex-row justify-center gap-4 mt-2'>
+          <TouchableOpacity
+            className='w-full h-12 rounded-2xl items-center justify-center flex-row gap-3 bg-card-primary'
+            onPress={() => navigation.navigate('TokenImpactScreen')}
+          >
+            <Icon name="rcStats" size={20} />
+            <Text className='text-white'>{t('tokenImpact.title')}</Text>
+          </TouchableOpacity>
+          {/* <TouchableOpacity
+            className='w-[48%] h-12 rounded-2xl items-center justify-center flex-row gap-3 bg-card-primary'
+            onPress={() => navigation.navigate('MyTokensScreen')}
+          >
+            <Icon name="tokens" size={20} />
+            <Text className='text-white'>{t('myTokens.title')}</Text>
+          </TouchableOpacity> */}
         </View>
       </View>
     )

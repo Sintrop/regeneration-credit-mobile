@@ -34,9 +34,45 @@ async function areaPerToken({ rpc }: { rpc: string }): Promise<string> {
   return response;
 }
 
+async function totalTreesImpact({ rpc }: { rpc: string }): Promise<string> {
+  const provider = new Web3(new Web3.providers.HttpProvider(rpc));
+  const contract = new provider.eth.Contract(RegenerationCreditImpact.abi, RegenerationCreditImpact.address);
+
+  const response = await contract.methods.totalTreesImpact().call() as string;
+  return response;
+}
+
+async function totalCarbonImpact({ rpc }: { rpc: string }): Promise<string> {
+  const provider = new Web3(new Web3.providers.HttpProvider(rpc));
+  const contract = new provider.eth.Contract(RegenerationCreditImpact.abi, RegenerationCreditImpact.address);
+
+  const response = await contract.methods.totalCarbonImpact().call() as string;
+  return response;
+}
+
+async function totalBiodiversityImpact({ rpc }: { rpc: string }): Promise<string> {
+  const provider = new Web3(new Web3.providers.HttpProvider(rpc));
+  const contract = new provider.eth.Contract(RegenerationCreditImpact.abi, RegenerationCreditImpact.address);
+
+  const response = await contract.methods.totalBiodiversityImpact().call() as string;
+  return response;
+}
+
+async function totalAreaImpact({ rpc }: { rpc: string }): Promise<string> {
+  const provider = new Web3(new Web3.providers.HttpProvider(rpc));
+  const contract = new provider.eth.Contract(RegenerationCreditImpact.abi, RegenerationCreditImpact.address);
+
+  const response = await contract.methods.totalAreaImpact().call() as string;
+  return response;
+}
+
 export const rcImpactContract = {
   treesPerToken,
   areaPerToken,
   biodiversityPerToken,
-  carbonPerToken
+  carbonPerToken,
+  totalAreaImpact,
+  totalBiodiversityImpact,
+  totalCarbonImpact,
+  totalTreesImpact
 }

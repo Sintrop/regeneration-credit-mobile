@@ -10,3 +10,4 @@ export * from "./ArrowUp";
 export * from "./Hide";
 export * from "./Rc";
 export * from "./Sin";
+export * from "./RcStats";

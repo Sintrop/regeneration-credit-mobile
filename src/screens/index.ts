@@ -6,3 +6,4 @@ export * from "./PdfViewScreen/PdfViewScreen";
 export * from "./RegisterScreen/RegisterScreen";
 export * from "./ImpactCalculatorScreen/ImpactCalculatorScreen";
 export * from "./MyTokensScreen/MyTokensScreen";
+export * from "./TokenImpactScreen/TokenImpactScreen";

@@ -246,6 +246,17 @@
       "clearSelection": "Limpar seleção",
       "removeLastPoint": "Remover último ponto",
       "": ""
+    },
+    "tokenImpact": {
+      "title": "Impacto do token",
+      "totalSupply": "Oferta total",
+      "totalLocked": "Total bloqueado",
+      "totalCertified": "Total compensado",
+      "circulatingSupply": "Oferta circulante",
+      "tokenData": "Dados do token",
+      "impactPerToken": "Impacto por token",
+      "totalImpact": "Impacto total",
+      "totalImpactPerEra": "Impacto total por era"
     }
   }
 }

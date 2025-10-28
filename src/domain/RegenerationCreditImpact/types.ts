@@ -4,3 +4,10 @@ export interface ImpactPerTokenProps {
   biodivesity: number;
   area: number;
 }
+
+export interface TotalImpactProps {
+  carbon: number;
+  trees: number;
+  biodivesity: number;
+  area: number;
+}
