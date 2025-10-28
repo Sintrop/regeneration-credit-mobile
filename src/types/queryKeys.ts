@@ -24,5 +24,6 @@ export enum QueryKeys {
   ImpactPerEra = 'ImpactPerEra',
   ImpactPerToken = 'ImpactPerToken',
   TokenData = 'TokenData',
-  TotalImpact = 'TotalImpact'
+  TotalImpact = 'TotalImpact',
+  UsersCount = 'UsersCount'
 }

@@ -11,7 +11,8 @@ import {
   ArrowRightIcon,
   RcIcon,
   SinIcon,
-  RcStatsIcon
+  RcStatsIcon,
+  CommunityIcon
 } from "@icons";
 
 export interface IconSvgProps {
@@ -45,6 +46,7 @@ const icons = {
   arrowRight: ArrowRightIcon,
   rc: RcIcon,
   sin: SinIcon,
-  rcStats: RcStatsIcon
+  rcStats: RcStatsIcon,
+  community: CommunityIcon
 }
 export type IconsName = keyof typeof icons;

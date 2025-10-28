@@ -10,6 +10,7 @@ interface ReturnUseNewFeed {
   nextPage: () => void;
   atualPage: number;
   totalPages: number;
+  refresh: () => void;
 }
 export function useNewFeed(): ReturnUseNewFeed {
   const itemsPerPage = 10;
@@ -19,12 +20,12 @@ export function useNewFeed(): ReturnUseNewFeed {
   const [totalPages, setTotalPages] = useState<number>(1);
   const [atualPage, setAtualPage] = useState<number>(1);
 
-  const { offsets, isLoading: isLoadingOffsets } = useOffsets();
-  const { realizedInspections, isLoading: isLoadingRealizedInspections } = useRealizedInspections();
-  const { reports, isLoading: isLoadingReports } = useReportAdded();
-  const { researchs, isLoading: isLoadingResearchs } = useResearchsPublished();
-  const { contributions, isLoading: isLoadingContributions } = useContributionAdded();
-  const { usersRegistered, isLoading: isLoadingUsersRegistered } = useUserRegistered();
+  const { offsets, isLoading: isLoadingOffsets, refetch: refetchOffsets } = useOffsets();
+  const { realizedInspections, isLoading: isLoadingRealizedInspections, refetch: refetchRealizedInspections } = useRealizedInspections();
+  const { reports, isLoading: isLoadingReports, refetch: refetchReports } = useReportAdded();
+  const { researchs, isLoading: isLoadingResearchs, refetch: refetchResearchs } = useResearchsPublished();
+  const { contributions, isLoading: isLoadingContributions, refetch: refetchContributions } = useContributionAdded();
+  const { usersRegistered, isLoading: isLoadingUsersRegistered, refetch: refetchUsers } = useUserRegistered();
 
   useEffect(() => {
     createFeedList()
@@ -65,11 +66,25 @@ export function useNewFeed(): ReturnUseNewFeed {
     setAtualPage(nextPage);
   }
 
+  function handleRefresh() {
+    setAtualPage(1);
+    setTotalPages(1);
+    setList([]);
+    setListPage([]);
+    refetchContributions();
+    refetchOffsets();
+    refetchRealizedInspections();
+    refetchReports();
+    refetchResearchs();
+    refetchUsers();
+  }
+
   return {
     isLoading: isLoadingOffsets || isLoadingRealizedInspections || isLoadingReports || isLoadingResearchs || isLoadingContributions || isLoadingUsersRegistered,
     list: listPage,
     nextPage: handleNextPage,
     atualPage,
-    totalPages
+    totalPages,
+    refresh: handleRefresh
   }
 }

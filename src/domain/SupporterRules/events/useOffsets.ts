@@ -9,6 +9,7 @@ import { OffsetProps } from '../types'
 interface ReturnUseOffsets {
   isLoading: boolean
   offsets: OffsetProps[]
+  refetch: () => void;
 }
 export function useOffsets(): ReturnUseOffsets {
   const [offsets, setOffsets] = useState<OffsetProps[]>([])
@@ -42,9 +43,15 @@ export function useOffsets(): ReturnUseOffsets {
     setOffsets(newArray)
   }
 
+  function refetch() {
+    setOffsets([]);
+    handleGetEvents();
+  }
+
   return {
     isLoading: false,
-    offsets
+    offsets,
+    refetch
   }
 }
 
