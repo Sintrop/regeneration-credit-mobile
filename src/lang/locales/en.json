@@ -112,7 +112,10 @@
       "block": "Block",
       "value": "Value",
       "copiedToClipboard": "Copied to clipboard!",
-      "you": "You"
+      "you": "You",
+      "inspections": "Inspections",
+      "area": "Area",
+      "carbon": "Carbon"
     },
     "offset": {
       "title": "Offset",
@@ -133,7 +136,10 @@
       "calculatorItems": "Calculator items",
       "descOffset": "Allows a backer to burn tokens to offset the degradation of a specific item, or for the backer to declare a reduction pledge for a specific calculator item.",
       "burnTokens": "Burn tokens",
-      "descBurnTokens": "Compensate your environmental degradation by burning Regeneration Credit tokens. Burning tokens permanently removes them from circulation and increases your compensation certificate."
+      "descBurnTokens": "Compensate your environmental degradation by burning Regeneration Credit tokens. Burning tokens permanently removes them from circulation and increases your compensation certificate.",
+      "tokenImpact": "Token impact",
+      "totalImpactEra": "Total impact era",
+      "impactPerToken": "Impact per token"
     },
     "register": {
       "title": "Register",
@@ -239,6 +245,17 @@
       "clearSelection": "Clear selection",
       "removeLastPoint": "Remove last point",
       "": ""
+    },
+    "tokenImpact": {
+      "title": "Token impact",
+      "totalSupply": "Total supply",
+      "totalLocked": "Total locked",
+      "totalCertified": "Total certified",
+      "circulatingSupply": "Circulating supply",
+      "tokenData": "Token data",
+      "impactPerToken": "Impact per token",
+      "totalImpact": "Total impact",
+      "totalImpactPerEra": "Total impact per era"
     }
   }
 }

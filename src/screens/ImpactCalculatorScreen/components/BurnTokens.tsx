@@ -8,13 +8,15 @@ export function BurnTokens() {
   const { t } = useTranslation();
 
   return (
-    <View className="p-3 bg-card-primary rounded-2xl">
-      <Text className="text-gray-300 text-sm">{t('impactCalculator.burnTokens')}</Text>
-      <Text className="text-white mb-3">{t('impactCalculator.descBurnTokens')}</Text>
-      
-      <ActionBurn>
-        <BurnButton />
-      </ActionBurn>
+    <View>
+      <Text className="text-white">{t('impactCalculator.burnTokens')}</Text>
+      <View className="p-3 bg-card-primary rounded-2xl mt-1">
+        <Text className="text-white mb-3">{t('impactCalculator.descBurnTokens')}</Text>
+        
+        <ActionBurn>
+          <BurnButton />
+        </ActionBurn>
+      </View>
     </View>
   )
 }

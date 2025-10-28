@@ -8,6 +8,7 @@ import {
   RegisterScreen, 
   ResourceScreen, 
   ResourcesTypes, 
+  TokenImpactScreen, 
   UserDetailsScreen 
 } from '@screens';
 
@@ -16,6 +17,7 @@ export type AppStackParamsList = {
   RegisterScreen: undefined;
   ImpactCalculatorScreen: undefined;
   MyTokensScreen: undefined;
+  TokenImpactScreen: undefined;
   UserDetailsScreen: {
     address: string;
   }
@@ -48,6 +50,7 @@ export function AppStack() {
       <Stack.Screen name="RegisterScreen" component={RegisterScreen} />
       <Stack.Screen name="ImpactCalculatorScreen" component={ImpactCalculatorScreen} />
       <Stack.Screen name="MyTokensScreen" component={MyTokensScreen} />
+      <Stack.Screen name="TokenImpactScreen" component={TokenImpactScreen} />
     </Stack.Navigator>
   );
 }

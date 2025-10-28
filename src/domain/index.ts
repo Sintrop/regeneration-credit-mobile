@@ -1,7 +1,14 @@
+export * from "./RegenerationCredit/types";
 export * from "./RegenerationCredit/rcService";
 export * from "./RegenerationCredit/useCases/useApprovedTokens";
 export * from "./RegenerationCredit/useCases/useBalance";
 export * from "./RegenerationCredit/useCases/useBurn";
+export * from "./RegenerationCredit/useCases/useTokenData";
+
+export * from "./RegenerationCreditImpact/types";
+export * from "./RegenerationCreditImpact/rcImpactService";
+export * from "./RegenerationCreditImpact/useCases/useImpactPerToken";
+export * from "./RegenerationCreditImpact/useCases/useTotalImpact";
 
 export * from "./InspectionRules/inspectionService";
 export * from "./InspectionRules/types";
@@ -10,6 +17,7 @@ export * from "./InspectionRules/useCases/useUserInspections";
 export * from "./InspectionRules/useCases/useRealizeInspection";
 export * from "./InspectionRules/useCases/useAcceptInspection";
 export * from "./InspectionRules/useCases/useRequestInspection";
+export * from "./InspectionRules/useCases/useImpactPerEra";
 export * from "./InspectionRules/events/useRealizedInspections";
 
 export * from "./CommunityRules/types";
