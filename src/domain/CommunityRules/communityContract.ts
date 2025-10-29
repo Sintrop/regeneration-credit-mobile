@@ -51,9 +51,19 @@ async function userTypesCount({ rpc, userType }: UserTypesCountProps): Promise<s
   return response;
 }
 
+
+async function usersCount({ rpc }: { rpc: string }): Promise<string> {
+  const provider = new Web3(new Web3.providers.HttpProvider(rpc));
+  const contract = new provider.eth.Contract(CommunityRules.abi, CommunityRules.address);
+
+  const response = await contract.methods.usersCount().call() as string;
+  return response;
+}
+
 export const communityContract = {
   getUser,
   getInvitation,
   getUserDelations,
-  userTypesCount
+  userTypesCount,
+  usersCount
 }

@@ -1,7 +1,7 @@
 import Web3 from "web3";
 
 import { InspectionRules } from "@contracts";
-import { InspectionContractProps } from "@domain";
+import { ImpactPerEraContractProps, InspectionContractProps } from "@domain";
 import { bigNumberToFloat } from "@utils";
 
 async function inspectionsTotalCount({ rpc }: { rpc: string }): Promise<string> {
@@ -36,8 +36,21 @@ async function getInspectionsHistory({ rpc, address }: GetInspectionsHistoryProp
   return response.map(bigNumberToFloat);
 }
 
+interface ImpactPerEraProps {
+  rpc: string;
+  era: number;
+}
+async function impactPerEra({ rpc, era }: ImpactPerEraProps): Promise<ImpactPerEraContractProps> {
+  const provider = new Web3(new Web3.providers.HttpProvider(rpc));
+  const contract = new provider.eth.Contract(InspectionRules.abi, InspectionRules.address);
+
+  const response = await contract.methods.impactPerEra(era).call() as ImpactPerEraContractProps;
+  return response;
+}
+
 export const inspectionContract = {
   inspectionsTotalCount,
   getInspection,
-  getInspectionsHistory
+  getInspectionsHistory,
+  impactPerEra
 }

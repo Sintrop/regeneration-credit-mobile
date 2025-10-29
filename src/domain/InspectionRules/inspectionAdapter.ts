@@ -1,4 +1,4 @@
-import { InspectionContractProps, InspectionProps, InspectionStatus } from "@domain";
+import { ImpactPerEraContractProps, ImpactPerEraProps, InspectionContractProps, InspectionProps, InspectionStatus } from "@domain";
 import { bigNumberToFloat } from "@utils";
 
 function parseInspection(data: InspectionContractProps): InspectionProps {
@@ -42,6 +42,15 @@ function parseInspection(data: InspectionContractProps): InspectionProps {
   }
 }
 
+function parseImpactPerEra(data: ImpactPerEraContractProps): ImpactPerEraProps {
+  return {
+    totalBiodiversity: bigNumberToFloat(data.biodiversity),
+    totalInspections: bigNumberToFloat(data.realizedInspections),
+    totalTress: bigNumberToFloat(data.trees),
+  }
+}
+
 export const inspectionAdapter = {
-  parseInspection
+  parseInspection,
+  parseImpactPerEra
 }

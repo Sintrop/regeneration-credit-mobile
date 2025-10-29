@@ -7,8 +7,9 @@ import { ResearcherRules } from '@contracts'
 import { ResearchPublishedProps } from '../types'
 
 interface ReturnUseResearchsPublished {
-  isLoading: boolean
-  researchs: ResearchPublishedProps[]
+  isLoading: boolean;
+  researchs: ResearchPublishedProps[];
+  refetch: () => void;
 }
 export function useResearchsPublished(): ReturnUseResearchsPublished {
   const [researchs, setResearchs] = useState<ResearchPublishedProps[]>([])
@@ -39,9 +40,15 @@ export function useResearchsPublished(): ReturnUseResearchsPublished {
     setResearchs(newArray)
   }
 
+  function refetch() {
+    setResearchs([]);
+    handleGetEvents();
+  }
+
   return {
     isLoading: false,
-    researchs
+    researchs,
+    refetch
   }
 }
 

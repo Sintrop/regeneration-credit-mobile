@@ -108,7 +108,14 @@
       "yes": "Sim",
       "no": "Não",
       "continue": "Continuar",
-      "invalidAddress": "Endereço inválido"
+      "invalidAddress": "Endereço inválido",
+      "block": "Bloco",
+      "value": "Valor",
+      "copiedToClipboard": "Copiado para à área de transferência",
+      "you": "Você",
+      "inspections": "Inspeções",
+      "area": "Área",
+      "carbon": "Carbono"
     },
     "offset": {
       "title": "Compensação",
@@ -125,8 +132,14 @@
       "": ""
     },
     "impactCalculator": {
-      "title": "Calculadora de impacto",
-      "calculatorItems": "Itens da calculadora"
+      "title": "Calcul. de impacto",
+      "calculatorItems": "Itens da calculadora",
+      "descOffset": "Permite que um apoiador queime tokens para compensar a degradação de um item específico ou que o apoiador declare um compromisso de redução para um item específico da calculadora.",
+      "burnTokens": "Queimar tokens",
+      "descBurnTokens": "Compense a degradação ambiental queimando tokens do Crédito de Regeneração. Queimar tokens os remove permanentemente de circulação e aumenta seu certificado de compensação.",
+      "tokenImpact": "Impacto do token",
+      "totalImpactEra": "Impacto total da era",
+      "impactPerToken": "Impacto por token"
     },
     "register": {
       "title": "Registrar",
@@ -163,7 +176,16 @@
     "myTokens": {
       "title": "Meus tokens",
       "showBalance": "Mostrar saldo",
-      "hideBalance": "Ocultar saldo"
+      "hideBalance": "Ocultar saldo",
+      "txs": "Transações",
+      "commissions": "Comissões",
+      "noTxs": "Nenhuma transação",
+      "noReceivedCommissions": "Nenhuma comissão recebida",
+      "from": "De",
+      "to": "Para",
+      "onlyRcTxsWillBeShowHere": "Apenas as transações do (RC) serão mostradas aqui",
+      "txDetails": "Dados da transação",
+      "txHash": "Hash da transação"
     },
     "tx": {
       "title": "Transação",
@@ -198,7 +220,10 @@
       "acceptedInspection": "Inspeção aceita",
       "accept": "Aceitar",
       "requestInspection": "Solicitar inspeção",
-      "requestedInspection": "Inspeção solicitada"
+      "requestedInspection": "Inspeção solicitada",
+      "burnTokens": "Queimar tokens",
+      "howMuchDoYouWantToBurn": "Quantos tokens você quer queimar?",
+      "burnedTokens": "Tokens queimados"
     },
     "actionsDescriptions": {
       "inviteSupporter": "Apoiadores podem convidar Apoiadores para o sistema, respeitando o atraso específico de apoiador.",
@@ -207,7 +232,8 @@
       "inviteActivist": "Ativistas podem convidar Ativistas para o sistema, respeitando o atraso específico de ativista.",
       "realizeInspection": "Inspetores devem avaliar a quantidade de árvores e espécies da área de regeneração. Quantas árvores, palmeiras e outras plantas com mais de 1m de altura e 3cm de diâmetro existem na área em regeneração? Justifique sua resposta no relatório. Quantas espécies diferentes dessas plantas/árvores foram encontradas? Cada espécie diferente equivale a uma unidade e apenas árvores e plantas manejadas ou plantadas pelo regenerador devem ser contadas. Justifique sua resposta no relatório. Resultado máximo de 200.000 árvores e 300 biodiversidade. Pontuação zero significa inspeção inválida. NOTA: Se o inspetor encontrar algo suspeito sobre o regenerador inspecionado, como área inválida, suspeita de conta falsa, ou se o Regenerador não for encontrado, os inspetores são encorajados a realizar passando 0 como valores com sua justificativa no relatório para evitar ser penalizado.",
       "acceptInspection": "Inspetores devem aceitar apenas inspeções que são capazes de realizar, estando cientes dos riscos de segurança e responsabilidades. Ao aceitar uma inspeção, os inspetores concordam que são responsáveis por sua própria segurança na coleta de dados. É recomendado usar roupas de manga comprida, chapéus, botas que possam prevenir picadas de animais, luvas para proteger de espinhos e qualquer outro equipamento de segurança útil, como facões ou spray de pimenta. Aceitar uma inspeção conta como uma 'desistência' até ser realizada. Inspetores podem aceitar apenas uma inspeção aberta por vez e não podem inspecionar o mesmo regenerador duas vezes. Eles também devem aderir a atrasos específicos e janelas de segurança.",
-      "requestInspection": "Regeneradores concordam em receber um inspetor para avaliar sua área registrada. Eles podem fazer um número allowedInitialRequests de solicitações sem atraso. Depois disso, devem aguardar timeBetweenInspections blocos entre solicitações. Um limite rígido de 6 inspeções totais é aplicado."
+      "requestInspection": "Regeneradores concordam em receber um inspetor para avaliar sua área registrada. Eles podem fazer um número allowedInitialRequests de solicitações sem atraso. Depois disso, devem aguardar timeBetweenInspections blocos entre solicitações. Um limite rígido de 6 inspeções totais é aplicado.",
+      "burnTokens": "Compense a degradação ambiental queimando tokens do Crédito de Regeneração. Queimar tokens os remove permanentemente de circulação e aumenta seu certificado de compensação."
     },
     "fileInput": {
       "selectAnother": "Selecionar outro",
@@ -220,6 +246,45 @@
       "clearSelection": "Limpar seleção",
       "removeLastPoint": "Remover último ponto",
       "": ""
+    },
+    "tokenImpact": {
+      "title": "Impacto do token",
+      "totalSupply": "Oferta total",
+      "totalLocked": "Total bloqueado",
+      "totalCertified": "Total compensado",
+      "circulatingSupply": "Oferta circulante",
+      "tokenData": "Dados do token",
+      "impactPerToken": "Impacto por token",
+      "totalImpact": "Impacto total",
+      "totalImpactPerEra": "Impacto total por era"
+    },
+    "community": {
+      "title": "Comunidade",
+      "description": "A comunidade do Crédito de Regeneração é composta por estes sete grupos. Para se candidatar a um usuário, conecte sua carteira e preencha os campos obrigatórios. O número de vagas para cada tipo específico é proporcional ao número de produtores registrados, seguindo a proporção.",
+      "regenerators": "Regeneradores",
+      "supporters": "Apoiadores",
+      "inspectors": "Inspetores",
+      "researchers": "Pesquisadores",
+      "developers": "Desenvolvedores",
+      "contributors": "Contribuidores",
+      "activists": "Ativistas",
+      "seeRegenerators": "Ver regeneradores",
+      "seeSupporters": "Ver apoiadores",
+      "seeInspectors": "Ver inspetores",
+      "seeResearchers": "Ver pesquisadores",
+      "seeDevelopers": "Ver desenvolvedores",
+      "seeContributors": "Ver contribuidores",
+      "seeActivists": "Ver ativistas",
+      "registered": "Registrado",
+      "activeUsers": "Usuários ativos",
+      "totalUsers": "Total de usuários",
+      "descRegenerators": "Regeneradores são indivíduos, famílias ou grupos que fornecem serviços de regeneração de ecossistemas para uma área.",
+      "descInspectors": "Os inspetores são os principais responsáveis ​​por coletar dados dos regeneradores e realizar inspeções, que podem estar sujeitas a penalidades por não conformidade.",
+      "descResearchers": "Os pesquisadores são os principais responsáveis ​​pelo desenvolvimento da calculadora de impacto do projeto, pela criação e aprimoramento de métodos de avaliação e pela submissão de pesquisas, que estão sujeitas a mecanismos de validação e penalidade.",
+      "descDevelopers": "Os desenvolvedores são os principais responsáveis ​​pelo desenvolvimento do projeto por meio do envio de relatórios de desenvolvimento, que estão sujeitos a mecanismos de validação e penalidade.",
+      "descContributors": "Os colaboradores realizam contribuições genéricas ao projeto e estão sujeitos a mecanismos de validação e penalidade.",
+      "descActivists": "Os ativistas são responsáveis ​​por convidar novos Regeneradores e Inspetores, e eles ganham recompensas com base na aprovação dos usuários convidados.",
+      "descSupporters": "Financie a regeneração de ecossistemas, compre o Crédito de Regeneração diretamente da comunidade, troque-o pelo certificado e prove seu compromisso com a regeneração dos ecossistemas terrestres."
     }
   }
 }
