@@ -4,6 +4,7 @@ export * from "./RegenerationCredit/useCases/useApprovedTokens";
 export * from "./RegenerationCredit/useCases/useBalance";
 export * from "./RegenerationCredit/useCases/useBurn";
 export * from "./RegenerationCredit/useCases/useTokenData";
+export * from "./RegenerationCredit/useCases/useCertificatedTokens";
 
 export * from "./RegenerationCreditImpact/types";
 export * from "./RegenerationCreditImpact/rcImpactService";
