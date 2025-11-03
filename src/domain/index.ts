@@ -18,6 +18,7 @@ export * from "./InspectionRules/useCases/useRealizeInspection";
 export * from "./InspectionRules/useCases/useAcceptInspection";
 export * from "./InspectionRules/useCases/useRequestInspection";
 export * from "./InspectionRules/useCases/useImpactPerEra";
+export * from "./InspectionRules/useCases/useInspectionsList";
 export * from "./InspectionRules/events/useRealizedInspections";
 
 export * from "./CommunityRules/types";
@@ -88,3 +89,6 @@ export * from "./InvitationRules/useCases/useInvite";
 
 export * from "./Tx/types";
 export * from "./Tx/events/useTransfers";
+
+export * from "./Chain/chainService";
+export * from "./Chain/useCases/useBlockNumber";

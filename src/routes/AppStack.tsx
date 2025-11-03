@@ -3,6 +3,7 @@ import {
   CommunityScreen,
   HomeScreen, 
   ImpactCalculatorScreen, 
+  InspectionsScreen, 
   MyTokensScreen, 
   PdfViewScreen, 
   ProfileScreen, 
@@ -20,6 +21,7 @@ export type AppStackParamsList = {
   MyTokensScreen: undefined;
   TokenImpactScreen: undefined;
   CommunityScreen: undefined;
+  InspectionsScreen: undefined;
   UserDetailsScreen: {
     address: string;
   }
@@ -54,6 +56,7 @@ export function AppStack() {
       <Stack.Screen name="MyTokensScreen" component={MyTokensScreen} />
       <Stack.Screen name="TokenImpactScreen" component={TokenImpactScreen} />
       <Stack.Screen name="CommunityScreen" component={CommunityScreen} />
+      <Stack.Screen name="InspectionsScreen" component={InspectionsScreen} />
     </Stack.Navigator>
   );
 }

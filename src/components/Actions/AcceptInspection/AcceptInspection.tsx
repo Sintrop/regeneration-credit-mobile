@@ -16,9 +16,10 @@ interface ModalControls {
 
 interface Props {
   children: ReactNode;
+  inspectionIdProp?: number;
 }
 
-export function AcceptInspection({ children }: Props) {
+export function AcceptInspection({ children, inspectionIdProp }: Props) {
   const { t } = useTranslation();
   const { bottom } = useAppSafeArea();
   const { keyboardHeight, keyboardOpen } = useKeyboardStatus();
@@ -39,6 +40,8 @@ export function AcceptInspection({ children }: Props) {
       setInspectionId('');
       closeModal();
     })
+
+    if (inspectionIdProp) setInspectionId(inspectionIdProp.toString());
   }, []);
 
   function handleAccept() {
@@ -86,6 +89,8 @@ export function AcceptInspection({ children }: Props) {
                   label={t('actions.inspectionId')}
                   value={inspectionId}
                   onChangeText={setInspectionId}
+                  editable={!inspectionIdProp}
+                  disabled={inspectionIdProp ? true : false}
                 />
               </View>
 

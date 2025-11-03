@@ -115,7 +115,8 @@
       "you": "You",
       "inspections": "Inspections",
       "area": "Area",
-      "carbon": "Carbon"
+      "carbon": "Carbon",
+      "blocks": "Blocks"
     },
     "offset": {
       "title": "Offset",
@@ -283,6 +284,21 @@
       "descContributors": "Contributors perform generic contributions to the project and are subject to validation and penalty mechanisms.",
       "descActivists": "Activists are responsible for inviting new Regenerators and Inspectors, and they earn rewards based on the approval of their invited users.",
       "descSupporters": "Finance ecosystem regeneration, purchase Regeneration Credit directly from the community, exchange it for the certificate, and prove your commitment to the regeneration of terrestrial ecosystems."
+    },
+    "inspections": {
+      "title": "Inspections",
+      "inspection": "Inspection",
+      "score": "Score",
+      "seeInspection": "See",
+      "acceptInspection": "Accept inspection",
+      "thisInspectionCanAcceptIn": "This inspection can accept in"
+    },
+    "inspectionStatus": {
+      "open": "Open",
+      "accepted": "Accepted",
+      "realized": "Realized",
+      "expired": "Expired",
+      "invalidated": "Invalidated"
     }
   }
 }
