@@ -7,8 +7,9 @@ import { ContributorRules } from '@contracts'
 import { ContributionAddedProps } from '../types'
 
 interface ReturnUseContributionAdded {
-  isLoading: boolean
-  contributions: ContributionAddedProps[]
+  isLoading: boolean;
+  contributions: ContributionAddedProps[];
+  refetch: () => void;
 }
 export function useContributionAdded(): ReturnUseContributionAdded {
   const [contributions, setContributions] = useState<ContributionAddedProps[]>([])
@@ -40,9 +41,15 @@ export function useContributionAdded(): ReturnUseContributionAdded {
     setContributions(newArray)
   }
 
+  function refetch() {
+    setContributions([]);
+    handleGetEvents();
+  }
+
   return {
     isLoading: false,
-    contributions
+    contributions,
+    refetch
   }
 }
 

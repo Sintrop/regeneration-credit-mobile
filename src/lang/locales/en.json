@@ -108,7 +108,14 @@
       "yes": "Yes",
       "no": "No",
       "continue": "Continue",
-      "invalidAddress": "Invalid address"
+      "invalidAddress": "Invalid address",
+      "block": "Block",
+      "value": "Value",
+      "copiedToClipboard": "Copied to clipboard!",
+      "you": "You",
+      "inspections": "Inspections",
+      "area": "Area",
+      "carbon": "Carbon"
     },
     "offset": {
       "title": "Offset",
@@ -126,7 +133,13 @@
     },
     "impactCalculator": {
       "title": "Impact calculator",
-      "calculatorItems": "Calculator items"
+      "calculatorItems": "Calculator items",
+      "descOffset": "Allows a backer to burn tokens to offset the degradation of a specific item, or for the backer to declare a reduction pledge for a specific calculator item.",
+      "burnTokens": "Burn tokens",
+      "descBurnTokens": "Compensate your environmental degradation by burning Regeneration Credit tokens. Burning tokens permanently removes them from circulation and increases your compensation certificate.",
+      "tokenImpact": "Token impact",
+      "totalImpactEra": "Total impact era",
+      "impactPerToken": "Impact per token"
     },
     "register": {
       "title": "Register",
@@ -163,7 +176,16 @@
     "myTokens": {
       "title": "My tokens",
       "showBalance": "Show balance",
-      "hideBalance": "Hide balance"
+      "hideBalance": "Hide balance",
+      "txs": "Transactions",
+      "commissions": "Commissions",
+      "noTxs": "No transactions",
+      "noReceivedCommissions": "No received commissions",
+      "from": "From",
+      "to": "To",
+      "onlyRcTxsWillBeShowHere": "Only (RC) transactions will be show here",
+      "txDetails": "Transaction data",
+      "txHash": "Transaction hash"
     },
     "tx": {
       "title": "Transaction",
@@ -198,7 +220,9 @@
       "acceptedInspection": "Accepted inspection",
       "accept": "Accept",
       "requestInspection": "Request inspection",
-      "requestedInspection": "Requested inspection"
+      "requestedInspection": "Requested inspection",
+      "burnTokens": "Burn tokens",
+      "howMuchDoYouWantToBurn": "How much do you want to burn?"
     },
     "actionsDescriptions": {
       "inviteSupporter": "Supporters can invite Supporters to the system, respecting the specific supporter delay.",
@@ -207,7 +231,8 @@
       "inviteActivist": "Activists can invite Activists to the system, respecting the specific activist delay.",
       "realizeInspection": "Inspectors must evaluate the amount of trees and species of the regeneration area. How many trees, palm trees and other plants over 1m high and 3cm in diameter there is in the regenerating area? Justify your answer in the report. How many different species of those plants/trees were found? Each different species is equivalent to one unity and only trees and plants managed or planted by the regenerator should be counted. Justify your answer in the report. Max result of 200.000 trees and 300 biodiversity. Zero score means invalid inspection. NOTE: If the inspector finds something suspicous about the inspected regenerator, such as invalid area, suspicious of fake account, or if the Regenerator is not findable, inspectors are encourage to realize passing 0 as values with his justification at the report to avoid being penalized.",
       "acceptInspection": "Inspectors must only accept inspections they are capable of performing, being aware of the safety risks and responsibilities. By accepting an inspection, inspectors agree that the they are responsible for their own safety at the data collection. It is recommended to use long sleeves clothes, hats, boots that can prevent bites from animals, gloves to protect from spines and any other useful safety equipment, such as machetes or pepper spray. Accepting an inspection counts as a 'give-up' until realized. Inspectors can only accept one open inspection at a time and cannot inspect the same regenerator twice. They must also adhere to specific delays and security windows.",
-      "requestInspection": "Regenerators agree to receive an inspector to assess their registered area. They can make an allowedInitialRequests number of requests without delay. After that, they must wait timeBetweenInspections blocks between requests. A hard limit of 6 total inspections is enforced."
+      "requestInspection": "Regenerators agree to receive an inspector to assess their registered area. They can make an allowedInitialRequests number of requests without delay. After that, they must wait timeBetweenInspections blocks between requests. A hard limit of 6 total inspections is enforced.",
+      "burnTokens": "Compensate your environmental degradation by burning Regeneration Credit tokens. Burning tokens permanently removes them from circulation and increases your compensation certificate."
     },
     "fileInput": {
       "selectAnother": "Select another",
@@ -220,6 +245,44 @@
       "clearSelection": "Clear selection",
       "removeLastPoint": "Remove last point",
       "": ""
+    },
+    "tokenImpact": {
+      "title": "Token impact",
+      "totalSupply": "Total supply",
+      "totalLocked": "Total locked",
+      "totalCertified": "Total certified",
+      "circulatingSupply": "Circulating supply",
+      "tokenData": "Token data",
+      "impactPerToken": "Impact per token",
+      "totalImpact": "Total impact",
+      "totalImpactPerEra": "Total impact per era"
+    },
+    "community": {
+      "title": "Community",
+      "description": "The Regeneration Credit community is made up of these seven groups. To apply to become a user, connect your wallet and fill out the required fields. The number of vacancies for each specific type is proportional to the number of registered producers, following the proportion.",
+      "regenerators": "Regenerators",
+      "supporters": "Supporters",
+      "inspectors": "Inspectors",
+      "researchers": "Researchers",
+      "developers": "Developers",
+      "contributors": "Contributors",
+      "activists": "Activists",
+      "seeRegenerators": "See regenerators",
+      "seeSupporters": "See supporters",
+      "seeInspectors": "See inspectors",
+      "seeResearchers": "See researchers",
+      "seeDevelopers": "See developers",
+      "seeContributors": "See contributors",
+      "seeActivists": "See activists",
+      "activeUsers": "Active users",
+      "totalUsers": "Total users",
+      "descRegenerators": "Regenerators are individuals, families, or groups providing ecosystem regeneration services to an area.",
+      "descInspectors": "Inspectors are primarily responsible for collecting data from regenerators. and performing inspections, which may be subject to penalties for non-compliance.",
+      "descResearchers": "Researchers are primarily responsible for the development of the project impact calculator, for the creation and improvement of evaluation methods and through submitting researches, which are subject to validation and penalty mechanisms.",
+      "descDevelopers": "Developers are primarily responsible for the development of the project through submitting development reports, which are subject to validation and penalty mechanisms.",
+      "descContributors": "Contributors perform generic contributions to the project and are subject to validation and penalty mechanisms.",
+      "descActivists": "Activists are responsible for inviting new Regenerators and Inspectors, and they earn rewards based on the approval of their invited users.",
+      "descSupporters": "Finance ecosystem regeneration, purchase Regeneration Credit directly from the community, exchange it for the certificate, and prove your commitment to the regeneration of terrestrial ecosystems."
     }
   }
 }

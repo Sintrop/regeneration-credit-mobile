@@ -1,5 +1,5 @@
 import { bigNumberToFloat } from "@utils"
-import { InspectionProps } from "@domain";
+import { ImpactPerEraProps, InspectionProps } from "@domain";
 
 import { inspectionContract } from "./inspectionContract"
 import { inspectionAdapter } from "./inspectionAdapter";
@@ -35,8 +35,18 @@ async function getUserInspections({ rpc, address }: GetUserInspectionsProps): Pr
   return inspections
 }
 
+interface GetImpactPerEraProps {
+  rpc: string;
+  era: number;
+}
+async function getImpactPerEra({ rpc, era }: GetImpactPerEraProps): Promise<ImpactPerEraProps> {
+  const response = await inspectionContract.impactPerEra({ rpc, era })
+  return inspectionAdapter.parseImpactPerEra(response);
+}
+
 export const inspectionService = {
   getTotalInspections,
   getInspection,
-  getUserInspections
+  getUserInspections,
+  getImpactPerEra
 }

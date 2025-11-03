@@ -5,12 +5,16 @@ import { ActionItem } from "@components";
 
 import { RealizeInspection } from "./RealizeInspection/RealizeInspection";
 import { AcceptInspection } from "./AcceptInspection/AcceptInspection";
+import { BurnTokens } from "./BurnTokens/BurnTokens";
 
 export function InspectorActions() {
   const { t } = useTranslation();
 
   return (
     <View>
+      <BurnTokens>
+        <ActionButton label={t('actions.burnTokens')}/>
+      </BurnTokens>
       <AcceptInspection>
         <ActionButton label={t('actions.acceptInspection')}/>
       </AcceptInspection>

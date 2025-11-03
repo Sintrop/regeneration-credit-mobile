@@ -83,8 +83,8 @@ android {
         applicationId "com.sintrop.activistapp"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 188
-        versionName "2.8.8"
+        versionCode 189
+        versionName "2.8.9"
     }
     signingConfigs {
         release {

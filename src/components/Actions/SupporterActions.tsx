@@ -4,12 +4,16 @@ import { useTranslation } from "react-i18next";
 import { ActionItem } from "@components";
 
 import { InviteSupporter } from "./Invite/InviteSupporter";
+import { BurnTokens } from "./BurnTokens/BurnTokens";
 
 export function SupporterActions() {
   const { t } = useTranslation();
 
   return (
     <View>
+      <BurnTokens>
+        <ActionButton label={t('actions.burnTokens')}/>
+      </BurnTokens>
       <InviteSupporter>
         <ActionButton label={t('actions.inviteSupporter')}/>
       </InviteSupporter>

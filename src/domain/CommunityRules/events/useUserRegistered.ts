@@ -8,8 +8,9 @@ import { CommunityRules } from '@contracts'
 import { UserRegisteredProps } from '../types'
 
 interface ReturnUseUserRegistered {
-  isLoading: boolean
-  usersRegistered: UserRegisteredProps[]
+  isLoading: boolean;
+  usersRegistered: UserRegisteredProps[];
+  refetch: () => void;
 }
 export function useUserRegistered(): ReturnUseUserRegistered {
   const [usersRegistered, setUsersRegistered] = useState<UserRegisteredProps[]>([])
@@ -41,9 +42,15 @@ export function useUserRegistered(): ReturnUseUserRegistered {
     setUsersRegistered(newArray)
   }
 
+  function refetch() {
+    setUsersRegistered([]);
+    handleGetEvents();
+  }
+
   return {
     isLoading: false,
-    usersRegistered
+    usersRegistered,
+    refetch
   }
 }
 
