@@ -91,3 +91,4 @@ export * from "./Tx/types";
 export * from "./Tx/events/useTransfers";
 
 export * from "./Chain/chainService";
+export * from "./Chain/useCases/useBlockNumber";

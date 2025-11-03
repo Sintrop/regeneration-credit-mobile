@@ -115,7 +115,8 @@
       "you": "You",
       "inspections": "Inspections",
       "area": "Area",
-      "carbon": "Carbon"
+      "carbon": "Carbon",
+      "blocks": "Blocks"
     },
     "offset": {
       "title": "Offset",
@@ -289,7 +290,8 @@
       "inspection": "Inspection",
       "score": "Score",
       "seeInspection": "See",
-      "acceptInspection": "Accept inspection"
+      "acceptInspection": "Accept inspection",
+      "thisInspectionCanAcceptIn": "This inspection can accept in"
     },
     "inspectionStatus": {
       "open": "Open",

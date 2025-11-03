@@ -26,5 +26,6 @@ export enum QueryKeys {
   TokenData = 'TokenData',
   TotalImpact = 'TotalImpact',
   UsersCount = 'UsersCount',
-  TotalInspections = 'TotalInspections'
+  TotalInspections = 'TotalInspections',
+  BlockNumber = 'BlockNumber'
 }

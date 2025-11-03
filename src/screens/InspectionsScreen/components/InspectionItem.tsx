@@ -5,9 +5,9 @@ import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { useNavigation } from "@react-navigation/native";
 
 import { Icon, InspectionStatus, Text, AcceptInspection } from "@components";
-import { InspectionProps, useGetInspection } from "@domain";
+import { InspectionProps, useBlockNumber, useGetInspection } from "@domain";
 import { AppStackParamsList } from "@routes";
-import { useTxContext } from "@hooks";
+import { useTxContext, useUserContext } from "@hooks";
 
 import { Regenerator } from "./Regenerator";
 import { Inspector } from "./Inspector";
@@ -18,9 +18,16 @@ interface Props {
   inspectionId: number;
 }
 export function InspectionItem({ inspectionId }: Props) {
+  const { userType } = useUserContext();
   const { registerContinueAction } = useTxContext();
   const { t } = useTranslation();
   const { inspection, isLoading, refetch } = useGetInspection({ inspectionId });
+  const { blockNumber } = useBlockNumber();
+
+  const delayToAccept = parseInt(process.env.ACCEPT_INSPECTION_DELAY_BLOCKS as string);
+  const canAcceptBlock = inspection?.createdAt ?? 0 + delayToAccept;
+  const canAccept = canAcceptBlock < blockNumber ? true : false;
+  const canAcceptIn = canAcceptBlock - blockNumber;
 
   useEffect(() => {
     registerContinueAction(() => {
@@ -50,24 +57,34 @@ export function InspectionItem({ inspectionId }: Props) {
         <Inspector address={inspection?.inspector} />
       )}
 
-      {inspection.status === 'open'  && (
-        <View className="mt-1 pt-3 w-full border-t border-card-secondary">
-          <AcceptInspection
-            inspectionIdProp={inspectionId}
-          >
-            <AcceptButton label={t('inspections.acceptInspection')}/>
-          </AcceptInspection>
-        </View>
-      )}
-
-      {inspection.status === 'expired'  && (
-        <View className="mt-1 pt-3 w-full border-t border-card-secondary">
-          <AcceptInspection
-            inspectionIdProp={inspectionId}
-          >
-            <AcceptButton label={t('inspections.acceptInspection')}/>
-          </AcceptInspection>
-        </View>
+      {userType === 2 && (
+        <>
+          {inspection.status === 'open'  && (
+            <View className="mt-1 pt-3 w-full border-t border-card-secondary">
+              {canAccept ? (
+                <AcceptInspection
+                  inspectionIdProp={inspectionId}
+                >
+                  <AcceptButton label={t('inspections.acceptInspection')}/>
+                </AcceptInspection>
+              ) : (
+                <Text className="text-yellow-500 text-center mb-2">
+                  {t('inspections.thisInspectionCanAcceptIn')} {canAcceptIn} {t('common.blocks')}
+                </Text>
+              )}
+            </View>
+          )}
+    
+          {inspection.status === 'expired'  && (
+            <View className="mt-1 pt-3 w-full border-t border-card-secondary">
+              <AcceptInspection
+                inspectionIdProp={inspectionId}
+              >
+                <AcceptButton label={t('inspections.acceptInspection')}/>
+              </AcceptInspection>
+            </View>
+          )}
+        </>
       )}
 
       {inspection.status === 'realized' && (
