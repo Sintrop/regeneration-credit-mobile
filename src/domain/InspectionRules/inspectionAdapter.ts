@@ -1,26 +1,30 @@
-import { ImpactPerEraContractProps, ImpactPerEraProps, InspectionContractProps, InspectionProps, InspectionStatus } from "@domain";
+import { chainService, ImpactPerEraContractProps, ImpactPerEraProps, InspectionContractProps, InspectionProps, InspectionStatus } from "@domain";
 import { bigNumberToFloat } from "@utils";
 
-function parseInspection(data: InspectionContractProps): InspectionProps {
+async function parseInspection({ data, rpc }: { data: InspectionContractProps; rpc: string; }): Promise<InspectionProps> {
   const statusContract = bigNumberToFloat(data.status);
   let status: InspectionStatus = "open";
 
-  switch (true) {
-    case statusContract === 0:
-      status = "open";
-      break;
-    case statusContract === 1:
+  const blocksToExpire = parseInt(process.env.VITE_BLOCKS_TO_EXPIRE_ACCEPTED_INSPECTION as string);
+  const createdAt = bigNumberToFloat(data.createdAt);
+  const currentBlock = await chainService.getBlockNumber({ rpc });
+
+  if (statusContract === 0) {
+    status = "open";
+  }
+  if (statusContract === 1) {
+    status = "accepted";
+    if (createdAt + blocksToExpire > currentBlock) {
       status = "accepted";
-      break;
-    case statusContract === 2:
-      status = "realized";
-      break;
-    case statusContract === 3:
-      status = "invalidated";
-      break;
-    default:
+    } else {
       status = "expired";
-      break;
+    }
+  }
+  if (statusContract === 2) {
+    status = "realized";
+  }
+  if (statusContract === 3) {
+    status = "invalidated";
   }
 
   return {

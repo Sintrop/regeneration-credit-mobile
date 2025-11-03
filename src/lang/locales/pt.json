@@ -285,6 +285,20 @@
       "descContributors": "Os colaboradores realizam contribuições genéricas ao projeto e estão sujeitos a mecanismos de validação e penalidade.",
       "descActivists": "Os ativistas são responsáveis ​​por convidar novos Regeneradores e Inspetores, e eles ganham recompensas com base na aprovação dos usuários convidados.",
       "descSupporters": "Financie a regeneração de ecossistemas, compre o Crédito de Regeneração diretamente da comunidade, troque-o pelo certificado e prove seu compromisso com a regeneração dos ecossistemas terrestres."
+    },
+    "inspections": {
+      "title": "Inspeções",
+      "inspection": "Inspeção",
+      "score": "Pontuação",
+      "seeInspection": "Ver",
+      "acceptInspection": "Aceitar inspeção"
+    },
+    "inspectionStatus": {
+      "open": "Aberta",
+      "accepted": "Aceita",
+      "realized": "Realizada",
+      "expired": "Expirada",
+      "invalidated": "Invalidada"
     }
   }
 }
