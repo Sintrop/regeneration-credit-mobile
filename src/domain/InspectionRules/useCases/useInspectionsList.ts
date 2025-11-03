@@ -46,6 +46,9 @@ export function useInspectionsList(): ReturnUseInspectionsList {
 
   function handleRefetch() {
     refetch();
+    setIdsInspections([]);
+    setIdsPage([]);
+    createIdsList();
   }
 
   function handleNextPage() {

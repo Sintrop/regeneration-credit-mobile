@@ -9,7 +9,7 @@ import { InspectionLoading } from "./components/InspectionLoading";
 
 export function InspectionsScreen() {
   const { t } = useTranslation();
-  const { list, nextPage, totalPages, currentPage, isLoading } = useInspectionsList();
+  const { list, nextPage, totalPages, currentPage, isLoading, refetch } = useInspectionsList();
 
   function handleNextPage() {
     if (currentPage < totalPages){
@@ -46,6 +46,8 @@ export function InspectionsScreen() {
         ListFooterComponent={<View className="mb-20" />}
         onEndReachedThreshold={0.5}
         onEndReached={handleNextPage}
+        refreshing={isLoading}
+        onRefresh={refetch}
       />
     </Screen>
   )

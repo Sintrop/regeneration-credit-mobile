@@ -73,7 +73,7 @@ export function HomeScreen({ navigation }: ScreenProps) {
             className='flex-1 h-12 rounded-2xl items-center justify-center flex-row gap-3 bg-card-primary'
             onPress={() => navigation.navigate('InspectionsScreen')}
           >
-            <Icon name="rcStats" size={20} />
+            <Icon name="inspections" size={20} />
             <Text className='text-white'>{t('inspections.title')}</Text>
           </TouchableOpacity>
           {/* <TouchableOpacity
