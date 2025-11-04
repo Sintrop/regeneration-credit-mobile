@@ -13,8 +13,9 @@ import { UserInspections } from "../UserInspections/UserInspections";
 
 interface Props {
   address: string
+  changeScrollEnabled: (enable: boolean) => void;
 }
-export function Regenerator({ address }: Props) {
+export function Regenerator({ address, changeScrollEnabled }: Props) {
   const { t } = useTranslation();
   const { regenerator, isLoading: isLoadingRegenerator, isError } = useGetRegenerator({ address })
   const { projectDescription, isLoading: isLoadingDescription } = useProjectDescription({ address });
@@ -46,7 +47,11 @@ export function Regenerator({ address }: Props) {
           <DataItem title={t("profile.registeredAt")} value={regenerator.createdAt} />
         </View>
 
-        <RegenerationArea address={address} totalArea={regenerator.totalArea} />
+        <RegenerationArea 
+          address={address} 
+          totalArea={regenerator.totalArea}
+          changeScrollEnabled={changeScrollEnabled}
+        />
 
         <View className="gap-1 p-5 rounded-2xl bg-card-primary">
           <Text className="font-bold text-white text-xl">
