@@ -5,6 +5,9 @@ import QRCode from 'react-native-qrcode-svg';
 import { useCertificatedTokens, useGetSupporter, useImpactPerToken } from "@domain";
 import { Icon, Text } from "@components";
 
+//@ts-ignore
+import RCLogo from "../../assets/images/rc.png";
+
 interface Props {
   address: string;
 }
@@ -20,7 +23,7 @@ export function Supporter({ address }: Props) {
   const areaImpact = certificated * area;
   const bioImpact = certificated * biodiversity;
 
-  const parsedName = supporter?.name.replace(' ', '-').toLowerCase();
+  const parsedName = supporter?.name.replaceAll(' ', '-').toLowerCase();
   const qrLink = 'https://users.regenerationcredit.org/supporter/' + address + '/' + parsedName;
 
   return (
@@ -69,6 +72,9 @@ export function Supporter({ address }: Props) {
           <QRCode
             value={qrLink}
             size={130}
+            logo={RCLogo}
+            logoSize={30}
+            logoBorderRadius={30}
           />
         </View>
       </View>

@@ -51,7 +51,7 @@
       "title": "Perfil",
       "hashProofPhoto": "Foto de prova",
       "totalArea": "Área total",
-      "regenerationScore": "Pontuação de regeneração",
+      "regenerationScore": "Pontuação",
       "totalInspections": "Total de inspeções",
       "lastRequestAt": "Última solicitação em",
       "registeredAt": "Registrado em",
@@ -120,7 +120,9 @@
       "carbon": "Carbono",
       "blocks": "blocos",
       "regenerationCredit": "Crédito de Regeneração",
-      "impact": "Impacto"
+      "impact": "Impacto",
+      "data": "Dados",
+      "share": "Compartilhar"
     },
     "offset": {
       "title": "Compensação",

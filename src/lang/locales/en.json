@@ -51,7 +51,7 @@
       "title": "Profile",
       "hashProofPhoto": "Proof photo",
       "totalArea": "Total area",
-      "regenerationScore": "Regeneration score",
+      "regenerationScore": "Score",
       "totalInspections": "Total inspections",
       "lastRequestAt": "Last requested at",
       "registeredAt": "Registered at",
@@ -120,7 +120,9 @@
       "carbon": "Carbon",
       "blocks": "Blocks",
       "regenerationCredit": "Regeneration Credit",
-      "impact": "Impact"
+      "impact": "Impact",
+      "data": "Data",
+      "share": "Share"
     },
     "offset": {
       "title": "Offset",
