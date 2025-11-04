@@ -122,7 +122,8 @@
       "regenerationCredit": "Regeneration Credit",
       "impact": "Impact",
       "data": "Data",
-      "share": "Share"
+      "share": "Share",
+      "ago": "ago"
     },
     "offset": {
       "title": "Offset",
@@ -298,7 +299,9 @@
       "score": "Score",
       "seeInspection": "See",
       "acceptInspection": "Accept inspection",
-      "thisInspectionCanAcceptIn": "This inspection can accept in"
+      "thisInspectionCanAcceptIn": "This inspection can accept in",
+      "expireIn": "Expire in",
+      "expired": "Expired"
     },
     "inspectionStatus": {
       "open": "Open",

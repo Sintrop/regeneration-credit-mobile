@@ -8,6 +8,7 @@ export function useBlockNumber() {
   const { data, isLoading, isError, refetch } = useQuery({
     queryKey: [QueryKeys.BlockNumber],
     queryFn: () => chainService.getBlockNumber({ rpc }),
+    refetchInterval: 15000
   });
 
   return {
