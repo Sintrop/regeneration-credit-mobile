@@ -6,6 +6,7 @@ import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import Toast from 'react-native-toast-message';
 import Mapbox from "@rnmapbox/maps";
 import Config from 'react-native-config';
+import BootSplash from "react-native-bootsplash";
 
 import { MMProvider } from '@providers';
 import { AppRoutes } from '@routes';
@@ -27,12 +28,17 @@ const queryClient = new QueryClient();
 function App() {
   useEffect(() => {
     Mapbox.setAccessToken(Config.MAPBOX_ACCESS_TOKEN);
+    hideBootSplash();
   }, []);
+  
+  function hideBootSplash() {
+    setTimeout(() => BootSplash.hide({ fade: true }), 1000);
+  }
 
   return (
-    <MMProvider>
-      <SafeAreaProvider>
-        <GestureHandlerRootView>
+    <SafeAreaProvider>
+      <GestureHandlerRootView>
+        <MMProvider>
           <QueryClientProvider client={queryClient}>
             <SettingsProvider>
               <UserProvider>
@@ -43,9 +49,9 @@ function App() {
               </UserProvider>
             </SettingsProvider>
           </QueryClientProvider>
-        </GestureHandlerRootView>
-      </SafeAreaProvider>
-    </MMProvider>
+        </MMProvider>
+      </GestureHandlerRootView>
+    </SafeAreaProvider>
   );
 }
 
