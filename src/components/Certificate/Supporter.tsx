@@ -1,8 +1,9 @@
 import { View } from "react-native";
+import { useTranslation } from "react-i18next";
+import QRCode from 'react-native-qrcode-svg';
 
 import { useCertificatedTokens, useGetSupporter, useImpactPerToken } from "@domain";
 import { Icon, Text } from "@components";
-import { useTranslation } from "react-i18next";
 
 interface Props {
   address: string;
@@ -18,6 +19,9 @@ export function Supporter({ address }: Props) {
   const treesImpact = certificated * trees;
   const areaImpact = certificated * area;
   const bioImpact = certificated * biodiversity;
+
+  const parsedName = supporter?.name.replace(' ', '-').toLowerCase();
+  const qrLink = 'https://users.regenerationcredit.org/supporter/' + address + '/' + parsedName;
 
   return (
     <View className="w-full max-w-[500] border-2 border-white rounded-2xl p-3 gap-5">
@@ -62,7 +66,10 @@ export function Supporter({ address }: Props) {
         </View>
 
         <View className="w-[48%] items-center justify-center">
-          <View className="w-40 h-40 bg-red-500"/>
+          <QRCode
+            value={qrLink}
+            size={130}
+          />
         </View>
       </View>
 
