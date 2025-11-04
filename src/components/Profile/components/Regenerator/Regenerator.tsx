@@ -2,7 +2,7 @@ import { View } from "react-native";
 import { useTranslation } from "react-i18next";
 
 import { useGetRegenerator, useProjectDescription } from "@domain";
-import { DataItem } from "@components";
+import { Certificate, DataItem, Text } from "@components";
 
 import { HeaderProfile } from "../HeaderProfile/HeaderProfile";
 import { AboutSection } from "../AboutSection/AboutSection";
@@ -47,6 +47,13 @@ export function Regenerator({ address }: Props) {
         </View>
 
         <RegenerationArea address={address} totalArea={regenerator.totalArea} />
+
+        <View className="gap-1 p-5 rounded-2xl bg-card-primary">
+          <Text className="font-bold text-white text-xl">
+            {t("profile.certificates")}
+          </Text>
+          <Certificate address={address} type="regenerator" />
+        </View>
         <Invitation address={address} />
         <UserDelations address={address} />
         <UserInspections address={address} />

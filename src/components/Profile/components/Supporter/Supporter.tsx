@@ -2,7 +2,7 @@ import { View } from "react-native";
 import { useTranslation } from "react-i18next";
 
 import { useGetSupporter } from "@domain";
-import { DataItem } from "@components";
+import { Certificate, DataItem, Text } from "@components";
 
 import { HeaderProfile } from "../HeaderProfile/HeaderProfile";
 import { Invitation } from "../Invitation/Invitation";
@@ -35,6 +35,14 @@ export function Supporter({ address }: Props) {
         </View>
 
         <Invitation address={address} />
+
+        <View className="gap-1 p-5 rounded-2xl bg-card-primary">
+          <Text className="font-bold text-white text-xl">
+            {t("profile.certificates")}
+          </Text>
+          <Certificate address={address} type="supporter" />
+        </View>
+
       </View>
     </View>
   )
