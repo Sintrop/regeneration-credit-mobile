@@ -5,7 +5,7 @@
       "userWithoutRegister": "User without register",
       "descriptionRegister": "To perform some actions in the system you need to register",
       "register": "Register",
-      "": "",
+      "newPubli": "New publication",
       "": ""
     },
     "feed": {
@@ -135,8 +135,9 @@
       "insufficientApprovedTokens": "Insufficient approved tokens",
       "labelInputDescription": "Message (Optional)",
       "madeOffset": "Made offset",
-      "": "",
-      "": ""
+      "newPubli": "You can post to your feed. To do this, we'll use the compensation system, where you choose an item from the impact calculator and offset it with a value in (RC). You can then add text describing your compensation.",
+      "selectAnItem": "Select an item",
+      "touchHereToSelect": "Touch here to select"
     },
     "impactCalculator": {
       "title": "Impact calculator",
