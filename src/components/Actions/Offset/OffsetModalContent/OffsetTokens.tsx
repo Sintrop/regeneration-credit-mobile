@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next";
 import Toast from "react-native-toast-message";
 import { utils } from "web3";
 
-import { useTxContext, useUserContext } from "@hooks";
+import { useKeyboardStatus, useTxContext, useUserContext } from "@hooks";
 import { CalculatorItemProps, useBalance } from "@domain";
 import { Text, TextInput } from "@components";
 import { SupporterRules } from "@contracts";
@@ -23,6 +23,7 @@ export function OffsetTokens({ refetchApprovedTokens, approvedTokens, item }: Pr
   const { address } = useUserContext();
   const { balance, isLoading } = useBalance({ address });
   const { registerContinueAction, sendTransaction } = useTxContext();
+  const { keyboardOpen } = useKeyboardStatus();
 
   const [inputTokens, setInputTokens] = useState('');
   const [description, setDescription] = useState('');
@@ -76,27 +77,31 @@ export function OffsetTokens({ refetchApprovedTokens, approvedTokens, item }: Pr
           {t('offset.approvedTokens')}
         </Text>
 
-        <View className="flex-row items-center gap-3">
-          <Image source={RCIcon} className="w-10 h-10" resizeMode="contain"/>
-          
-          <Text className="text-white text-2xl">
-            {Intl.NumberFormat('pt-BR', { maximumFractionDigits: 5 }).format(approvedTokens)} RC
-          </Text>
-        </View>
+        {!keyboardOpen && (
+          <>
+            <View className="flex-row items-center gap-3">
+              <Image source={RCIcon} className="w-10 h-10" resizeMode="contain"/>
+              
+              <Text className="text-white text-2xl">
+                {Intl.NumberFormat('pt-BR', { maximumFractionDigits: 5 }).format(approvedTokens)} RC
+              </Text>
+            </View>
 
-        <View className="gap-2 mb-3">
-          <Text className="text-white">
-            {t('offset.calculatorItem')}
-          </Text>
+            <View className="gap-2 mb-3">
+              <Text className="text-white">
+                {t('offset.calculatorItem')}
+              </Text>
 
-          <View className="flex items-center justify-between w-full">
-            <Text className="text-white">{item.item}</Text>
+              <View className="flex items-center justify-between w-full">
+                <Text className="text-white">{item.item}</Text>
 
-            <Text className="text-white">
-              {item.carbonImpact} g CO2/{item.unit}
-            </Text>
-          </View>
-        </View>
+                <Text className="text-white">
+                  {item.carbonImpact} g CO2/{item.unit}
+                </Text>
+              </View>
+            </View>
+          </>
+        )}
 
         <TextInput
           label={t('offset.howMuchDoYouWantToOffsetForThisItem')}
@@ -115,6 +120,7 @@ export function OffsetTokens({ refetchApprovedTokens, approvedTokens, item }: Pr
           value={description}
           onChangeText={setDescription}
           placeholder={t('common.typeHere')}
+          multiline={true}
         />
       </View>
 
