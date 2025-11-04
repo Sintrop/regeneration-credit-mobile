@@ -10,7 +10,6 @@ import Config from 'react-native-config';
 import { MMProvider } from '@providers';
 import { AppRoutes } from '@routes';
 import { SettingsProvider, TxProvider, UserProvider } from '@contexts';
-import { database } from '@database';
 
 import "./global.css";
 import "./src/lang/i18n";
@@ -27,14 +26,8 @@ const queryClient = new QueryClient();
 
 function App() {
   useEffect(() => {
-    initDatabase();
     Mapbox.setAccessToken(Config.MAPBOX_ACCESS_TOKEN);
   }, []);
-
-  async function initDatabase() {
-    await database.openDB();
-    await database.createTable();
-  }
 
   return (
     <MMProvider>
