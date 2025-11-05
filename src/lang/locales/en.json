@@ -178,9 +178,14 @@
       "isThereAnVacancie": "Is there an vacancie?",
       "projectDescription": "Project description",
       "regenerationArea": "Regeneration area",
-      "descriptionRegenerationArea": "Description",
+      "descriptionRegenerationArea": "Attention! Carefully review the area and coordinates recorded before submitting the registration, as it will not be possible to change the data later. Only areas undergoing regeneration should be included, that is, areas with trees already planted/managed by the regenerator and/or areas with the objective of planting many trees and regenerating the local ecosystem.",
+      "descriptionRegenerationArea2": "The coordinates must contain between 3 and 10 points.",
+      "descriptionRegenerationArea3": "The total area must be between 2,500 and 1,000,000 square meters [m²].",
       "coordinates": "Coordinates",
-      "areaSize": "Area size"
+      "areaSize": "Area size",
+      "useYourLocation": "Use your location",
+      "useYourLocationDescription": "By allowing us to use your location, we will locate it on the map, making it easier to find your regeneration area.",
+      "useMyLocation": "Use my location"
     },
     "myTokens": {
       "title": "My tokens",

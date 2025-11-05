@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
-import { View } from "react-native";
+import { TouchableOpacity, View } from "react-native";
 import { useTranslation } from "react-i18next";
 import Toast from "react-native-toast-message";
 
 import { Map, Text, TextInput } from "@components";
 import { calculateArea } from "@services";
-import { useResetNavigation, useTxContext, useUploadToIpfs, useUserContext } from "@hooks";
+import { usePermissions, useResetNavigation, useTxContext, useUploadToIpfs, useUserContext } from "@hooks";
 import { CoordinateProps, useAddRegenerator } from "@domain";
 
 import { BaseRegistrationProps } from "./UserRegistration";
@@ -26,6 +26,8 @@ export function Regenerator({ name, changeScrollEnabled }: BaseRegistrationProps
   const { refetchUser} = useUserContext();
   const { upload, uploading } = useUploadToIpfs();
   const { registerContinueAction } = useTxContext();
+
+  const { locationStatus, requestLocationPermission } = usePermissions();
   
   useEffect(() => {
     registerContinueAction(() => {
@@ -75,6 +77,8 @@ export function Regenerator({ name, changeScrollEnabled }: BaseRegistrationProps
         <Map
           label={t('register.regenerationArea')}
           description={t('register.descriptionRegenerationArea')}
+          description2={t('register.descriptionRegenerationArea2')}
+          description3={t('register.descriptionRegenerationArea3')}
           onChangeCoords={setCoordinates}
           mapStyle={{ width: '100%', height: 250 }} 
           showMarkers 
@@ -83,7 +87,27 @@ export function Regenerator({ name, changeScrollEnabled }: BaseRegistrationProps
           showDeleteButtons
           zoom={17}
           disableScroll={(disabled) => changeScrollEnabled && changeScrollEnabled(!disabled)}
+          showMyLocation
         />
+
+        {locationStatus !== 'granted' && (
+          <View className="bg-white rounded-2xl p-3 mt-3 gap-2">
+            <Text className="text-center font-semibold">
+              {t('register.useYourLocation')}
+            </Text>
+
+            <Text>{t('register.useYourLocationDescription')}</Text>
+
+            <TouchableOpacity
+              className="w-full h-12 rounded-2xl items-center justify-center bg-blue-primary"
+              onPress={requestLocationPermission}
+            >
+              <Text className="font-semibold text-white">
+                {t('register.useMyLocation')}
+              </Text>
+            </TouchableOpacity>
+          </View>
+        )}
 
         {coordinates.length > 0 && (
           <View className="mt-3">
