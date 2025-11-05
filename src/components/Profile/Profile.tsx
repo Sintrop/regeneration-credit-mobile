@@ -9,10 +9,11 @@ import { Supporter } from "./components/Supporter/Supporter";
 interface Props {
   address: string;
   userType: number;
+  changeScrollEnabled: (enable: boolean) => void;
 }
-export function Profile({ address, userType }: Props) {
+export function Profile({ address, userType, changeScrollEnabled }: Props) {
   const Component = userData[userType as UserTypeToUserData];
-  return <Component address={address} />
+  return <Component address={address} changeScrollEnabled={changeScrollEnabled} />
 }
 
 const userData = {

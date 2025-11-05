@@ -3,6 +3,7 @@ import { TouchableOpacity, View } from "react-native";
 import { useTranslation } from "react-i18next";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { useNavigation } from "@react-navigation/native";
+import Config from 'react-native-config';
 
 import { Icon, InspectionStatus, Text, AcceptInspection } from "@components";
 import { InspectionProps, useBlockNumber, useGetInspection } from "@domain";
@@ -24,10 +25,15 @@ export function InspectionItem({ inspectionId }: Props) {
   const { inspection, isLoading, refetch } = useGetInspection({ inspectionId });
   const { blockNumber } = useBlockNumber();
 
-  const delayToAccept = parseInt(process.env.ACCEPT_INSPECTION_DELAY_BLOCKS as string);
-  const canAcceptBlock = inspection?.createdAt ?? 0 + delayToAccept;
+  const createdAt = inspection?.createdAt ?? 0;
+  const acceptedAt = inspection?.acceptedAt ?? 0;
+  const blocksToExpire = parseInt(Config.BLOCKS_TO_EXPIRE_ACCEPTED_INSPECTION);
+  const delayToAccept = parseInt(Config.ACCEPT_INSPECTION_DELAY_BLOCKS);
+  const canAcceptBlock = createdAt + delayToAccept;
   const canAccept = canAcceptBlock < blockNumber ? true : false;
   const canAcceptIn = canAcceptBlock - blockNumber;
+  const expireBlock = acceptedAt + blocksToExpire
+  const expireIn = expireBlock - blockNumber ;
 
   useEffect(() => {
     registerContinueAction(() => {
@@ -47,7 +53,17 @@ export function InspectionItem({ inspectionId }: Props) {
         {t('inspections.inspection')} #{inspectionId}
       </Text>
 
-      <View className="absolute top-4 right-4">
+      <View className="absolute top-4 right-4 flex-row items-center gap-3">
+        {inspection.status === 'accepted' && (
+          <Text className="text-yellow-500">
+            {t('inspections.expireIn')} {expireIn} {t('common.blocks')}
+          </Text>
+        )}
+        {inspection.status === 'expired' && (
+          <Text className="text-orange-500">
+            {t('inspections.expired')} {Math.abs(expireIn)} {t('common.blocks')} {t('common.ago')}
+          </Text>
+        )}
         <InspectionStatus status={inspection.status} />
       </View>
 

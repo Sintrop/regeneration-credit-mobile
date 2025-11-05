@@ -66,7 +66,6 @@ export * from "./ContributorRules/events/useContributionAdded";
 export * from "./Feed/feedService";
 export * from "./Feed/feedAdapter";
 export * from "./Feed/useCases/useFeedInspections";
-export * from "./Feed/useCases/useFeed";
 export * from "./Feed/useCases/useNewFeed";
 
 export * from "./User/types";

@@ -7,8 +7,9 @@ import { useCoordinates } from "@domain";
 interface Props {
   address: string;
   totalArea: number;
+  changeScrollEnabled: (enable: boolean) => void;
 }
-export function RegenerationArea({ address, totalArea }: Props) {
+export function RegenerationArea({ address, totalArea, changeScrollEnabled }: Props) {
   const { t } = useTranslation();
   const { coordinates } = useCoordinates({ address });
 
@@ -22,6 +23,7 @@ export function RegenerationArea({ address, totalArea }: Props) {
         showMarkers
         showPolyline
         mapStyle={{ width: '100%', height: 250 }}
+        disableScroll={(disabled) => changeScrollEnabled(!disabled)}
       />
       <Text className="text-gray-300 text-sm mt-2">
         {t("profile.coordinates")}
