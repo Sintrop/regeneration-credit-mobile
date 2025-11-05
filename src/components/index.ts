@@ -15,7 +15,10 @@ export * from "./Select/Select";
 export * from "./Camera/Camera";
 export * from "./FileInput/FileInput";
 export * from "./Map/Map";
+export * from "./InspectionStatus/InspectionStatus";
+export * from "./Certificate/Certificate";
 
 export * from "./Actions/Actions";
 export * from "./Actions/Offset/Offset";
 export * from "./Actions/BurnTokens/BurnTokens";
+export * from "./Actions/AcceptInspection/AcceptInspection";

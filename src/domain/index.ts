@@ -4,6 +4,7 @@ export * from "./RegenerationCredit/useCases/useApprovedTokens";
 export * from "./RegenerationCredit/useCases/useBalance";
 export * from "./RegenerationCredit/useCases/useBurn";
 export * from "./RegenerationCredit/useCases/useTokenData";
+export * from "./RegenerationCredit/useCases/useCertificatedTokens";
 
 export * from "./RegenerationCreditImpact/types";
 export * from "./RegenerationCreditImpact/rcImpactService";
@@ -18,6 +19,7 @@ export * from "./InspectionRules/useCases/useRealizeInspection";
 export * from "./InspectionRules/useCases/useAcceptInspection";
 export * from "./InspectionRules/useCases/useRequestInspection";
 export * from "./InspectionRules/useCases/useImpactPerEra";
+export * from "./InspectionRules/useCases/useInspectionsList";
 export * from "./InspectionRules/events/useRealizedInspections";
 
 export * from "./CommunityRules/types";
@@ -64,7 +66,6 @@ export * from "./ContributorRules/events/useContributionAdded";
 export * from "./Feed/feedService";
 export * from "./Feed/feedAdapter";
 export * from "./Feed/useCases/useFeedInspections";
-export * from "./Feed/useCases/useFeed";
 export * from "./Feed/useCases/useNewFeed";
 
 export * from "./User/types";
@@ -88,3 +89,6 @@ export * from "./InvitationRules/useCases/useInvite";
 
 export * from "./Tx/types";
 export * from "./Tx/events/useTransfers";
+
+export * from "./Chain/chainService";
+export * from "./Chain/useCases/useBlockNumber";

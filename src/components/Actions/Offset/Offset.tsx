@@ -1,10 +1,11 @@
-import { Children, cloneElement, isValidElement, ReactNode, useRef } from "react";
+import { Children, cloneElement, isValidElement, ReactNode, useEffect, useRef, useState } from "react";
 import { View } from "react-native";
 import { Modalize } from "react-native-modalize";
 import { Portal } from "react-native-portalize";
 
 import { CalculatorItemProps } from "@domain";
 import { OffsetModalContent } from "./OffsetModalContent/OffsetModalContent";
+import { SelectItem } from "./SelectItem";
 
 interface ModalControls {
   openModal: () => void;
@@ -13,12 +14,16 @@ interface ModalControls {
 
 interface Props {
   children: ReactNode;
-  item: CalculatorItemProps
+  item?: CalculatorItemProps
 }
 
 export function Offset({ children, item }: Props) {
-  
+  const [selectedItem, setSelectedItem] = useState<CalculatorItemProps | null>(null);
   const offsetModal = useRef<Modalize>(null);
+
+  useEffect(() => {
+    if (item) setSelectedItem(item);
+  }, [item]);
 
   function openModal() {
     offsetModal.current?.open();
@@ -29,11 +34,11 @@ export function Offset({ children, item }: Props) {
   }
 
  const enhancedChildren = Children.map(children, child => {
-  if (isValidElement<ModalControls>(child)) {
-    return cloneElement(child, { openModal, closeModal });
-  }
-  return child;
-});
+    if (isValidElement<ModalControls>(child)) {
+      return cloneElement(child, { openModal, closeModal });
+    }
+    return child;
+  });
 
   return (
     <View>
@@ -45,7 +50,11 @@ export function Offset({ children, item }: Props) {
           adjustToContentHeight
           modalStyle={{ backgroundColor: 'transparent' }}
         >
-          <OffsetModalContent item={item} />
+          {selectedItem ? (
+            <OffsetModalContent item={selectedItem} />
+          ) : (
+            <SelectItem onSelect={setSelectedItem} />
+          )}
         </Modalize>
       </Portal>
     </View>

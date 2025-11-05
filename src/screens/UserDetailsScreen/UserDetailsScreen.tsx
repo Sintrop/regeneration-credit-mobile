@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { ActivityIndicator, View } from "react-native";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { useTranslation } from "react-i18next";
@@ -11,6 +12,7 @@ export function UserDetailsScreen({ route }: ScreenProps) {
   const { address } = route.params;
   const { t } = useTranslation();
   const { userType, isLoading, isError, refetch } = useGetUser({ address })
+  const [scrollEnabled, setScrollEnabled] = useState<boolean>(true);
 
   if (isLoading) {
     return (
@@ -40,8 +42,18 @@ export function UserDetailsScreen({ route }: ScreenProps) {
   }
 
   return (
-    <Screen title={t("userDetails.title")} showBackButton scrollable withoutPadding >
-      <Profile address={address} userType={userType} />
+    <Screen 
+      title={t("userDetails.title")} 
+      scrollEnabled={scrollEnabled}
+      showBackButton 
+      scrollable 
+      withoutPadding 
+    >
+      <Profile 
+        address={address} 
+        userType={userType} 
+        changeScrollEnabled={setScrollEnabled}
+      />
     </Screen>
   );
 }

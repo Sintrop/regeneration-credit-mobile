@@ -5,7 +5,7 @@
       "userWithoutRegister": "User without register",
       "descriptionRegister": "To perform some actions in the system you need to register",
       "register": "Register",
-      "": "",
+      "newPubli": "New publication",
       "": ""
     },
     "feed": {
@@ -51,7 +51,7 @@
       "title": "Profile",
       "hashProofPhoto": "Proof photo",
       "totalArea": "Total area",
-      "regenerationScore": "Regeneration score",
+      "regenerationScore": "Score",
       "totalInspections": "Total inspections",
       "lastRequestAt": "Last requested at",
       "registeredAt": "Registered at",
@@ -77,7 +77,9 @@
       "inspections": "Inspections",
       "noUserInspections": "No user inspections",
       "inspection": "Inspection",
-      "seeMore": "See more"
+      "seeMore": "See more",
+      "contributedWith": "Contributed with",
+      "certificates": "Certificates"
     },
     "pdfView": {
       "title": "PDF View"
@@ -115,7 +117,13 @@
       "you": "You",
       "inspections": "Inspections",
       "area": "Area",
-      "carbon": "Carbon"
+      "carbon": "Carbon",
+      "blocks": "Blocks",
+      "regenerationCredit": "Regeneration Credit",
+      "impact": "Impact",
+      "data": "Data",
+      "share": "Share",
+      "ago": "ago"
     },
     "offset": {
       "title": "Offset",
@@ -128,8 +136,9 @@
       "insufficientApprovedTokens": "Insufficient approved tokens",
       "labelInputDescription": "Message (Optional)",
       "madeOffset": "Made offset",
-      "": "",
-      "": ""
+      "newPubli": "You can post to your feed. To do this, we'll use the compensation system, where you choose an item from the impact calculator and offset it with a value in (RC). You can then add text describing your compensation.",
+      "selectAnItem": "Select an item",
+      "touchHereToSelect": "Touch here to select"
     },
     "impactCalculator": {
       "title": "Impact calculator",
@@ -169,9 +178,14 @@
       "isThereAnVacancie": "Is there an vacancie?",
       "projectDescription": "Project description",
       "regenerationArea": "Regeneration area",
-      "descriptionRegenerationArea": "Description",
+      "descriptionRegenerationArea": "Attention! Carefully review the area and coordinates recorded before submitting the registration, as it will not be possible to change the data later. Only areas undergoing regeneration should be included, that is, areas with trees already planted/managed by the regenerator and/or areas with the objective of planting many trees and regenerating the local ecosystem.",
+      "descriptionRegenerationArea2": "The coordinates must contain between 3 and 10 points.",
+      "descriptionRegenerationArea3": "The total area must be between 2,500 and 1,000,000 square meters [m²].",
       "coordinates": "Coordinates",
-      "areaSize": "Area size"
+      "areaSize": "Area size",
+      "useYourLocation": "Use your location",
+      "useYourLocationDescription": "By allowing us to use your location, we will locate it on the map, making it easier to find your regeneration area.",
+      "useMyLocation": "Use my location"
     },
     "myTokens": {
       "title": "My tokens",
@@ -283,6 +297,23 @@
       "descContributors": "Contributors perform generic contributions to the project and are subject to validation and penalty mechanisms.",
       "descActivists": "Activists are responsible for inviting new Regenerators and Inspectors, and they earn rewards based on the approval of their invited users.",
       "descSupporters": "Finance ecosystem regeneration, purchase Regeneration Credit directly from the community, exchange it for the certificate, and prove your commitment to the regeneration of terrestrial ecosystems."
+    },
+    "inspections": {
+      "title": "Inspections",
+      "inspection": "Inspection",
+      "score": "Score",
+      "seeInspection": "See",
+      "acceptInspection": "Accept inspection",
+      "thisInspectionCanAcceptIn": "This inspection can accept in",
+      "expireIn": "Expire in",
+      "expired": "Expired"
+    },
+    "inspectionStatus": {
+      "open": "Open",
+      "accepted": "Accepted",
+      "realized": "Realized",
+      "expired": "Expired",
+      "invalidated": "Invalidated"
     }
   }
 }

@@ -15,7 +15,7 @@ interface GetInspectionProps {
 }
 async function getInspection({ rpc, inspectionId }: GetInspectionProps): Promise<InspectionProps> {
   const response = await inspectionContract.getInspection({ rpc, inspectionId })
-  return inspectionAdapter.parseInspection(response);
+  return inspectionAdapter.parseInspection({ data: response, rpc });
 }
 
 interface GetUserInspectionsProps {
@@ -28,8 +28,9 @@ async function getUserInspections({ rpc, address }: GetUserInspectionsProps): Pr
   let inspections: InspectionProps[] = [];
   for (let i = 0; i < ids.length; i++) {
     const id = ids[i];
-    const inspection = await inspectionContract.getInspection({ rpc, inspectionId: id })
-    inspections.push(inspectionAdapter.parseInspection(inspection))
+    const inspection = await inspectionContract.getInspection({ rpc, inspectionId: id });
+    const parse = await inspectionAdapter.parseInspection({ data: inspection, rpc });
+    inspections.push(parse)
   }
 
   return inspections

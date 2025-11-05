@@ -1749,6 +1749,8 @@ PODS:
     - ReactCommon/turbomodule/core
     - SocketRocket
     - Yoga
+  - react-native-geolocation-service (5.3.1):
+    - React
   - react-native-get-random-values (1.11.0):
     - React-Core
   - react-native-image-picker (8.2.1):
@@ -1901,8 +1903,35 @@ PODS:
     - ReactCommon/turbomodule/core
     - SocketRocket
     - Yoga
-  - react-native-sqlite-storage (6.0.1):
+  - react-native-view-shot (4.0.3):
+    - boost
+    - DoubleConversion
+    - fast_float
+    - fmt
+    - glog
+    - hermes-engine
+    - RCT-Folly
+    - RCT-Folly/Fabric
+    - RCTRequired
+    - RCTTypeSafety
     - React-Core
+    - React-debug
+    - React-Fabric
+    - React-featureflags
+    - React-graphics
+    - React-hermes
+    - React-ImageManager
+    - React-jsi
+    - React-NativeModulesApple
+    - React-RCTFabric
+    - React-renderercss
+    - React-rendererdebug
+    - React-utils
+    - ReactCodegen
+    - ReactCommon/turbomodule/bridging
+    - ReactCommon/turbomodule/core
+    - SocketRocket
+    - Yoga
   - React-NativeModulesApple (0.80.2):
     - boost
     - DoubleConversion
@@ -2377,6 +2406,35 @@ PODS:
     - React-perflogger (= 0.80.2)
     - React-utils (= 0.80.2)
     - SocketRocket
+  - RNBootSplash (6.3.11):
+    - boost
+    - DoubleConversion
+    - fast_float
+    - fmt
+    - glog
+    - hermes-engine
+    - RCT-Folly
+    - RCT-Folly/Fabric
+    - RCTRequired
+    - RCTTypeSafety
+    - React-Core
+    - React-debug
+    - React-Fabric
+    - React-featureflags
+    - React-graphics
+    - React-hermes
+    - React-ImageManager
+    - React-jsi
+    - React-NativeModulesApple
+    - React-RCTFabric
+    - React-renderercss
+    - React-rendererdebug
+    - React-utils
+    - ReactCodegen
+    - ReactCommon/turbomodule/bridging
+    - ReactCommon/turbomodule/core
+    - SocketRocket
+    - Yoga
   - RNCAsyncStorage (1.24.0):
     - boost
     - DoubleConversion
@@ -2679,6 +2737,35 @@ PODS:
     - ReactCommon/turbomodule/core
     - SocketRocket
     - Yoga
+  - RNShare (12.2.0):
+    - boost
+    - DoubleConversion
+    - fast_float
+    - fmt
+    - glog
+    - hermes-engine
+    - RCT-Folly
+    - RCT-Folly/Fabric
+    - RCTRequired
+    - RCTTypeSafety
+    - React-Core
+    - React-debug
+    - React-Fabric
+    - React-featureflags
+    - React-graphics
+    - React-hermes
+    - React-ImageManager
+    - React-jsi
+    - React-NativeModulesApple
+    - React-RCTFabric
+    - React-renderercss
+    - React-rendererdebug
+    - React-utils
+    - ReactCodegen
+    - ReactCommon/turbomodule/bridging
+    - ReactCommon/turbomodule/core
+    - SocketRocket
+    - Yoga
   - RNSVG (15.12.1):
     - boost
     - DoubleConversion
@@ -2884,12 +2971,13 @@ DEPENDENCIES:
   - react-native-config (from `../node_modules/react-native-config`)
   - "react-native-document-picker (from `../node_modules/@react-native-documents/picker`)"
   - "react-native-document-viewer (from `../node_modules/@react-native-documents/viewer`)"
+  - react-native-geolocation-service (from `../node_modules/react-native-geolocation-service`)
   - react-native-get-random-values (from `../node_modules/react-native-get-random-values`)
   - react-native-image-picker (from `../node_modules/react-native-image-picker`)
   - react-native-pdf (from `../node_modules/react-native-pdf`)
   - react-native-randombytes (from `../node_modules/react-native-randombytes`)
   - react-native-safe-area-context (from `../node_modules/react-native-safe-area-context`)
-  - react-native-sqlite-storage (from `../node_modules/react-native-sqlite-storage`)
+  - react-native-view-shot (from `../node_modules/react-native-view-shot`)
   - React-NativeModulesApple (from `../node_modules/react-native/ReactCommon/react/nativemodule/core/platform/ios`)
   - React-oscompat (from `../node_modules/react-native/ReactCommon/oscompat`)
   - React-perflogger (from `../node_modules/react-native/ReactCommon/reactperflogger`)
@@ -2921,6 +3009,7 @@ DEPENDENCIES:
   - ReactAppDependencyProvider (from `build/generated/ios`)
   - ReactCodegen (from `build/generated/ios`)
   - ReactCommon/turbomodule/core (from `../node_modules/react-native/ReactCommon`)
+  - RNBootSplash (from `../node_modules/react-native-bootsplash`)
   - "RNCAsyncStorage (from `../node_modules/@react-native-async-storage/async-storage`)"
   - "RNCClipboard (from `../node_modules/@react-native-clipboard/clipboard`)"
   - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
@@ -2928,6 +3017,7 @@ DEPENDENCIES:
   - RNPermissions (from `../node_modules/react-native-permissions`)
   - RNReanimated (from `../node_modules/react-native-reanimated`)
   - RNScreens (from `../node_modules/react-native-screens`)
+  - RNShare (from `../node_modules/react-native-share`)
   - RNSVG (from `../node_modules/react-native-svg`)
   - RNWorklets (from `../node_modules/react-native-worklets`)
   - SocketRocket (~> 0.7.1)
@@ -3034,6 +3124,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/@react-native-documents/picker"
   react-native-document-viewer:
     :path: "../node_modules/@react-native-documents/viewer"
+  react-native-geolocation-service:
+    :path: "../node_modules/react-native-geolocation-service"
   react-native-get-random-values:
     :path: "../node_modules/react-native-get-random-values"
   react-native-image-picker:
@@ -3044,8 +3136,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-randombytes"
   react-native-safe-area-context:
     :path: "../node_modules/react-native-safe-area-context"
-  react-native-sqlite-storage:
-    :path: "../node_modules/react-native-sqlite-storage"
+  react-native-view-shot:
+    :path: "../node_modules/react-native-view-shot"
   React-NativeModulesApple:
     :path: "../node_modules/react-native/ReactCommon/react/nativemodule/core/platform/ios"
   React-oscompat:
@@ -3108,6 +3200,8 @@ EXTERNAL SOURCES:
     :path: build/generated/ios
   ReactCommon:
     :path: "../node_modules/react-native/ReactCommon"
+  RNBootSplash:
+    :path: "../node_modules/react-native-bootsplash"
   RNCAsyncStorage:
     :path: "../node_modules/@react-native-async-storage/async-storage"
   RNCClipboard:
@@ -3122,6 +3216,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-reanimated"
   RNScreens:
     :path: "../node_modules/react-native-screens"
+  RNShare:
+    :path: "../node_modules/react-native-share"
   RNSVG:
     :path: "../node_modules/react-native-svg"
   RNWorklets:
@@ -3180,12 +3276,13 @@ SPEC CHECKSUMS:
   react-native-config: 9f48ad1ee7f4fcb9482c66988e30bd60572bb963
   react-native-document-picker: a51b7f859bab49bee35a0bc63e2455ffaeea5505
   react-native-document-viewer: 70ca373c7f922dfb9fb5d0df909e877cbb8ab787
+  react-native-geolocation-service: 608e1da71a1ac31b4de64d9ef2815f697978c55b
   react-native-get-random-values: 21325b2244dfa6b58878f51f9aa42821e7ba3d06
   react-native-image-picker: df98fd6bf821b49ae97a383fd4adb1430f659a67
   react-native-pdf: 2cf27361d860386ecd6d7743dffcba23ef41ef31
   react-native-randombytes: ddf6edfd3fb9091af8c6ed1b35e57c308b5f5f2c
   react-native-safe-area-context: 47c1782a327ca2affa9bec5a2f95534cbabb620a
-  react-native-sqlite-storage: f6d515e1c446d1e6d026aa5352908a25d4de3261
+  react-native-view-shot: a18275ac858eb4866365148517774182319c7aee
   React-NativeModulesApple: b22e6abb44d78270dfdfc7d85efe29e35e0333a7
   React-oscompat: 56d6de59f9ae95cd006a1c40be2cde83bc06a4e1
   React-perflogger: 0633844e495d8b34798c9bf0cb32ce315f1d5c9f
@@ -3217,13 +3314,15 @@ SPEC CHECKSUMS:
   ReactAppDependencyProvider: 6c9197c1f6643633012ab646d2bfedd1b0d25989
   ReactCodegen: 9ea66ee246511816b72e9d6e380f884b7b3b99d7
   ReactCommon: 7aca047f2f453a7d7f0adeccb63810d61829235a
+  RNBootSplash: e3064760ed93f452c0fbe91b66b2ef5a6d2afa16
   RNCAsyncStorage: 8e9406ce79bba50a7ab965e1c05a93044f230de6
   RNCClipboard: acf8ae07037c21f17d9284ca56e982186ed21465
   RNGestureHandler: cdca641e24d0ab743dcd90a24de4e6259e6aa0de
   rnmapbox-maps: b3e61b59bbfe304a00feed6938ebb859a96969fb
-  RNPermissions: 77b1f93576799db56ede0e0a82fce7cb77a4e471
+  RNPermissions: 491a80db062fbe4a5ea1264a4c5a1c7310ee4b08
   RNReanimated: 8551defecb5f76b38e1b16a3345822da4c259de0
   RNScreens: 75074e642b69b086813a943bdf63da7085fb2166
+  RNShare: 1da66ef784f6137274a4f1f012a1626a6fbcf361
   RNSVG: 432ca012e24410cab11449afef353ce20573a59f
   RNWorklets: 7d34d4c80edec50bb1eec6bd034e7686db26da8e
   SocketRocket: d4aabe649be1e368d1318fdf28a022d714d65748
@@ -3231,6 +3330,6 @@ SPEC CHECKSUMS:
   VisionCamera: 2230ecfd78a1f6cddd8be0fe4e6589f21a6385e1
   Yoga: a742cc68e8366fcfc681808162492bc0aa7a9498
 
-PODFILE CHECKSUM: 72171d69ba32ad58a94723d818b1272af0fd5b23
+PODFILE CHECKSUM: 05ceb81bc320fbff36b1d726c0107b31a9e45203
 
 COCOAPODS: 1.16.2

@@ -29,8 +29,14 @@ async function getTokenData({ rpc }: { rpc: string }): Promise<TokenDataProps> {
   }
 }
 
+async function getCertificatedTokens({ address, rpc }: { address: string; rpc: string }): Promise<number> {
+  const response = await rcContract.certificate({ address, rpc })
+  return bigNumberToFloat(response) / 10 ** 18;
+}
+
 export const rcService = {
   getBalance,
   getTokensAllowed,
-  getTokenData
+  getTokenData,
+  getCertificatedTokens
 }

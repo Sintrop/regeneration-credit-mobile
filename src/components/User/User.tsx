@@ -12,10 +12,11 @@ interface Props {
   isLoading?: boolean;
   photo?: string;
   createdAt?: number;
+  size?: number;
 }
 
 type NavigationProps = NativeStackNavigationProp<AppStackParamsList, "HomeScreen">
-export function User({ address, name, photo, isLoading }: Props) {
+export function User({ address, name, photo, isLoading, size = 50 }: Props) {
   const navigation = useNavigation<NavigationProps>();
 
   function handleGoToUserDetails() {
@@ -32,7 +33,7 @@ export function User({ address, name, photo, isLoading }: Props) {
       className="flex-row w-full gap-3 py-2"
       onPress={handleGoToUserDetails}
     >
-      <Avatar address={address ? address : ""} photoHash={photo} size={50} />
+      <Avatar address={address ? address : ""} photoHash={photo} size={size} />
 
       <View className="mt-[-3]">
         <Text className="font-bold text-white">{name}</Text>

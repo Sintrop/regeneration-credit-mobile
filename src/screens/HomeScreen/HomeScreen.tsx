@@ -2,7 +2,7 @@ import { FlatList, ListRenderItemInfo, TouchableOpacity, View } from 'react-nati
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { useTranslation } from 'react-i18next';
 
-import { Screen, FeedItem, Text, Icon, Actions } from '@components';
+import { Screen, FeedItem, Text, Icon, Actions, Offset } from '@components';
 import { useNewFeed } from '@domain';
 import { FeedItemProps } from '@database';
 import { AppStackParamsList } from '@routes';
@@ -68,6 +68,22 @@ export function HomeScreen({ navigation }: ScreenProps) {
             <Text className='text-white'>{t('community.title')}</Text>
           </TouchableOpacity>
         </View>
+        <View className='flex-row justify-center gap-4 mt-2'>
+          <TouchableOpacity
+            className='flex-1 h-12 rounded-2xl items-center justify-center flex-row gap-3 bg-card-primary'
+            onPress={() => navigation.navigate('InspectionsScreen')}
+          >
+            <Icon name="inspections" size={20} />
+            <Text className='text-white'>{t('inspections.title')}</Text>
+          </TouchableOpacity>
+          {/* <TouchableOpacity
+            className='flex-1 h-12 rounded-2xl items-center justify-center flex-row gap-3 bg-card-primary'
+            onPress={() => navigation.navigate('CommunityScreen')}
+          >
+            <Icon name="community" size={20} />
+            <Text className='text-white'>{t('community.title')}</Text>
+          </TouchableOpacity> */}
+        </View>
       </View>
     )
   }
@@ -99,7 +115,12 @@ export function HomeScreen({ navigation }: ScreenProps) {
           onRefresh={refresh}
         />
 
-        <View className='absolute right-4 bottom-16'>
+        <View className='absolute right-4 bottom-16 gap-5'>
+          {userType === 7 && (
+            <Offset>
+              <OffsetButton />
+            </Offset>
+          )}
           {isConnected && userType !== 0 && (
             <Actions />
           )}
@@ -123,4 +144,20 @@ function EmptyList({ isLoading }: EmptyListProps) {
   }
 
   return <View />
+}
+
+interface OffsetButtonProps {
+  openModal?: () => void;
+}
+function OffsetButton({ openModal }: OffsetButtonProps) {
+  const { t } = useTranslation();
+
+  return (
+    <TouchableOpacity
+      onPress={openModal}
+      className='flex-row items-center justify-center gap-2 px-5 h-12 rounded-full bg-blue-primary'
+    >
+      <Text className='font-semibold text-white'>{t('homeScreen.newPubli')}</Text>
+    </TouchableOpacity>
+  )
 }

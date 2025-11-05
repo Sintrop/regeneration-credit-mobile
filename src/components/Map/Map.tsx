@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 import { TouchableOpacity, View, ViewStyle } from "react-native";
-import {Camera, MapView, PointAnnotation, StyleURL} from "@rnmapbox/maps";
+import { Camera, MapView, PointAnnotation, StyleURL, UserLocation, UserTrackingMode } from "@rnmapbox/maps";
 import { useTranslation } from "react-i18next";
 
 import { Text } from "@components";
 import { CoordinateProps } from "@domain";
+import { usePermissions } from "@hooks";
 
 import { Polyline } from "./Polyline";
 
@@ -12,6 +13,8 @@ interface Props {
   coords?: CoordinateProps[];
   label?: string;
   description?: string;
+  description2?: string;
+  description3?: string;
   onChangeCoords?: (coords: CoordinateProps[]) => void;
   showMarkers?: boolean;
   showPolyline?: boolean;
@@ -20,6 +23,7 @@ interface Props {
   mapStyle?: ViewStyle;
   zoom?: number;
   disableScroll?: (disabled: boolean) => void;
+  showMyLocation?: boolean;
 }
 export function Map({ 
   onChangeCoords, 
@@ -31,13 +35,17 @@ export function Map({
   coords, 
   zoom = 14,
   description,
+  description2,
+  description3,
   label,
-  disableScroll
+  disableScroll,
+  showMyLocation
 }: Props) {
   const { t } = useTranslation();
   const [markers, setMarkers] = useState<CoordinateProps[]>([]);
   const [pathPolyline, setPathPolyline] = useState<[number, number][]>([]);
   const [mapPosition, setMapPosition] = useState<CoordinateProps | null>();
+  const { locationStatus } = usePermissions();
 
   useEffect(() => {
     if(coords) setMarkers(coords)
@@ -83,9 +91,17 @@ export function Map({
         <Text className="text-gray-300 text-sm">{label}</Text>
       )}
 
-      {description && (
-        <Text className="text-white">{description}</Text>
-      )}
+      <View className="gap-2">
+        {description && (
+          <Text className="text-white">{description}</Text>
+        )}
+        {description2 && (
+          <Text className="text-white">{description2}</Text>
+        )}
+        {description3 && (
+          <Text className="text-white">{description3}</Text>
+        )}
+      </View>
 
       <MapView
         style={mapStyle}
@@ -104,11 +120,37 @@ export function Map({
         onTouchEnd={() => disableScroll && disableScroll(false)}
         onTouchCancel={() => disableScroll && disableScroll(false)}
       >
-        {mapPosition && (
-          <Camera
-            zoomLevel={zoom}
-            centerCoordinate={[mapPosition?.longitude, mapPosition?.latitude]}
-          />
+        {showMyLocation ? (
+          <>
+            {locationStatus === 'granted' ? (
+              <>
+                <Camera
+                  followUserLocation={true}
+                  followUserMode={UserTrackingMode.Follow}
+                  followZoomLevel={18}
+                />
+                <UserLocation showsUserHeadingIndicator minDisplacement={1} />
+              </>
+            ) : (
+              <>
+                {mapPosition && (
+                  <Camera
+                    zoomLevel={zoom}
+                    centerCoordinate={[mapPosition?.longitude, mapPosition?.latitude]}
+                  />
+                )}
+              </>
+            )}
+          </>
+        ) : (
+          <>
+            {mapPosition && (
+              <Camera
+                zoomLevel={zoom}
+                centerCoordinate={[mapPosition?.longitude, mapPosition?.latitude]}
+              />
+            )}
+          </>
         )}
 
         {markers.length > 0 && (

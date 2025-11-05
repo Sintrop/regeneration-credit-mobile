@@ -1,26 +1,31 @@
-import { ImpactPerEraContractProps, ImpactPerEraProps, InspectionContractProps, InspectionProps, InspectionStatus } from "@domain";
+import Config from 'react-native-config';
+
+import { chainService, ImpactPerEraContractProps, ImpactPerEraProps, InspectionContractProps, InspectionProps, InspectionStatus } from "@domain";
 import { bigNumberToFloat } from "@utils";
 
-function parseInspection(data: InspectionContractProps): InspectionProps {
+async function parseInspection({ data, rpc }: { data: InspectionContractProps; rpc: string; }): Promise<InspectionProps> {
   const statusContract = bigNumberToFloat(data.status);
   let status: InspectionStatus = "open";
 
-  switch (true) {
-    case statusContract === 0:
-      status = "open";
-      break;
-    case statusContract === 1:
-      status = "accepted";
-      break;
-    case statusContract === 2:
-      status = "realized";
-      break;
-    case statusContract === 3:
-      status = "invalidated";
-      break;
-    default:
+  const blocksToExpire = parseInt(Config.BLOCKS_TO_EXPIRE_ACCEPTED_INSPECTION);
+  const acceptedAt = bigNumberToFloat(data.acceptedAt);
+  const currentBlock = await chainService.getBlockNumber({ rpc });
+
+  if (statusContract === 0) {
+    status = "open";
+  }
+  if (statusContract === 1) {
+    if (acceptedAt + blocksToExpire < currentBlock) {
       status = "expired";
-      break;
+    } else {
+      status = "accepted";
+    }
+  }
+  if (statusContract === 2) {
+    status = "realized";
+  }
+  if (statusContract === 3) {
+    status = "invalidated";
   }
 
   return {

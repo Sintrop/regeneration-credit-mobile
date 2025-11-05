@@ -5,7 +5,7 @@
       "userWithoutRegister": "Usuário sem registro",
       "descriptionRegister": "Para realizar algumas ações no sistema você precisa se registrar",
       "register": "Registrar",
-      "": "",
+      "newPubli": "Nova publicação",
       "": ""
     },
     "feed": {
@@ -51,7 +51,7 @@
       "title": "Perfil",
       "hashProofPhoto": "Foto de prova",
       "totalArea": "Área total",
-      "regenerationScore": "Pontuação de regeneração",
+      "regenerationScore": "Pontuação",
       "totalInspections": "Total de inspeções",
       "lastRequestAt": "Última solicitação em",
       "registeredAt": "Registrado em",
@@ -77,7 +77,9 @@
       "inspections": "Inspeções",
       "noUserInspections": "Nenhuma inspeção do usuário",
       "inspection": "Inspeção",
-      "seeMore": "Ver mais"
+      "seeMore": "Ver mais",
+      "contributedWith": "Contribuiu com",
+      "certificates": "Certificados"
     },
     "pdfView": {
       "title": "Visualização de PDF"
@@ -115,7 +117,13 @@
       "you": "Você",
       "inspections": "Inspeções",
       "area": "Área",
-      "carbon": "Carbono"
+      "carbon": "Carbono",
+      "blocks": "blocos",
+      "regenerationCredit": "Crédito de Regeneração",
+      "impact": "Impacto",
+      "data": "Dados",
+      "share": "Compartilhar",
+      "ago": "atrás"
     },
     "offset": {
       "title": "Compensação",
@@ -128,8 +136,9 @@
       "insufficientApprovedTokens": "Tokens aprovados insuficientes",
       "labelInputDescription": "Mensagem (Opcional)",
       "madeOffset": "Compensação realizada",
-      "": "",
-      "": ""
+      "newPubli": "Voce pode fazer uma publicação no feed. Para isso, vamos utilizar o sistema de compesação, onde você escolhe um item da calculadora de impacto e compensa um valor em (RC). Com isso você pode adicionar um texto como descrição da sua compensação",
+      "selectAnItem": "Selecione um item",
+      "touchHereToSelect": "Toque aqui para selecionar"
     },
     "impactCalculator": {
       "title": "Calcul. de impacto",
@@ -169,9 +178,14 @@
       "isThereAnVacancie": "Há uma vaga?",
       "projectDescription": "Descrição do projeto",
       "regenerationArea": "Área de regeneração",
-      "descriptionRegenerationArea": "Descrição",
+      "descriptionRegenerationArea": "Atenção! Revise cuidadosamente a área e as coordenadas registradas antes de enviar o cadastro, pois não será possível alterar os dados posteriormente. Somente áreas em processo de regeneração devem ser incluídas, ou seja, áreas com árvores já plantadas/manejadas pelo regenerador e/ou áreas com o objetivo de plantar muitas árvores e regenerar o ecossistema local.",
+      "descriptionRegenerationArea2": "As coordenadas devem conter entre 3 e 10 pontos.",
+      "descriptionRegenerationArea3": "A área total deve estar entre 2.500 e 1.000.000 metros quadrados [m²].",
       "coordinates": "Coordenadas",
-      "areaSize": "Tamanho da área"
+      "areaSize": "Tamanho da área",
+      "useYourLocation": "Use sua localização",
+      "useYourLocationDescription": "Ao permitir usar sua localização, vamos te localizar no mapa, assim ficará mais simples de encontrar sua área de regeneração",
+      "useMyLocation": "Usar minha localização"
     },
     "myTokens": {
       "title": "Meus tokens",
@@ -285,6 +299,23 @@
       "descContributors": "Os colaboradores realizam contribuições genéricas ao projeto e estão sujeitos a mecanismos de validação e penalidade.",
       "descActivists": "Os ativistas são responsáveis ​​por convidar novos Regeneradores e Inspetores, e eles ganham recompensas com base na aprovação dos usuários convidados.",
       "descSupporters": "Financie a regeneração de ecossistemas, compre o Crédito de Regeneração diretamente da comunidade, troque-o pelo certificado e prove seu compromisso com a regeneração dos ecossistemas terrestres."
+    },
+    "inspections": {
+      "title": "Inspeções",
+      "inspection": "Inspeção",
+      "score": "Pontuação",
+      "seeInspection": "Ver",
+      "acceptInspection": "Aceitar inspeção",
+      "thisInspectionCanAcceptIn": "Essa inspeção pode ser aceita em",
+      "expireIn": "Expira em",
+      "expired": "Expirou há"
+    },
+    "inspectionStatus": {
+      "open": "Aberta",
+      "accepted": "Aceita",
+      "realized": "Realizada",
+      "expired": "Expirada",
+      "invalidated": "Invalidada"
     }
   }
 }
