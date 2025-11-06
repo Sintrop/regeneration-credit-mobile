@@ -21,6 +21,8 @@ export * from "./InspectionRules/useCases/useRequestInspection";
 export * from "./InspectionRules/useCases/useImpactPerEra";
 export * from "./InspectionRules/useCases/useInspectionsList";
 export * from "./InspectionRules/events/useRealizedInspections";
+export * from "./InspectionRules/events/useRequestedInspections";
+export * from "./InspectionRules/events/useAcceptedInspections";
 
 export * from "./CommunityRules/types";
 export * from "./CommunityRules/communityService";
