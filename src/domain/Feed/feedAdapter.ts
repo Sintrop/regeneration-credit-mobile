@@ -1,10 +1,30 @@
 import { FeedItemProps } from "@database";
-import { InspectionRealizedProps } from "../InspectionRules/types";
+import { InspectionAcceptedProps, InspectionRealizedProps, RequestedInspectionProps } from "../InspectionRules/types";
 import { OffsetProps } from "../SupporterRules/types";
 import { ReportAdded } from "../DeveloperRules/types";
 import { ResearchPublishedProps } from "../ResearcherRules/types";
 import { ContributionAddedProps } from "../ContributorRules/types";
 import { UserRegisteredProps } from "../CommunityRules/types";
+
+function parseRequestedInspectionToFeed(data: RequestedInspectionProps): FeedItemProps {
+  return {
+    id: parseInt(`${data.blockNumber}${data.inspectionId}`, 10),
+    createdAt: data.blockNumber,
+    resourceId: data.inspectionId,
+    resourceType: "inspection",
+    additionalData: "requested"
+  }
+}
+
+function parseAcceptedInspectionToFeed(data: InspectionAcceptedProps): FeedItemProps {
+  return {
+    id: parseInt(`${data.blockNumber}${data.inspectionId}`, 10),
+    createdAt: data.blockNumber,
+    resourceId: data.inspectionId,
+    resourceType: "inspection",
+    additionalData: "accepted"
+  }
+}
 
 function parseRealizedInspectionToFeed(data: InspectionRealizedProps): FeedItemProps {
   return {
@@ -71,5 +91,7 @@ export const feedAdapter = {
   parseReportAddedToFeed,
   parseResearchPublishedToFeed,
   parseContributionAddedToFeed,
-  parseUserRegisteredToFeed
+  parseUserRegisteredToFeed,
+  parseRequestedInspectionToFeed,
+  parseAcceptedInspectionToFeed
 }

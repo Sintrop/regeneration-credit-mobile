@@ -3,20 +3,20 @@ import { useEffect, useState } from 'react'
 import Web3, { EventLog } from 'web3'
 import { bigNumberToFloat } from '@utils'
 import { useSettingsContext } from '@hooks'
-import { SupporterRules } from '@contracts'
-import { OffsetProps } from '../types'
+import { InspectionRules } from '@contracts'
+import { InspectionAcceptedProps } from '../types'
 
-interface ReturnUseOffsets {
+interface ReturnUseAcceptedInspections {
   isLoading: boolean
-  offsets: OffsetProps[]
+  acceptedInspections: InspectionAcceptedProps[];
   refetch: () => void;
 }
-export function useOffsets(): ReturnUseOffsets {
-  const [offsets, setOffsets] = useState<OffsetProps[]>([])
+export function useAcceptedInspections(): ReturnUseAcceptedInspections {
+  const [acceptedInspections, setAcceptedInspections] = useState<InspectionAcceptedProps[]>([])
   const { rpc } = useSettingsContext()
 
   useEffect(() => {
-    setOffsets([])
+    setAcceptedInspections([]);
     handleGetEvents()
   }, [])
 
@@ -25,32 +25,30 @@ export function useOffsets(): ReturnUseOffsets {
       rpcUrl: rpc,
     })
 
-    const newArray: OffsetProps[] = []
+    const newArray: InspectionAcceptedProps[] = []
 
     for (let i = 0; i < response.length; i++) {
       const event = response[i]
       const values = event?.returnValues
       newArray.push({
-        address: values.supporterAddress as string,
-        amountBurned: bigNumberToFloat(values.amountBurned as string),
-        blockNumber: bigNumberToFloat(event.blockNumber as string),
-        calculatorItemId: bigNumberToFloat(values.calculatorItemId as string),
-        message: values.message as string,
-        offsetId: bigNumberToFloat(values.offsetId as string)
+        inspectionId: bigNumberToFloat(values?.inspectionId as string),
+        blockNumber: bigNumberToFloat(event?.blockNumber as string),
+        inspectorAddress: values?.inspectorAddress as string,
+        acceptedAt: bigNumberToFloat(values?.acceptedAt as string)
       })
     }
 
-    setOffsets(newArray)
+    setAcceptedInspections(newArray)
   }
 
   function refetch() {
-    setOffsets([]);
+    setAcceptedInspections([]);
     handleGetEvents();
   }
 
   return {
     isLoading: false,
-    offsets,
+    acceptedInspections,
     refetch
   }
 }
@@ -62,15 +60,15 @@ async function getPastEvents({
   rpcUrl
 }: GetPastEventsProps): Promise<EventLog[]> {
   const web3 = new Web3(rpcUrl)
-  const contractAbi = SupporterRules.abi;
-  const contractAddress = SupporterRules.address;
+  const contractAbi = InspectionRules.abi;
+  const contractAddress = InspectionRules.address;
 
   const contract = new web3.eth.Contract(contractAbi, contractAddress)
 
   //@ts-ignore
-  const events = await contract.getPastEvents('OffsetMade', {
+  const events = await contract.getPastEvents('InspectionAccepted', {
     fromBlock: 1400000,
-    toBlock: 'latest'
+    toBlock: 'latest',
   })
   return events as EventLog[]
 }
