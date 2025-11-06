@@ -1,6 +1,7 @@
 import { TouchableOpacity, TouchableOpacityProps, View } from "react-native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { useNavigation } from "@react-navigation/native";
+import { useTranslation } from "react-i18next";
 
 import { Icon, IconsName, Text } from "@components";
 import { ResourcesTypes } from "@screens";
@@ -12,6 +13,7 @@ interface Props {
 }
 type NavigationProps = NativeStackNavigationProp<AppStackParamsList, "HomeScreen">
 export function FooterItem({ id, resourceType }: Props) {
+  const { t } = useTranslation();
   const navigation = useNavigation<NavigationProps>();
   
   function handleGoToResource() {
@@ -24,7 +26,7 @@ export function FooterItem({ id, resourceType }: Props) {
   return (
     <View className="w-full border-t border-card-secondary pt-3 items-start">
       <Button
-        title="See resource" 
+        title={t('feed.seeResource')}
         onPress={handleGoToResource}
         icon="file"
       />
