@@ -1,3 +1,4 @@
+import { UserType } from '@domain';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { 
   CommunityScreen,
@@ -11,7 +12,8 @@ import {
   ResourceScreen, 
   ResourcesTypes, 
   TokenImpactScreen, 
-  UserDetailsScreen 
+  UserDetailsScreen, 
+  UsersListScreen
 } from '@screens';
 
 export type AppStackParamsList = {
@@ -35,6 +37,9 @@ export type AppStackParamsList = {
   PdfViewScreen: {
     uri: string;
   }
+  UsersListScreen: {
+    userType: UserType;
+  }
 };
 const Stack = createNativeStackNavigator<AppStackParamsList>();
 
@@ -57,6 +62,7 @@ export function AppStack() {
       <Stack.Screen name="TokenImpactScreen" component={TokenImpactScreen} />
       <Stack.Screen name="CommunityScreen" component={CommunityScreen} />
       <Stack.Screen name="InspectionsScreen" component={InspectionsScreen} />
+      <Stack.Screen name="UsersListScreen" component={UsersListScreen} />
     </Stack.Navigator>
   );
 }

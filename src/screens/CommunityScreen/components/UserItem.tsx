@@ -1,18 +1,30 @@
-import { Text } from "@components";
-import { useUserTypesCount } from "@domain";
+import { TouchableOpacity, View } from "react-native";
 import { useTranslation } from "react-i18next";
-import { View } from "react-native";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { useNavigation } from "@react-navigation/native";
 
+import { Text } from "@components";
+import { UserType, useUserTypesCount } from "@domain";
+import { AppStackParamsList } from "@routes";
+
+type NavigationProps = NativeStackNavigationProp<AppStackParamsList, 'CommunityScreen'>
 interface Props {
-  userType: number;
+  userType: UserType;
 }
-
 export function UserItem({ userType }: Props) {
+  const navigation = useNavigation<NavigationProps>();
   const { t } = useTranslation();
   const { count } = useUserTypesCount({ userType })
 
+  function handleGoToUsersList() {
+    navigation.navigate('UsersListScreen', { userType });
+  }
+
   return (
-    <View className="p-3 rounded-2xl flex-row justify-between bg-card-primary">
+    <TouchableOpacity 
+      className="p-3 rounded-2xl flex-row justify-between bg-card-primary"
+      onPress={handleGoToUsersList}
+    >
       <View className="flex-1 max-w-[70%]">
         <Text className="text-white text-2xl font-bold">
           {userType === 1 && t('community.regenerators')}
@@ -40,6 +52,6 @@ export function UserItem({ userType }: Props) {
           {t('community.activeUsers')}
         </Text>
       </View>
-    </View>
+    </TouchableOpacity>
   )
 }
