@@ -73,6 +73,18 @@ async function evaluationMethodsCount({ rpc }: { rpc: string }): Promise<number>
   return bigNumberToFloat(response);
 }
 
+interface IResearchersAddress {
+  rpc: string;
+  id: number;
+}
+async function researchersAddress({ rpc, id }: IResearchersAddress): Promise<string> {
+  const provider = new Web3(new Web3.providers.HttpProvider(rpc));
+  const contract = new provider.eth.Contract(ResearcherRules.abi, ResearcherRules.address);
+
+  const response = await contract.methods.researchersAddress(id).call() as string;
+  return response;
+}
+
 export const researcherContract = {
   getResearcher,
   getResearch,
@@ -80,5 +92,6 @@ export const researcherContract = {
   getEvaluationMethod,
   researchesTotalCount,
   calculatorItemsCount,
-  evaluationMethodsCount
+  evaluationMethodsCount,
+  researchersAddress
 }

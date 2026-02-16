@@ -20,7 +20,17 @@ async function getOffset({ id, rpc }: GetOffset): Promise<OffsetProps> {
   return supporterAdapter.parseOffsetContract(response);
 }
 
+interface IGetSupporterAddress {
+  rpc: string;
+  id: number;
+}
+async function getSupporterAddress({ id, rpc }: IGetSupporterAddress): Promise<string> {
+  const response = await supporterContract.supportersAddress({ id, rpc });
+  return response;
+}
+
 export const supporterService = {
   getSupporter,
-  getOffset
+  getOffset,
+  getSupporterAddress
 }

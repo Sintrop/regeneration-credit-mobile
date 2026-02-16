@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
-import { View, KeyboardAvoidingView, Platform, ScrollView } from "react-native";
-import { Header, HeaderProps, StatusBar } from "@components";
+import { View, KeyboardAvoidingView, Platform, ScrollView, ActivityIndicator } from "react-native";
+import { Header, HeaderProps, StatusBar, Text } from "@components";
 import { useAppSafeArea } from "@hooks";
 
 interface Props extends HeaderProps {
@@ -8,8 +8,9 @@ interface Props extends HeaderProps {
   scrollable?: boolean;
   withoutPadding?: boolean;
   scrollEnabled?: boolean;
+  isLoading?: boolean;
 }
-export function Screen({ children, scrollable, withoutPadding, scrollEnabled = true, ...headerProps }: Props) {
+export function Screen({ children, scrollable, withoutPadding, scrollEnabled = true, isLoading, ...headerProps }: Props) {
   const { bottom } = useAppSafeArea();
 
   return (
@@ -20,17 +21,26 @@ export function Screen({ children, scrollable, withoutPadding, scrollEnabled = t
       <View className="flex-1 bg-background">
         <StatusBar />
         <Header {...headerProps} />
-        {scrollable ? (
-          <ScrollView 
-            showsVerticalScrollIndicator={false}
-            className={withoutPadding ? 'px-0 pt-0' : 'px-3 pt-5'}
-            scrollEnabled={scrollEnabled}
-          >
-            {children}
-            <View style={{ marginBottom: bottom }}/>
-          </ScrollView>
+        {isLoading ? (
+          <View className="w-full h-full items-center justify-center gap-1">
+            <ActivityIndicator size={30} color="white" className="mt-[-100]" />
+            <Text className="text-white">Carregando dados...</Text>
+          </View>
         ) : (
-          children
+          <>
+            {scrollable ? (
+              <ScrollView 
+                showsVerticalScrollIndicator={false}
+                className={withoutPadding ? 'px-0 pt-0' : 'px-3 pt-5'}
+                scrollEnabled={scrollEnabled}
+              >
+                {children}
+                <View style={{ marginBottom: bottom }}/>
+              </ScrollView>
+            ) : (
+              children
+            )}
+          </>
         )}
       </View>
     </KeyboardAvoidingView>

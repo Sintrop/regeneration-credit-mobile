@@ -20,6 +20,15 @@ async function getProjectDescription({ address, rpc }: GetProjectDescriptionProp
   return response;
 }
 
+interface IGetRegeneratorAddress {
+  rpc: string;
+  id: number;
+}
+async function getRegeneratorAddress({ id, rpc }: IGetRegeneratorAddress): Promise<string> {
+  const response = await regeneratorContract.regeneratorsAddress({ rpc, id })
+  return response;
+}
+
 interface GetCoordinatesProps {
   rpc: string;
   address: string;
@@ -32,5 +41,6 @@ async function getCoordinates({ address, rpc }: GetCoordinatesProps): Promise<Co
 export const regeneratorService = {
   getRegenerator,
   getProjectDescription,
-  getCoordinates
+  getCoordinates,
+  getRegeneratorAddress
 }

@@ -11,6 +11,16 @@ async function getInspector({ address, rpc }: GetInspectorProps): Promise<Inspec
   return inspectorAdapter.parseFromContract(response);
 }
 
+interface IGetInspectorAddress {
+  rpc: string;
+  id: number;
+}
+async function getInspectorAddress({ id, rpc }: IGetInspectorAddress): Promise<string> {
+  const response = await inspectorContract.inspectorsAddress({ id, rpc });
+  return response;
+}
+
 export const inspectorService = {
-  getInspector
+  getInspector,
+  getInspectorAddress
 }

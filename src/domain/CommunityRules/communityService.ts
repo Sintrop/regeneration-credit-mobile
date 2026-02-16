@@ -39,6 +39,15 @@ async function getUserTypesCount({ rpc, userType }: GetUserTypesCountProps): Pro
   return bigNumberToFloat(response);
 }
 
+interface GetUserTypesTotalCountProps {
+  rpc: string;
+  userType: number;
+}
+async function getUserTypesTotalCount({ rpc, userType }: GetUserTypesTotalCountProps): Promise<number> {
+  const response = await communityContract.userTypesTotalCount({ rpc, userType });
+  return bigNumberToFloat(response);
+}
+
 async function getUsersCount({ rpc }: { rpc: string; }): Promise<number> {
   const response = await communityContract.usersCount({ rpc });
   return bigNumberToFloat(response);
@@ -49,5 +58,6 @@ export const communityService = {
   getInvitation,
   getDelations,
   getUserTypesCount,
-  getUsersCount
+  getUsersCount,
+  getUserTypesTotalCount
 }

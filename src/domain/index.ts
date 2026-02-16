@@ -31,6 +31,7 @@ export * from "./CommunityRules/useCases/useInvitation";
 export * from "./CommunityRules/useCases/useUserDelations";
 export * from "./CommunityRules/useCases/useUserTypesCount";
 export * from "./CommunityRules/useCases/useUsersCount";
+export * from "./CommunityRules/useCases/useUserTypesTotalCount";
 export * from "./CommunityRules/events/useUserRegistered";
 
 export * from "./RegeneratorRules/types";

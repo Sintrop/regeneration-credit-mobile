@@ -44,11 +44,21 @@ async function getTotalEvaluationMethods({ rpc }: { rpc: string }): Promise<numb
   return response;
 }
 
+interface IGetResearchAddress {
+  rpc: string;
+  id: number;
+}
+async function getResearchAddress({ id, rpc }: IGetResearchAddress): Promise<string> {
+  const response = await researcherContract.researchersAddress({ id, rpc });
+  return response;
+}
+
 export const researcherService = {
   getResearcher,
   getResearch,
   getCalculatorItem,
   getTotalCalculatorItems,
   getTotalResearches,
-  getTotalEvaluationMethods
+  getTotalEvaluationMethods,
+  getResearchAddress
 }

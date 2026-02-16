@@ -35,8 +35,21 @@ async function contributionsTotalCount({ rpc }: { rpc: string }): Promise<number
   return bigNumberToFloat(response);
 }
 
+interface IContributorsAddress {
+  rpc: string;
+  id: number;
+}
+async function contributorsAddress({ rpc, id }: IContributorsAddress): Promise<string> {
+  const provider = new Web3(new Web3.providers.HttpProvider(rpc));
+  const contract = new provider.eth.Contract(ContributorRules.abi, ContributorRules.address);
+
+  const response = await contract.methods.contributorsAddress(id).call() as string;
+  return response;
+}
+
 export const contributorContract = {
   getContributor,
   getContribution,
-  contributionsTotalCount
+  contributionsTotalCount,
+  contributorsAddress
 }
