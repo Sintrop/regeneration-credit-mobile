@@ -19,8 +19,8 @@
       "theUser": "The user",
       "registeredAs": "registered as",
       "seeResource": "See resource",
-      "": "",
-      "": ""
+      "declaredCommitmentItem": "Declared his/her commitment to reduction",
+      "declaredItem": "Declared item"
     },
     "userDetails": {
       "title": "User details",

@@ -80,6 +80,7 @@ export * from "./SupporterRules/supporterAdapter";
 export * from "./SupporterRules/supporterService";
 export * from "./SupporterRules/events/useOffsets";
 export * from "./SupporterRules/events/useCommissions";
+export * from "./SupporterRules/events/useDeclaredCommitment";
 export * from "./SupporterRules/useCases/useGetOffset";
 export * from "./SupporterRules/useCases/useAddSupporter";
 export * from "./SupporterRules/useCases/useGetSupporter";

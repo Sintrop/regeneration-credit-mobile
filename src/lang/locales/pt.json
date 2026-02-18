@@ -19,8 +19,8 @@
       "theUser": "O usuário",
       "registeredAs": "registrado como",
       "seeResource": "Ver recurso",
-      "": "",
-      "": ""
+      "declaredCommitmentItem": "Declarou o compromisso de redução",
+      "declaredItem": "Item declarado"
     },
     "userDetails": {
       "title": "Detalhes do usuário",

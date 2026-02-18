@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { FeedItemProps } from "@database";
-import { feedAdapter, useAcceptedInspections, useContributionAdded, useOffsets, useRealizedInspections, useReportAdded, useRequestedInspections, useResearchsPublished, useUserRegistered } from "@domain";
+import { feedAdapter, useAcceptedInspections, useContributionAdded, useDeclaredCommitment, useOffsets, useRealizedInspections, useReportAdded, useRequestedInspections, useResearchsPublished, useUserRegistered } from "@domain";
 import { paginateList } from "@utils";
 import { useEffect, useState } from "react";
 
@@ -27,11 +27,12 @@ export function useNewFeed(): ReturnUseNewFeed {
   const { contributions, isLoading: isLoadingContributions, refetch: refetchContributions } = useContributionAdded();
   const { usersRegistered, isLoading: isLoadingUsersRegistered, refetch: refetchUsers } = useUserRegistered();
   const { requestedInspections, isLoading: isLoadingRequestedInspections, refetch: refetchRequestedInspection } = useRequestedInspections();
-  const { acceptedInspections, isLoading: isLoadingAcceptedInspections, refetch: refetchAcceptedInspections } = useAcceptedInspections()
+  const { acceptedInspections, isLoading: isLoadingAcceptedInspections, refetch: refetchAcceptedInspections } = useAcceptedInspections();
+  const { commitments, isLoading: isLoadingCommitments, refetch: refetchCommitments } = useDeclaredCommitment();
 
   useEffect(() => {
     createFeedList()
-  }, [offsets, realizedInspections, reports, researchs, contributions, usersRegistered, requestedInspections])
+  }, [offsets, realizedInspections, reports, researchs, contributions, usersRegistered, requestedInspections, commitments])
 
   function createFeedList() {
     const newListFeed: FeedItemProps[] = [];
@@ -58,6 +59,9 @@ export function useNewFeed(): ReturnUseNewFeed {
 
     const usersRegisteredFeed = usersRegistered.map(feedAdapter.parseUserRegisteredToFeed);
     newListFeed.push(...usersRegisteredFeed);
+
+    const commitmentsFeed = commitments.map(feedAdapter.parseCommitmentToFeed);
+    newListFeed.push(...commitmentsFeed);
 
     const sortedList = newListFeed.sort((a, b) => b.createdAt - a.createdAt)
     const paginate = paginateList<FeedItemProps>({ atualPage, itemsPerPage, list: sortedList });
@@ -87,6 +91,7 @@ export function useNewFeed(): ReturnUseNewFeed {
     refetchUsers();
     refetchRequestedInspection();
     refetchAcceptedInspections();
+    refetchCommitments();
   }
 
   return {
@@ -94,7 +99,8 @@ export function useNewFeed(): ReturnUseNewFeed {
       isLoadingOffsets || isLoadingRealizedInspections ||
       isLoadingReports || isLoadingResearchs ||
       isLoadingContributions || isLoadingUsersRegistered ||
-      isLoadingRequestedInspections || isLoadingAcceptedInspections,
+      isLoadingRequestedInspections || isLoadingAcceptedInspections ||
+      isLoadingCommitments,
     list: listPage,
     nextPage: handleNextPage,
     atualPage,

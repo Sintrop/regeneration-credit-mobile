@@ -1,6 +1,6 @@
 import { FeedItemProps } from "@database";
 import { InspectionAcceptedProps, InspectionRealizedProps, RequestedInspectionProps } from "../InspectionRules/types";
-import { OffsetProps } from "../SupporterRules/types";
+import { ICommitment, OffsetProps } from "../SupporterRules/types";
 import { ReportAdded } from "../DeveloperRules/types";
 import { ResearchPublishedProps } from "../ResearcherRules/types";
 import { ContributionAddedProps } from "../ContributorRules/types";
@@ -85,6 +85,16 @@ function parseUserRegisteredToFeed(data: UserRegisteredProps): FeedItemProps {
   }
 }
 
+function parseCommitmentToFeed(data: ICommitment): FeedItemProps {
+  return {
+    id: parseInt(`${data.blockNumber}${data.calculatorItemId}`, 10),
+    createdAt: data.blockNumber,
+    resourceId: data.calculatorItemId,
+    resourceType: 'declared-commitment',
+    additionalData: JSON.stringify(data)
+  }
+}
+
 export const feedAdapter = {
   parseRealizedInspectionToFeed,
   parseOffsetToFeed,
@@ -93,5 +103,6 @@ export const feedAdapter = {
   parseContributionAddedToFeed,
   parseUserRegisteredToFeed,
   parseRequestedInspectionToFeed,
-  parseAcceptedInspectionToFeed
+  parseAcceptedInspectionToFeed,
+  parseCommitmentToFeed
 }
