@@ -20,6 +20,15 @@ async function getContribution({ contributionId, rpc }: GetContributionProps): P
   return contributorAdapter.parseContribution(response);
 }
 
+interface IGetContributorAddress {
+  rpc: string;
+  id: number;
+}
+async function getContributorAddress({ id, rpc }: IGetContributorAddress): Promise<string> {
+  const response = await contributorContract.contributorsAddress({ id, rpc });
+  return response;
+}
+
 async function getTotalContributions({ rpc }: { rpc: string }): Promise<number> {
   const response = await contributorContract.contributionsTotalCount({ rpc });
   return response;
@@ -28,5 +37,6 @@ async function getTotalContributions({ rpc }: { rpc: string }): Promise<number> 
 export const contributorService = {
   getContributor,
   getContribution,
-  getTotalContributions
+  getTotalContributions,
+  getContributorAddress
 }

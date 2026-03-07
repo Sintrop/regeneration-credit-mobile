@@ -31,6 +31,7 @@ export * from "./CommunityRules/useCases/useInvitation";
 export * from "./CommunityRules/useCases/useUserDelations";
 export * from "./CommunityRules/useCases/useUserTypesCount";
 export * from "./CommunityRules/useCases/useUsersCount";
+export * from "./CommunityRules/useCases/useUserTypesTotalCount";
 export * from "./CommunityRules/events/useUserRegistered";
 
 export * from "./RegeneratorRules/types";
@@ -79,6 +80,7 @@ export * from "./SupporterRules/supporterAdapter";
 export * from "./SupporterRules/supporterService";
 export * from "./SupporterRules/events/useOffsets";
 export * from "./SupporterRules/events/useCommissions";
+export * from "./SupporterRules/events/useDeclaredCommitment";
 export * from "./SupporterRules/useCases/useGetOffset";
 export * from "./SupporterRules/useCases/useAddSupporter";
 export * from "./SupporterRules/useCases/useGetSupporter";

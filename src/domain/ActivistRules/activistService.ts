@@ -12,6 +12,16 @@ async function getActivist({ address, rpc }: GetActivistProps): Promise<Activist
   return activistAdapter.parseActivist(response);
 }
 
+interface IGetActivistAddress {
+  rpc: string;
+  id: number;
+}
+async function getActivistAddress({ id, rpc }: IGetActivistAddress): Promise<string> {
+  const response = await activistContract.activistsAddress({ id, rpc });
+  return response;
+}
+
 export const activistService = {
-  getActivist
+  getActivist,
+  getActivistAddress
 }

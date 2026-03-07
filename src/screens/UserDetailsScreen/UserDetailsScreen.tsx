@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ActivityIndicator, View } from "react-native";
+import { View } from "react-native";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { useTranslation } from "react-i18next";
 
@@ -16,12 +16,10 @@ export function UserDetailsScreen({ route }: ScreenProps) {
 
   if (isLoading) {
     return (
-      <Screen title={t("userDetails.title")} showBackButton >
-        <View className="w-full h-screen items-center justify-center">
-          <ActivityIndicator size={50} />
-        </View>
+      <Screen title={t("userDetails.title")} isLoading={isLoading} showBackButton >
+        <Text>Carregando</Text>
       </Screen>
-    );
+    )
   }
 
   if (isError || !userType) {
@@ -47,7 +45,8 @@ export function UserDetailsScreen({ route }: ScreenProps) {
       scrollEnabled={scrollEnabled}
       showBackButton 
       scrollable 
-      withoutPadding 
+      withoutPadding
+      isLoading={isLoading} 
     >
       <Profile 
         address={address} 

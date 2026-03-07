@@ -45,3 +45,15 @@ export interface OffsetProps {
   blockNumber: number;
   message: string;
 }
+
+export interface IReductionCommitmentDeclared {
+  supporterAddress: string;
+  calculatorItemId: number;
+  blockNumber: number;
+}
+
+export interface ICommitment {
+  address: string;
+  calculatorItemId: number;
+  blockNumber: number;
+}
