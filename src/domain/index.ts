@@ -96,3 +96,7 @@ export * from "./Tx/events/useTransfers";
 
 export * from "./Chain/chainService";
 export * from "./Chain/useCases/useBlockNumber";
+
+export * from "./Pools/types";
+export * from "./Pools/usePoolData";
+export * from "./Pools/poolService";

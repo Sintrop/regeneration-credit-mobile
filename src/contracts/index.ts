@@ -10,6 +10,12 @@ import ContributorRulesJson from "./ContributorRules.json";
 import InvitationRulesJson from "./InvitationRules.json";
 import SupporterRulesJson from "./SupporterRules.json";
 import ActivistRulesJson from "./ActivistRules.json";
+import RegeneratorPoolJson from "./RegeneratorPool.json";
+import InspectorPoolJson from "./InspectorPool.json";
+import ResearcherPoolJson from "./ResearcherPool.json";
+import DeveloperPoolJson from "./DeveloperPool.json";
+import ContributorPoolJson from "./ContributorPool.json";
+import ActivistPoolJson from "./ActivistPool.json";
 
 export const RegenerationCredit = {
   abi: RegenerationCreditJson.abi,
@@ -58,4 +64,28 @@ export const SupporterRules = {
 export const ActivistRules = {
   abi: ActivistRulesJson.abi,
   address: "0xe6D42dFd5c38f7aC2D81bdfC73cd7e770f235841"
+}
+export const RegeneratorPool = {
+  abi: RegeneratorPoolJson.abi,
+  address: '0xFC222077860d34dEfA62Dd8A848703025B7b75f7'
+}
+export const InspectorPool = {
+  abi: InspectorPoolJson.abi,
+  address: '0x3d7C162cf5c18432c3bb8535a96046A5e4E95ABB'
+}
+export const ResearcherPool = {
+  abi: ResearcherPoolJson.abi,
+  address: '0x659962e70B2cD88886461e8165D56fA4C5CB4278'
+}
+export const DeveloperPool = {
+  abi: DeveloperPoolJson.abi,
+  address: '0xCd74352812802a476161815daD31A0197BC65BC5'
+}
+export const ContributorPool = {
+  abi: ContributorPoolJson.abi,
+  address: '0xfc2A8ee64FF2a5E26cb150Ffc39e0C1B77b296B4'
+}
+export const ActivistPool = {
+  abi: ActivistPoolJson.abi,
+  address: '0x138EaB1427437F5B22E834863294a13b5CB9d175'
 }

@@ -76,13 +76,13 @@ export function HomeScreen({ navigation }: ScreenProps) {
             <Icon name="inspections" size={20} />
             <Text className='text-white'>{t('inspections.title')}</Text>
           </TouchableOpacity>
-          {/* <TouchableOpacity
+          <TouchableOpacity
             className='flex-1 h-12 rounded-2xl items-center justify-center flex-row gap-3 bg-card-primary'
-            onPress={() => navigation.navigate('CommunityScreen')}
+            onPress={() => navigation.navigate('PoolsScreen')}
           >
             <Icon name="community" size={20} />
-            <Text className='text-white'>{t('community.title')}</Text>
-          </TouchableOpacity> */}
+            <Text className='text-white'>{t('poolsScreen.title')}</Text>
+          </TouchableOpacity>
         </View>
       </View>
     )
