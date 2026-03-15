@@ -100,3 +100,4 @@ export * from "./Chain/useCases/useBlockNumber";
 export * from "./Pools/types";
 export * from "./Pools/usePoolData";
 export * from "./Pools/poolService";
+export * from "./Pools/useCases/useWithdraw";

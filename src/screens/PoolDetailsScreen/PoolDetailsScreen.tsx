@@ -7,6 +7,8 @@ import { Screen, Text } from "@components";
 import { AppStackParamsList } from "@routes";
 import { usePoolData } from "@domain";
 
+import { WithdrawArea } from "./components/WithdrawArea";
+
 type ScreenProps = NativeStackScreenProps<AppStackParamsList, 'PoolDetailsScreen'>
 export function PoolDetailsScreen({ route }: ScreenProps) {
   const { t } = useTranslation();
@@ -31,19 +33,28 @@ export function PoolDetailsScreen({ route }: ScreenProps) {
           strokeColor="#fff"
           isAnimated={true}
         />
+        
+        <View className="w-full gap-1">
+          <View className="flex-row items-center gap-2">
+            <View className="w-4 h-4 rounded-full bg-[#75d63a]"/>
+            <Text className="text-white text-sm">Saldo disponível ({Intl.NumberFormat('pt-BR', { maximumFractionDigits: 1 }).format(data?.balancePercentage ?? 0)}%)</Text>
+          </View>
+          <View className="flex-row items-center gap-2">
+            <View className="w-4 h-4 rounded-full bg-[#012939]"/>
+            <Text className="text-white text-sm">Tokens distribuídos</Text>
+          </View>
+        </View>
 
-        <View className="flex-row gap-3 mt-10">
+        <View className="flex-row gap-3 mt-2">
           <CardData 
             title={t('poolsDetailsScreen.totalTokens')} 
             value={Intl.NumberFormat('pt-BR', { maximumFractionDigits: 0 }).format(data?.totalTokens ?? 0)}
             suffix="RC"
-            tagIndicator="#75d63a"
           />
           <CardData 
             title={t('poolsDetailsScreen.balance')} 
             value={Intl.NumberFormat('pt-BR', { maximumFractionDigits: 0 }).format(data?.balance ?? 0)}
             suffix="RC"
-            tagIndicator="#012939"
           />
         </View>
         <View className="flex-row gap-3">
@@ -57,6 +68,8 @@ export function PoolDetailsScreen({ route }: ScreenProps) {
           />
         </View>
       </View>
+
+      <WithdrawArea poolType={userType} poolEra={data?.currentEra ?? 0} />
     </Screen>
   );
 }
