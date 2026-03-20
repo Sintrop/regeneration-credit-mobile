@@ -30,5 +30,6 @@ export enum QueryKeys {
   TotalInspections = 'TotalInspections',
   BlockNumber = 'BlockNumber',
   CertificatedTokens = 'CertificatedTokens',
-  PoolData = 'PoolData'
-}
+  PoolData = 'PoolData',
+  PoolEra = 'PoolEra'
+  }

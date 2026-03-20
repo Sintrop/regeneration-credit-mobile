@@ -1,6 +1,6 @@
 import Config from "react-native-config";
 import { poolContract } from "./poolContract";
-import { PoolData } from "./types";
+import { Era, PoolData } from "./types";
 import { rcService } from "../RegenerationCredit/rcService";
 
 const poolFunds: Record<number, string | undefined> = {
@@ -11,6 +11,10 @@ const poolFunds: Record<number, string | undefined> = {
   5: Config.CONTRIBUTOR_POOL_FUNDS,
   6: Config.ACTIVIST_POOL_FUNDS
 };
+
+async function getEra({ rpc, userType, eraId }: { rpc: string, userType: number, eraId: number }): Promise<Era> {
+  return poolContract.getEra({ rpc, userType, eraId });
+}
 
 async function getPoolData({ rpc, userType }: { rpc: string, userType: number }): Promise<PoolData> {
   try {
@@ -29,7 +33,9 @@ async function getPoolData({ rpc, userType }: { rpc: string, userType: number })
       totalTokens,
       currentEra,
       currentEpoch,
-      balance
+      balance,
+      usedTokens: 0,
+      balancePercentage: 0
     }
   } catch (e) {
     console.log(e);
@@ -38,11 +44,14 @@ async function getPoolData({ rpc, userType }: { rpc: string, userType: number })
       totalTokens: 0,
       currentEra: 0,
       currentEpoch: 0,
-      balance: 0
+      balance: 0,
+      usedTokens: 0,
+      balancePercentage: 0
     }
   }
 }
 
 export const poolService = {
+  getEra,
   getPoolData
 }

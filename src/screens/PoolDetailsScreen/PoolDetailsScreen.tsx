@@ -8,6 +8,7 @@ import { AppStackParamsList } from "@routes";
 import { usePoolData } from "@domain";
 
 import { WithdrawArea } from "./components/WithdrawArea";
+import { EraCard } from "./components/EraCard";
 
 type ScreenProps = NativeStackScreenProps<AppStackParamsList, 'PoolDetailsScreen'>
 export function PoolDetailsScreen({ route }: ScreenProps) {
@@ -76,8 +77,9 @@ export function PoolDetailsScreen({ route }: ScreenProps) {
           />
         </View>
       </View>
-
       <WithdrawArea poolType={userType} poolEra={data?.currentEra ?? 0} />
+
+      <EraCard userType={userType} currentEra={data?.currentEra ?? 0} />
     </Screen>
   );
 }

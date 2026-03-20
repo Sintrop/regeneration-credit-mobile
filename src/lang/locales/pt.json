@@ -363,7 +363,11 @@
       "totalTokens": "Total de tokens",
       "currentEra": "Era atual",
       "balance": "Saldo disponível",
-      "currentEpoch": "Época atual"
+      "currentEpoch": "Época atual",
+      "eraData": "Dados por fase",
+      "claimsCount": "Saques realizados",
+      "tokens": "Tokens Distribuidos",
+      "levels": "Dificuldade"
     }
   }
 }
