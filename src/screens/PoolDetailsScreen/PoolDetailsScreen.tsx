@@ -22,7 +22,15 @@ export function PoolDetailsScreen({ route }: ScreenProps) {
 
   return (
     <Screen title={t('poolsDetailsScreen.title')} showBackButton scrollable>
-      <View className="w-full p-3 rounded-2xl bg-card-primary gap-3 items-center pt-10">
+      <View className="w-full p-3 rounded-2xl bg-card-primary gap-3 items-center">
+        <Text preset="bold" className="text-white text-lg font-bold w-full">
+          {userType === 1 && t('community.regenerators')}
+          {userType === 2 && t('community.inspectors')}
+          {userType === 3 && t('community.researchers')}
+          {userType === 4 && t('community.developers')}
+          {userType === 5 && t('community.contributors')}
+          {userType === 6 && t('community.activists')}
+        </Text>
         <PieChart
           radius={100}
           innerRadius={80}

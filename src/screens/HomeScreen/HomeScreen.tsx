@@ -80,8 +80,8 @@ export function HomeScreen({ navigation }: ScreenProps) {
             className='flex-1 h-12 rounded-2xl items-center justify-center flex-row gap-3 bg-card-primary'
             onPress={() => navigation.navigate('PoolsScreen')}
           >
-            <Icon name="community" size={20} />
-            <Text className='text-white'>{t('poolsScreen.title')}</Text>
+            <Icon name="pools" size={20} />
+            <Text className='text-white'>{t('poolsScreen.titleBtn')}</Text>
           </TouchableOpacity>
         </View>
       </View>
