@@ -9,3 +9,6 @@ export * from "./MyTokensScreen/MyTokensScreen";
 export * from "./TokenImpactScreen/TokenImpactScreen";
 export * from "./CommunityScreen/CommunityScreen";
 export * from "./InspectionsScreen/InspectionsScreen";
+export * from "./UsersListScreen/UsersListScreen";
+export * from "./PoolsScreen/PoolsScreen";
+export * from "./PoolDetailsScreen/PoolDetailsScreen";

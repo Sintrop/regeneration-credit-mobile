@@ -21,6 +21,8 @@ export * from "./InspectionRules/useCases/useRequestInspection";
 export * from "./InspectionRules/useCases/useImpactPerEra";
 export * from "./InspectionRules/useCases/useInspectionsList";
 export * from "./InspectionRules/events/useRealizedInspections";
+export * from "./InspectionRules/events/useRequestedInspections";
+export * from "./InspectionRules/events/useAcceptedInspections";
 
 export * from "./CommunityRules/types";
 export * from "./CommunityRules/communityService";
@@ -29,6 +31,7 @@ export * from "./CommunityRules/useCases/useInvitation";
 export * from "./CommunityRules/useCases/useUserDelations";
 export * from "./CommunityRules/useCases/useUserTypesCount";
 export * from "./CommunityRules/useCases/useUsersCount";
+export * from "./CommunityRules/useCases/useUserTypesTotalCount";
 export * from "./CommunityRules/events/useUserRegistered";
 
 export * from "./RegeneratorRules/types";
@@ -77,6 +80,7 @@ export * from "./SupporterRules/supporterAdapter";
 export * from "./SupporterRules/supporterService";
 export * from "./SupporterRules/events/useOffsets";
 export * from "./SupporterRules/events/useCommissions";
+export * from "./SupporterRules/events/useDeclaredCommitment";
 export * from "./SupporterRules/useCases/useGetOffset";
 export * from "./SupporterRules/useCases/useAddSupporter";
 export * from "./SupporterRules/useCases/useGetSupporter";
@@ -92,3 +96,9 @@ export * from "./Tx/events/useTransfers";
 
 export * from "./Chain/chainService";
 export * from "./Chain/useCases/useBlockNumber";
+
+export * from "./Pools/types";
+export * from "./Pools/usePoolData";
+export * from "./Pools/poolService";
+export * from "./Pools/useCases/useWithdraw";
+export * from "./Pools/useCases/usePoolEra";

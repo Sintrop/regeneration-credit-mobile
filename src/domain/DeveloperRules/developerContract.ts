@@ -36,8 +36,21 @@ async function getReport({ rpc, reportId }: GetReportProps): Promise<ReportContr
   return response;
 }
 
+interface IDevelopersAddress {
+  rpc: string;
+  id: number;
+}
+async function developersAddress({ rpc, id }: IDevelopersAddress): Promise<string> {
+  const provider = new Web3(new Web3.providers.HttpProvider(rpc));
+  const contract = new provider.eth.Contract(DeveloperRules.abi, DeveloperRules.address);
+
+  const response = await contract.methods.developersAddress(id).call() as string;
+  return response;
+}
+
 export const developerContract = {
   getDeveloper,
   reportsTotalCount,
-  getReport
+  getReport,
+  developersAddress
 }

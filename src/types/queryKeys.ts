@@ -20,6 +20,7 @@ export enum QueryKeys {
   ApprovedTokens = 'ApprovedTokens',
   GetBalance = 'GetBalance',
   UserTypesCount = 'UserTypesCount',
+  UserTypesTotalCount = 'UserTypesTotalCount',
   GetActivist = 'GetActivist',
   ImpactPerEra = 'ImpactPerEra',
   ImpactPerToken = 'ImpactPerToken',
@@ -28,5 +29,7 @@ export enum QueryKeys {
   UsersCount = 'UsersCount',
   TotalInspections = 'TotalInspections',
   BlockNumber = 'BlockNumber',
-  CertificatedTokens = 'CertificatedTokens'
-}
+  CertificatedTokens = 'CertificatedTokens',
+  PoolData = 'PoolData',
+  PoolEra = 'PoolEra'
+  }

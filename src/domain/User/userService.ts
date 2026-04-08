@@ -9,7 +9,8 @@ async function getBasicData({ address, rpc, userType }: GetBasicDataProps): Prom
   let basicData: BasicUserProps = {
     address,
     name: "",
-    photo: ""
+    photo: "",
+    poolLevel: 0
   }
 
   if (userType === 1) {
@@ -17,7 +18,8 @@ async function getBasicData({ address, rpc, userType }: GetBasicDataProps): Prom
     basicData = {
       address,
       name: response.name,
-      photo: response.proofPhoto
+      photo: response.proofPhoto,
+      poolLevel: response.pool.currentEra
     }
   }
 
@@ -26,7 +28,8 @@ async function getBasicData({ address, rpc, userType }: GetBasicDataProps): Prom
     basicData = {
       address,
       name: response.name,
-      photo: response.proofPhoto
+      photo: response.proofPhoto,
+      poolLevel: response.pool.currentEra
     }
   }
 
@@ -35,7 +38,8 @@ async function getBasicData({ address, rpc, userType }: GetBasicDataProps): Prom
     basicData = {
       address,
       name: response.name,
-      photo: response.proofPhoto
+      photo: response.proofPhoto,
+      poolLevel: response.pool.currentEra
     }
   }
 
@@ -44,7 +48,8 @@ async function getBasicData({ address, rpc, userType }: GetBasicDataProps): Prom
     basicData = {
       address,
       name: response.name,
-      photo: response.proofPhoto
+      photo: response.proofPhoto,
+      poolLevel: response.pool.currentEra
     }
   }
 
@@ -53,7 +58,8 @@ async function getBasicData({ address, rpc, userType }: GetBasicDataProps): Prom
     basicData = {
       address,
       name: response.name,
-      photo: response.proofPhoto
+      photo: response.proofPhoto,
+      poolLevel: response.pool.currentEra
     }
   }
 
@@ -62,7 +68,8 @@ async function getBasicData({ address, rpc, userType }: GetBasicDataProps): Prom
     basicData = {
       address,
       name: response.name,
-      photo: response.proofPhoto
+      photo: response.proofPhoto,
+      poolLevel: response.pool.currentEra
     }
   }
 
@@ -71,7 +78,8 @@ async function getBasicData({ address, rpc, userType }: GetBasicDataProps): Prom
     basicData = {
       address,
       name: response.name,
-      photo: response.profilePhoto
+      photo: response.profilePhoto,
+      poolLevel: -1
     }
   }
 

@@ -25,8 +25,18 @@ async function getReport({ reportId, rpc }: GetReportProps): Promise<ReportProps
   return developerAdapter.parseReport(response);
 }
 
+interface IGetDeveloperAddress {
+  rpc: string;
+  id: number;
+}
+async function getDeveloperAddress({ id, rpc }: IGetDeveloperAddress): Promise<string> {
+  const response = await developerContract.developersAddress({ id, rpc });
+  return response;
+}
+
 export const developerService = {
   getDeveloper,
   getTotalReports,
-  getReport
+  getReport,
+  getDeveloperAddress
 }

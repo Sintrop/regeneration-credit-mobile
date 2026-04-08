@@ -56,6 +56,19 @@ export interface InspectionRealizedProps {
   blockNumber: number;
 }
 
+export interface RequestedInspectionProps {
+  inspectionId: number;
+  regeneratorAddress: string;
+  blockNumber: number;
+}
+
+export interface InspectionAcceptedProps {
+  inspectionId: number;
+  inspectorAddress: string;
+  acceptedAt: number;
+  blockNumber: number;
+}
+
 export interface ImpactPerEraContractProps {
   trees: string;
   biodiversity: string;

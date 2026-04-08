@@ -39,8 +39,21 @@ async function getCoordinates({ rpc, address }: GetCoordinatesProps): Promise<Co
   return response;
 }
 
+interface IRegeneratorsAddress {
+  rpc: string;
+  id: number;
+}
+async function regeneratorsAddress({ rpc, id }: IRegeneratorsAddress): Promise<string> {
+  const provider = new Web3(new Web3.providers.HttpProvider(rpc));
+  const contract = new provider.eth.Contract(RegeneratorRules.abi, RegeneratorRules.address);
+
+  const response = await contract.methods.regeneratorsAddress(id).call() as string;
+  return response;
+}
+
 export const regeneratorContract = {
   getRegenerator,
   projectDescriptions,
-  getCoordinates
+  getCoordinates,
+  regeneratorsAddress
 }

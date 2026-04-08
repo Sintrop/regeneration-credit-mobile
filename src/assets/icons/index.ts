@@ -14,3 +14,4 @@ export * from "./RcStats";
 export * from "./Community";
 export * from "./Inspections";
 export * from "./Share";
+export * from "./PoolsIcon";

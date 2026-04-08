@@ -27,7 +27,20 @@ async function offsets({ rpc, id }: Offsets): Promise<OffsetContractProps> {
   return response;
 }
 
+interface ISupportersAddress {
+  rpc: string;
+  id: number;
+}
+async function supportersAddress({ rpc, id }: ISupportersAddress): Promise<string> {
+  const provider = new Web3(new Web3.providers.HttpProvider(rpc));
+  const contract = new provider.eth.Contract(SupporterRules.abi, SupporterRules.address);
+
+  const response = await contract.methods.supportersAddress(id).call() as string;
+  return response;
+}
+
 export const supporterContract = {
   getSupporter,
-  offsets
+  offsets,
+  supportersAddress
 }

@@ -69,9 +69,8 @@ async function getPastEvents({
 
   //@ts-ignore
   const events = await contract.getPastEvents('OffsetMade', {
-    fromBlock: 0,
+    fromBlock: 1400000,
     toBlock: 'latest'
   })
-  console.log(events)
   return events as EventLog[]
 }
