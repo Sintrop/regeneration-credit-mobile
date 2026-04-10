@@ -6,6 +6,7 @@ import {
   ImpactCalculatorScreen, 
   InspectionsScreen, 
   MyTokensScreen, 
+  MarketScreen,
   PdfViewScreen, 
   PoolDetailsScreen, 
   PoolsScreen, 
@@ -23,6 +24,7 @@ export type AppStackParamsList = {
   RegisterScreen: undefined;
   ImpactCalculatorScreen: undefined;
   MyTokensScreen: undefined;
+  MarketScreen: undefined;
   TokenImpactScreen: undefined;
   CommunityScreen: undefined;
   InspectionsScreen: undefined;
@@ -71,6 +73,7 @@ export function AppStack() {
       <Stack.Screen name="UsersListScreen" component={UsersListScreen} />
       <Stack.Screen name="PoolsScreen" component={PoolsScreen} />
       <Stack.Screen name="PoolDetailsScreen" component={PoolDetailsScreen} />
+      <Stack.Screen name="MarketScreen" component={MarketScreen} />
     </Stack.Navigator>
   );
 }

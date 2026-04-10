@@ -12,3 +12,4 @@ export * from "./InspectionsScreen/InspectionsScreen";
 export * from "./UsersListScreen/UsersListScreen";
 export * from "./PoolsScreen/PoolsScreen";
 export * from "./PoolDetailsScreen/PoolDetailsScreen";
+export * from "./MarketScreen/MarketScreen";

@@ -84,6 +84,15 @@ export function HomeScreen({ navigation }: ScreenProps) {
             <Text className='text-white'>{t('poolsScreen.titleBtn')}</Text>
           </TouchableOpacity>
         </View>
+        <View className='flex-row justify-center gap-4 mt-2'>
+          <TouchableOpacity
+            className='flex-1 h-12 rounded-2xl items-center justify-center flex-row gap-3 bg-emerald-700'
+            onPress={() => navigation.navigate('MarketScreen')}
+          >
+            <Icon name="tokens" size={20} />
+            <Text className='text-white'>Mercado</Text>
+          </TouchableOpacity>
+        </View>
       </View>
     )
   }
