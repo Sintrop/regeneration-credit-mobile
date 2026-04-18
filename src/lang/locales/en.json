@@ -199,7 +199,13 @@
       "to": "To",
       "onlyRcTxsWillBeShowHere": "Only (RC) transactions will be show here",
       "txDetails": "Transaction data",
-      "txHash": "Transaction hash"
+      "txHash": "Transaction hash",
+      "transfer": "Transfer",
+      "recipientAddress": "Recipient address",
+      "invalidAddress": "Invalid address",
+      "amount": "Amount",
+      "max": "Max",
+      "transferInfo": "The transaction will be processed on the Sintrop blockchain"
     },
     "tx": {
       "title": "Transaction",
@@ -251,8 +257,6 @@
     "fileInput": {
       "selectAnother": "Select another",
       "selectFile": "Select file",
-      "": "",
-      "": "",
       "": ""
     },
     "map": {

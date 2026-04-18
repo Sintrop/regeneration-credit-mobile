@@ -109,6 +109,26 @@ export function TxProvider({ children }: TxProviderProps) {
         setIsError(true);
         setIsSuccess(false);
       }
+    } else {
+      // Native token transfer (SIN)
+      try {
+        const web3 = new Web3(ethereum as any);
+        const accounts = await web3.eth.getAccounts();
+        const response = await ethereum.request({
+          method: 'eth_sendTransaction',
+          params: [{
+            from: accounts[0],
+            to: txData.params?.[0]?.to,
+            value: txData.params?.[0]?.value?.toString(),
+          }],
+        });
+        setHash(response as string);
+      } catch (e) {
+        console.log(e);
+        setIsLoading(false);
+        setIsError(true);
+        setIsSuccess(false);
+      }
     }
   }
 

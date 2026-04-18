@@ -199,7 +199,13 @@
       "to": "Para",
       "onlyRcTxsWillBeShowHere": "Apenas as transações do (RC) serão mostradas aqui",
       "txDetails": "Dados da transação",
-      "txHash": "Hash da transação"
+      "txHash": "Hash da transação",
+      "transfer": "Transferir",
+      "recipientAddress": "Endereço do destinatário",
+      "invalidAddress": "Endereço inválido",
+      "amount": "Quantidade",
+      "max": "Máx",
+      "transferInfo": "A transação será processada na blockchain da Sintrop"
     },
     "tx": {
       "title": "Transação",
@@ -251,10 +257,7 @@
     },
     "fileInput": {
       "selectAnother": "Selecionar outro",
-      "selectFile": "Selecionar arquivo",
-      "": "",
-      "": "",
-      "": ""
+      "selectFile": "Selecionar arquivo"
     },
     "map": {
       "clearSelection": "Limpar seleção",

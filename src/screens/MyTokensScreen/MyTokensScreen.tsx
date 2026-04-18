@@ -10,6 +10,7 @@ import { TxItem } from "./components/TxItem";
 import { useState } from "react";
 import { SelectorTab, Tabs } from "./components/Tabs";
 import { LoadingTx } from "./components/LoadingTx";
+import { TransferModal } from "./components/TransferModal";
 
 export function MyTokensScreen() {
   const { t } = useTranslation();
@@ -18,6 +19,7 @@ export function MyTokensScreen() {
   const { commissions, isLoading: isLoadingCommissions } = useCommissions({ address });
 
   const [selectedTab, setSelectedTab] = useState<Tabs>('txs');
+  const [showTransferModal, setShowTransferModal] = useState(false);
 
   function renderTxItem({ item }: ListRenderItemInfo<TxProps>) {
     return (
@@ -31,10 +33,11 @@ export function MyTokensScreen() {
         data={selectedTab === 'txs' ? txs : commissions}
         keyExtractor={item => item.hash}
         renderItem={renderTxItem}
-        ListHeaderComponent={<HeaderList selectedTab={selectedTab} changeTab={setSelectedTab} />}
+        ListHeaderComponent={<HeaderList selectedTab={selectedTab} changeTab={setSelectedTab} onTransfer={() => setShowTransferModal(true)} />}
         ListEmptyComponent={<EmptyList selectedTab={selectedTab} isLoading={selectedTab === 'txs' ? isLoadingTxs : isLoadingCommissions} />}
         contentContainerClassName="p-5"
-      /> 
+      />
+      <TransferModal visible={showTransferModal} onClose={() => setShowTransferModal(false)} />
     </Screen>
   );
 }
@@ -67,12 +70,12 @@ interface HeaderListProps {
   selectedTab: Tabs;
   changeTab: (tab: Tabs) => void;
 }
-function HeaderList({ changeTab, selectedTab }: HeaderListProps) {
+function HeaderList({ changeTab, selectedTab, onTransfer }: HeaderListProps & { onTransfer?: () => void }) {
   const { t } = useTranslation();
 
   return (
     <View className="gap-5">
-      <Balance />
+      <Balance onTransfer={onTransfer} />
       <SelectorTab selectedTab={selectedTab} changeTab={changeTab} />
 
       {selectedTab === 'txs' && (
