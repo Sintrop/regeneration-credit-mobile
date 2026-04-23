@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Modal, View, TouchableOpacity, TextInput as RNTextInput, Text } from "react-native";
+import { Modal, View, TouchableOpacity, TextInput as RNTextInput, Keyboard } from "react-native";
 import { useTranslation } from "react-i18next";
 import { utils } from "web3";
 
@@ -22,7 +22,7 @@ export type TokenType = 'RC' | 'SIN';
 
 export function TransferModal({ visible, onClose }: Props) {
   const { t } = useTranslation();
-  const { address, balanceSIN, isConnected } = useUserContext();
+  const { address, balanceSIN } = useUserContext();
   const { balance: balanceRC, refetch: refetchBalance } = useBalance({ address });
   const { registerContinueAction, sendTransaction } = useTxContext();
 
@@ -55,11 +55,7 @@ export function TransferModal({ visible, onClose }: Props) {
 
   function handleTokenSelect(token: TokenType) {
     setSelectedToken(token);
-    if (token === 'RC') {
-      setAmount(balanceRC ? balanceRC.toString() : '');
-    } else {
-      setAmount(balanceSIN ? balanceSIN.toString() : '');
-    }
+    setAmount('0');
   }
 
   function handleMax() {
@@ -71,7 +67,9 @@ export function TransferModal({ visible, onClose }: Props) {
   }
 
   function handleTransfer() {
-    if (!isAddressValid || !amount || parseFloat(amount) <= 0) return;
+    if (!isAddressValid || !amount || parseFloat(amount.replace(',', '.')) <= 0) return;
+
+    onClose();
 
     if (selectedToken === 'SIN') {
       handleTransferSIN();
@@ -81,12 +79,14 @@ export function TransferModal({ visible, onClose }: Props) {
   }
 
   function handleTransferSIN() {
-    const valueInWei = utils.toWei(amount, 'ether');
+    const sanitizedAmount = amount.replace(',', '.');
+    const valueInWei = utils.toWei(sanitizedAmount, 'ether'); // Isso gera "10000000000000000000" para 10 SIN
+    
     sendTransaction({
       interactWithContract: false,
       params: [{
         to: toAddress,
-        value: valueInWei,
+        value: valueInWei, // Manda como string decimal pura para o TxContext
       }]
     } as any);
   }
@@ -106,13 +106,12 @@ export function TransferModal({ visible, onClose }: Props) {
     isAddressValid && 
     toAddress.trim().length > 0 && 
     amount && 
-    parseFloat(amount) > 0;
+    parseFloat(amount.replace(',', '.')) > 0;
 
   return (
     <Modal visible={visible} animationType="slide" transparent>
       <View className="flex-1 w-full h-full items-center justify-center bg-black/80">
         <View className="bg-card-primary w-[95%] rounded-2xl p-5">
-          {/* Header */}
           <View className="flex-row items-center justify-between mb-5">
             <TextComponent className="text-white text-lg font-bold">{t('myTokens.transfer')}</TextComponent>
             <TouchableOpacity onPress={onClose} hitSlop={10}>
@@ -120,7 +119,6 @@ export function TransferModal({ visible, onClose }: Props) {
             </TouchableOpacity>
           </View>
 
-          {/* Token Selector */}
           <View className="flex-row gap-3 mb-5">
             <TouchableOpacity
               className={`flex-1 h-12 rounded-xl items-center justify-center flex-row gap-2 ${selectedToken === 'RC' ? 'bg-green-600' : 'bg-gray-700'}`}
@@ -136,7 +134,6 @@ export function TransferModal({ visible, onClose }: Props) {
             </TouchableOpacity>
           </View>
 
-          {/* Balance */}
           <View className="mb-5">
             <TextComponent className="text-gray-400 text-sm">{t('common.yourBalance')}</TextComponent>
             <TextComponent className="text-white text-xl font-semibold mt-1">
@@ -147,7 +144,6 @@ export function TransferModal({ visible, onClose }: Props) {
             </TextComponent>
           </View>
 
-          {/* To Address */}
           <View className="mb-4">
             <TextComponent className="text-gray-300 text-sm mb-2">{t('myTokens.recipientAddress')}</TextComponent>
             <RNTextInput
@@ -158,13 +154,15 @@ export function TransferModal({ visible, onClose }: Props) {
               onChangeText={handleAddressChange}
               autoCapitalize="none"
               autoCorrect={false}
+              returnKeyType="done"
+              blurOnSubmit
+              onSubmitEditing={() => Keyboard.dismiss()}
             />
             {!isAddressValid && (
               <TextComponent className="text-red-400 text-xs mt-1">{t('myTokens.invalidAddress')}</TextComponent>
             )}
           </View>
 
-          {/* Amount */}
           <View className="mb-5">
             <View className="flex-row items-center justify-between mb-2">
               <TextComponent className="text-gray-300 text-sm">{t('myTokens.amount')}</TextComponent>
@@ -180,6 +178,9 @@ export function TransferModal({ visible, onClose }: Props) {
                 value={amount}
                 onChangeText={setAmount}
                 keyboardType="numeric"
+                returnKeyType="done"
+                blurOnSubmit
+                onSubmitEditing={() => Keyboard.dismiss()}
               />
               <TextComponent className="text-white text-lg font-semibold w-16 text-center">
                 {selectedToken}
@@ -187,7 +188,6 @@ export function TransferModal({ visible, onClose }: Props) {
             </View>
           </View>
 
-          {/* Transfer Button */}
           <TouchableOpacity
             className={`h-12 rounded-xl items-center justify-center ${canTransfer ? 'bg-green-600' : 'bg-gray-600'}`}
             disabled={!canTransfer}
@@ -198,7 +198,6 @@ export function TransferModal({ visible, onClose }: Props) {
             </TextComponent>
           </TouchableOpacity>
 
-          {/* Info */}
           <TextComponent className="text-gray-500 text-xs text-center mt-4">
             {t('myTokens.transferInfo')}
           </TextComponent>

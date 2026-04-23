@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Alert, TextInput, Modal, Platform } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Alert, TextInput, Modal, Platform, Keyboard } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { AppStackParamsList } from '@routes/AppStack';
-import { getRCMarketContract } from '@domain/RCMarket';
+import { getRCMarketContract, useCreateOffer } from '@domain/RCMarket';
 import { useUserContext } from '@hooks';
 
 type NavigationProp = NativeStackNavigationProp<AppStackParamsList>;
@@ -21,6 +21,7 @@ interface Offer {
 export function MarketScreen() {
   const navigation = useNavigation<NavigationProp>();
   const { address, isConnected, handleConnect } = useUserContext();
+  const { createOffer, isLoading: isCreatingOffer } = useCreateOffer();
   const [offers, setOffers] = useState<Offer[]>([]);
   const [loading, setLoading] = useState(true);
   const [showModal, setShowModal] = useState(false);
@@ -29,20 +30,39 @@ export function MarketScreen() {
   const loadOffers = async () => {
     try {
       const contract = getRCMarketContract();
-      const count = await contract.methods.getOffersCount().call();
+      
+      // Try to get offers count - if function doesn't exist, set to 0
+      let count = 0;
+      try {
+        const countResult = await contract.methods.getOffersCount().call();
+        count = Number(countResult);
+      } catch (e) {
+        console.log('getOffersCount not available, trying alternative method');
+      }
+      
+      if (count === 0) {
+        setOffers([]);
+        setLoading(false);
+        return;
+      }
+      
       const offersData: Offer[] = [];
       
-      for (let i = 0; i < Number(count); i++) {
-        const offer = await contract.methods.getOffer(i).call();
-        offersData.push({
-          id: i,
-          seller: offer.seller,
-          amount: Number(offer.amount),
-          pricePerUnit: Number(offer.pricePerUnit) / 1000000000000000000,
-          paymentMethod: offer.paymentMethod,
-          description: offer.description,
-          status: Number(offer.status),
-        });
+      for (let i = 0; i < count; i++) {
+        try {
+          const offer = await contract.methods.getOffer(i).call();
+          offersData.push({
+            id: i,
+            seller: offer.seller,
+            amount: Number(offer.amount),
+            pricePerUnit: Number(offer.pricePerUnit) / 1e18,
+            paymentMethod: offer.paymentMethod,
+            description: offer.description,
+            status: Number(offer.status),
+          });
+        } catch (e) {
+          console.log('Erro ao carregar oferta', i, e);
+        }
       }
       
       setOffers(offersData.reverse());
@@ -92,8 +112,34 @@ export function MarketScreen() {
       Alert.alert('Erro', 'Conecte a carteira primeiro!');
       return;
     }
-    Alert.alert('Em breve', 'Criação de ofertas em desenvolvimento.');
+    
+    if (!newOffer.amount || !newOffer.price || !newOffer.description) {
+      Alert.alert('Erro', 'Preencha todos os campos!');
+      return;
+    }
+    
+    if (newOffer.description.length > 500) {
+      Alert.alert('Erro', 'A descrição deve ter no máximo 500 caracteres!');
+      return;
+    }
+
+    // Sanitize amount: replace comma with dot
+    const sanitizedAmount = newOffer.amount.replace(',', '.');
+    const unitPrice = newOffer.price; // unitPrice is a string, no conversion needed
+    
+    // Send raw values - useCreateOffer will handle conversion
+    createOffer({
+      amountRC: sanitizedAmount,
+      unitPrice: unitPrice,
+      paymentMethod: newOffer.method,
+      description: newOffer.description,
+    });
+    
     setShowModal(false);
+    setNewOffer({ amount: '', price: '', method: 'PIX', description: '' });
+    
+    // Reload offers after creating
+    loadOffers();
   };
 
   const shortenAddress = (addr: string) => {
@@ -189,6 +235,9 @@ export function MarketScreen() {
               keyboardType="numeric"
               value={newOffer.amount}
               onChangeText={(text) => setNewOffer({ ...newOffer, amount: text })}
+              returnKeyType="done"
+              blurOnSubmit
+              onSubmitEditing={() => Keyboard.dismiss()}
             />
             
             <Text style={styles.inputLabel}>Preço por RC (R$):</Text>
@@ -198,6 +247,9 @@ export function MarketScreen() {
               keyboardType="numeric"
               value={newOffer.price}
               onChangeText={(text) => setNewOffer({ ...newOffer, price: text })}
+              returnKeyType="done"
+              blurOnSubmit
+              onSubmitEditing={() => Keyboard.dismiss()}
             />
             
             <Text style={styles.inputLabel}>Método de Pagamento:</Text>
@@ -216,7 +268,7 @@ export function MarketScreen() {
             <Text style={styles.inputLabel}>Descrição (opcional):</Text>
             <TextInput
               style={[styles.input, styles.textArea]}
-              placeholder="Ex: Vendo RC com desconto para pagamento rápido"
+              placeholder="Ex: Vendo X Créditos por Y BRL cada. Contato: meucontato@contato.com"
               multiline
               numberOfLines={3}
               value={newOffer.description}

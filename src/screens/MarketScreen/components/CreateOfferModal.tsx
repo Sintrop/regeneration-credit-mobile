@@ -1,7 +1,8 @@
 import { useState } from "react";
-import { View, Text, TextInput, TouchableOpacity, Modal, Alert } from "react-native";
-import { useCreateOffer } from "@domain";
-import { Button } from "@components";
+import { View, Text, TextInput, TouchableOpacity, Modal, Alert, Keyboard, ScrollView, Platform } from "react-native";
+import { useKeyboardStatus, useAppSafeArea } from "@hooks";
+import { useCreateOffer } from "@domain/RCMarket";
+import { useUserContext } from "@hooks";
 
 interface CreateOfferModalProps {
   isVisible: boolean;
@@ -11,6 +12,12 @@ interface CreateOfferModalProps {
 
 export function CreateOfferModal({ isVisible, onClose, onSuccess }: CreateOfferModalProps) {
   const { createOffer, isLoading } = useCreateOffer();
+  const { address } = useUserContext();
+  const { bottom } = useAppSafeArea();
+  const { keyboardHeight, keyboardOpen } = useKeyboardStatus();
+  
+  const paddingBottom = keyboardOpen ? keyboardHeight + bottom + 20 : bottom + 20;
+  
   const [amountRC, setAmountRC] = useState("");
   const [unitPrice, setUnitPrice] = useState("");
   const [paymentMethod, setPaymentMethod] = useState("");
@@ -45,17 +52,22 @@ export function CreateOfferModal({ isVisible, onClose, onSuccess }: CreateOfferM
       presentationStyle="pageSheet"
       onRequestClose={onClose}
     >
-      <View className="flex-1 bg-gray-900 p-4">
+      <View className="flex-1 bg-gray-900 p-4" style={{ paddingBottom }}>
         <View className="flex-row justify-between items-center mb-6">
           <Text className="text-white text-xl font-bold">
             Publicar Oferta
           </Text>
-          <TouchableOpacity onPress={onClose}>
-            <Text className="text-gray-400">X</Text>
-          </TouchableOpacity>
+          <View className="flex-row gap-4">
+            <TouchableOpacity onPress={() => Keyboard.dismiss()}>
+              <Text className="text-gray-400">🔼</Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={onClose}>
+              <Text className="text-gray-400">X</Text>
+            </TouchableOpacity>
+          </View>
         </View>
 
-        <ScrollView>
+        <ScrollView keyboardShouldPersistTaps="handled">
           {/* Amount RC */}
           <Text className="text-gray-300 mb-2">Quantidade de RC *</Text>
           <TextInput
@@ -65,6 +77,9 @@ export function CreateOfferModal({ isVisible, onClose, onSuccess }: CreateOfferM
             value={amountRC}
             onChangeText={setAmountRC}
             keyboardType="numeric"
+            returnKeyType="done"
+            blurOnSubmit
+            onSubmitEditing={() => Keyboard.dismiss()}
           />
 
           {/* Unit Price */}
@@ -75,6 +90,9 @@ export function CreateOfferModal({ isVisible, onClose, onSuccess }: CreateOfferM
             placeholderTextColor="#666"
             value={unitPrice}
             onChangeText={setUnitPrice}
+            returnKeyType="done"
+            blurOnSubmit
+            onSubmitEditing={() => Keyboard.dismiss()}
           />
 
           {/* Payment Method */}
@@ -85,28 +103,36 @@ export function CreateOfferModal({ isVisible, onClose, onSuccess }: CreateOfferM
             placeholderTextColor="#666"
             value={paymentMethod}
             onChangeText={setPaymentMethod}
+            returnKeyType="done"
+            blurOnSubmit
+            onSubmitEditing={() => Keyboard.dismiss()}
           />
 
           {/* Description */}
           <Text className="text-gray-300 mb-2">Descrição *</Text>
           <TextInput
             className="bg-gray-800 text-white p-3 rounded-lg mb-4 h-24"
-            placeholder="Descrição da oferta..."
+            placeholder="Ex: Vendo X tokens a Y BRL cada. Contato: meucontato@exemplo.com"
             placeholderTextColor="#666"
             value={description}
             onChangeText={setDescription}
             multiline
             numberOfLines={4}
+            returnKeyType="done"
+            blurOnSubmit
+            onSubmitEditing={() => Keyboard.dismiss()}
           />
 
           {/* Submit Button */}
-          <Button 
+          <TouchableOpacity 
             onPress={handleSubmit}
             disabled={isLoading}
-            className="bg-emerald-600"
+            className="bg-emerald-600 h-12 rounded-xl items-center justify-center"
           >
-            {isLoading ? "Publicando..." : "Publicar Oferta"}
-          </Button>
+            <Text className="text-white font-bold">
+              {isLoading ? "Publicando..." : "Publicar Oferta"}
+            </Text>
+          </TouchableOpacity>
         </ScrollView>
       </View>
     </Modal>

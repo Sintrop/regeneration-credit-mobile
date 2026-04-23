@@ -36,7 +36,7 @@ export function useCancelOffer(): ReturnUseCancelOffer {
         contractAbi: RCMarket.abi,
         contractAddress: RCMarket.address,
         methodName: 'cancelOffer',
-        args: [data.offerId],
+        params: [data.offerId]
       });
     } catch (error) {
       Toast.show({

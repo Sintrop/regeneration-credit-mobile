@@ -1,5 +1,6 @@
 import RegenerationCreditJson from "./RegenerationCredit.json";
 import RegenerationCreditImpactJson from "./RegenerationCreditImpact.json";
+import RCMarketJson from "./RCMarket.json";
 import InspectionRulesJson from "./InspectionRules.json";
 import CommunityRulesJson from "./CommunityRules.json";
 import RegeneratorRulesJson from "./RegeneratorRules.json";
@@ -88,4 +89,9 @@ export const ContributorPool = {
 export const ActivistPool = {
   abi: ActivistPoolJson.abi,
   address: '0x138EaB1427437F5B22E834863294a13b5CB9d175'
+}
+
+export const RCMarket = {
+  abi: RCMarketJson.abi,
+  address: '0xA59CE87F2637084f13057357c9Ee49A47232A769'
 }

@@ -1,6 +1,7 @@
 import React from "react";
 import { useSDK } from "@metamask/sdk-react";
 import Toast from "react-native-toast-message";
+import { utils } from "web3";
 
 import { RCMarket } from "@contracts";
 import { useTxContext } from "@hooks";
@@ -39,12 +40,8 @@ export function useCreateOffer(): ReturnUseCreateOffer {
         contractAbi: RCMarket.abi,
         contractAddress: RCMarket.address,
         methodName: 'createOffer',
-        args: [
-          data.amountRC,
-          data.unitPrice,
-          data.paymentMethod,
-          data.description
-        ],
+        // amountRC needs to be a number, unitPrice is a string
+        params: [parseFloat(data.amountRC), data.unitPrice, data.paymentMethod, data.description]
       });
     } catch (error) {
       Toast.show({

@@ -37,7 +37,7 @@ export function useConfirmSale(): ReturnUseConfirmSale {
         contractAbi: RCMarket.abi,
         contractAddress: RCMarket.address,
         methodName: 'confirmSale',
-        args: [data.offerId, data.buyer],
+        params: [data.offerId, data.buyer]
       });
     } catch (error) {
       Toast.show({
