@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Alert, TextInput,
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { AppStackParamsList } from '@routes/AppStack';
-import { getRCMarketContract, useCreateOffer } from '@domain/RCMarket';
+import { getRCMarketContract, useCreateOffer, useCancelOffer, useConfirmSale } from '@domain/RCMarket';
 import { useUserContext } from '@hooks';
 
 type NavigationProp = NativeStackNavigationProp<AppStackParamsList>;
@@ -22,6 +22,8 @@ export function MarketScreen() {
   const navigation = useNavigation<NavigationProp>();
   const { address, isConnected, handleConnect } = useUserContext();
   const { createOffer, isLoading: isCreatingOffer } = useCreateOffer();
+  const { cancelOffer } = useCancelOffer();
+  const { confirmSale } = useConfirmSale();
   const [offers, setOffers] = useState<Offer[]>([]);
   const [loading, setLoading] = useState(true);
   const [showModal, setShowModal] = useState(false);
@@ -48,17 +50,20 @@ export function MarketScreen() {
       
       const offersData: Offer[] = [];
       
-      for (let i = 0; i < count; i++) {
+      for (let i = 1; i <= count; i++) {
         try {
           const offer = await contract.methods.getOffer(i).call();
           offersData.push({
             id: i,
             seller: offer.seller,
-            amount: Number(offer.amount),
-            pricePerUnit: Number(offer.pricePerUnit) / 1e18,
+            amount: Number(offer.amountRC),
+            pricePerUnit: offer.unitPrice, // It's a string, not a number
             paymentMethod: offer.paymentMethod,
             description: offer.description,
-            status: Number(offer.status),
+            status: offer.active ? 0 : 1, // 0 = active, 1 = inactive
+            active: offer.active,
+            completedAt: Number(offer.completedAt),
+            buyer: offer.buyer,
           });
         } catch (e) {
           console.log('Erro ao carregar oferta', i, e);
@@ -95,16 +100,52 @@ export function MarketScreen() {
     }
   };
 
+  function handleGoToUser(address: string) {
+    navigation.navigate("UserDetailsScreen", { address });
+  }
+
   const handleBuy = () => {
-    Alert.alert('Informação', 'O mercado é apenas informativo. Em breve você podrá comprar RC diretamente pelo app!');
+    Alert.alert('Comprar', 'O mercado é apenas informativo, entre em contato com o vendedor através das informações descritas na oferta e compre diretamente com ele.');
   };
 
   const handleCancel = (offerId: number) => {
-    Alert.alert('Cancelar', 'Função de cancelamento em desenvolvimento.');
+    Alert.alert(
+      'Cancelar Oferta',
+      'Tem certeza que deseja cancelar esta oferta?',
+      [
+        { text: 'Não', style: 'cancel' },
+        { 
+          text: 'Sim', 
+          onPress: () => {
+            cancelOffer({ offerId });
+            loadOffers(); // Recarrega lista após cancelar
+          }
+        }
+      ]
+    );
   };
 
   const handleConfirm = (offerId: number) => {
-    Alert.alert('Confirmar', 'Função de confirmação em desenvolvimento.');
+    // Need buyer address
+    Alert.prompt(
+      'Confirmar Venda',
+      'Digite o endereço da carteira do comprador:',
+      [
+        { text: 'Cancelar', style: 'cancel' },
+        { 
+          text: 'Confirmar',
+          onPress: (buyerAddress?: string) => {
+            if (buyerAddress && buyerAddress.startsWith('0x')) {
+              confirmSale({ offerId, buyer: buyerAddress });
+              loadOffers(); // Recarrega lista após confirmar
+            } else {
+              Alert.alert('Erro', 'Endereço inválido');
+            }
+          }
+        }
+      ],
+      'plain-text'
+    );
   };
 
   const handleCreateOffer = async () => {
@@ -178,11 +219,9 @@ export function MarketScreen() {
                 </View>
                 <View style={styles.detailRow}>
                   <Text style={styles.detailLabel}>Preço unitário:</Text>
-                  <Text style={styles.detailValue}>R$ {offer.pricePerUnit.toFixed(2)}</Text>
+                  <Text style={styles.detailValue}>{offer.pricePerUnit}</Text>
                 </View>
                 <View style={styles.detailRow}>
-                  <Text style={styles.detailLabel}>Total:</Text>
-                  <Text style={styles.detailValue}>R$ {(offer.amount * offer.pricePerUnit).toFixed(2)}</Text>
                 </View>
                 <View style={styles.detailRow}>
                   <Text style={styles.detailLabel}>Pagamento:</Text>
@@ -190,7 +229,9 @@ export function MarketScreen() {
                 </View>
                 <View style={styles.detailRow}>
                   <Text style={styles.detailLabel}>Vendedor:</Text>
-                  <Text style={styles.detailValue}>{shortenAddress(offer.seller)}</Text>
+                  <TouchableOpacity onPress={() => handleGoToUser(offer.seller)}>
+                    <Text style={[styles.detailValue, { color: '#00D9C0' }]}>{shortenAddress(offer.seller)}</Text>
+                  </TouchableOpacity>
                 </View>
               </View>
               
@@ -389,33 +430,39 @@ const styles = StyleSheet.create({
   },
   buyButton: {
     flex: 1,
-    backgroundColor: '#00D9C0',
+    backgroundColor: '#1E3A5F', // Fundo azul
     padding: 12,
     borderRadius: 8,
     alignItems: 'center',
+    borderWidth: 1,
+    borderColor: '#00D9C0', // Borda verde água
   },
   buyButtonText: {
-    color: '#0D1B2A',
+    color: '#00D9C0', // Texto verde água
     fontWeight: 'bold',
   },
   cancelButton: {
-    backgroundColor: '#EF4444',
+    backgroundColor: '#1E3A5F',
     padding: 12,
     borderRadius: 8,
     alignItems: 'center',
+    borderWidth: 1,
+    borderColor: '#EF4444',
   },
   cancelButtonText: {
-    color: '#fff',
+    color: '#EF4444',
     fontWeight: 'bold',
   },
   confirmButton: {
-    backgroundColor: '#F59E0B',
+    backgroundColor: '#1E3A5F',
     padding: 12,
     borderRadius: 8,
     alignItems: 'center',
+    borderWidth: 1,
+    borderColor: '#F59E0B',
   },
   confirmButtonText: {
-    color: '#0D1B2A',
+    color: '#F59E0B',
     fontWeight: 'bold',
   },
   fab: {
