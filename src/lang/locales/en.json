@@ -146,9 +146,9 @@
       "descOffset": "Allows a backer to burn tokens to offset the degradation of a specific item, or for the backer to declare a reduction pledge for a specific calculator item.",
       "burnTokens": "Burn tokens",
       "descBurnTokens": "Compensate your environmental degradation by burning Regeneration Credit tokens. Burning tokens permanently removes them from circulation and increases your compensation certificate.",
-      "tokenImpact": "Token impact",
+      "tokenImpact": "Impact",
       "totalImpactEra": "Total impact era",
-      "impactPerToken": "Impact per token"
+      "impactPerToken": "Impact per Regeneration Credit"
     },
     "register": {
       "title": "Register",
@@ -271,7 +271,7 @@
       "totalCertified": "Total certified",
       "circulatingSupply": "Circulating supply",
       "tokenData": "Token data",
-      "impactPerToken": "Impact per token",
+      "impactPerToken": "Impact per Regeneration Credit",
       "totalImpact": "Total impact",
       "totalImpactPerEra": "Total impact per era"
     },

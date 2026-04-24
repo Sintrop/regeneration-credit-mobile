@@ -4,6 +4,14 @@ import { useTranslation } from "react-i18next";
 import { Icon, Text } from "@components";
 import { useImpactPerToken } from "@domain";
 
+// Helper function to format numbers with 6 decimal places and comma as decimal separator
+function formatNumber(value?: number | string): string {
+  if (value === undefined || value === null) return '0';
+  const num = typeof value === 'string' ? parseFloat(value) : value;
+  if (isNaN(num)) return '0';
+  return num.toFixed(6).replace('.', ',');
+}
+
 export function TokenImpact() {
   const { t } = useTranslation();
   const { carbon, trees, biodiversity, area } = useImpactPerToken();
@@ -18,22 +26,22 @@ export function TokenImpact() {
         <View className="flex-row gap-3 w-full">
           <ImpactItem 
             label={t('common.trees')}
-            value={trees}
+            value={formatNumber(trees)}
           />
           <ImpactItem 
             label={t('common.carbon')}
-            value={carbon}
+            value={formatNumber(carbon)}
             suffix="g"
           />
         </View>
         <View className="flex-row gap-3 w-full">
           <ImpactItem 
             label={t('common.biodiversity')}
-            value={biodiversity}
+            value={formatNumber(biodiversity)}
           />
           <ImpactItem 
             label={t('common.area')}
-            value={area}
+            value={formatNumber(area)}
             suffix="m²"
           />
         </View>

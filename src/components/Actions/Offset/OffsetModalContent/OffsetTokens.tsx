@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from "react";
-import { Image, TouchableOpacity, View } from "react-native";
+import { Image, TouchableOpacity, View, Keyboard } from "react-native";
 import { useTranslation } from "react-i18next";
 import Toast from "react-native-toast-message";
 import { utils } from "web3";
@@ -109,6 +109,9 @@ export function OffsetTokens({ refetchApprovedTokens, approvedTokens, item }: Pr
           onChangeText={setInputTokens}
           placeholder={t('common.typeHere')}
           keyboardType="numeric"
+          returnKeyType="done"
+          blurOnSubmit
+          onSubmitEditing={() => Keyboard.dismiss()}
         />
 
         {insufficientBalance && (

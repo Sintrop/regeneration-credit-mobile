@@ -12,10 +12,13 @@ interface Offer {
   id: number;
   seller: string;
   amount: number;
-  pricePerUnit: number;
+  pricePerUnit: any;
   paymentMethod: string;
   description: string;
   status: number;
+  active?: boolean;
+  completedAt?: number;
+  buyer?: string;
 }
 
 export function MarketScreen() {

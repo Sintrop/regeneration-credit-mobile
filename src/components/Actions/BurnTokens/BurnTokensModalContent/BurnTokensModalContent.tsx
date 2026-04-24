@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { ActivityIndicator, Image, TouchableOpacity, View } from "react-native";
+import { ActivityIndicator, Image, Keyboard, TouchableOpacity, View } from "react-native";
 import { useTranslation } from "react-i18next";
 
 import { useAppSafeArea, useKeyboardStatus, useUserContext } from "@hooks";
@@ -74,6 +74,9 @@ export function BurnTokensModalContent() {
           onChangeText={setInputTokens}
           placeholder={t('common.typeHere')}
           keyboardType="numeric"
+            returnKeyType="done"
+            blurOnSubmit
+            onSubmitEditing={() => Keyboard.dismiss()}
         />
 
         {insufficientBalance && (

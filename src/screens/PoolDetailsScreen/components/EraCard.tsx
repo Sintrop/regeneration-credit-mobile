@@ -10,6 +10,15 @@ interface EraCardProps {
   currentEra: number;
 }
 
+// Helper to format tokens from wei to whole number with dot for thousands
+function formatTokens(value?: number): string {
+  if (!value) return '0';
+  // Convert from wei (divide by 1e18) and round to whole number
+  const tokens = Math.round(value / 1e18);
+  // Format with dot for thousands
+  return tokens.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+}
+
 export function EraCard({ userType, currentEra }: EraCardProps) {
   const { t } = useTranslation();
   const [selectedEra, setSelectedEra] = useState(currentEra > 0 ? currentEra : 1);
@@ -71,7 +80,7 @@ export function EraCard({ userType, currentEra }: EraCardProps) {
             <View className="h-[1px] bg-gray-700 w-full" />
             <EraDataItem 
               label={t('poolsDetailsScreen.tokens')} 
-              value={Intl.NumberFormat('pt-BR', { maximumFractionDigits: 0 }).format(data?.tokens ?? 0)} 
+              value={formatTokens(data?.tokens)} 
               suffix="RC"
             />
           </>
