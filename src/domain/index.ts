@@ -8,6 +8,7 @@ export * from "./RegenerationCredit/useCases/useCertificatedTokens";
 
 export * from "./RegenerationCreditImpact/types";
 export * from "./RegenerationCreditImpact/rcImpactService";
+export * from "./RegenerationCreditImpact/rcImpactContract";
 export * from "./RegenerationCreditImpact/useCases/useImpactPerToken";
 export * from "./RegenerationCreditImpact/useCases/useTotalImpact";
 
@@ -97,3 +98,5 @@ export * from "./Tx/events/useTransfers";
 export * from "./Chain/chainService";
 export * from "./Chain/useCases/useBlockNumber";
 export * from "./SupporterRules/useCases/useDeclareReductionCommitment";
+export * from "./SupporterRules/useCases/useReductionCommitments";
+export { useCalculatorItemById } from './SupporterRules/useCases/useReductionCommitments';
