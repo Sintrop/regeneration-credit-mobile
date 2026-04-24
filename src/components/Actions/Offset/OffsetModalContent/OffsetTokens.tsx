@@ -1,17 +1,22 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from "react";
-import { Image, TouchableOpacity, View, Keyboard } from "react-native";
+import { Image, TouchableOpacity, View, Keyboard, TextInput as RNTextInput } from "react-native";
 import { useTranslation } from "react-i18next";
 import Toast from "react-native-toast-message";
 import { utils } from "web3";
 
 import { useKeyboardStatus, useTxContext, useUserContext } from "@hooks";
-import { CalculatorItemProps, useBalance } from "@domain";
+import { CalculatorItemProps, useBalance, useImpactPerToken } from "@domain";
 import { Text, TextInput } from "@components";
 import { SupporterRules } from "@contracts";
 
 //@ts-ignore
 import RCIcon from "../../../../assets/images/rc.png";
+
+// Helper to format with 2 decimal places using comma as decimal separator
+function formatNumber(value: number): string {
+  return value.toFixed(2).replace('.', ',');
+}
 
 interface Props {
   refetchApprovedTokens: () => void;
@@ -24,10 +29,18 @@ export function OffsetTokens({ refetchApprovedTokens, approvedTokens, item }: Pr
   const { balance, isLoading } = useBalance({ address });
   const { registerContinueAction, sendTransaction } = useTxContext();
   const { keyboardOpen } = useKeyboardStatus();
+  const { carbon: carbonPerToken } = useImpactPerToken();
 
   const [inputTokens, setInputTokens] = useState('');
+  const [inputUnits, setInputUnits] = useState('');
   const [description, setDescription] = useState('');
   const [insufficientBalance, setInsufficientBalance] = useState(false);
+
+  // Calculate tokens needed based on units and carbon impact
+  const parsedUnits = parseFloat(inputUnits.replace(',', '.'));
+  const tokensNeeded = !isNaN(parsedUnits) && parsedUnits > 0 && carbonPerToken > 0
+    ? (parsedUnits * item.carbonImpact) / (carbonPerToken * 1e6) // carbonPerToken is in tonnes, convert to g
+    : 0;
 
   useEffect(() => {
     registerContinueAction(() => {
@@ -87,18 +100,34 @@ export function OffsetTokens({ refetchApprovedTokens, approvedTokens, item }: Pr
               </Text>
             </View>
 
-            <View className="gap-2 mb-3">
-              <Text className="text-white">
-                {t('offset.calculatorItem')}
+            <View className="gap-2 mb-3 p-3 bg-gray-800 rounded-xl">
+              <Text className="text-white font-semibold">{item.item}</Text>
+              <Text className="text-gray-400 text-sm">
+                Impacto: {item.carbonImpact} g CO2/{item.unit}
               </Text>
+            </View>
 
-              <View className="flex items-center justify-between w-full">
-                <Text className="text-white">{item.item}</Text>
-
-                <Text className="text-white">
-                  {item.carbonImpact} g CO2/{item.unit}
+            {/* Calculator Section */}
+            <View className="border border-green-500 rounded-xl p-3 bg-green-900/20">
+              <Text className="text-white text-sm mb-2">
+                Quantos {item.unit} deseja compensar?
+              </Text>
+              <RNTextInput
+                className="bg-transparent text-white h-10 px-3 rounded-lg mb-2 border border-gray-500"
+                placeholderTextColor="#666"
+                placeholder={`Ex: 10`}
+                value={inputUnits}
+                onChangeText={setInputUnits}
+                keyboardType="numeric"
+                returnKeyType="done"
+                blurOnSubmit
+                onSubmitEditing={() => Keyboard.dismiss()}
+              />
+              {tokensNeeded > 0 && (
+                <Text className="text-green-400 font-semibold">
+                  Compense {formatNumber(tokensNeeded)} Créditos de Regeneração
                 </Text>
-              </View>
+              )}
             </View>
           </>
         )}

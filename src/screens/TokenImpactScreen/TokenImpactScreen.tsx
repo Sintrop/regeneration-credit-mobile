@@ -7,6 +7,7 @@ import { TokenData } from "./components/TokenData";
 import { ImpactPerToken } from "./components/ImpactPerToken";
 import { TotalImpact } from "./components/TotalImpact";
 import { ImpactPerEra } from "./components/ImpactPerEra";
+import { TokenPerTree } from "../ImpactCalculatorScreen/components/TokenPerTree/TokenPerTree";
 
 export function TokenImpactScreen() {
   const { t } = useTranslation();
@@ -14,6 +15,7 @@ export function TokenImpactScreen() {
   return (
     <Screen title={t('tokenImpact.title')} showBackButton scrollable>
       <View className="gap-5 mb-10">
+        <TokenPerTree />
         <TokenData />
         <ImpactPerToken />
         <TotalImpact />
