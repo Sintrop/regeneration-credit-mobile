@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Alert, TextInput, Modal, Platform, Keyboard } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { AppStackParamsList } from '@routes/AppStack';
+import { AppStackParamsList } from '@routes';
 import { getRCMarketContract, useCreateOffer, useCancelOffer, useConfirmSale } from '@domain/RCMarket';
-import { useUserContext } from '@hooks';
+import { useAppSafeArea, useUserContext } from '@hooks';
 
 type NavigationProp = NativeStackNavigationProp<AppStackParamsList>;
 
@@ -22,6 +22,7 @@ interface Offer {
 }
 
 export function MarketScreen() {
+  const { top } = useAppSafeArea();
   const navigation = useNavigation<NavigationProp>();
   const { address, isConnected, handleConnect } = useUserContext();
   const { createOffer, isLoading: isCreatingOffer } = useCreateOffer();
@@ -191,7 +192,7 @@ export function MarketScreen() {
   };
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, { paddingTop: top }]}>
       <View style={styles.header}>
         <TouchableOpacity onPress={() => navigation.goBack()}>
           <Text style={styles.backButton}>← Voltar</Text>
