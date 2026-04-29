@@ -76,6 +76,13 @@ export function PoolDetailsScreen({ route }: ScreenProps) {
             value={data?.currentEpoch}
           />
         </View>
+        <View className="w-full">
+          <CardData 
+            title="Distribuição por fase" 
+            value={data?.distributionPerEra != null && data.distributionPerEra > 0 ? Math.floor(data.distributionPerEra).toLocaleString('pt-BR') : '-'}
+            suffix="RC"
+          />
+        </View>
       </View>
       <WithdrawArea poolType={userType} poolEra={data?.currentEra ?? 0} />
 

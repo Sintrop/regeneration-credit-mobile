@@ -12,4 +12,5 @@ export interface PoolData {
   balance: number;
   usedTokens: number;
   balancePercentage: number;
+  distributionPerEra: number;
 }
