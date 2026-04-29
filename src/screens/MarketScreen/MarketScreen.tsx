@@ -22,7 +22,6 @@ interface Offer {
 }
 
 export function MarketScreen() {
-  const { top } = useAppSafeArea();
   const navigation = useNavigation<NavigationProp>();
   const { address, isConnected, handleConnect } = useUserContext();
   const { createOffer, isLoading: isCreatingOffer } = useCreateOffer();
@@ -192,7 +191,7 @@ export function MarketScreen() {
   };
 
   return (
-    <View style={[styles.container, { paddingTop: top }]}>
+    <View style={styles.container}>
       <View style={styles.header}>
         <TouchableOpacity onPress={() => navigation.goBack()}>
           <Text style={styles.backButton}>← Voltar</Text>
@@ -207,7 +206,7 @@ export function MarketScreen() {
         ) : offers.length === 0 ? (
           <Text style={styles.emptyText}>Nenhuma oferta disponível</Text>
         ) : (
-          offers.map((offer) => (
+          offers.filter(offer => offer.status === 0).map((offer) => (
             <View key={offer.id} style={styles.offerCard}>
               <View style={styles.offerHeader}>
                 <Text style={styles.offerId}>Oferta #{offer.id}</Text>

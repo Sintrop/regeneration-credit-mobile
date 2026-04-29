@@ -37,9 +37,10 @@ export function OffsetTokens({ refetchApprovedTokens, approvedTokens, item }: Pr
   const [insufficientBalance, setInsufficientBalance] = useState(false);
 
   // Calculate tokens needed based on units and carbon impact
+  // Formula: (unidades * impacto em gramas por unidade) / impacto por token em gramas
   const parsedUnits = parseFloat(inputUnits.replace(',', '.'));
   const tokensNeeded = !isNaN(parsedUnits) && parsedUnits > 0 && carbonPerToken > 0
-    ? (parsedUnits * item.carbonImpact) / (carbonPerToken * 1e6) // carbonPerToken is in tonnes, convert to g
+    ? (parsedUnits * Number(item.carbonImpact)) / carbonPerToken
     : 0;
 
   useEffect(() => {

@@ -244,7 +244,8 @@
       "requestedInspection": "Inspeção solicitada",
       "burnTokens": "Queimar tokens",
       "howMuchDoYouWantToBurn": "Quantos tokens você quer queimar?",
-      "burnedTokens": "Tokens queimados"
+      "burnedTokens": "Tokens queimados",
+      "compensate": "Compensar"
     },
     "actionsDescriptions": {
       "inviteSupporter": "Apoiadores podem convidar Apoiadores para o sistema, respeitando o atraso específico de apoiador.",
