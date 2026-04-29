@@ -10,6 +10,7 @@ import { Contribution } from "./components/Contribution/Contribution";
 import { Offset } from "./components/Offset/Offset";
 import { UserRegistered } from "./components/UserRegistered/UserRegistered";
 import { DeclaredCommitment } from "./components/DeclaredCommitment/DeclaredCommitment";
+import { PoolWithdrawal } from "./components/PoolWithdrawal/PoolWithdrawal";
 
 export interface BaseComponentsProps {
   id: number;
@@ -37,5 +38,6 @@ const componentByType: Record<ResourcesTypes, ComponentType<BaseComponentsProps>
   contribution: Contribution,
   offset: Offset,
   "user-registered": UserRegistered,
-  "declared-commitment": DeclaredCommitment
+  "declared-commitment": DeclaredCommitment,
+  "pool-withdrawal": PoolWithdrawal
 }

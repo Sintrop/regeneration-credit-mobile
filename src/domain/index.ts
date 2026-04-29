@@ -102,6 +102,9 @@ export * from "./SupporterRules/useCases/useReductionCommitments";
 export { useCalculatorItemById } from './SupporterRules/useCases/useReductionCommitments';
 
 export * from "./Pools/usePoolData";
-export * from "./Pools/useCases/useWithdraw";
 export * from "./Pools/useCases/usePoolEra";
+export * from "./Pools/useCases/useWithdraw";
+export * from "./Pools/useCases/useWithdrawals";
 export * from "./Pools/poolService";
+
+export * from "./RCMarket";
