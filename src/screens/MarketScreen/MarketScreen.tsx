@@ -23,6 +23,7 @@ interface Offer {
 
 export function MarketScreen() {
   const navigation = useNavigation<NavigationProp>();
+  const { top } = useAppSafeArea();
   const { address, isConnected, handleConnect } = useUserContext();
   const { createOffer, isLoading: isCreatingOffer } = useCreateOffer();
   const { cancelOffer } = useCancelOffer();
@@ -191,7 +192,7 @@ export function MarketScreen() {
   };
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, { paddingTop: top }]}>
       <View style={styles.header}>
         <TouchableOpacity onPress={() => navigation.goBack()}>
           <Text style={styles.backButton}>← Voltar</Text>
