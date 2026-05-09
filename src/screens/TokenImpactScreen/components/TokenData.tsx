@@ -6,6 +6,12 @@ import { Text } from "@components";
 
 import { ImpactItem } from "./ImpactItem";
 
+// Helper to format as whole number with dot for thousands (1.000.000)
+function formatWholeNumber(value?: number): string {
+  if (value === undefined || value === null) return '0';
+  return Math.round(value).toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+}
+
 export function TokenData() {
   const { t } = useTranslation();
   const { totalSupply, totalCertified, totalLocked, circulatingSuplly, isLoading } = useTokenData();
@@ -16,13 +22,13 @@ export function TokenData() {
       <View className="flex-row gap-3 w-full">
         <ImpactItem 
           label={t('tokenImpact.totalSupply')}
-          value={Intl.NumberFormat('pt-BR').format(totalSupply)}
+          value={formatWholeNumber(totalSupply)}
           suffix="RC"
           isLoading={isLoading}
         />
         <ImpactItem 
           label={t('tokenImpact.totalLocked')}
-          value={Intl.NumberFormat('pt-BR').format(totalLocked)}
+          value={formatWholeNumber(totalLocked)}
           suffix="RC"
           isLoading={isLoading}
         />
@@ -30,13 +36,13 @@ export function TokenData() {
       <View className="flex-row gap-3 w-full mt-2">
         <ImpactItem 
           label={t('tokenImpact.totalCertified')}
-          value={Intl.NumberFormat('pt-BR').format(totalCertified)}
+          value={formatWholeNumber(totalCertified)}
           suffix="RC"
           isLoading={isLoading}
         />
         <ImpactItem 
           label={t('tokenImpact.circulatingSupply')}
-          value={Intl.NumberFormat('pt-BR').format(circulatingSuplly)}
+          value={formatWholeNumber(circulatingSuplly)}
           suffix="RC"
           isLoading={isLoading}
         />

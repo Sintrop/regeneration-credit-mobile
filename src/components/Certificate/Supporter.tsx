@@ -13,16 +13,30 @@ interface Props {
   address: string;
 }
 
+// Helper to format numbers with 5 decimal places using comma as decimal separator
+function formatImpact(value: number): string {
+  return value.toFixed(5).replace('.', ',');
+}
+
+// Helper to format whole numbers with dot for thousands
+function formatWhole(value: number): string {
+  return Math.round(value).toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+}
+
 export function Supporter({ address }: Props) {
   const { t } = useTranslation();
   const { supporter } = useGetSupporter({ address });
   const { certificated } = useCertificatedTokens({ address });
   const { area, biodiversity, carbon, trees } = useImpactPerToken();
 
+  // Calculate impacts
   const carbonImpact = certificated * carbon;
   const treesImpact = certificated * trees;
   const areaImpact = certificated * area;
   const bioImpact = certificated * biodiversity;
+
+  // Carbon in tonnes (g -> tonnes: divide by 1e6)
+  const carbonTonnes = carbonImpact / 1e6;
 
   const parsedName = supporter?.name.replaceAll(' ', '-').toLowerCase();
   const qrLink = 'https://users.regenerationcredit.org/supporter/' + address + '/' + parsedName;
@@ -39,33 +53,33 @@ export function Supporter({ address }: Props) {
             <Text className="text-white font-semibold" numberOfLines={1}>{supporter?.name}</Text>
             <View className="flex-row items-center flex-wrap">
               <Text className="text-white">{t('profile.contributedWith')}</Text>
-              <Text className="font-bold text-green-500 mx-1">{Intl.NumberFormat('pt-BR').format(certificated)}</Text>
+              <Text className="font-bold text-green-500 mx-1">{formatWhole(certificated)}</Text>
               <Text className="text-white">RC</Text>
             </View>
 
-            <Text className="text-gray-300 text-xs mt-3">{t('common.impact')}</Text>
+            <Text className="text-gray-300 text-xs mt-3">Financiando o impacto de:</Text>
             <View className="flex-row items-center gap-1">
               <Text className="text-white text-sm">{t('common.carbon')}:</Text>
               <Text className="text-white text-sm font-semibold">
-                {Intl.NumberFormat('pt-BR', {maximumFractionDigits: 7}).format(carbonImpact)} g
+                {formatImpact(carbonTonnes)} t
               </Text>
             </View>
             <View className="flex-row items-center gap-1">
               <Text className="text-white text-sm">{t('common.trees')}:</Text>
               <Text className="text-white text-sm font-semibold">
-                {Intl.NumberFormat('pt-BR', {maximumFractionDigits: 7}).format(treesImpact)}
+                {formatImpact(treesImpact)}
               </Text>
             </View>
             <View className="flex-row items-center gap-1">
               <Text className="text-white text-sm">{t('common.biodiversity')}:</Text>
               <Text className="text-white text-sm font-semibold">
-                {Intl.NumberFormat('pt-BR', {maximumFractionDigits: 7}).format(bioImpact)}
+                {formatImpact(bioImpact)}
               </Text>
             </View>
             <View className="flex-row items-center gap-1">
               <Text className="text-white text-sm">{t('common.area')}:</Text>
               <Text className="text-white text-sm font-semibold">
-                {Intl.NumberFormat('pt-BR', {maximumFractionDigits: 5}).format(areaImpact)} m²
+                {formatImpact(areaImpact)} m²
               </Text>
             </View>
           </View>

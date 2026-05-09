@@ -1,5 +1,5 @@
 import { Children, cloneElement, isValidElement, ReactNode, useEffect, useRef, useState } from "react";
-import { ActivityIndicator, ScrollView, TouchableOpacity, View } from "react-native";
+import { ActivityIndicator, ScrollView, TouchableOpacity, View, Keyboard } from "react-native";
 import { useTranslation } from "react-i18next";
 import { Modalize } from "react-native-modalize";
 import { Portal } from "react-native-portalize";
@@ -119,6 +119,9 @@ export function RealizeInspection({ children }: Props) {
                   value={inspectionId}
                   onChangeText={setInspectionId}
                   keyboardType="numeric"
+                  returnKeyType="done"
+                  blurOnSubmit
+                  onSubmitEditing={() => Keyboard.dismiss()}
                 />
 
                 <TextInput
@@ -126,6 +129,9 @@ export function RealizeInspection({ children }: Props) {
                   value={trees}
                   onChangeText={setTrees}
                   keyboardType="numeric"
+                  returnKeyType="done"
+                  blurOnSubmit
+                  onSubmitEditing={() => Keyboard.dismiss()}
                 />
 
                 <TextInput
@@ -133,6 +139,9 @@ export function RealizeInspection({ children }: Props) {
                   value={biodiversity}
                   onChangeText={setBiodiversity}
                   keyboardType="numeric"
+                  returnKeyType="done"
+                  blurOnSubmit
+                  onSubmitEditing={() => Keyboard.dismiss()}
                 />
 
                 <FileInput

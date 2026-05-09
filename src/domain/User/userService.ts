@@ -1,4 +1,4 @@
-import { activistService, BasicUserProps, contributorService, developerService, inspectorService, regeneratorService, researcherService, supporterService } from "@domain";
+import { activistService, BasicUserProps, contributorService, developerService, inspectorService, regeneratorService, researcherService, supporterService, rcService } from "@domain";
 
 interface GetBasicDataProps {
   rpc: string;
@@ -10,7 +10,9 @@ async function getBasicData({ address, rpc, userType }: GetBasicDataProps): Prom
     address,
     name: "",
     photo: "",
-    poolLevel: 0
+    poolLevel: 0,
+    extraInfo: undefined,
+    extraInfoValue: 0
   }
 
   if (userType === 1) {
@@ -19,7 +21,9 @@ async function getBasicData({ address, rpc, userType }: GetBasicDataProps): Prom
       address,
       name: response.name,
       photo: response.proofPhoto,
-      poolLevel: response.pool.currentEra
+      poolLevel: response.pool.currentEra,
+      extraInfo: 'Regeneration Score',
+      extraInfoValue: response.regenerationScore?.score || 0
     }
   }
 
@@ -29,7 +33,9 @@ async function getBasicData({ address, rpc, userType }: GetBasicDataProps): Prom
       address,
       name: response.name,
       photo: response.proofPhoto,
-      poolLevel: response.pool.currentEra
+      poolLevel: response.pool.currentEra,
+      extraInfo: 'Level',
+      extraInfoValue: response.pool?.level || 0
     }
   }
 
@@ -39,7 +45,9 @@ async function getBasicData({ address, rpc, userType }: GetBasicDataProps): Prom
       address,
       name: response.name,
       photo: response.proofPhoto,
-      poolLevel: response.pool.currentEra
+      poolLevel: response.pool.currentEra,
+      extraInfo: 'Level',
+      extraInfoValue: response.pool?.level || 0
     }
   }
 
@@ -49,7 +57,9 @@ async function getBasicData({ address, rpc, userType }: GetBasicDataProps): Prom
       address,
       name: response.name,
       photo: response.proofPhoto,
-      poolLevel: response.pool.currentEra
+      poolLevel: response.pool.currentEra,
+      extraInfo: 'Level',
+      extraInfoValue: response.pool?.level || 0
     }
   }
 
@@ -59,7 +69,9 @@ async function getBasicData({ address, rpc, userType }: GetBasicDataProps): Prom
       address,
       name: response.name,
       photo: response.proofPhoto,
-      poolLevel: response.pool.currentEra
+      poolLevel: response.pool.currentEra,
+      extraInfo: 'Level',
+      extraInfoValue: response.pool?.level || 0
     }
   }
 
@@ -69,17 +81,31 @@ async function getBasicData({ address, rpc, userType }: GetBasicDataProps): Prom
       address,
       name: response.name,
       photo: response.proofPhoto,
-      poolLevel: response.pool.currentEra
+      poolLevel: response.pool.currentEra,
+      extraInfo: 'Level',
+      extraInfoValue: response.pool?.level || 0
     }
   }
 
   if (userType === 7) {
     const response = await supporterService.getSupporter({ rpc, address })
+    
+    // Get certificated tokens for supporter
+    let certificatedTokens = 0;
+    try {
+      const certResponse = await rcService.getCertificatedTokens({ address, rpc });
+      certificatedTokens = certResponse || 0;
+    } catch (err) {
+      console.error('[UserService] Error fetching certificated tokens:', err);
+    }
+    
     basicData = {
       address,
       name: response.name,
       photo: response.profilePhoto,
-      poolLevel: -1
+      poolLevel: 0,
+      extraInfo: 'Tokens Compensados',
+      extraInfoValue: certificatedTokens
     }
   }
 

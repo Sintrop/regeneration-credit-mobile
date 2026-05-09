@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { FeedItemProps } from "@database";
-import { feedAdapter, useAcceptedInspections, useContributionAdded, useDeclaredCommitment, useOffsets, useRealizedInspections, useReportAdded, useRequestedInspections, useResearchsPublished, useUserRegistered } from "@domain";
+import { feedAdapter, useAcceptedInspections, useContributionAdded, useDeclaredCommitment, useOffsets, useRealizedInspections, useReportAdded, useRequestedInspections, useResearchsPublished, useUserRegistered, useWithdrawals } from "@domain";
 import { paginateList } from "@utils";
 import { useEffect, useState } from "react";
 
@@ -29,10 +29,11 @@ export function useNewFeed(): ReturnUseNewFeed {
   const { requestedInspections, isLoading: isLoadingRequestedInspections, refetch: refetchRequestedInspection } = useRequestedInspections();
   const { acceptedInspections, isLoading: isLoadingAcceptedInspections, refetch: refetchAcceptedInspections } = useAcceptedInspections();
   const { commitments, isLoading: isLoadingCommitments, refetch: refetchCommitments } = useDeclaredCommitment();
+  const { withdrawals, isLoading: isLoadingWithdrawals, refetch: refetchWithdrawals } = useWithdrawals();
 
   useEffect(() => {
     createFeedList()
-  }, [offsets, realizedInspections, reports, researchs, contributions, usersRegistered, requestedInspections, commitments])
+  }, [offsets, realizedInspections, reports, researchs, contributions, usersRegistered, requestedInspections, commitments, withdrawals])
 
   function createFeedList() {
     const newListFeed: FeedItemProps[] = [];
@@ -63,6 +64,9 @@ export function useNewFeed(): ReturnUseNewFeed {
     const commitmentsFeed = commitments.map(feedAdapter.parseCommitmentToFeed);
     newListFeed.push(...commitmentsFeed);
 
+    const withdrawalsFeed = withdrawals.map(feedAdapter.parseWithdrawalToFeed);
+    newListFeed.push(...withdrawalsFeed);
+
     const sortedList = newListFeed.sort((a, b) => b.createdAt - a.createdAt)
     const paginate = paginateList<FeedItemProps>({ atualPage, itemsPerPage, list: sortedList });
     setList(sortedList);
@@ -92,6 +96,7 @@ export function useNewFeed(): ReturnUseNewFeed {
     refetchRequestedInspection();
     refetchAcceptedInspections();
     refetchCommitments();
+    refetchWithdrawals();
   }
 
   return {
@@ -100,7 +105,7 @@ export function useNewFeed(): ReturnUseNewFeed {
       isLoadingReports || isLoadingResearchs ||
       isLoadingContributions || isLoadingUsersRegistered ||
       isLoadingRequestedInspections || isLoadingAcceptedInspections ||
-      isLoadingCommitments,
+      isLoadingCommitments || isLoadingWithdrawals,
     list: listPage,
     nextPage: handleNextPage,
     atualPage,

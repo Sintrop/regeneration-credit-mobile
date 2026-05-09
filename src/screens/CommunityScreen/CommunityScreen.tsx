@@ -24,13 +24,13 @@ export function CommunityScreen(){
           </View>
         </View>
 
+        <UserItem userType={7} />
         <UserItem userType={1} />
         <UserItem userType={2} />
         <UserItem userType={3} />
         <UserItem userType={4} />
         <UserItem userType={5} />
         <UserItem userType={6} />
-        <UserItem userType={7} />
       </View>
     </Screen>
   )

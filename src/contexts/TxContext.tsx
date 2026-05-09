@@ -3,7 +3,7 @@ import { createContext, ReactNode, useEffect, useState } from "react";
 import { ActivityIndicator, Alert, Linking, Modal, TouchableOpacity, View } from "react-native";
 import { useTranslation } from "react-i18next";
 import { useSDK } from "@metamask/sdk-react";
-import Web3 from "web3";
+import Web3, { utils } from "web3";
 import Clipboard from "@react-native-clipboard/clipboard";
 import { ethers } from "ethers";
 
@@ -17,7 +17,7 @@ interface SendTransactionProps {
   params?: any;
   methodName?: string;
   interactWithContract?: boolean;
-  value?: number;
+  value?: string | number; // Alterado para aceitar string de Wei
 }
 
 interface ReceiptTxProps {
@@ -100,6 +100,32 @@ export function TxProvider({ children }: TxProviderProps) {
             from: accounts[0],
             to: txData.contractAddress,
             data: contract.methods[txData?.methodName ?? ''](...txData.params).encodeABI(),
+          }],
+        });
+        setHash(response as string);
+      } catch (e) {
+        console.log(e);
+        setIsLoading(false);
+        setIsError(true);
+        setIsSuccess(false);
+      }
+    } else {
+      try {
+        const accounts = await (ethereum as any).request({ method: 'eth_accounts' });
+
+        /**
+         * Robust conversion of Wei decimal string to Hexadecimal.
+         * Using BigInt ensures precision for 18-decimal values.
+         */
+        const valueInWei = txData.params?.[0]?.value;
+        const hexValue = '0x' + BigInt(valueInWei).toString(16);
+
+        const response = await ethereum.request({
+          method: 'eth_sendTransaction',
+          params: [{
+            from: accounts[0],
+            to: txData.params?.[0]?.to,
+            value: hexValue,
           }],
         });
         setHash(response as string);

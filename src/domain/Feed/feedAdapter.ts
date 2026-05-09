@@ -5,6 +5,7 @@ import { ReportAdded } from "../DeveloperRules/types";
 import { ResearchPublishedProps } from "../ResearcherRules/types";
 import { ContributionAddedProps } from "../ContributorRules/types";
 import { UserRegisteredProps } from "../CommunityRules/types";
+import { PoolWithdrawalProps } from "../Pools/useCases/useWithdrawals";
 
 function parseRequestedInspectionToFeed(data: RequestedInspectionProps): FeedItemProps {
   return {
@@ -95,6 +96,16 @@ function parseCommitmentToFeed(data: ICommitment): FeedItemProps {
   }
 }
 
+function parseWithdrawalToFeed(data: PoolWithdrawalProps): FeedItemProps {
+  return {
+    id: parseInt(`${data.blockNumber}${data.era}${data.poolType}`, 10),
+    createdAt: data.blockNumber,
+    resourceId: data.era,
+    resourceType: 'pool-withdrawal',
+    additionalData: JSON.stringify(data)
+  }
+}
+
 export const feedAdapter = {
   parseRealizedInspectionToFeed,
   parseOffsetToFeed,
@@ -104,5 +115,6 @@ export const feedAdapter = {
   parseUserRegisteredToFeed,
   parseRequestedInspectionToFeed,
   parseAcceptedInspectionToFeed,
-  parseCommitmentToFeed
+  parseCommitmentToFeed,
+  parseWithdrawalToFeed
 }

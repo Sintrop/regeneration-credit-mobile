@@ -93,6 +93,11 @@ export function UserItem({ id , userType, handleGoToUserDetail }: Props) {
       <View className="gap-1 max-w-[75%]">
         <Text className="font-bold text-white">{user?.name}</Text>
         <Text className="text-white text-sm" numberOfLines={1}>{address}</Text>
+        {user?.extraInfo && (
+          <Text className="text-green-400 text-sm">
+            {user.extraInfo}: {userType === 7 ? (user.extraInfoValue?.toFixed(2) || '0.00') : Math.floor(user.extraInfoValue || 0)}
+          </Text>
+        )}
       </View>
     </TouchableOpacity>
   )

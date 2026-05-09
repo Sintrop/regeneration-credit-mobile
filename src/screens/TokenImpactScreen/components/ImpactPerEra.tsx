@@ -6,6 +6,12 @@ import { Text } from "@components";
 
 import { ImpactItem } from "./ImpactItem";
 
+// Helper to format with dot for thousands (1.000.000)
+function formatWithDots(value?: number): string {
+  if (value === undefined || value === null) return '0';
+  return Math.round(value).toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+}
+
 export function ImpactPerEra() {
   const { t } = useTranslation();
   const { isLoading, impactPerEra } = useImpactPerEra({ era: 1 });
@@ -21,19 +27,19 @@ export function ImpactPerEra() {
       <View className="flex-row gap-3 w-full">
         <ImpactItem 
           label={t('common.trees')}
-          value={impactPerEra?.totalTress}
+          value={formatWithDots(impactPerEra?.totalTress)}
           isLoading={isLoading}
         />
         <ImpactItem 
           label={t('common.biodiversity')}
-          value={impactPerEra?.totalBiodiversity}
+          value={formatWithDots(impactPerEra?.totalBiodiversity)}
           isLoading={isLoading}
         />
       </View>
       <View className="flex-row gap-3 w-full mt-2">
         <ImpactItem 
           label={t('common.inspections')}
-          value={impactPerEra?.totalInspections}
+          value={formatWithDots(impactPerEra?.totalInspections)}
           isLoading={isLoading}
         />
       </View>

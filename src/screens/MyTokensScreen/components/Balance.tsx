@@ -11,7 +11,11 @@ import RCIcon from "../../../assets/images/rc.png";
 import SINIcon from "../../../assets/images/sin.png";
 import { useState } from "react";
 
-export function Balance() {
+interface BalanceProps {
+  onTransfer?: () => void;
+}
+
+export function Balance({ onTransfer }: BalanceProps) {
   const { address, balanceSIN, isConnected } = useUserContext();
   const { t } = useTranslation();
   const { balance, isLoading: isLoadingRc } = useBalance({ address });
@@ -45,17 +49,31 @@ export function Balance() {
         </Text>
       </View>
 
-      <View className="mt-5 h-8 items-center justify-center">
+      <View className="flex-row items-center justify-center gap-4 mt-5">
         {isConnected ? (
-          <TouchableOpacity
-            className="flex-row items-center justify-center gap-3 h-8"
-            onPress={handleToggleVisibility}
-            hitSlop={5}
-          >
-            <Text className="font-semibold text-white">
-              {showBalance ? t('myTokens.hideBalance') : t('myTokens.showBalance')}
-            </Text>
-          </TouchableOpacity>
+          <>
+            <TouchableOpacity
+              className="flex-row items-center justify-center gap-2 h-8 px-4 bg-blue-600 rounded-lg"
+              onPress={handleToggleVisibility}
+              hitSlop={5}
+            >
+              <Text className="font-semibold text-white text-sm">
+                {showBalance ? t('myTokens.hideBalance') : t('myTokens.showBalance')}
+              </Text>
+            </TouchableOpacity>
+            
+            {onTransfer && (
+              <TouchableOpacity
+                className="flex-row items-center justify-center gap-2 h-8 px-4 bg-green-600 rounded-lg"
+                onPress={onTransfer}
+                hitSlop={5}
+              >
+                <Text className="font-semibold text-white text-sm">
+                  {t('myTokens.transfer')}
+                </Text>
+              </TouchableOpacity>
+            )}
+          </>
         ) : (
           <Text className="text-white">{t('common.youAreNotConnected')}</Text>
         )}

@@ -14,7 +14,8 @@
       "realizedInspection": "Realized inspection",
       "rScore": "Score",
       "burnedTokens": "Burned tokens",
-      "compensatedItem": "Compensated item", 
+      "compensatedItem": "Compensated item",
+    "compensate": "Compensate", 
       "newUser": "New user",
       "theUser": "The user",
       "registeredAs": "registered as",
@@ -142,13 +143,13 @@
     },
     "impactCalculator": {
       "title": "Impact calculator",
-      "calculatorItems": "Calculator items",
+      "calculatorItems": "Specific item compensation",
       "descOffset": "Allows a backer to burn tokens to offset the degradation of a specific item, or for the backer to declare a reduction pledge for a specific calculator item.",
-      "burnTokens": "Burn tokens",
-      "descBurnTokens": "Compensate your environmental degradation by burning Regeneration Credit tokens. Burning tokens permanently removes them from circulation and increases your compensation certificate.",
-      "tokenImpact": "Token impact",
+      "burnTokens": "Fund tree planting",
+      "descBurnTokens": "Fund the planting of real trees through the Regeneration Credit compensation system, contribute to the regeneration of terrestrial ecosystems and increase your certificate to prove your commitment to the Planet.",
+      "tokenImpact": "Impact",
       "totalImpactEra": "Total impact era",
-      "impactPerToken": "Impact per token"
+      "impactPerToken": "Impact per Regeneration Credit"
     },
     "register": {
       "title": "Register",
@@ -199,7 +200,13 @@
       "to": "To",
       "onlyRcTxsWillBeShowHere": "Only (RC) transactions will be show here",
       "txDetails": "Transaction data",
-      "txHash": "Transaction hash"
+      "txHash": "Transaction hash",
+      "transfer": "Transfer",
+      "recipientAddress": "Recipient address",
+      "invalidAddress": "Invalid address",
+      "amount": "Amount",
+      "max": "Max",
+      "transferInfo": "The transaction will be processed on the Sintrop blockchain"
     },
     "tx": {
       "title": "Transaction",
@@ -251,8 +258,6 @@
     "fileInput": {
       "selectAnother": "Select another",
       "selectFile": "Select file",
-      "": "",
-      "": "",
       "": ""
     },
     "map": {
@@ -267,7 +272,7 @@
       "totalCertified": "Total certified",
       "circulatingSupply": "Circulating supply",
       "tokenData": "Token data",
-      "impactPerToken": "Impact per token",
+      "impactPerToken": "Impact per Regeneration Credit",
       "totalImpact": "Total impact",
       "totalImpactPerEra": "Total impact per era"
     },
