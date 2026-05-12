@@ -1,4 +1,5 @@
 import { createContext, ReactNode } from "react";
+import { Linking, Alert } from "react-native";
 import { useSDK } from "@metamask/sdk-react";
 import { useGetUser } from "@domain";
 
@@ -34,11 +35,49 @@ export function UserProvider({ children }: UserProviderProps) {
 
   async function handleConnect() {
     try {
-      const accounts = (await sdk?.connect()) as string[];
-      console.log(accounts[0]);
-      switchToSintropChain();
-    } catch (e) {
+      // Check if SDK is available
+      if (!sdk) {
+        Alert.alert(
+          "Carteira não encontrada",
+          "Para conectar, você precisa ter uma carteira Web3 instalada como MetaMask. Deseja instalar o MetaMask?",
+          [
+            { text: "Cancelar", style: "cancel" },
+            { 
+              text: "Instalar", 
+              onPress: () => Linking.openURL("https://metamask.io/download/") 
+            },
+          ]
+        );
+        return;
+      }
+      
+      const accounts = await sdk.connect();
+      if (accounts && (accounts as string[])[0]) {
+        console.log((accounts as string[])[0]);
+        switchToSintropChain();
+      } else {
+        // User cancelled or no accounts returned
+        console.log('No accounts returned or user cancelled');
+      }
+    } catch (e: any) {
       console.log('ERROR', e);
+      // Check if it's a "user rejected" error
+      if (e?.message?.includes('user rejected') || e?.code === 4001) {
+        // User cancelled, do nothing
+        return;
+      }
+      // For any other error (including no MetaMask), show instructions
+      Alert.alert(
+        "Carteira não encontrada",
+        "Para conectar, você precisa ter uma carteira Web3 instalada como MetaMask. Deseja instalar o MetaMask?",
+        [
+          { text: "Cancelar", style: "cancel" },
+          { 
+            text: "Instalar", 
+            onPress: () => Linking.openURL("https://metamask.io/download/") 
+          },
+        ]
+      );
     }
   }
 
