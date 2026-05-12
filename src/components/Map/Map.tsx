@@ -44,17 +44,32 @@ export function Map({
   const { t } = useTranslation();
   const [markers, setMarkers] = useState<CoordinateProps[]>([]);
   const [pathPolyline, setPathPolyline] = useState<[number, number][]>([]);
-  const [mapPosition, setMapPosition] = useState<CoordinateProps | null>();
+  const [mapPosition, setMapPosition] = useState<[number, number] | null>(null);
+  const [isReady, setIsReady] = useState(false);
   const { locationStatus } = usePermissions();
 
   useEffect(() => {
-    if(coords) setMarkers(coords)
+    if (coords && coords.length > 0) {
+      const validCoords = coords.filter(c => c.latitude && c.longitude && c.latitude !== 0 && c.longitude !== 0);
+      console.log('[Map] Received coords:', validCoords);
+      setMarkers(validCoords);
+      if (validCoords.length > 0) {
+        setMapPosition([validCoords[0].longitude, validCoords[0].latitude]);
+      }
+      setIsReady(true);
+    } else {
+      setMarkers([]);
+      setMapPosition(null);
+      setIsReady(false);
+    }
   }, [coords])
 
   useEffect(() => {
     if (markers.length > 0) {
       createPathPolyline();
-      setMapPosition(markers[0]);
+      if (markers[0].latitude !== 0) {
+        setMapPosition([markers[0].longitude, markers[0].latitude]);
+      }
     } else {
       setPathPolyline([]);
     }
@@ -133,10 +148,10 @@ export function Map({
               </>
             ) : (
               <>
-                {mapPosition && (
+                {mapPosition && mapPosition[0] !== 0 && (
                   <Camera
                     zoomLevel={zoom}
-                    centerCoordinate={[mapPosition?.longitude, mapPosition?.latitude]}
+                    centerCoordinate={mapPosition}
                   />
                 )}
               </>
@@ -144,10 +159,10 @@ export function Map({
           </>
         ) : (
           <>
-            {mapPosition && (
+            {mapPosition && mapPosition[0] !== 0 && (
               <Camera
                 zoomLevel={zoom}
-                centerCoordinate={[mapPosition?.longitude, mapPosition?.latitude]}
+                centerCoordinate={mapPosition}
               />
             )}
           </>
