@@ -150,6 +150,7 @@ export function Map({
               <>
                 {mapPosition && mapPosition[0] !== 0 && (
                   <Camera
+                    defaultSettings={{ centerCoordinate: mapPosition, zoomLevel: zoom }}
                     zoomLevel={zoom}
                     centerCoordinate={mapPosition}
                     animationMode="flyTo"
@@ -163,6 +164,7 @@ export function Map({
           <>
             {mapPosition && mapPosition[0] !== 0 && (
               <Camera
+                defaultSettings={{ centerCoordinate: mapPosition, zoomLevel: zoom }}
                 zoomLevel={zoom}
                 centerCoordinate={mapPosition}
                 animationMode="flyTo"
