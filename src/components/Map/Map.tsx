@@ -152,6 +152,8 @@ export function Map({
                   <Camera
                     zoomLevel={zoom}
                     centerCoordinate={mapPosition}
+                    animationMode="flyTo"
+                    animationDuration={1000}
                   />
                 )}
               </>
@@ -163,6 +165,8 @@ export function Map({
               <Camera
                 zoomLevel={zoom}
                 centerCoordinate={mapPosition}
+                animationMode="flyTo"
+                animationDuration={1000}
               />
             )}
           </>
