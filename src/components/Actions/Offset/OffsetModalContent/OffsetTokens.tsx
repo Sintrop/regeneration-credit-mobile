@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from "react";
-import { Image, TouchableOpacity, View, Keyboard, TextInput as RNTextInput } from "react-native";
+import { Image, TouchableOpacity, View, TextInput as RNTextInput } from "react-native";
 import { useTranslation } from "react-i18next";
 import Toast from "react-native-toast-message";
 import { utils } from "web3";
@@ -38,10 +38,20 @@ export function OffsetTokens({ refetchApprovedTokens, approvedTokens, item }: Pr
 
   // Calculate tokens needed based on units and carbon impact
   // Formula: (unidades * impacto em gramas por unidade) / impacto por token em gramas
-  const parsedUnits = parseFloat(inputUnits.replace(',', '.'));
-  const tokensNeeded = !isNaN(parsedUnits) && parsedUnits > 0 && carbonPerToken > 0
-    ? (parsedUnits * Number(item.carbonImpact)) / carbonPerToken
-    : 0;
+  let tokensNeeded = 0;
+  
+  try {
+    const parsedUnits = parseFloat(inputUnits.replace(',', '.'));
+    const carbonImpactValue = Number(item?.carbonImpact) || 0;
+    const carbonPerTokenValue = Number(carbonPerToken) || 0;
+    
+    if (!isNaN(parsedUnits) && parsedUnits > 0 && carbonPerTokenValue > 0 && carbonImpactValue > 0) {
+      tokensNeeded = (parsedUnits * carbonImpactValue) / carbonPerTokenValue;
+    }
+  } catch (err) {
+    console.log('Error calculating tokens needed:', err);
+    tokensNeeded = 0;
+  }
 
   useEffect(() => {
     registerContinueAction(() => {
@@ -119,10 +129,7 @@ export function OffsetTokens({ refetchApprovedTokens, approvedTokens, item }: Pr
                 placeholder={`Ex: 10`}
                 value={inputUnits}
                 onChangeText={setInputUnits}
-                keyboardType="numeric"
-                returnKeyType="done"
-                blurOnSubmit
-                onSubmitEditing={() => Keyboard.dismiss()}
+                keyboardType="decimal-pad"
               />
               {tokensNeeded > 0 && (
                 <Text className="text-green-400 font-semibold">
@@ -138,10 +145,7 @@ export function OffsetTokens({ refetchApprovedTokens, approvedTokens, item }: Pr
           value={inputTokens}
           onChangeText={setInputTokens}
           placeholder={t('common.typeHere')}
-          keyboardType="numeric"
-          returnKeyType="done"
-          blurOnSubmit
-          onSubmitEditing={() => Keyboard.dismiss()}
+          keyboardType="decimal-pad"
         />
 
         {insufficientBalance && (

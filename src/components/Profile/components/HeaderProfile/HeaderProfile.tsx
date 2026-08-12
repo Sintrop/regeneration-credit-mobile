@@ -1,4 +1,5 @@
-import { Image, View } from "react-native";
+import { Image, View, TouchableOpacity, Alert } from "react-native";
+import Clipboard from "@react-native-clipboard/clipboard";
 
 import { Text, UserTypeText, UserTypeTextType } from "@components";
 
@@ -14,8 +15,15 @@ interface Props {
   userType: UserTypeTextType;
   bannerUrl?: string;
 }
+
 export function HeaderProfile({ address, photoHash, name, userType }: Props) {
   const { ipfsGateway } = useSettingsContext();
+
+  const handleAddressClick = () => {
+    Clipboard.setString(address);
+    Alert.alert("Endereço copiado", "O endereço da carteira foi copiado para a área de transferência.");
+  };
+
   return (
     <View className="bg-card-primary pb-5">
       <View className="w-full h-[150]">
@@ -39,7 +47,11 @@ export function HeaderProfile({ address, photoHash, name, userType }: Props) {
         </View>
 
         <Text className="font-bold text-white text-2xl">{name}</Text>
-        <Text className="text-white">{address}</Text>
+        
+        <TouchableOpacity onPress={handleAddressClick}>
+          <Text className="text-white">{address}</Text>
+        </TouchableOpacity>
+
         <UserTypeText userType={userType} className="text-gray-300 text-sm"/>
       </View>      
     </View>
