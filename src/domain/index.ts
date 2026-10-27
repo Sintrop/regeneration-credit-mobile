@@ -109,3 +109,6 @@ export * from "./Pools/poolService";
 
 export * from "./RCMarket";
 export * from "./Pools/useCases/useCurrentEra";
+
+export * from "./Resources/types";
+export * from "./Resources/useCases/usePublishedResources";

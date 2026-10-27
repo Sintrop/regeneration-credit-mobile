@@ -34,10 +34,10 @@ export function Research({ id }: Props) {
 
         <DataItem title="ID" value={id} />
         <DataItem title={t("resourceScreen.createdAt")} value={research?.createdAt} />
-        <DataItem title="Era" value={research?.era} />
+        <DataItem title={t('resourceScreen.era')} value={research?.era} />
         <DataItem title={t("resourceScreen.invalidatedAt")} value={research?.invalidatedAt} />
         <DataItem title={t("resourceScreen.validationsCount")} value={research?.validationsCount} />
-        <DataItem title="Valid" value={research?.valid.toString()} />
+        <DataItem title={t('resourceScreen.valid')} value={research?.valid ? t('common.yes') : t('common.no')} />
       </View>
 
       <View className="p-3 rounded-2xl bg-card-primary gap-1">

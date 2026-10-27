@@ -5,13 +5,12 @@ import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { utils } from 'web3';
 
-import { Screen, Text, TextInput } from '@components';
+import { Screen, Text, TextInput, UserBadge } from '@components';
 import { AppStackParamsList } from '@routes';
 import { getRCMarketContract, useCreateOffer, useCancelOffer, useConfirmSale } from '@domain/RCMarket';
 import { useAppSafeArea, useTxContext, useUserContext } from '@hooks';
 
 import { formatOfferPrice } from './formatOfferPrice';
-import { SellerInfo } from './SellerInfo';
 
 type NavigationProp = NativeStackNavigationProp<AppStackParamsList>;
 
@@ -348,7 +347,7 @@ function OffersList({ offers, bottomInset, locale, isOwnOffer, onBuy, onCancel, 
             <Text className="text-gray-300 p-3 rounded-xl bg-card-secondary">{offer.description}</Text>
           )}
 
-          <SellerInfo address={offer.seller} onPress={onPressSeller} />
+          <UserBadge address={offer.seller} label={t('market.seller')} onPress={onPressSeller} />
 
           <View className="flex-row gap-2">
             <TouchableOpacity

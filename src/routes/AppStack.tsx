@@ -13,6 +13,7 @@ import {
   ProfileScreen, 
   RegisterScreen, 
   ResourceScreen, 
+  ResourcesListScreen,
   ResourcesTypes, 
   TokenImpactScreen, 
   UserDetailsScreen, 
@@ -25,6 +26,7 @@ export type AppStackParamsList = {
   ImpactCalculatorScreen: undefined;
   MyTokensScreen: undefined;
   MarketScreen: undefined;
+  ResourcesListScreen: undefined;
   TokenImpactScreen: undefined;
   CommunityScreen: undefined;
   InspectionsScreen: undefined;
@@ -74,6 +76,7 @@ export function AppStack() {
       <Stack.Screen name="PoolsScreen" component={PoolsScreen} />
       <Stack.Screen name="PoolDetailsScreen" component={PoolDetailsScreen} />
       <Stack.Screen name="MarketScreen" component={MarketScreen} />
+      <Stack.Screen name="ResourcesListScreen" component={ResourcesListScreen} />
     </Stack.Navigator>
   );
 }

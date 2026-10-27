@@ -23,3 +23,4 @@ export * from "./Actions/BurnTokens/BurnTokens";
 export * from "./Actions/AcceptInspection/AcceptInspection";
 export * from "./LanguageSelector/LanguageSelector";
 export * from "./StatBox/StatBox";
+export * from "./UserBadge/UserBadge";

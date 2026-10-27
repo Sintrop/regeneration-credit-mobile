@@ -32,5 +32,6 @@ export enum QueryKeys {
   CertificatedTokens = 'CertificatedTokens',
   PoolData = 'PoolData',
   PoolEra = 'PoolEra',
-  CurrentEra = 'CurrentEra'
+  CurrentEra = 'CurrentEra',
+  PublishedResources = 'PublishedResources'
 }

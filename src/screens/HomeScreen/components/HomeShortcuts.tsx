@@ -6,6 +6,8 @@ import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { Icon, IconsName, Text } from "@components";
 import { AppStackParamsList } from "@routes";
 
+import colors from "../../../theme/colors";
+
 type NavigationProps = NativeStackNavigationProp<AppStackParamsList, "HomeScreen">;
 
 type ShortcutRoute =
@@ -15,12 +17,14 @@ type ShortcutRoute =
   | "ImpactCalculatorScreen"
   | "TokenImpactScreen"
   | "CommunityScreen"
-  | "InspectionsScreen";
+  | "InspectionsScreen"
+  | "ResourcesListScreen";
 
 interface Shortcut {
   route: ShortcutRoute;
   icon: IconsName;
   label: string;
+  color?: string;
 }
 
 const SHORTCUTS: Shortcut[] = [
@@ -31,6 +35,7 @@ const SHORTCUTS: Shortcut[] = [
   { route: "TokenImpactScreen", icon: "rcStats", label: "homeScreen.shortcuts.impact" },
   { route: "CommunityScreen", icon: "community", label: "homeScreen.shortcuts.community" },
   { route: "InspectionsScreen", icon: "inspections", label: "homeScreen.shortcuts.inspections" },
+  { route: "ResourcesListScreen", icon: "file", label: "homeScreen.shortcuts.resources", color: colors.green.primary },
 ];
 
 const COLUMNS = 4;
@@ -51,7 +56,7 @@ export function HomeShortcuts() {
           accessibilityLabel={t(shortcut.label)}
         >
           <View className="w-14 h-14 rounded-2xl items-center justify-center bg-card-primary border border-green-primary/20">
-            <Icon name={shortcut.icon} size={28} />
+            <Icon name={shortcut.icon} size={28} color={shortcut.color} />
           </View>
           <Text className="text-white text-xs text-center px-1" numberOfLines={2}>
             {t(shortcut.label)}

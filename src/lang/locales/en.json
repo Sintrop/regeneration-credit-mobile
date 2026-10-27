@@ -15,7 +15,8 @@
         "calculator": "Calculator",
         "impact": "Impact",
         "community": "Community",
-        "inspections": "Inspections"
+        "inspections": "Inspections",
+        "resources": "Resources"
       }
     },
     "feed": {
@@ -59,7 +60,9 @@
       "seeResearch": "See research",
       "researchData": "Research data",
       "contributionData": "Contribution data",
-      "seeContribution": "See contribution"
+      "seeContribution": "See contribution",
+      "valid": "Valid",
+      "era": "Era"
     },
     "profile": {
       "title": "Profile",
@@ -476,6 +479,22 @@
       "minutes_one": "~{{count}} minute",
       "minutes_other": "~{{count}} minutes",
       "withBlocks": "{{duration}} ({{blocks}} blocks)"
+    },
+    "resourcesList": {
+      "title": "Resources",
+      "filterAll": "All",
+      "researches": "Researches",
+      "contributions": "Contributions",
+      "reports": "Reports",
+      "research": "Research",
+      "contribution": "Contribution",
+      "report": "Development report",
+      "era": "Era {{era}}",
+      "open": "Open",
+      "loading": "Loading resources...",
+      "empty": "No resources published yet",
+      "error": "Could not load the resources",
+      "publishedBy": "Published by"
     }
   }
 }
