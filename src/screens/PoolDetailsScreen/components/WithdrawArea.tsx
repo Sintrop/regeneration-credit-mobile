@@ -1,4 +1,5 @@
 import { TouchableOpacity, View } from "react-native";
+import { useTranslation } from "react-i18next";
 
 import { useUserContext } from "@hooks";
 import { Text } from "@components";
@@ -10,6 +11,7 @@ interface Props {
 }
 
 export function WithdrawArea({ poolType, poolEra }: Props) {
+  const { t } = useTranslation();
   const { userType, address } = useUserContext();
   const { withdraw } = useWithdraw();
   const { user } = useUserBasicData({ address, userType });
@@ -26,9 +28,9 @@ export function WithdrawArea({ poolType, poolEra }: Props) {
   
   return (
     <View className="w-full p-3 rounded-2xl bg-card-primary mt-5">
-      <Text className="text-white">Próxima fase</Text>
+      <Text className="text-white">{t('poolsScreen.nextEra')}</Text>
       <Text className="text-gray-400 text-justify">
-        Quando o botão estiver habilitado, você pode avançar de fase e se tiver direito vai receber seus Créditos de Regeneração como recompensa dos serviços prestados na fase anterior.
+        {t('poolsScreen.nextEraDescription')}
       </Text>
       <View className="w-full flex-row items-center justify-between mt-3">
         <View className="flex-row gap-2">

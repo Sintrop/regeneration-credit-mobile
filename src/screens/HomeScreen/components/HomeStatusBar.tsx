@@ -53,17 +53,20 @@ export function HomeStatusBar() {
   const { t } = useTranslation();
   const { data, isLoading } = useCurrentEra();
 
-  const { currentEra = 0, currentEpoch = 0, nextEraIn = 0 } = data || {};
+  const { currentEra = 0, nextEraIn = 0 } = data || {};
 
   if (isLoading) {
     return (
       <View className="bg-blue-primary/20 -mx-3 mb-4 h-8 flex-row items-center justify-center">
-        <Animated.Text style={{ color: '#fff', fontSize: 12 }}>Carregando informações...</Animated.Text>
+        <Animated.Text style={{ color: '#fff', fontSize: 12 }}>{t('homeScreen.loadingEraInfo')}</Animated.Text>
       </View>
     );
   }
 
-  const tickerText = `Fase atual: ${currentEra}  •  Próxima fase em: ${Intl.NumberFormat('pt-BR').format(nextEraIn)} blocos`;
+  const tickerText = t('homeScreen.currentEraTicker', {
+    era: currentEra,
+    blocks: Intl.NumberFormat('pt-BR').format(nextEraIn),
+  });
 
   return (
     <View className="bg-blue-primary/20 -mx-3 mb-4 h-8 flex-row items-center border-y border-blue-primary/30">

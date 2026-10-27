@@ -6,7 +6,8 @@
       "descriptionRegister": "Para realizar algumas ações no sistema você precisa se registrar",
       "register": "Registrar",
       "newPubli": "Nova publicação",
-      "": ""
+      "loadingEraInfo": "Carregando informações...",
+      "currentEraTicker": "Fase atual: {{era}}  •  Próxima fase em: {{blocks}} blocos"
     },
     "feed": {
       "requestedAnInspection": "Solicitou uma inspeção",
@@ -15,19 +16,22 @@
       "rScore": "Pontuação",
       "burnedTokens": "Tokens queimados",
       "compensatedItem": "Item compensado",
-      "compensate": "Compensar", 
+      "compensate": "Compensar",
       "newUser": "Novo usuário",
       "theUser": "O usuário",
       "registeredAs": "registrado como",
       "seeResource": "Ver recurso",
       "declaredCommitmentItem": "Declarou o compromisso de redução",
-      "declaredItem": "Item declarado"
+      "declaredItem": "Item declarado",
+      "advancedToEra": "Avançou para a fase {{era}}",
+      "creditsReceived": "Créditos recebidos",
+      "poolPaymentDescription": "Pagamento de Créditos de Regeneração pelos serviços prestados na fase {{era}}"
     },
     "userDetails": {
       "title": "Detalhes do usuário",
       "errorOnGetUser": "Erro ao obter usuário"
     },
-    "resourceScreen" : {
+    "resourceScreen": {
       "title": "Detalhes do recurso",
       "inspectionData": "Dados da inspeção",
       "rScore": "Pontuação",
@@ -80,7 +84,9 @@
       "inspection": "Inspeção",
       "seeMore": "Ver mais",
       "contributedWith": "Contribuiu com",
-      "certificates": "Certificados"
+      "certificates": "Certificados",
+      "errorOnGetUser": "Erro ao carregar o perfil",
+      "declaredReductionCommitments": "Compromissos de redução declarados"
     },
     "pdfView": {
       "title": "Visualização de PDF"
@@ -124,7 +130,21 @@
       "impact": "Impacto",
       "data": "Dados",
       "share": "Compartilhar",
-      "ago": "atrás"
+      "ago": "atrás",
+      "takeAnother": "Tirar outra",
+      "confirm": "Confirmar",
+      "walletNotFound": "Carteira não encontrada",
+      "walletNotFoundDescription": "Para conectar, você precisa ter uma carteira Web3 instalada como MetaMask. Deseja instalar o MetaMask?",
+      "cancel": "Cancelar",
+      "install": "Instalar",
+      "integerAmountRequired": "A quantidade deve ser um número inteiro de RC",
+      "loading": "Carregando",
+      "loadingData": "Carregando dados...",
+      "compensateTokens": "Compense {{tokens}} Créditos de Regeneração",
+      "addressCopied": "Endereço copiado",
+      "addressCopiedDescription": "O endereço da carteira foi copiado para a área de transferência.",
+      "user": "Usuário",
+      "selectAnOption": "Selecione uma opção"
     },
     "offset": {
       "title": "Compensar",
@@ -139,7 +159,8 @@
       "madeOffset": "Compensação realizada",
       "newPubli": "Voce pode fazer uma publicação no feed. Para isso, vamos utilizar o sistema de compensação, onde você escolhe um item da calculadora de impacto e compensa um valor em (RC). Com isso você pode adicionar um texto como descrição da sua compensação",
       "selectAnItem": "Selecione um item",
-      "touchHereToSelect": "Toque aqui para selecionar"
+      "touchHereToSelect": "Toque aqui para selecionar",
+      "itemImpact": "Impacto: {{impact}} g CO2/{{unit}}"
     },
     "impactCalculator": {
       "title": "Calcul. de impacto",
@@ -149,7 +170,13 @@
       "descBurnTokens": "Financie o plantio de árvores reais através do sistema de compensação do Crédito de Regeneração, contribua para a regeneração dos ecossistemas terrestres e aumente seu certificado para provar seu compromisso com o Planeta.",
       "tokenImpact": "Impacto",
       "totalImpactEra": "Impacto total da era",
-      "impactPerToken": "Impacto por Crédito de Regeneração"
+      "impactPerToken": "Impacto por Crédito de Regeneração",
+      "declareCommitment": "Declarar compromisso",
+      "declareCommitmentQuestion": "Você gostaria de declarar publicamente o compromisso de redução para \"{{item}}\"?",
+      "declare": "Declarar",
+      "commitment": "Compromisso",
+      "treeEqualsTokens": "1 Árvore = {{tokens}} RCs",
+      "tokensPerTreeDescription": "No presente {{tokens}} Créditos de Regeneração equivalem a 1 árvore"
     },
     "register": {
       "title": "Registrar",
@@ -218,7 +245,8 @@
       "hashCopiedToTransferArea": "Hash copiado para área de transferência",
       "viewOnExplorer": "Ver no explorador",
       "errorOnGetErrorMessage": "Erro ao obter mensagem de erro",
-      "errorDetails": "Detalhes do erro"
+      "errorDetails": "Detalhes do erro",
+      "wrongChain": "Não foi possível mudar para a rede Sintrop. Abra sua carteira e selecione a rede manualmente."
     },
     "actions": {
       "title": "Ações",
@@ -255,7 +283,7 @@
       "realizeInspection": "Inspetores devem avaliar a quantidade de árvores e espécies da área de regeneração. Quantas árvores, palmeiras e outras plantas com mais de 1m de altura e 3cm de diâmetro existem na área em regeneração? Justifique sua resposta no relatório. Quantas espécies diferentes dessas plantas/árvores foram encontradas? Cada espécie diferente equivale a uma unidade e apenas árvores e plantas manejadas ou plantadas pelo regenerador devem ser contadas. Justifique sua resposta no relatório. Resultado máximo de 200.000 árvores e 300 biodiversidade. Pontuação zero significa inspeção inválida. NOTA: Se o inspetor encontrar algo suspeito sobre o regenerador inspecionado, como área inválida, suspeita de conta falsa, ou se o Regenerador não for encontrado, os inspetores são encorajados a realizar passando 0 como valores com sua justificativa no relatório para evitar ser penalizado.",
       "acceptInspection": "Inspetores devem aceitar apenas inspeções que são capazes de realizar, estando cientes dos riscos de segurança e responsabilidades. Ao aceitar uma inspeção, os inspetores concordam que são responsáveis por sua própria segurança na coleta de dados. É recomendado usar roupas de manga comprida, chapéus, botas que possam prevenir picadas de animais, luvas para proteger de espinhos e qualquer outro equipamento de segurança útil, como facões ou spray de pimenta. Aceitar uma inspeção conta como uma 'desistência' até ser realizada. Inspetores podem aceitar apenas uma inspeção aberta por vez e não podem inspecionar o mesmo regenerador duas vezes. Eles também devem aderir a atrasos específicos e janelas de segurança.",
       "requestInspection": "Regeneradores concordam em receber um inspetor para avaliar sua área registrada. Eles podem fazer um número allowedInitialRequests de solicitações sem atraso. Depois disso, devem aguardar timeBetweenInspections blocos entre solicitações. Um limite rígido de 6 inspeções totais é aplicado.",
-      "descBurnTokens": "Financie o plantio de árvores reais através do sistema de compensação do Crédito de Regeneração, contribua para a regeneração dos ecossistemas terrestres e aumente seu certificado para provar seu compromisso com o Planeta."
+      "burnTokens": "Financie o plantio de árvores reais através do sistema de compensação do Crédito de Regeneração, contribua para a regeneração dos ecossistemas terrestres e aumente seu certificado para provar seu compromisso com o Planeta."
     },
     "fileInput": {
       "selectAnother": "Selecionar outro",
@@ -263,8 +291,7 @@
     },
     "map": {
       "clearSelection": "Limpar seleção",
-      "removeLastPoint": "Remover último ponto",
-      "": ""
+      "removeLastPoint": "Remover último ponto"
     },
     "tokenImpact": {
       "title": "Impacto",
@@ -361,7 +388,9 @@
       "yourEraOnPool": "Sua era no pool",
       "availablesWithdraws": "Saques disponíveis",
       "withdraw": "Sacar",
-      "advanceToNextEra": "Avançar para a próxima era"
+      "advanceToNextEra": "Avançar para a próxima era",
+      "nextEra": "Próxima fase",
+      "nextEraDescription": "Quando o botão estiver habilitado, você pode avançar de fase e se tiver direito vai receber seus Créditos de Regeneração como recompensa dos serviços prestados na fase anterior."
     },
     "poolsDetailsScreen": {
       "title": "Detalhes",

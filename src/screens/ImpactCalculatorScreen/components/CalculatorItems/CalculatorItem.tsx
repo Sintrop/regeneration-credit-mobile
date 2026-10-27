@@ -1,5 +1,5 @@
-import { useState } from "react";
 import { TouchableOpacity, View, Alert } from "react-native";
+import { useTranslation } from "react-i18next";
 
 import { Offset, Text } from "@components";
 import { CalculatorItemProps } from "@domain";
@@ -13,20 +13,17 @@ interface Props {
 export function CalculatorItem({ item }: Props) {
   const { userType } = useUserContext();
   const { declareReductionCommitment } = useDeclareReductionCommitment();
-  const [showModal, setShowModal] = useState(false);
+  const { t } = useTranslation();
 
   const handleCommit = () => {
     Alert.alert(
-      "Declarar Compromisso",
-      `Você gostaria de declarar publicamente o compromisso de redução para "${item.item}"?`,
+      t('impactCalculator.declareCommitment'),
+      t('impactCalculator.declareCommitmentQuestion', { item: item.item }),
       [
-        { text: "Cancelar", style: "cancel" },
-        { 
-          text: "Declarar", 
-          onPress: () => {
-            declareReductionCommitment(item.id);
-            setShowModal(false);
-          }
+        { text: t('common.cancel'), style: "cancel" },
+        {
+          text: t('impactCalculator.declare'),
+          onPress: () => declareReductionCommitment(item.id)
         }
       ]
     );
@@ -43,23 +40,11 @@ export function CalculatorItem({ item }: Props) {
           </Offset>
           
           <TouchableOpacity 
-            onPress={() => {
-              Alert.alert(
-                "Declarar Compromisso",
-                `Você gostaria de declarar publicamente o compromisso de redução para "${item.item}"?`,
-                [
-                  { text: "Cancelar", style: "cancel" },
-                  { 
-                    text: "Declarar", 
-                    onPress: () => declareReductionCommitment(item.id)
-                  }
-                ]
-              );
-            }}
+            onPress={handleCommit}
             className="px-3 h-8 rounded-2xl bg-blue-primary items-center justify-center"
             hitSlop={5}
           >
-            <Text className="text-white font-semibold text-xs">Compromisso</Text>
+            <Text className="text-white font-semibold text-xs">{t('impactCalculator.commitment')}</Text>
           </TouchableOpacity>
         </View>
       )}

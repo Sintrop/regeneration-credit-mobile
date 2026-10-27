@@ -1,4 +1,5 @@
 import { ReactNode } from "react";
+import { useTranslation } from "react-i18next";
 import { View, KeyboardAvoidingView, Platform, ScrollView, ActivityIndicator } from "react-native";
 import { Header, HeaderProps, StatusBar, Text } from "@components";
 import { useAppSafeArea } from "@hooks";
@@ -12,6 +13,7 @@ interface Props extends HeaderProps {
 }
 export function Screen({ children, scrollable, withoutPadding, scrollEnabled = true, isLoading, ...headerProps }: Props) {
   const { bottom } = useAppSafeArea();
+  const { t } = useTranslation();
 
   return (
     <KeyboardAvoidingView
@@ -24,7 +26,7 @@ export function Screen({ children, scrollable, withoutPadding, scrollEnabled = t
         {isLoading ? (
           <View className="w-full h-full items-center justify-center gap-1">
             <ActivityIndicator size={30} color="white" className="mt-[-100]" />
-            <Text className="text-white">Carregando dados...</Text>
+            <Text className="text-white">{t('common.loadingData')}</Text>
           </View>
         ) : (
           <>

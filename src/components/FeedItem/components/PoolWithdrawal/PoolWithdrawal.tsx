@@ -10,13 +10,13 @@ import { HeaderItem } from "../HeaderItem/HeaderItem";
 //@ts-ignore
 import RCLogo from "../../../../assets/images/rc.png";
 
-const poolTypeNames: Record<number, string> = {
-  1: 'Regenerador',
-  2: 'Inspetor',
-  3: 'Pesquisador',
-  4: 'Desenvolvedor',
-  5: 'Contribuidor',
-  6: 'Ativista',
+const poolTypeKeys: Record<number, string> = {
+  1: 'common.regenerator',
+  2: 'common.inspector',
+  3: 'common.researcher',
+  4: 'common.developer',
+  5: 'common.contributor',
+  6: 'common.activist',
 };
 
 export function PoolWithdrawal({ additionalData }: BaseComponentsProps) {
@@ -46,7 +46,7 @@ export function PoolWithdrawal({ additionalData }: BaseComponentsProps) {
 
       <View className="my-3">
         <View className="flex-row w-full justify-between items-center">
-          <Text className="font-bold text-white">{isZeroWithdrawal ? `Avançou para a fase ${(withdrawal?.era || 0) + 1}` : 'Créditos Recebidos'}</Text>
+          <Text className="font-bold text-white">{isZeroWithdrawal ? t('feed.advancedToEra', { era: (withdrawal?.era || 0) + 1 }) : t('feed.creditsReceived')}</Text>
           {!isZeroWithdrawal && (
             <View className="flex-row items-center gap-3">
               <Image source={RCLogo} className="w-7 h-7" resizeMode="contain"/>
@@ -60,10 +60,10 @@ export function PoolWithdrawal({ additionalData }: BaseComponentsProps) {
         {!isZeroWithdrawal && (
           <View className="mt-3">
             <Text className="text-gray-300">
-              Pagamento de Créditos de Regeneração pelos serviços prestados na fase {withdrawal?.era}
+              {t('feed.poolPaymentDescription', { era: withdrawal?.era })}
             </Text>
             <Text className="text-white mt-1">
-              {poolTypeNames[withdrawal?.poolType] || 'Usuário'}
+              {t(poolTypeKeys[withdrawal?.poolType] ?? 'common.user')}
             </Text>
           </View>
         )}

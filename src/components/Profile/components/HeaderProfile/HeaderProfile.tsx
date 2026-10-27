@@ -1,5 +1,6 @@
 import { Image, View, TouchableOpacity, Alert } from "react-native";
 import Clipboard from "@react-native-clipboard/clipboard";
+import { useTranslation } from "react-i18next";
 
 import { Text, UserTypeText, UserTypeTextType } from "@components";
 
@@ -18,10 +19,11 @@ interface Props {
 
 export function HeaderProfile({ address, photoHash, name, userType }: Props) {
   const { ipfsGateway } = useSettingsContext();
+  const { t } = useTranslation();
 
   const handleAddressClick = () => {
     Clipboard.setString(address);
-    Alert.alert("Endereço copiado", "O endereço da carteira foi copiado para a área de transferência.");
+    Alert.alert(t('common.addressCopied'), t('common.addressCopiedDescription'));
   };
 
   return (

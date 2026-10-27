@@ -34,7 +34,7 @@ interface Props {
 export function Supporter({ address }: Props) {
   const { t } = useTranslation();
   const { supporter, isLoading: isSupporterLoading, isError } = useGetSupporter({ address });
-  const { commitments, isLoading: isCommitmentsLoading } = useReductionCommitments(address);
+  const { commitments } = useReductionCommitments(address);
 
   if (isSupporterLoading) return <View/>
 
@@ -69,7 +69,7 @@ export function Supporter({ address }: Props) {
         {commitments.length > 0 && (
           <View className="gap-2 p-5 rounded-2xl bg-card-primary border border-green-500/50">
             <Text className="font-bold text-white text-xl">
-              Compromissos de Redução Declarados
+              {t('profile.declaredReductionCommitments')}
             </Text>
             {commitments.map((itemId, index) => (
               <CommitmentItem key={index} itemId={itemId} address={address} />

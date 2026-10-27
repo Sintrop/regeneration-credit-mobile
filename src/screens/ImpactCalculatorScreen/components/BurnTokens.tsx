@@ -48,13 +48,13 @@ export function BurnTokens() {
           />
           {tokensNeeded > 0 && (
             <Text className="text-green-400 font-semibold">
-              Compense {formatNumber(tokensNeeded)} Créditos de Regeneração
+              {t('common.compensateTokens', { tokens: formatNumber(tokensNeeded) })}
             </Text>
           )}
         </View>
 
         <ActionBurn>
-          <BurnButton tokensNeeded={tokensNeeded} />
+          <BurnButton />
         </ActionBurn>
       </View>
     </View>
@@ -63,9 +63,8 @@ export function BurnTokens() {
 
 interface BurnButtonProps {
   openModal?: () => void;
-  tokensNeeded: number;
 }
-function BurnButton({ openModal, tokensNeeded }: BurnButtonProps) {
+function BurnButton({ openModal }: BurnButtonProps) {
   const { isConnected } = useUserContext();
   const { t } = useTranslation();
 

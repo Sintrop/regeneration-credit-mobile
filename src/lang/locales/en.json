@@ -6,7 +6,8 @@
       "descriptionRegister": "To perform some actions in the system you need to register",
       "register": "Register",
       "newPubli": "New publication",
-      "": ""
+      "loadingEraInfo": "Loading information...",
+      "currentEraTicker": "Current era: {{era}}  •  Next era in: {{blocks}} blocks"
     },
     "feed": {
       "requestedAnInspection": "Requested an inspection",
@@ -15,19 +16,22 @@
       "rScore": "Score",
       "burnedTokens": "Burned tokens",
       "compensatedItem": "Compensated item",
-    "compensate": "Compensate", 
+      "compensate": "Compensate",
       "newUser": "New user",
       "theUser": "The user",
       "registeredAs": "registered as",
       "seeResource": "See resource",
       "declaredCommitmentItem": "Declared his/her commitment to reduction",
-      "declaredItem": "Declared item"
+      "declaredItem": "Declared item",
+      "advancedToEra": "Advanced to era {{era}}",
+      "creditsReceived": "Credits received",
+      "poolPaymentDescription": "Regeneration Credits payment for services provided in era {{era}}"
     },
     "userDetails": {
       "title": "User details",
       "errorOnGetUser": "Error on get user"
     },
-    "resourceScreen" : {
+    "resourceScreen": {
       "title": "Resource details",
       "inspectionData": "Inspection data",
       "rScore": "Score",
@@ -80,7 +84,9 @@
       "inspection": "Inspection",
       "seeMore": "See more",
       "contributedWith": "Contributed with",
-      "certificates": "Certificates"
+      "certificates": "Certificates",
+      "errorOnGetUser": "Error loading the profile",
+      "declaredReductionCommitments": "Declared reduction commitments"
     },
     "pdfView": {
       "title": "PDF View"
@@ -124,7 +130,21 @@
       "impact": "Impact",
       "data": "Data",
       "share": "Share",
-      "ago": "ago"
+      "ago": "ago",
+      "takeAnother": "Take another",
+      "confirm": "Confirm",
+      "walletNotFound": "Wallet not found",
+      "walletNotFoundDescription": "To connect, you need a Web3 wallet such as MetaMask installed. Do you want to install MetaMask?",
+      "cancel": "Cancel",
+      "install": "Install",
+      "integerAmountRequired": "Amount must be a whole number of RC",
+      "loading": "Loading",
+      "loadingData": "Loading data...",
+      "compensateTokens": "Compensate {{tokens}} Regeneration Credits",
+      "addressCopied": "Address copied",
+      "addressCopiedDescription": "The wallet address was copied to the clipboard.",
+      "user": "User",
+      "selectAnOption": "Select an option"
     },
     "offset": {
       "title": "Offset",
@@ -139,7 +159,8 @@
       "madeOffset": "Made offset",
       "newPubli": "You can post to your feed. To do this, we'll use the compensation system, where you choose an item from the impact calculator and offset it with a value in (RC). You can then add text describing your compensation.",
       "selectAnItem": "Select an item",
-      "touchHereToSelect": "Touch here to select"
+      "touchHereToSelect": "Touch here to select",
+      "itemImpact": "Impact: {{impact}} g CO2/{{unit}}"
     },
     "impactCalculator": {
       "title": "Impact calculator",
@@ -149,7 +170,13 @@
       "descBurnTokens": "Fund the planting of real trees through the Regeneration Credit compensation system, contribute to the regeneration of terrestrial ecosystems and increase your certificate to prove your commitment to the Planet.",
       "tokenImpact": "Impact",
       "totalImpactEra": "Total impact era",
-      "impactPerToken": "Impact per Regeneration Credit"
+      "impactPerToken": "Impact per Regeneration Credit",
+      "declareCommitment": "Declare commitment",
+      "declareCommitmentQuestion": "Would you like to publicly declare the reduction commitment for \"{{item}}\"?",
+      "declare": "Declare",
+      "commitment": "Commitment",
+      "treeEqualsTokens": "1 Tree = {{tokens}} RCs",
+      "tokensPerTreeDescription": "Currently {{tokens}} Regeneration Credits are equivalent to 1 tree"
     },
     "register": {
       "title": "Register",
@@ -218,7 +245,8 @@
       "hashCopiedToTransferArea": "Hash copied to transfer area",
       "viewOnExplorer": "View on explorer",
       "errorOnGetErrorMessage": "Error on get error message",
-      "errorDetails": "Error details"
+      "errorDetails": "Error details",
+      "wrongChain": "Could not switch to the Sintrop network. Open your wallet and select it manually."
     },
     "actions": {
       "title": "Actions",
@@ -243,7 +271,9 @@
       "requestInspection": "Request inspection",
       "requestedInspection": "Requested inspection",
       "burnTokens": "Burn tokens",
-      "howMuchDoYouWantToBurn": "How much do you want to burn?"
+      "howMuchDoYouWantToBurn": "How much do you want to burn?",
+      "burnedTokens": "Burned tokens",
+      "compensate": "Compensate"
     },
     "actionsDescriptions": {
       "inviteSupporter": "Supporters can invite Supporters to the system, respecting the specific supporter delay.",
@@ -257,13 +287,11 @@
     },
     "fileInput": {
       "selectAnother": "Select another",
-      "selectFile": "Select file",
-      "": ""
+      "selectFile": "Select file"
     },
     "map": {
       "clearSelection": "Clear selection",
-      "removeLastPoint": "Remove last point",
-      "": ""
+      "removeLastPoint": "Remove last point"
     },
     "tokenImpact": {
       "title": "Token impact",
@@ -301,7 +329,8 @@
       "descDevelopers": "Developers are primarily responsible for the development of the project through submitting development reports, which are subject to validation and penalty mechanisms.",
       "descContributors": "Contributors perform generic contributions to the project and are subject to validation and penalty mechanisms.",
       "descActivists": "Activists are responsible for inviting new Regenerators and Inspectors, and they earn rewards based on the approval of their invited users.",
-      "descSupporters": "Finance ecosystem regeneration, purchase Regeneration Credit directly from the community, exchange it for the certificate, and prove your commitment to the regeneration of terrestrial ecosystems."
+      "descSupporters": "Finance ecosystem regeneration, purchase Regeneration Credit directly from the community, exchange it for the certificate, and prove your commitment to the regeneration of terrestrial ecosystems.",
+      "registered": "Registered"
     },
     "inspections": {
       "title": "Inspections",
@@ -319,6 +348,61 @@
       "realized": "Realized",
       "expired": "Expired",
       "invalidated": "Invalidated"
+    },
+    "poolsScreen": {
+      "title": "Token distribution",
+      "titleBtn": "Token distrib.",
+      "regeneratorsPool": "Regenerators pool",
+      "inspectorsPool": "Inspectors pool",
+      "researchersPool": "Researchers pool",
+      "developersPool": "Developers pool",
+      "contributorsPool": "Contributors pool",
+      "activistsPool": "Activists pool",
+      "validationPool": "Validation pool",
+      "descRegeneratorPool": "This contract manages the distribution of Regeneration Credit tokens as a reward to regenerators for the regeneration service they provide.",
+      "descInspectorsPool": "This contract manages the distribution of Regeneration Credit tokens as a reward to inspectors for inspecting, counting trees and assessing biodiversity in the regenerators' areas.",
+      "descResearchersPool": "This contract manages the distribution of Regeneration Credit tokens as a reward to researchers for research and methodology improvement.",
+      "descDevelopersPool": "This contract manages the distribution of Regeneration Credit tokens as a reward to developers for building the system's software.",
+      "descContributorsPool": "This contract manages the distribution of Regeneration Credit tokens as a reward to contributors for their participation, mainly general services to the system such as translation, community support, design, PR etc.",
+      "descActivistsPool": "This contract manages the distribution of Regeneration Credit tokens as a reward to activists for their participation, mainly inviting new users.",
+      "descValidationPool": "This contract manages the distribution of Regeneration Credit tokens as a reward to validators.",
+      "regenerator": "Regenerator",
+      "inspector": "Inspector",
+      "researcher": "Researcher",
+      "developer": "Developer",
+      "contributor": "Contributor",
+      "activist": "Activist",
+      "validation": "Validation",
+      "contractBalance": "Contract balance",
+      "currentEra": "Current era",
+      "currentEpoch": "Current epoch",
+      "usersWhoCashedOut": "Users who withdrew",
+      "withdrawnTokens": "Withdrawn tokens",
+      "difficulty": "Difficulty",
+      "tokensThisEra": "Tokens this era",
+      "see": "See",
+      "totalFunds": "Total funds",
+      "youDoNotHaveWithdrawAvailableInThisEra": "No withdrawal available in this era",
+      "youHaveWithdrawsAvailable": "You have withdrawals available",
+      "poolEra": "Pool era",
+      "yourEraOnPool": "Your era in the pool",
+      "availablesWithdraws": "Available withdrawals",
+      "withdraw": "Withdraw",
+      "advanceToNextEra": "Advance to the next era",
+      "nextEra": "Next era",
+      "nextEraDescription": "When the button is enabled, you can advance to the next era and, if eligible, receive your Regeneration Credits as a reward for the services provided in the previous era."
+    },
+    "poolsDetailsScreen": {
+      "title": "Details",
+      "totalTokens": "Total tokens",
+      "currentEra": "Current era",
+      "balance": "Available balance",
+      "currentEpoch": "Current epoch",
+      "distributionPerPhase": "Distribution per era",
+      "eraData": "Data per era",
+      "claimsCount": "Withdrawals made",
+      "tokens": "Distributed tokens",
+      "levels": "Difficulty"
     }
   }
 }

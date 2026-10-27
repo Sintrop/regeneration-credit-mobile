@@ -21,11 +21,11 @@ export function TokenPerTree() {
       <View className="flex-row items-center gap-2 mb-2">
         <Icon name='rc' />
         <Text className="text-green-400 font-bold text-lg">
-          1 Árvore = {formatNumber(tokensPerTree)} RCs
+          {t('impactCalculator.treeEqualsTokens', { tokens: formatNumber(tokensPerTree) })}
         </Text>
       </View>
       <Text className="text-gray-300 text-sm">
-        No presente {formatNumber(tokensPerTree)} Créditos de Regeneração equivalem a 1 árvore
+        {t('impactCalculator.tokensPerTreeDescription', { tokens: formatNumber(tokensPerTree) })}
       </Text>
     </View>
   );

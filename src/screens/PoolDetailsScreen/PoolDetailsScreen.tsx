@@ -78,7 +78,7 @@ export function PoolDetailsScreen({ route }: ScreenProps) {
         </View>
         <View className="w-full">
           <CardData 
-            title="Distribuição por fase" 
+            title={t('poolsDetailsScreen.distributionPerPhase')} 
             value={data?.distributionPerEra != null && data.distributionPerEra > 0 ? Math.floor(data.distributionPerEra).toLocaleString('pt-BR') : '-'}
             suffix="RC"
           />
