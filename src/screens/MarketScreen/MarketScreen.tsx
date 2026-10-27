@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Alert, TextInput, Modal, Platform, Keyboard } from 'react-native';
+import { useTranslation } from 'react-i18next';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { AppStackParamsList } from '@routes';
@@ -23,9 +24,10 @@ interface Offer {
 
 export function MarketScreen() {
   const navigation = useNavigation<NavigationProp>();
+  const { t } = useTranslation();
   const { top } = useAppSafeArea();
-  const { address, isConnected, handleConnect } = useUserContext();
-  const { createOffer, isLoading: isCreatingOffer } = useCreateOffer();
+  const { address } = useUserContext();
+  const { createOffer } = useCreateOffer();
   const { cancelOffer } = useCancelOffer();
   const { confirmSale } = useConfirmSale();
   const [offers, setOffers] = useState<Offer[]>([]);
@@ -56,7 +58,7 @@ export function MarketScreen() {
       
       for (let i = 1; i <= count; i++) {
         try {
-          const offer = await contract.methods.getOffer(i).call();
+          const offer = await contract.methods.getOffer(i).call() as any;
           offersData.push({
             id: i,
             seller: offer.seller,
@@ -168,8 +170,12 @@ export function MarketScreen() {
       return;
     }
 
-    // Sanitize amount: replace comma with dot
-    const sanitizedAmount = newOffer.amount.replace(',', '.');
+    const sanitizedAmount = newOffer.amount.trim();
+    if (!/^\d+$/.test(sanitizedAmount) || Number(sanitizedAmount) <= 0) {
+      Alert.alert(t('common.integerAmountRequired'));
+      return;
+    }
+
     const unitPrice = newOffer.price; // unitPrice is a string, no conversion needed
     
     // Send raw values - useCreateOffer will handle conversion
@@ -277,7 +283,7 @@ export function MarketScreen() {
             <TextInput
               style={styles.input}
               placeholder="Ex: 100"
-              keyboardType="numeric"
+              keyboardType="number-pad"
               value={newOffer.amount}
               onChangeText={(text) => setNewOffer({ ...newOffer, amount: text })}
               returnKeyType="done"

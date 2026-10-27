@@ -3,12 +3,12 @@ import { useEffect, useState } from "react";
 import { ActivityIndicator, Image, TouchableOpacity, View, Keyboard } from "react-native";
 import { useTranslation } from "react-i18next";
 import Toast from "react-native-toast-message";
-import { utils } from "web3";
 
 import { useTxContext, useUserContext } from "@hooks";
 import { useBalance } from "@domain";
 import { Text, TextInput } from "@components";
 import { RegenerationCredit, SupporterRules } from "@contracts";
+import { amountToWei, parseAmountInput } from "@utils";
 
 //@ts-ignore
 import RCIcon from "../../../../assets/images/rc.png";
@@ -37,7 +37,7 @@ export function ApproveTokens({ refetchApprovedTokens }: Props) {
 
   useEffect(() => {
     if (inputTokens.trim()) {
-      if (parseFloat(inputTokens) > balance) {
+      if (parseAmountInput(inputTokens) > balance) {
         setInsufficientBalance(true);
       } else {
         setInsufficientBalance(false);
@@ -47,14 +47,17 @@ export function ApproveTokens({ refetchApprovedTokens }: Props) {
     }
   }, [balance, inputTokens]);
 
+  const valueInWei = amountToWei(inputTokens);
+  const isValidAmount = valueInWei !== null && BigInt(valueInWei) > 0n;
+
   async function handleApprove() {
-    const value = utils.toWei(inputTokens, 'ether');
+    if (!valueInWei || !isValidAmount) return;
     sendTransaction({
       interactWithContract: true,
       contractAbi: RegenerationCredit.abi,
       contractAddress: RegenerationCredit.address,
       methodName: 'approve',
-      params: [SupporterRules.address, parseFloat(value)]
+      params: [SupporterRules.address, valueInWei]
     })
   }
 
@@ -98,7 +101,7 @@ export function ApproveTokens({ refetchApprovedTokens }: Props) {
 
       <TouchableOpacity
         className="w-full h-12 items-center justify-center bg-blue-primary rounded-2xl mt-5 disabled:opacity-50"
-        disabled={isLoading || insufficientBalance || !inputTokens.trim()}
+        disabled={isLoading || insufficientBalance || !isValidAmount}
         onPress={handleApprove}
       >
         <Text className="text-white font-semibold">{t('offset.approveTokens')}</Text>

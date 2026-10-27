@@ -7,11 +7,7 @@ import { Text as TextComponent, Icon } from "@components";
 import { useTxContext, useUserContext } from "@hooks";
 import { RegenerationCredit } from "@contracts";
 import { useBalance } from "@domain";
-
-//@ts-ignore
-import RCIcon from "../../../../assets/images/rc.png";
-//@ts-ignore
-import SINIcon from "../../../../assets/images/sin.png";
+import { amountToWei, balanceToInput, parseAmountInput } from "@utils";
 
 interface Props {
   visible: boolean;
@@ -60,14 +56,18 @@ export function TransferModal({ visible, onClose }: Props) {
 
   function handleMax() {
     if (selectedToken === 'RC') {
-      setAmount(balanceRC ? balanceRC.toString() : '');
+      setAmount(balanceToInput(balanceRC));
     } else {
-      setAmount(balanceSIN ? balanceSIN.toString() : '');
+      setAmount(balanceToInput(balanceSIN));
     }
   }
 
+  const valueInWei = amountToWei(amount);
+  const selectedBalance = selectedToken === 'RC' ? balanceRC : balanceSIN;
+  const insufficientBalance = parseAmountInput(amount) > (selectedBalance ?? 0);
+
   function handleTransfer() {
-    if (!isAddressValid || !amount || parseFloat(amount.replace(',', '.')) <= 0) return;
+    if (!canTransfer || !valueInWei) return;
 
     onClose();
 
@@ -79,20 +79,16 @@ export function TransferModal({ visible, onClose }: Props) {
   }
 
   function handleTransferSIN() {
-    const sanitizedAmount = amount.replace(',', '.');
-    const valueInWei = utils.toWei(sanitizedAmount, 'ether'); // Isso gera "10000000000000000000" para 10 SIN
-    
     sendTransaction({
       interactWithContract: false,
       params: [{
         to: toAddress,
-        value: valueInWei, // Manda como string decimal pura para o TxContext
+        value: valueInWei,
       }]
     } as any);
   }
 
   function handleTransferRC() {
-    const valueInWei = utils.toWei(amount, 'ether');
     sendTransaction({
       interactWithContract: true,
       contractAbi: RegenerationCredit.abi,
@@ -102,11 +98,12 @@ export function TransferModal({ visible, onClose }: Props) {
     });
   }
 
-  const canTransfer = 
-    isAddressValid && 
-    toAddress.trim().length > 0 && 
-    amount && 
-    parseFloat(amount.replace(',', '.')) > 0;
+  const canTransfer =
+    isAddressValid &&
+    toAddress.trim().length > 0 &&
+    valueInWei !== null &&
+    BigInt(valueInWei) > 0n &&
+    !insufficientBalance;
 
   return (
     <Modal visible={visible} animationType="slide" transparent>
@@ -177,7 +174,7 @@ export function TransferModal({ visible, onClose }: Props) {
                 placeholder="0.0"
                 value={amount}
                 onChangeText={setAmount}
-                keyboardType="numeric"
+                keyboardType="decimal-pad"
                 returnKeyType="done"
                 blurOnSubmit
                 onSubmitEditing={() => Keyboard.dismiss()}
@@ -186,6 +183,9 @@ export function TransferModal({ visible, onClose }: Props) {
                 {selectedToken}
               </TextComponent>
             </View>
+            {insufficientBalance && (
+              <TextComponent className="text-red-400 text-xs mt-1">{t('common.insufficientBalance')}</TextComponent>
+            )}
           </View>
 
           <TouchableOpacity

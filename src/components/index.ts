@@ -10,7 +10,6 @@ export * from "./UserTypeText/UserTypeText";
 export * from "./DataItem/DataItem";
 export * from "./User/User";
 export * from "./Icon/Icon";
-export * from "./ChainSwitch/ChainSwitch";
 export * from "./Select/Select";
 export * from "./Camera/Camera";
 export * from "./FileInput/FileInput";

@@ -3,12 +3,12 @@ import { useEffect, useState } from "react";
 import { Image, TouchableOpacity, View, TextInput as RNTextInput } from "react-native";
 import { useTranslation } from "react-i18next";
 import Toast from "react-native-toast-message";
-import { utils } from "web3";
 
 import { useKeyboardStatus, useTxContext, useUserContext } from "@hooks";
 import { CalculatorItemProps, useBalance, useImpactPerToken } from "@domain";
 import { Text, TextInput } from "@components";
 import { SupporterRules } from "@contracts";
+import { amountToWei, applyPercentageDiscount, parseAmountInput } from "@utils";
 
 //@ts-ignore
 import RCIcon from "../../../../assets/images/rc.png";
@@ -65,7 +65,7 @@ export function OffsetTokens({ refetchApprovedTokens, approvedTokens, item }: Pr
 
   useEffect(() => {
     if (inputTokens.trim()) {
-      if (parseFloat(inputTokens) > balance) {
+      if (parseAmountInput(inputTokens) > Math.min(balance, approvedTokens)) {
         setInsufficientBalance(true);
       } else {
         setInsufficientBalance(false);
@@ -73,20 +73,22 @@ export function OffsetTokens({ refetchApprovedTokens, approvedTokens, item }: Pr
     } else {
       setInsufficientBalance(false);
     }
-  }, [balance, inputTokens]);
+  }, [balance, approvedTokens, inputTokens]);
+
+  const valueInWei = amountToWei(inputTokens);
+  const isValidAmount = valueInWei !== null && BigInt(valueInWei) > 0n;
 
   async function handleOffset() {
+    if (!valueInWei || !isValidAmount) return;
     const commissionPercentage = 5;
-    const value = utils.toWei(inputTokens, 'ether');
-    const minAmmountToBurn = parseFloat(inputTokens) * (1 - commissionPercentage / 100);
-    const minAmmountToBurnParsed = utils.toWei(minAmmountToBurn.toString(), 'ether');
+    const minAmountToBurn = applyPercentageDiscount(valueInWei, commissionPercentage);
 
     sendTransaction({
       interactWithContract: true,
       contractAbi: SupporterRules.abi,
       contractAddress: SupporterRules.address,
       methodName: 'offset',
-      params: [parseFloat(value), parseFloat(minAmmountToBurnParsed), item.id, description]
+      params: [valueInWei, minAmountToBurn, item.id, description]
     })
   }
 
@@ -114,7 +116,7 @@ export function OffsetTokens({ refetchApprovedTokens, approvedTokens, item }: Pr
             <View className="gap-2 mb-3 p-3 bg-gray-800 rounded-xl">
               <Text className="text-white font-semibold">{item.item}</Text>
               <Text className="text-gray-400 text-sm">
-                Impacto: {item.carbonImpact} g CO2/{item.unit}
+                {t('offset.itemImpact', { impact: item.carbonImpact, unit: item.unit })}
               </Text>
             </View>
 
@@ -133,7 +135,7 @@ export function OffsetTokens({ refetchApprovedTokens, approvedTokens, item }: Pr
               />
               {tokensNeeded > 0 && (
                 <Text className="text-green-400 font-semibold">
-                  Compense {formatNumber(tokensNeeded)} Créditos de Regeneração
+                  {t('common.compensateTokens', { tokens: formatNumber(tokensNeeded) })}
                 </Text>
               )}
             </View>
@@ -163,7 +165,7 @@ export function OffsetTokens({ refetchApprovedTokens, approvedTokens, item }: Pr
 
       <TouchableOpacity
         className="w-full h-12 items-center justify-center bg-blue-primary rounded-2xl mt-5 disabled:opacity-50"
-        disabled={isLoading || insufficientBalance || !inputTokens.trim()}
+        disabled={isLoading || insufficientBalance || !isValidAmount}
         onPress={handleOffset}
       >
         <Text className="text-white font-semibold">{t('offset.title')}</Text>

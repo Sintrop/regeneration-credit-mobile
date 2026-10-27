@@ -5,7 +5,7 @@ import { RegenerationCredit } from "@contracts";
 import { useTxContext } from "@hooks";
 
 interface BurnProps {
-  value: number;
+  value: string;
 }
 interface ReturnUseBurn {
   hash: string;

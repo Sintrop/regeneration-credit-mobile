@@ -3,12 +3,13 @@ import { createContext, ReactNode, useEffect, useState } from "react";
 import { ActivityIndicator, Alert, Linking, Modal, TouchableOpacity, View } from "react-native";
 import { useTranslation } from "react-i18next";
 import { useSDK } from "@metamask/sdk-react";
-import Web3, { utils } from "web3";
+import Web3 from "web3";
 import Clipboard from "@react-native-clipboard/clipboard";
 import { ethers } from "ethers";
 
 import { Icon, Text } from "@components";
 import { useSettingsContext } from "@hooks";
+import { ensureSintropChain } from "@services";
 import Toast from "react-native-toast-message";
 
 interface SendTransactionProps {
@@ -87,54 +88,48 @@ export function TxProvider({ children }: TxProviderProps) {
     setShowModalTx(true);
     setIsError(false);
     setIsSuccess(false);
+    setErrorMessage('');
 
-    if (txData.interactWithContract) {
-      const web3 = new Web3(ethereum as any);
-      const accounts = await web3.eth.getAccounts();
-      const contract = new web3.eth.Contract(txData?.contractAbi, txData?.contractAddress);
-    
-      try {
-        const response = await ethereum.request({
-          method: 'eth_sendTransaction',
-          params: [{
-            from: accounts[0],
-            to: txData.contractAddress,
-            data: contract.methods[txData?.methodName ?? ''](...txData.params).encodeABI(),
-          }],
-        });
-        setHash(response as string);
-      } catch (e) {
-        console.log(e);
-        setIsLoading(false);
-        setIsError(true);
-        setIsSuccess(false);
+    try {
+      const onSintrop = await ensureSintropChain(ethereum);
+      if (!onSintrop) {
+        setErrorMessage(t('tx.wrongChain'));
+        throw new Error('Wallet is not connected to the Sintrop network');
       }
-    } else {
-      try {
-        const accounts = await (ethereum as any).request({ method: 'eth_accounts' });
 
-        /**
-         * Robust conversion of Wei decimal string to Hexadecimal.
-         * Using BigInt ensures precision for 18-decimal values.
-         */
+      let txParams: Record<string, string>;
+
+      if (txData.interactWithContract) {
+        const web3 = new Web3(ethereum as any);
+        const accounts = await web3.eth.getAccounts();
+        const contract = new web3.eth.Contract(txData?.contractAbi, txData?.contractAddress);
+
+        txParams = {
+          from: accounts[0],
+          to: txData.contractAddress as string,
+          data: contract.methods[txData?.methodName ?? ''](...txData.params).encodeABI(),
+        };
+      } else {
+        const accounts = await (ethereum as any).request({ method: 'eth_accounts' }) as string[];
         const valueInWei = txData.params?.[0]?.value;
-        const hexValue = '0x' + BigInt(valueInWei).toString(16);
 
-        const response = await ethereum.request({
-          method: 'eth_sendTransaction',
-          params: [{
-            from: accounts[0],
-            to: txData.params?.[0]?.to,
-            value: hexValue,
-          }],
-        });
-        setHash(response as string);
-      } catch (e) {
-        console.log(e);
-        setIsLoading(false);
-        setIsError(true);
-        setIsSuccess(false);
+        txParams = {
+          from: accounts[0],
+          to: txData.params?.[0]?.to,
+          value: '0x' + BigInt(valueInWei).toString(16),
+        };
       }
+
+      const response = await ethereum.request({
+        method: 'eth_sendTransaction',
+        params: [txParams],
+      });
+      setHash(response as string);
+    } catch (e) {
+      console.log(e);
+      setIsLoading(false);
+      setIsError(true);
+      setIsSuccess(false);
     }
   }
 
@@ -170,7 +165,10 @@ export function TxProvider({ children }: TxProviderProps) {
           id: 0,
         })
       })
-      const data = await response.json() as {jsonRpc: string; id: number; result: ReceiptTxProps};
+      const data = await response.json() as {jsonRpc: string; id: number; result: ReceiptTxProps | null};
+      if (!data.result) {
+        return { hasReceipt: false, successTx: false };
+      }
       return {
         hasReceipt: true,
         successTx: data.result.status === '0x1'
