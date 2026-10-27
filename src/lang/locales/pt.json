@@ -247,7 +247,8 @@
       "areaSize": "Tamanho da área",
       "useYourLocation": "Use sua localização",
       "useYourLocationDescription": "Ao permitir usar sua localização, vamos te localizar no mapa, assim ficará mais simples de encontrar sua área de regeneração",
-      "useMyLocation": "Usar minha localização"
+      "useMyLocation": "Usar minha localização",
+      "nameTooLong": "O nome deve ter no máximo {{max}} bytes (letras acentuadas contam como 2)"
     },
     "myTokens": {
       "title": "Meus tokens",
@@ -505,6 +506,47 @@
       "empty": "Nenhum recurso publicado ainda",
       "error": "Não foi possível carregar os recursos",
       "publishedBy": "Publicado por"
+    },
+    "publisher": {
+      "publishResearch": "Publicar pesquisa",
+      "publishResearchDescription": "Publique uma pesquisa: um novo item da calculadora, uma melhoria de metodologia ou uma pesquisa sobre regeneração. Cada publicação válida adiciona um nível no pool de pesquisadores.",
+      "publishReport": "Publicar relatório de desenvolvimento",
+      "publishReportDescription": "Publique um relatório do trabalho de desenvolvimento feito no sistema. Cada relatório válido adiciona um nível no pool de desenvolvedores.",
+      "publishContribution": "Publicar contribuição",
+      "publishContributionDescription": "Publique um relatório da sua contribuição ao sistema (tradução, apoio à comunidade, design, divulgação etc.). Cada contribuição válida adiciona um nível no pool de contribuidores.",
+      "publishItem": "Publicar item da calculadora",
+      "publishItemDescription": "Adicione um item à calculadora de impacto, com a unidade e o impacto em gramas de CO2e por unidade, para que apoiadores possam compensá-lo.",
+      "publishMethod": "Publicar método de avaliação",
+      "publishMethodDescription": "Publique um método ou projeto que ajude os inspetores a estimar árvores e biodiversidade. Cada pesquisador pode publicar apenas um método.",
+      "inviteResearcher": "Convidar pesquisador",
+      "inviteResearcherDescription": "Pesquisadores com nível acima da média podem convidar novos pesquisadores.",
+      "inviteDeveloper": "Convidar desenvolvedor",
+      "inviteDeveloperDescription": "Desenvolvedores com nível acima da média podem convidar novos desenvolvedores.",
+      "inviteContributor": "Convidar contribuidor",
+      "inviteContributorDescription": "Contribuidores com nível acima da média podem convidar novos contribuidores.",
+      "researchTitle": "Título da pesquisa",
+      "thesis": "Tese (resumo)",
+      "description": "Descrição",
+      "file": "Arquivo (PDF)",
+      "publish": "Publicar",
+      "published": "Publicação realizada",
+      "itemName": "Nome do item",
+      "itemNamePlaceholder": "Ex: Gasolina",
+      "itemThesis": "Justificativa do impacto",
+      "itemUnit": "Unidade",
+      "itemUnitPlaceholder": "Ex: L, kWh, kg",
+      "carbonImpact": "Impacto em gramas de CO2e por unidade",
+      "carbonImpactRange": "Use um número inteiro entre 1 e 1.000.000 gramas",
+      "methodTitle": "Título do método",
+      "methodResearch": "Pesquisa associada (link ou hash IPFS)",
+      "methodProjectUrl": "Link do projeto",
+      "methodAlreadyPublished": "Você já publicou seu método de avaliação. O contrato permite apenas um por pesquisador.",
+      "waitTitle": "Aguarde para publicar de novo",
+      "waitDescription": "O contrato exige um intervalo entre publicações. Próxima publicação liberada em {{duration}}.",
+      "eraEndingTitle": "Fase terminando",
+      "eraEndingDescription": "Publicações ficam bloqueadas no fim de cada fase, enquanto a validação é concluída. A próxima fase começa em {{duration}}.",
+      "inviteLevelRequired": "Para convidar, seu nível no pool precisa estar acima da média do seu tipo de usuário. Continue publicando para subir de nível.",
+      "inviteDelay": "Você convidou alguém recentemente. Próximo convite liberado em {{duration}}."
     }
   }
 }

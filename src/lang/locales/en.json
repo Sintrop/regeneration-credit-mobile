@@ -247,7 +247,8 @@
       "areaSize": "Area size",
       "useYourLocation": "Use your location",
       "useYourLocationDescription": "By allowing us to use your location, we will locate it on the map, making it easier to find your regeneration area.",
-      "useMyLocation": "Use my location"
+      "useMyLocation": "Use my location",
+      "nameTooLong": "The name must have at most {{max}} bytes (accented letters count as 2)"
     },
     "myTokens": {
       "title": "My tokens",
@@ -505,6 +506,47 @@
       "empty": "No resources published yet",
       "error": "Could not load the resources",
       "publishedBy": "Published by"
+    },
+    "publisher": {
+      "publishResearch": "Publish research",
+      "publishResearchDescription": "Publish a research: a new calculator item, a methodology improvement or a regeneration study. Each valid publication adds a level in the researchers pool.",
+      "publishReport": "Publish development report",
+      "publishReportDescription": "Publish a report of the development work done on the system. Each valid report adds a level in the developers pool.",
+      "publishContribution": "Publish contribution",
+      "publishContributionDescription": "Publish a report of your contribution to the system (translation, community support, design, outreach etc.). Each valid contribution adds a level in the contributors pool.",
+      "publishItem": "Publish calculator item",
+      "publishItemDescription": "Add an item to the impact calculator, with its unit and impact in grams of CO2e per unit, so supporters can offset it.",
+      "publishMethod": "Publish evaluation method",
+      "publishMethodDescription": "Publish a method or project that helps inspectors estimate trees and biodiversity. Each researcher can publish only one method.",
+      "inviteResearcher": "Invite researcher",
+      "inviteResearcherDescription": "Researchers with a level above the average can invite new researchers.",
+      "inviteDeveloper": "Invite developer",
+      "inviteDeveloperDescription": "Developers with a level above the average can invite new developers.",
+      "inviteContributor": "Invite contributor",
+      "inviteContributorDescription": "Contributors with a level above the average can invite new contributors.",
+      "researchTitle": "Research title",
+      "thesis": "Thesis (summary)",
+      "description": "Description",
+      "file": "File (PDF)",
+      "publish": "Publish",
+      "published": "Published",
+      "itemName": "Item name",
+      "itemNamePlaceholder": "E.g.: Gasoline",
+      "itemThesis": "Impact justification",
+      "itemUnit": "Unit",
+      "itemUnitPlaceholder": "E.g.: L, kWh, kg",
+      "carbonImpact": "Impact in grams of CO2e per unit",
+      "carbonImpactRange": "Use a whole number between 1 and 1,000,000 grams",
+      "methodTitle": "Method title",
+      "methodResearch": "Related research (link or IPFS hash)",
+      "methodProjectUrl": "Project link",
+      "methodAlreadyPublished": "You have already published your evaluation method. The contract allows only one per researcher.",
+      "waitTitle": "Wait to publish again",
+      "waitDescription": "The contract requires an interval between publications. Next publication opens in {{duration}}.",
+      "eraEndingTitle": "Era ending",
+      "eraEndingDescription": "Publications are blocked at the end of each era while validation finishes. The next era starts in {{duration}}.",
+      "inviteLevelRequired": "To invite, your pool level must be above the average of your user type. Keep publishing to level up.",
+      "inviteDelay": "You invited someone recently. Next invitation opens in {{duration}}."
     }
   }
 }

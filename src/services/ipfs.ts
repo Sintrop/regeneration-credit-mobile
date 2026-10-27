@@ -3,7 +3,9 @@ import { Platform } from 'react-native';
 
 interface UploadToIpfsProps {
   file: string;
-  ipfsApiUrl: string
+  ipfsApiUrl: string;
+  fileName?: string;
+  mimeType?: string;
 }
 
 interface ReturnUploadToIpfsProps {
@@ -12,15 +14,15 @@ interface ReturnUploadToIpfsProps {
 }
 
 export async function uploadToIpfs(props: UploadToIpfsProps): Promise<ReturnUploadToIpfsProps> {
-  const { file, ipfsApiUrl } = props
+  const { file, ipfsApiUrl, fileName = 'photo.jpg', mimeType = 'image/jpeg' } = props
 
   try {
     const formData = new FormData();
 
     formData.append('file', {
       uri: Platform.OS === 'android' ? file : file.replace('file://', ''),
-      name: 'photo.jpg',
-      type: 'image/jpeg',
+      name: fileName,
+      type: mimeType,
     });
 
     const response = await axios.postForm(`${ipfsApiUrl}/api/v0/add?pin=true`, formData, {

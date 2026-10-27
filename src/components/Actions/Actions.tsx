@@ -11,6 +11,7 @@ import { SupporterActions } from "./SupporterActions";
 import { ActivistActions } from "./ActivistActions";
 import { InspectorActions } from "./InspectorActions";
 import { RegeneratorActions } from "./RegeneratorActions";
+import { ContributorActions, DeveloperActions, ResearcherActions } from "./PublisherActions";
 
 export function Actions() {
   const { bottom } = useAppSafeArea();
@@ -76,9 +77,9 @@ const userActions = {
   0: WithoutActions,
   1: RegeneratorActions,
   2: InspectorActions,
-  3: WithoutActions,
-  4: WithoutActions,
-  5: WithoutActions,
+  3: ResearcherActions,
+  4: DeveloperActions,
+  5: ContributorActions,
   6: ActivistActions,
   7: SupporterActions,
 }
