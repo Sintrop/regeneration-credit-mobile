@@ -11,6 +11,7 @@ import { getRCMarketContract, useCreateOffer, useCancelOffer, useConfirmSale } f
 import { useAppSafeArea, useTxContext, useUserContext } from '@hooks';
 
 import { formatOfferPrice } from './formatOfferPrice';
+import { SellerInfo } from './SellerInfo';
 
 type NavigationProp = NativeStackNavigationProp<AppStackParamsList>;
 
@@ -25,10 +26,6 @@ interface Offer {
   paymentMethod: string;
   description: string;
   active: boolean;
-}
-
-function shortenAddress(addr: string) {
-  return `${addr.slice(0, 6)}...${addr.slice(-4)}`;
 }
 
 export function MarketScreen() {
@@ -351,10 +348,7 @@ function OffersList({ offers, bottomInset, locale, isOwnOffer, onBuy, onCancel, 
             <Text className="text-gray-300 p-3 rounded-xl bg-card-secondary">{offer.description}</Text>
           )}
 
-          <TouchableOpacity className="flex-row items-center gap-1" onPress={() => onPressSeller(offer.seller)}>
-            <Text className="text-gray-400 text-sm">{t('market.seller')}:</Text>
-            <Text className="text-green-primary text-sm font-semibold underline">{shortenAddress(offer.seller)}</Text>
-          </TouchableOpacity>
+          <SellerInfo address={offer.seller} onPress={onPressSeller} />
 
           <View className="flex-row gap-2">
             <TouchableOpacity
