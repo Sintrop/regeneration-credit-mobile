@@ -9,6 +9,7 @@ import Animated, {
 } from 'react-native-reanimated';
 import { useTranslation } from 'react-i18next';
 import { useCurrentEra } from '@domain';
+import { useBlocksDuration } from '@hooks';
 
 function MarqueeText({ text }: { text: string }) {
   const [textWidth, setTextWidth] = useState(0);
@@ -52,6 +53,7 @@ function MarqueeText({ text }: { text: string }) {
 export function HomeStatusBar() {
   const { t } = useTranslation();
   const { data, isLoading } = useCurrentEra();
+  const formatBlocks = useBlocksDuration();
 
   const { currentEra = 0, nextEraIn = 0 } = data || {};
 
@@ -65,7 +67,7 @@ export function HomeStatusBar() {
 
   const tickerText = t('homeScreen.currentEraTicker', {
     era: currentEra,
-    blocks: Intl.NumberFormat('pt-BR').format(nextEraIn),
+    duration: formatBlocks(nextEraIn),
   });
 
   return (

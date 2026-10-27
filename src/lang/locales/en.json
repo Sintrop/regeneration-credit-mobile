@@ -7,7 +7,7 @@
       "register": "Register",
       "newPubli": "New publication",
       "loadingEraInfo": "Loading information...",
-      "currentEraTicker": "Current era: {{era}}  •  Next era in: {{blocks}} blocks"
+      "currentEraTicker": "Current era: {{era}}  •  Next era in {{duration}}"
     },
     "feed": {
       "requestedAnInspection": "Requested an inspection",
@@ -350,9 +350,9 @@
       "score": "Score",
       "seeInspection": "See",
       "acceptInspection": "Accept inspection",
-      "thisInspectionCanAcceptIn": "This inspection can accept in",
-      "expireIn": "Expire in",
-      "expired": "Expired"
+      "thisInspectionCanAcceptIn": "This inspection can be accepted in {{duration}}",
+      "expireIn": "Expires in {{duration}}",
+      "expiredAgo": "Expired {{duration}} ago"
     },
     "inspectionStatus": {
       "open": "Open",
@@ -459,6 +459,15 @@
       "errorCreatingOffer": "Error creating offer",
       "errorCancelingOffer": "Error canceling offer",
       "errorConfirmingSale": "Error confirming sale"
+    },
+    "duration": {
+      "days_one": "~{{count}} day",
+      "days_other": "~{{count}} days",
+      "hours_one": "~{{count}} hour",
+      "hours_other": "~{{count}} hours",
+      "minutes_one": "~{{count}} minute",
+      "minutes_other": "~{{count}} minutes",
+      "withBlocks": "{{duration}} ({{blocks}} blocks)"
     }
   }
 }

@@ -5,10 +5,10 @@ import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { useNavigation } from "@react-navigation/native";
 import Config from 'react-native-config';
 
-import { Icon, InspectionStatus, Text, AcceptInspection } from "@components";
+import { Icon, InspectionStatus, Text, AcceptInspection, StatBox } from "@components";
 import { InspectionProps, useBlockNumber, useGetInspection } from "@domain";
 import { AppStackParamsList } from "@routes";
-import { useTxContext, useUserContext } from "@hooks";
+import { useBlocksDuration, useTxContext, useUserContext } from "@hooks";
 
 import { Regenerator } from "./Regenerator";
 import { Inspector } from "./Inspector";
@@ -24,6 +24,7 @@ export function InspectionItem({ inspectionId }: Props) {
   const { t } = useTranslation();
   const { inspection, isLoading, refetch } = useGetInspection({ inspectionId });
   const { blockNumber } = useBlockNumber();
+  const formatBlocks = useBlocksDuration();
 
   const createdAt = inspection?.createdAt ?? 0;
   const acceptedAt = inspection?.acceptedAt ?? 0;
@@ -56,12 +57,12 @@ export function InspectionItem({ inspectionId }: Props) {
       <View className="absolute top-4 right-4 flex-row items-center gap-3">
         {inspection.status === 'accepted' && (
           <Text className="text-yellow-500">
-            {t('inspections.expireIn')} {expireIn} {t('common.blocks')}
+            {t('inspections.expireIn', { duration: formatBlocks(expireIn) })}
           </Text>
         )}
         {inspection.status === 'expired' && (
           <Text className="text-orange-500">
-            {t('inspections.expired')} {Math.abs(expireIn)} {t('common.blocks')} {t('common.ago')}
+            {t('inspections.expiredAgo', { duration: formatBlocks(Math.abs(expireIn)) })}
           </Text>
         )}
         <InspectionStatus status={inspection.status} />
@@ -85,7 +86,7 @@ export function InspectionItem({ inspectionId }: Props) {
                 </AcceptInspection>
               ) : (
                 <Text className="text-yellow-500 text-center mb-2">
-                  {t('inspections.thisInspectionCanAcceptIn')} {canAcceptIn} {t('common.blocks')}
+                  {t('inspections.thisInspectionCanAcceptIn', { duration: formatBlocks(canAcceptIn) })}
                 </Text>
               )}
             </View>
@@ -135,9 +136,9 @@ export function InspectionResult({ inspection }: InspectionResultProps) {
   return (
     <>
       <View className="flex-row gap-3">
-        <ResultItem title={t('inspections.score')} value={inspection.regenerationScore} />
-        <ResultItem title={t('common.trees')} value={inspection.treesResult} />
-        <ResultItem title={t('common.biodiversity')} value={inspection.biodiversityResult} />
+        <StatBox size="compact" title={t('inspections.score')} value={inspection.regenerationScore} />
+        <StatBox size="compact" title={t('common.trees')} value={inspection.treesResult} />
+        <StatBox size="compact" title={t('common.biodiversity')} value={inspection.biodiversityResult} />
       </View>
 
       <TouchableOpacity
@@ -151,18 +152,6 @@ export function InspectionResult({ inspection }: InspectionResultProps) {
   )
 }
 
-interface ResultItemProps {
-  title: string;
-  value?: string | number;
-}
-function ResultItem({ title, value }: ResultItemProps) {
-  return (
-    <View className="w-20 p-3 border-2 border-white rounded-2xl items-center">
-      <Text className="font-bold text-white text-xl">{value}</Text>
-      <Text className="text-xs text-white text-center">{title}</Text>
-    </View>
-  )
-}
 
 interface AcceptButtonProps {
   openModal?: () => void;

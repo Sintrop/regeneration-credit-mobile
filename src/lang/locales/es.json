@@ -7,7 +7,7 @@
       "register": "Registrarse",
       "newPubli": "Nueva publicación",
       "loadingEraInfo": "Cargando información...",
-      "currentEraTicker": "Fase actual: {{era}}  •  Próxima fase en: {{blocks}} bloques"
+      "currentEraTicker": "Fase actual: {{era}}  •  Próxima fase en {{duration}}"
     },
     "feed": {
       "requestedAnInspection": "Solicitó una inspección",
@@ -350,9 +350,9 @@
       "score": "Puntuación",
       "seeInspection": "Ver",
       "acceptInspection": "Aceptar inspección",
-      "thisInspectionCanAcceptIn": "Esta inspección se puede aceptar en",
-      "expireIn": "Expira en",
-      "expired": "Expiró hace"
+      "thisInspectionCanAcceptIn": "Esta inspección se puede aceptar en {{duration}}",
+      "expireIn": "Expira en {{duration}}",
+      "expiredAgo": "Expiró hace {{duration}}"
     },
     "inspectionStatus": {
       "open": "Abierta",
@@ -459,6 +459,15 @@
       "errorCreatingOffer": "Error al crear la oferta",
       "errorCancelingOffer": "Error al cancelar la oferta",
       "errorConfirmingSale": "Error al concluir la venta"
+    },
+    "duration": {
+      "days_one": "~{{count}} día",
+      "days_other": "~{{count}} días",
+      "hours_one": "~{{count}} hora",
+      "hours_other": "~{{count}} horas",
+      "minutes_one": "~{{count}} minuto",
+      "minutes_other": "~{{count}} minutos",
+      "withBlocks": "{{duration}} ({{blocks}} bloques)"
     }
   }
 }

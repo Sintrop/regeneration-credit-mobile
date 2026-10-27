@@ -22,3 +22,4 @@ export * from "./Actions/Offset/Offset";
 export * from "./Actions/BurnTokens/BurnTokens";
 export * from "./Actions/AcceptInspection/AcceptInspection";
 export * from "./LanguageSelector/LanguageSelector";
+export * from "./StatBox/StatBox";

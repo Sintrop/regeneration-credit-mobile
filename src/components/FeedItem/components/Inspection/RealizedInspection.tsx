@@ -1,7 +1,7 @@
 import { View } from "react-native";
 import { useTranslation } from "react-i18next";
 
-import { Text } from "@components";
+import { Text, StatBox } from "@components";
 import { InspectorData } from "./InspectorData";
 
 interface Props {
@@ -22,34 +22,21 @@ export function RealizedInspection({ inspectorAddress, biodiversityResult, score
       <InspectorData address={inspectorAddress} />
 
       <View className="flex-row justify-between gap-5 mt-3">
-        <ResultItem 
+        <StatBox 
           title={t("feed.rScore")}
           value={score}
         />
 
-        <ResultItem 
+        <StatBox 
           title={t("common.biodiversity")}
           value={biodiversityResult}
         />
 
-        <ResultItem 
+        <StatBox 
           title={t("common.trees")}
           value={treesResult}
         />
       </View>
-    </View>
-  )
-}
-
-interface ResultItemProps {
-  title: string;
-  value: string | number;
-}
-function ResultItem({ title, value }: ResultItemProps) {
-  return (
-    <View className="w-28 p-3 border-2 border-white rounded-2xl items-center">
-      <Text className="font-bold text-white text-3xl">{value}</Text>
-      <Text className="text-sm text-white text-center" numberOfLines={1} adjustsFontSizeToFit minimumFontScale={0.7}>{title}</Text>
     </View>
   )
 }
