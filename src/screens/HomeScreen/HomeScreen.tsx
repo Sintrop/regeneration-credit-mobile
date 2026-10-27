@@ -12,6 +12,7 @@ import { UserWithoutRegister } from './components/UserWithoutRegister';
 import { LoadingFeed } from './components/LoadingFeed';
 import { HomeStatusBar } from './components/HomeStatusBar';
 import { HomeShortcuts } from './components/HomeShortcuts';
+import { UserTimersCard } from './components/UserTimersCard';
 
 type ScreenProps = NativeStackScreenProps<AppStackParamsList, 'HomeScreen'>
 export function HomeScreen(_: ScreenProps) {
@@ -38,6 +39,8 @@ export function HomeScreen(_: ScreenProps) {
         )}
 
         <HomeShortcuts />
+
+        {isConnected && userType > 0 && <UserTimersCard />}
       </View>
     )
   }

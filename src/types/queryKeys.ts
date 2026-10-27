@@ -38,5 +38,6 @@ export enum QueryKeys {
   FeedTreeFundings = 'FeedTreeFundings',
   FeedRegeneratorsEnteredPool = 'FeedRegeneratorsEnteredPool',
   FeedMarketOffers = 'FeedMarketOffers',
-  PublishingRules = 'PublishingRules'
+  PublishingRules = 'PublishingRules',
+  UserTimers = 'UserTimers'
 }

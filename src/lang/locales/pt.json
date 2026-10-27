@@ -547,6 +547,34 @@
       "eraEndingDescription": "Publicações ficam bloqueadas no fim de cada fase, enquanto a validação é concluída. A próxima fase começa em {{duration}}.",
       "inviteLevelRequired": "Para convidar, seu nível no pool precisa estar acima da média do seu tipo de usuário. Continue publicando para subir de nível.",
       "inviteDelay": "Você convidou alguém recentemente. Próximo convite liberado em {{duration}}."
+    },
+    "timers": {
+      "title": "Seus prazos",
+      "availableNow": "Disponível agora",
+      "availableIn": "Disponível em {{duration}}",
+      "opensNextEra": "Bloqueado no fim da fase. Abre em {{duration}}",
+      "pendingInspection": "Pedido em aberto, aguardando um inspetor",
+      "inspectionInProgress": "Inspeção em andamento. Expira em {{duration}}",
+      "missionComplete": "Concluído: as 6 inspeções foram feitas",
+      "blocked": {
+        "giveUps": "Bloqueado: limite de 3 desistências atingido",
+        "levelRequired": "Requer nível no pool acima da média do seu tipo",
+        "minimumInspections": "Requer 3 inspeções realizadas"
+      },
+      "actions": {
+        "requestInspection": "Pedir inspeção",
+        "acceptInspection": "Aceitar inspeção",
+        "publishResearch": "Publicar pesquisa",
+        "publishCalculatorItem": "Publicar item da calculadora",
+        "publishReport": "Publicar relatório",
+        "publishContribution": "Publicar contribuição",
+        "vote": "Votar para invalidar",
+        "invite": "Convidar",
+        "inviteRegeneratorInspector": "Convidar regenerador ou inspetor",
+        "withdraw": "Sacar tokens"
+      },
+      "tickerAvailable_one": "Você tem {{count}} ação disponível",
+      "tickerAvailable_other": "Você tem {{count}} ações disponíveis"
     }
   }
 }

@@ -547,6 +547,34 @@
       "eraEndingDescription": "Publications are blocked at the end of each era while validation finishes. The next era starts in {{duration}}.",
       "inviteLevelRequired": "To invite, your pool level must be above the average of your user type. Keep publishing to level up.",
       "inviteDelay": "You invited someone recently. Next invitation opens in {{duration}}."
+    },
+    "timers": {
+      "title": "Your timers",
+      "availableNow": "Available now",
+      "availableIn": "Available in {{duration}}",
+      "opensNextEra": "Blocked at the end of the era. Opens in {{duration}}",
+      "pendingInspection": "Request open, waiting for an inspector",
+      "inspectionInProgress": "Inspection in progress. Expires in {{duration}}",
+      "missionComplete": "Done: all 6 inspections completed",
+      "blocked": {
+        "giveUps": "Blocked: limit of 3 give-ups reached",
+        "levelRequired": "Requires a pool level above your type average",
+        "minimumInspections": "Requires 3 completed inspections"
+      },
+      "actions": {
+        "requestInspection": "Request inspection",
+        "acceptInspection": "Accept inspection",
+        "publishResearch": "Publish research",
+        "publishCalculatorItem": "Publish calculator item",
+        "publishReport": "Publish report",
+        "publishContribution": "Publish contribution",
+        "vote": "Vote to invalidate",
+        "invite": "Invite",
+        "inviteRegeneratorInspector": "Invite regenerator or inspector",
+        "withdraw": "Withdraw tokens"
+      },
+      "tickerAvailable_one": "You have {{count}} action available",
+      "tickerAvailable_other": "You have {{count}} actions available"
     }
   }
 }

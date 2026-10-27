@@ -50,7 +50,9 @@ describe('locales', () => {
         usedKeys.add(match[1]);
       }
     }
-    expect([...usedKeys].filter(key => !enKeys.includes(key)).sort()).toEqual([]);
+    // i18next plural keys are stored as key_one / key_other
+    const defined = (key: string) => enKeys.includes(key) || enKeys.includes(`${key}_other`);
+    expect([...usedKeys].filter(key => !defined(key)).sort()).toEqual([]);
   });
 });
 

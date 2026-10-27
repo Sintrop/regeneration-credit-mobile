@@ -8,7 +8,7 @@ import Animated, {
   Easing,
 } from 'react-native-reanimated';
 import { useTranslation } from 'react-i18next';
-import { useCurrentEra } from '@domain';
+import { useCurrentEra, useUserTimers } from '@domain';
 import { useBlocksDuration } from '@hooks';
 
 function MarqueeText({ text }: { text: string }) {
@@ -54,6 +54,8 @@ export function HomeStatusBar() {
   const { t } = useTranslation();
   const { data, isLoading } = useCurrentEra();
   const formatBlocks = useBlocksDuration();
+  const { timers } = useUserTimers();
+  const availableCount = timers.filter(timer => timer.status === 'available').length;
 
   const { currentEra = 0, nextEraIn = 0 } = data || {};
 
@@ -65,10 +67,13 @@ export function HomeStatusBar() {
     );
   }
 
-  const tickerText = t('homeScreen.currentEraTicker', {
+  const eraText = t('homeScreen.currentEraTicker', {
     era: currentEra,
     duration: formatBlocks(nextEraIn),
   });
+  const tickerText = availableCount > 0
+    ? `${eraText}  •  ${t('timers.tickerAvailable', { count: availableCount })}`
+    : eraText;
 
   return (
     <View className="bg-green-primary/10 -mx-3 mb-4 h-8 flex-row items-center border-y border-green-primary/20">
