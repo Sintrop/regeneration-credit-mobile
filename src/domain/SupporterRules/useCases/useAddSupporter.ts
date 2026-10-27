@@ -1,3 +1,4 @@
+import i18next from "i18next";
 import { Alert } from "react-native";
 import { useSDK } from "@metamask/sdk-react";
 
@@ -19,7 +20,7 @@ export function useAddSupporter(): ReturnUseAddSupporter {
 
   async function handleAddSupporter(data: AddSupporterProps) {
     if (!ethereum) {
-      Alert.alert('Error', 'provider is undefined');
+      Alert.alert(i18next.t('market.error'), i18next.t('common.walletUnavailable'));
       return;
     }
 

@@ -50,7 +50,7 @@ export function PoolDetailsScreen({ route }: ScreenProps) {
           </View>
           <View className="flex-row items-center gap-2">
             <View className="w-4 h-4 rounded-full bg-[#012939]"/>
-            <Text className="text-white text-sm">Tokens distribuídos</Text>
+            <Text className="text-white text-sm">{t('poolsScreen.distributedTokens')}</Text>
           </View>
         </View>
 

@@ -36,7 +36,7 @@ export function CalculatorItem({ item }: Props) {
       {userType === 7 && (
         <View className="flex-row gap-2">
           <Offset item={item}>
-            <OffsetButton label="Offset" />
+            <OffsetButton label={t('common.offsetAction')} />
           </Offset>
           
           <TouchableOpacity 

@@ -93,7 +93,7 @@ export function HomeScreen({ navigation }: ScreenProps) {
             onPress={() => navigation.navigate('MarketScreen')}
           >
             <Icon name="tokens" size={20} />
-            <Text className='text-white'>Mercado</Text>
+            <Text className='text-white'>{t('common.market')}</Text>
           </TouchableOpacity>
         </View>
       </View>

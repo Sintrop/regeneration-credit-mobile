@@ -60,7 +60,7 @@ function Btn({ onPress, userType }: BtnProps) {
         onPress={() => onPress(userType)}
         className="w-fit px-5 rounded-2xl bg-blue-primary py-2 flex-row items-center justify-center gap-2 mt-5"
       >
-        <Text className="font-semibold text-white">Acessar</Text>
+        <Text className="font-semibold text-white">{t('common.access')}</Text>
       </TouchableOpacity>
     </View>
   );

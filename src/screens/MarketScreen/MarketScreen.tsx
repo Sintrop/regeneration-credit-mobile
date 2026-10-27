@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { AppStackParamsList } from '@routes';
+import { utils } from 'web3';
 import { getRCMarketContract, useCreateOffer, useCancelOffer, useConfirmSale } from '@domain/RCMarket';
 import { useAppSafeArea, useUserContext } from '@hooks';
 
@@ -34,6 +35,8 @@ export function MarketScreen() {
   const [loading, setLoading] = useState(true);
   const [showModal, setShowModal] = useState(false);
   const [newOffer, setNewOffer] = useState({ amount: '', price: '', method: 'PIX', description: '' });
+  const [confirmingOfferId, setConfirmingOfferId] = useState<number | null>(null);
+  const [buyerAddress, setBuyerAddress] = useState('');
 
   const loadOffers = async () => {
     try {
@@ -90,10 +93,10 @@ export function MarketScreen() {
 
   const getStatusText = (status: number) => {
     switch (status) {
-      case 0: return 'Ativa';
-      case 1: return 'Vendida';
-      case 2: return 'Cancelada';
-      default: return 'Desconhecido';
+      case 0: return t('market.statusActive');
+      case 1: return t('market.statusSold');
+      case 2: return t('market.statusCancelled');
+      default: return t('market.statusUnknown');
     }
   };
 
@@ -111,17 +114,17 @@ export function MarketScreen() {
   }
 
   const handleBuy = () => {
-    Alert.alert('Comprar', 'O mercado é apenas informativo, entre em contato com o vendedor através das informações descritas na oferta e compre diretamente com ele.');
+    Alert.alert(t('market.buyTitle'), t('market.buyMessage'));
   };
 
   const handleCancel = (offerId: number) => {
     Alert.alert(
-      'Cancelar Oferta',
-      'Tem certeza que deseja cancelar esta oferta?',
+      t('market.cancelOfferTitle'),
+      t('market.cancelOfferMessage'),
       [
-        { text: 'Não', style: 'cancel' },
-        { 
-          text: 'Sim', 
+        { text: t('common.no'), style: 'cancel' },
+        {
+          text: t('common.yes'),
           onPress: () => {
             cancelOffer({ offerId });
             loadOffers(); // Recarrega lista após cancelar
@@ -132,41 +135,40 @@ export function MarketScreen() {
   };
 
   const handleConfirm = (offerId: number) => {
-    // Need buyer address
-    Alert.prompt(
-      'Confirmar Venda',
-      'Digite o endereço da carteira do comprador:',
-      [
-        { text: 'Cancelar', style: 'cancel' },
-        { 
-          text: 'Confirmar',
-          onPress: (buyerAddress?: string) => {
-            if (buyerAddress && buyerAddress.startsWith('0x')) {
-              confirmSale({ offerId, buyer: buyerAddress });
-              loadOffers(); // Recarrega lista após confirmar
-            } else {
-              Alert.alert('Erro', 'Endereço inválido');
-            }
-          }
-        }
-      ],
-      'plain-text'
-    );
+    setBuyerAddress('');
+    setConfirmingOfferId(offerId);
+  };
+
+  const handleSubmitConfirmSale = () => {
+    const buyer = buyerAddress.trim();
+    if (confirmingOfferId === null) return;
+    if (!utils.isAddress(buyer)) {
+      Alert.alert(t('market.error'), t('common.invalidAddress'));
+      return;
+    }
+    confirmSale({ offerId: confirmingOfferId, buyer });
+    setConfirmingOfferId(null);
+    loadOffers();
   };
 
   const handleCreateOffer = async () => {
     if (!address) {
-      Alert.alert('Erro', 'Conecte a carteira primeiro!');
+      Alert.alert(t('market.error'), t('market.connectWalletFirst'));
       return;
     }
     
     if (!newOffer.amount || !newOffer.price || !newOffer.description) {
-      Alert.alert('Erro', 'Preencha todos os campos!');
+      Alert.alert(t('market.error'), t('market.fillAllFields'));
       return;
     }
     
     if (newOffer.description.length > 500) {
-      Alert.alert('Erro', 'A descrição deve ter no máximo 500 caracteres!');
+      Alert.alert(t('market.error'), t('market.descriptionTooLong'));
+      return;
+    }
+
+    if (newOffer.price.length > 50) {
+      Alert.alert(t('market.error'), t('market.priceTooLong'));
       return;
     }
 
@@ -201,22 +203,22 @@ export function MarketScreen() {
     <View style={[styles.container, { paddingTop: top }]}>
       <View style={styles.header}>
         <TouchableOpacity onPress={() => navigation.goBack()}>
-          <Text style={styles.backButton}>← Voltar</Text>
+          <Text style={styles.backButton}>← {t('market.back')}</Text>
         </TouchableOpacity>
-        <Text style={styles.title}>Mercado RC</Text>
+        <Text style={styles.title}>{t('market.title')}</Text>
         <View style={{ width: 60 }} />
       </View>
 
       <ScrollView style={styles.content}>
         {loading ? (
-          <Text style={styles.loadingText}>Carregando ofertas...</Text>
+          <Text style={styles.loadingText}>{t('market.loadingOffers')}</Text>
         ) : offers.length === 0 ? (
-          <Text style={styles.emptyText}>Nenhuma oferta disponível</Text>
+          <Text style={styles.emptyText}>{t('market.noOffers')}</Text>
         ) : (
           offers.filter(offer => offer.status === 0).map((offer) => (
             <View key={offer.id} style={styles.offerCard}>
               <View style={styles.offerHeader}>
-                <Text style={styles.offerId}>Oferta #{offer.id}</Text>
+                <Text style={styles.offerId}>{t('market.offer', { id: offer.id })}</Text>
                 <View style={[styles.statusBadge, { backgroundColor: getStatusColor(offer.status) }]}>
                   <Text style={styles.statusText}>{getStatusText(offer.status)}</Text>
                 </View>
@@ -224,21 +226,19 @@ export function MarketScreen() {
               
               <View style={styles.offerDetails}>
                 <View style={styles.detailRow}>
-                  <Text style={styles.detailLabel}>Quantidade:</Text>
+                  <Text style={styles.detailLabel}>{t('market.amount')}:</Text>
                   <Text style={styles.detailValue}>{offer.amount} RC</Text>
                 </View>
                 <View style={styles.detailRow}>
-                  <Text style={styles.detailLabel}>Preço unitário:</Text>
+                  <Text style={styles.detailLabel}>{t('market.unitPrice')}:</Text>
                   <Text style={styles.detailValue}>{offer.pricePerUnit}</Text>
                 </View>
                 <View style={styles.detailRow}>
-                </View>
-                <View style={styles.detailRow}>
-                  <Text style={styles.detailLabel}>Pagamento:</Text>
+                  <Text style={styles.detailLabel}>{t('market.payment')}:</Text>
                   <Text style={styles.detailValue}>{offer.paymentMethod}</Text>
                 </View>
                 <View style={styles.detailRow}>
-                  <Text style={styles.detailLabel}>Vendedor:</Text>
+                  <Text style={styles.detailLabel}>{t('market.seller')}:</Text>
                   <TouchableOpacity onPress={() => handleGoToUser(offer.seller)}>
                     <Text style={[styles.detailValue, { color: '#00D9C0' }]}>{shortenAddress(offer.seller)}</Text>
                   </TouchableOpacity>
@@ -251,16 +251,16 @@ export function MarketScreen() {
               
               <View style={styles.offerActions}>
                 <TouchableOpacity style={styles.buyButton} onPress={handleBuy}>
-                  <Text style={styles.buyButtonText}>Comprar</Text>
+                  <Text style={styles.buyButtonText}>{t('market.buy')}</Text>
                 </TouchableOpacity>
                 
                 {address && offer.seller.toLowerCase() === address.toLowerCase() && offer.status === 0 && (
                   <>
                     <TouchableOpacity style={styles.cancelButton} onPress={() => handleCancel(offer.id)}>
-                      <Text style={styles.cancelButtonText}>Cancelar</Text>
+                      <Text style={styles.cancelButtonText}>{t('market.cancel')}</Text>
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.confirmButton} onPress={() => handleConfirm(offer.id)}>
-                      <Text style={styles.confirmButtonText}>Concluir</Text>
+                      <Text style={styles.confirmButtonText}>{t('market.complete')}</Text>
                     </TouchableOpacity>
                   </>
                 )}
@@ -271,15 +271,15 @@ export function MarketScreen() {
       </ScrollView>
 
       <TouchableOpacity style={styles.fab} onPress={() => setShowModal(true)}>
-        <Text style={styles.fabText}>+ Publicar Oferta</Text>
+        <Text style={styles.fabText}>{t('market.publishOffer')}</Text>
       </TouchableOpacity>
 
       <Modal visible={showModal} animationType="slide" transparent>
         <View style={styles.modalOverlay}>
           <View style={styles.modalContent}>
-            <Text style={styles.modalTitle}>Nova Oferta</Text>
+            <Text style={styles.modalTitle}>{t('market.newOffer')}</Text>
             
-            <Text style={styles.inputLabel}>Quantidade de RC:</Text>
+            <Text style={styles.inputLabel}>{t('market.amountLabel')}:</Text>
             <TextInput
               style={styles.input}
               placeholder="Ex: 100"
@@ -291,19 +291,20 @@ export function MarketScreen() {
               onSubmitEditing={() => Keyboard.dismiss()}
             />
             
-            <Text style={styles.inputLabel}>Preço por RC (R$):</Text>
+            <Text style={styles.inputLabel}>{t('market.priceLabel')}:</Text>
             <TextInput
               style={styles.input}
               placeholder="Ex: 5.00"
               keyboardType="numeric"
               value={newOffer.price}
+              maxLength={50}
               onChangeText={(text) => setNewOffer({ ...newOffer, price: text })}
               returnKeyType="done"
               blurOnSubmit
               onSubmitEditing={() => Keyboard.dismiss()}
             />
             
-            <Text style={styles.inputLabel}>Método de Pagamento:</Text>
+            <Text style={styles.inputLabel}>{t('market.paymentMethodLabel')}:</Text>
             <View style={styles.methodSelector}>
               {['PIX', 'TED', 'Dinheiro'].map((method) => (
                 <TouchableOpacity
@@ -311,27 +312,53 @@ export function MarketScreen() {
                   style={[styles.methodButton, newOffer.method === method && styles.methodButtonActive]}
                   onPress={() => setNewOffer({ ...newOffer, method })}
                 >
-                  <Text style={[styles.methodText, newOffer.method === method && styles.methodTextActive]}>{method}</Text>
+                  <Text style={[styles.methodText, newOffer.method === method && styles.methodTextActive]}>{method === 'Dinheiro' ? t('market.cash') : method}</Text>
                 </TouchableOpacity>
               ))}
             </View>
             
-            <Text style={styles.inputLabel}>Descrição (opcional):</Text>
+            <Text style={styles.inputLabel}>{t('market.descriptionLabel')}:</Text>
             <TextInput
               style={[styles.input, styles.textArea]}
-              placeholder="Ex: Vendo X Créditos por Y BRL cada. Contato: meucontato@contato.com"
+              placeholder={t('market.descriptionPlaceholder')}
               multiline
               numberOfLines={3}
               value={newOffer.description}
+              maxLength={500}
               onChangeText={(text) => setNewOffer({ ...newOffer, description: text })}
             />
             
             <View style={styles.modalActions}>
               <TouchableOpacity style={styles.modalCancel} onPress={() => setShowModal(false)}>
-                <Text style={styles.modalCancelText}>Cancelar</Text>
+                <Text style={styles.modalCancelText}>{t('common.cancel')}</Text>
               </TouchableOpacity>
               <TouchableOpacity style={styles.modalSubmit} onPress={handleCreateOffer}>
-                <Text style={styles.modalSubmitText}>Publicar</Text>
+                <Text style={styles.modalSubmitText}>{t('market.publish')}</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        </View>
+      </Modal>
+
+      <Modal visible={confirmingOfferId !== null} animationType="fade" transparent>
+        <View style={styles.modalOverlay}>
+          <View style={styles.modalContent}>
+            <Text style={styles.modalTitle}>{t('market.confirmSaleTitle')}</Text>
+            <Text style={styles.inputLabel}>{t('market.confirmSaleMessage')}</Text>
+            <TextInput
+              style={styles.input}
+              placeholder="0x..."
+              autoCapitalize="none"
+              autoCorrect={false}
+              value={buyerAddress}
+              onChangeText={setBuyerAddress}
+            />
+            <View style={styles.modalActions}>
+              <TouchableOpacity style={styles.modalCancel} onPress={() => setConfirmingOfferId(null)}>
+                <Text style={styles.modalCancelText}>{t('common.cancel')}</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.modalSubmit} onPress={handleSubmitConfirmSale}>
+                <Text style={styles.modalSubmitText}>{t('common.confirm')}</Text>
               </TouchableOpacity>
             </View>
           </View>

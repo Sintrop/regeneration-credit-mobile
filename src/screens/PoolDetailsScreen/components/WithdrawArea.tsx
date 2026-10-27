@@ -36,11 +36,11 @@ export function WithdrawArea({ poolType, poolEra }: Props) {
         <View className="flex-row gap-2">
           <View className="items-center justify-center p-3 rounded-md bg-card-secondary min-w-24">
             <Text className="font-bold text-white text-xl">{user?.poolLevel}</Text>
-            <Text className="text-xs text-gray-300">Seu nível</Text>
+            <Text className="text-xs text-gray-300">{t('poolsScreen.yourLevel')}</Text>
           </View>
           <View className="items-center justify-center p-3 rounded-md bg-card-secondary min-w-24">
             <Text className="font-bold text-white text-xl">{poolEra}</Text>
-            <Text className="text-xs text-gray-300">Nível Max.</Text>
+            <Text className="text-xs text-gray-300">{t('poolsScreen.maxLevel')}</Text>
           </View>
         </View>
 
@@ -49,7 +49,7 @@ export function WithdrawArea({ poolType, poolEra }: Props) {
           onPress={handleWithdraw}
           disabled={!canWithdraw}
         >
-          <Text className="text-white text-sm text-center">Avançar para próxima fase</Text>
+          <Text className="text-white text-sm text-center">{t('poolsScreen.advanceToNextEra')}</Text>
         </TouchableOpacity>
       </View>
     </View>

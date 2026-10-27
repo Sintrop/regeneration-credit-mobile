@@ -57,7 +57,7 @@ export function Supporter({ address }: Props) {
               <Text className="text-white">RC</Text>
             </View>
 
-            <Text className="text-gray-300 text-xs mt-3">Financiando o impacto de:</Text>
+            <Text className="text-gray-300 text-xs mt-3">{t('common.fundingImpactOf')}</Text>
             <View className="flex-row items-center gap-1">
               <Text className="text-white text-sm">{t('common.carbon')}:</Text>
               <Text className="text-white text-sm font-semibold">

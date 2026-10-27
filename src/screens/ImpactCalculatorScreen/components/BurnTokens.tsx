@@ -34,7 +34,7 @@ export function BurnTokens() {
         
         {/* Calculator Section */}
         <View className="border border-green-500 rounded-xl p-3 bg-green-900/20">
-          <Text className="text-white text-sm mb-2">Quantas árvores deseja financiar?</Text>
+          <Text className="text-white text-sm mb-2">{t('impactCalculator.howManyTreesToFund')}</Text>
           <RNTextInput
             className="bg-transparent text-white h-10 px-3 rounded-lg mb-2 border border-gray-500"
             placeholderTextColor="#666"

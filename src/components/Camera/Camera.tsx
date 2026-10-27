@@ -54,7 +54,7 @@ export function CameraComponent({ close, photo }: Props) {
       }
     } catch (e) {
       console.log(e);
-      Alert.alert('Error', 'Erro ao tentar tirar a foto');
+      Alert.alert(t('market.error'), t('common.errorTakingPhoto'));
     } finally {
       setLoadingTake(false);
     }

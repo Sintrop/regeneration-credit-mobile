@@ -26,7 +26,7 @@ export function CalculatorItems() {
       
       <View className="bg-card-primary rounded-2xl overflow-hidden">
         <View className="flex-row items-center justify-between h-10 px-5 border-b border-card-secondary">
-          <Text className="text-gray-300 text-sm">Item</Text>
+          <Text className="text-gray-300 text-sm">{t('common.item')}</Text>
         </View>
 
         {calculatorItems.map((item) => (

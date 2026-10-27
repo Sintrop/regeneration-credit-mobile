@@ -79,7 +79,7 @@ export function TxProvider({ children }: TxProviderProps) {
 
   async function sendTransaction(txData: SendTransactionProps) {
     if (!ethereum) {
-      Alert.alert('Error', 'provider is undefined');
+      Alert.alert(t('market.error'), t('common.walletUnavailable'));
       return;
     }
 
