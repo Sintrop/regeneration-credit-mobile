@@ -21,3 +21,4 @@ export * from "./Actions/Actions";
 export * from "./Actions/Offset/Offset";
 export * from "./Actions/BurnTokens/BurnTokens";
 export * from "./Actions/AcceptInspection/AcceptInspection";
+export * from "./LanguageSelector/LanguageSelector";

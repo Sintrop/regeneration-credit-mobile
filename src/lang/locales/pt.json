@@ -144,7 +144,16 @@
       "addressCopied": "Endereço copiado",
       "addressCopiedDescription": "O endereço da carteira foi copiado para a área de transferência.",
       "user": "Usuário",
-      "selectAnOption": "Selecione uma opção"
+      "selectAnOption": "Selecione uma opção",
+      "language": "Idioma",
+      "connect": "Conectar",
+      "item": "Item",
+      "walletUnavailable": "Carteira indisponível. Conecte sua carteira e tente novamente.",
+      "errorTakingPhoto": "Erro ao tentar tirar a foto",
+      "access": "Acessar",
+      "market": "Mercado",
+      "offsetAction": "Compensar",
+      "fundingImpactOf": "Financiando o impacto de:"
     },
     "offset": {
       "title": "Compensar",
@@ -176,7 +185,9 @@
       "declare": "Declarar",
       "commitment": "Compromisso",
       "treeEqualsTokens": "1 Árvore = {{tokens}} RCs",
-      "tokensPerTreeDescription": "No presente {{tokens}} Créditos de Regeneração equivalem a 1 árvore"
+      "tokensPerTreeDescription": "No presente {{tokens}} Créditos de Regeneração equivalem a 1 árvore",
+      "howManyTreesToFund": "Quantas árvores deseja financiar?",
+      "errorDeclaringCommitment": "Erro ao declarar compromisso"
     },
     "register": {
       "title": "Registrar",
@@ -390,7 +401,10 @@
       "withdraw": "Sacar",
       "advanceToNextEra": "Avançar para a próxima era",
       "nextEra": "Próxima fase",
-      "nextEraDescription": "Quando o botão estiver habilitado, você pode avançar de fase e se tiver direito vai receber seus Créditos de Regeneração como recompensa dos serviços prestados na fase anterior."
+      "nextEraDescription": "Quando o botão estiver habilitado, você pode avançar de fase e se tiver direito vai receber seus Créditos de Regeneração como recompensa dos serviços prestados na fase anterior.",
+      "yourLevel": "Seu nível",
+      "maxLevel": "Nível máx.",
+      "distributedTokens": "Tokens distribuídos"
     },
     "poolsDetailsScreen": {
       "title": "Detalhes",
@@ -403,6 +417,47 @@
       "claimsCount": "Saques realizados",
       "tokens": "Tokens Distribuidos",
       "levels": "Dificuldade"
+    },
+    "market": {
+      "title": "Mercado RC",
+      "back": "Voltar",
+      "loadingOffers": "Carregando ofertas...",
+      "noOffers": "Nenhuma oferta disponível",
+      "offer": "Oferta #{{id}}",
+      "statusActive": "Ativa",
+      "statusSold": "Vendida",
+      "statusCancelled": "Cancelada",
+      "statusUnknown": "Desconhecido",
+      "amount": "Quantidade",
+      "unitPrice": "Preço unitário",
+      "payment": "Pagamento",
+      "seller": "Vendedor",
+      "buy": "Comprar",
+      "cancel": "Cancelar",
+      "complete": "Concluir",
+      "publishOffer": "+ Publicar oferta",
+      "newOffer": "Nova oferta",
+      "amountLabel": "Quantidade de RC",
+      "priceLabel": "Preço por RC (R$)",
+      "paymentMethodLabel": "Método de pagamento",
+      "cash": "Dinheiro",
+      "descriptionLabel": "Descrição e contato",
+      "descriptionPlaceholder": "Ex: Vendo X Créditos por Y BRL cada. Contato: meucontato@contato.com",
+      "publish": "Publicar",
+      "buyTitle": "Comprar",
+      "buyMessage": "O mercado é apenas informativo, entre em contato com o vendedor através das informações descritas na oferta e compre diretamente com ele.",
+      "cancelOfferTitle": "Cancelar oferta",
+      "cancelOfferMessage": "Tem certeza que deseja cancelar esta oferta?",
+      "confirmSaleTitle": "Concluir venda",
+      "confirmSaleMessage": "Digite o endereço da carteira do comprador:",
+      "connectWalletFirst": "Conecte a carteira primeiro",
+      "fillAllFields": "Preencha todos os campos",
+      "descriptionTooLong": "A descrição deve ter no máximo 500 caracteres",
+      "priceTooLong": "O preço deve ter no máximo 50 caracteres",
+      "error": "Erro",
+      "errorCreatingOffer": "Erro ao criar oferta",
+      "errorCancelingOffer": "Erro ao cancelar oferta",
+      "errorConfirmingSale": "Erro ao concluir venda"
     }
   }
 }

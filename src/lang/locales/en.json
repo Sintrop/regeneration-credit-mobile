@@ -144,7 +144,16 @@
       "addressCopied": "Address copied",
       "addressCopiedDescription": "The wallet address was copied to the clipboard.",
       "user": "User",
-      "selectAnOption": "Select an option"
+      "selectAnOption": "Select an option",
+      "language": "Language",
+      "connect": "Connect",
+      "item": "Item",
+      "walletUnavailable": "Wallet unavailable. Connect your wallet and try again.",
+      "errorTakingPhoto": "Error taking the photo",
+      "access": "Open",
+      "market": "Market",
+      "offsetAction": "Offset",
+      "fundingImpactOf": "Funding the impact of:"
     },
     "offset": {
       "title": "Offset",
@@ -176,7 +185,9 @@
       "declare": "Declare",
       "commitment": "Commitment",
       "treeEqualsTokens": "1 Tree = {{tokens}} RCs",
-      "tokensPerTreeDescription": "Currently {{tokens}} Regeneration Credits are equivalent to 1 tree"
+      "tokensPerTreeDescription": "Currently {{tokens}} Regeneration Credits are equivalent to 1 tree",
+      "howManyTreesToFund": "How many trees do you want to fund?",
+      "errorDeclaringCommitment": "Error declaring commitment"
     },
     "register": {
       "title": "Register",
@@ -390,7 +401,10 @@
       "withdraw": "Withdraw",
       "advanceToNextEra": "Advance to the next era",
       "nextEra": "Next era",
-      "nextEraDescription": "When the button is enabled, you can advance to the next era and, if eligible, receive your Regeneration Credits as a reward for the services provided in the previous era."
+      "nextEraDescription": "When the button is enabled, you can advance to the next era and, if eligible, receive your Regeneration Credits as a reward for the services provided in the previous era.",
+      "yourLevel": "Your level",
+      "maxLevel": "Max level",
+      "distributedTokens": "Distributed tokens"
     },
     "poolsDetailsScreen": {
       "title": "Details",
@@ -403,6 +417,47 @@
       "claimsCount": "Withdrawals made",
       "tokens": "Distributed tokens",
       "levels": "Difficulty"
+    },
+    "market": {
+      "title": "RC Market",
+      "back": "Back",
+      "loadingOffers": "Loading offers...",
+      "noOffers": "No offers available",
+      "offer": "Offer #{{id}}",
+      "statusActive": "Active",
+      "statusSold": "Sold",
+      "statusCancelled": "Cancelled",
+      "statusUnknown": "Unknown",
+      "amount": "Amount",
+      "unitPrice": "Unit price",
+      "payment": "Payment",
+      "seller": "Seller",
+      "buy": "Buy",
+      "cancel": "Cancel",
+      "complete": "Complete",
+      "publishOffer": "+ Publish offer",
+      "newOffer": "New offer",
+      "amountLabel": "RC amount",
+      "priceLabel": "Price per RC (R$)",
+      "paymentMethodLabel": "Payment method",
+      "cash": "Cash",
+      "descriptionLabel": "Description and contact",
+      "descriptionPlaceholder": "E.g.: Selling X Credits for Y BRL each. Contact: mycontact@contact.com",
+      "publish": "Publish",
+      "buyTitle": "Buy",
+      "buyMessage": "The market is informational only. Contact the seller using the information in the offer and buy directly from them.",
+      "cancelOfferTitle": "Cancel offer",
+      "cancelOfferMessage": "Are you sure you want to cancel this offer?",
+      "confirmSaleTitle": "Complete sale",
+      "confirmSaleMessage": "Enter the buyer wallet address:",
+      "connectWalletFirst": "Connect your wallet first",
+      "fillAllFields": "Fill in all fields",
+      "descriptionTooLong": "The description must have at most 500 characters",
+      "priceTooLong": "The price must have at most 50 characters",
+      "error": "Error",
+      "errorCreatingOffer": "Error creating offer",
+      "errorCancelingOffer": "Error canceling offer",
+      "errorConfirmingSale": "Error confirming sale"
     }
   }
 }

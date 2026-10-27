@@ -3,6 +3,7 @@ import path from 'path';
 
 import en from '../src/lang/locales/en.json';
 import pt from '../src/lang/locales/pt.json';
+import es from '../src/lang/locales/es.json';
 
 type Tree = { [key: string]: string | Tree };
 
@@ -23,16 +24,21 @@ function sourceFiles(dir: string): string[] {
 
 const enKeys = flatten(en.translation as Tree);
 const ptKeys = flatten(pt.translation as Tree);
+const esKeys = flatten(es.translation as Tree);
 
 describe('locales', () => {
-  it('have the same keys in English and Portuguese', () => {
-    expect(enKeys.filter(key => !ptKeys.includes(key))).toEqual([]);
-    expect(ptKeys.filter(key => !enKeys.includes(key))).toEqual([]);
+  it.each([
+    ['Portuguese', ptKeys],
+    ['Spanish', esKeys],
+  ])('have the same keys in English and %s', (_, keys) => {
+    expect(enKeys.filter(key => !keys.includes(key))).toEqual([]);
+    expect(keys.filter(key => !enKeys.includes(key))).toEqual([]);
   });
 
   it('have no empty keys', () => {
     expect(enKeys.filter(key => key.split('.').includes(''))).toEqual([]);
     expect(ptKeys.filter(key => key.split('.').includes(''))).toEqual([]);
+    expect(esKeys.filter(key => key.split('.').includes(''))).toEqual([]);
   });
 
   it('define every static key used in the source code', () => {
@@ -45,5 +51,30 @@ describe('locales', () => {
       }
     }
     expect([...usedKeys].filter(key => !enKeys.includes(key)).sort()).toEqual([]);
+  });
+});
+
+describe('interpolation', () => {
+  function placeholders(value: string) {
+    return [...value.matchAll(/{{(\w+)}}/g)].map(match => match[1]).sort();
+  }
+
+  function values(tree: Tree, prefix = ''): Record<string, string> {
+    return Object.entries(tree).reduce<Record<string, string>>((acc, [key, value]) => {
+      const fullKey = prefix ? `${prefix}.${key}` : key;
+      return typeof value === 'string' ? { ...acc, [fullKey]: value } : { ...acc, ...values(value, fullKey) };
+    }, {});
+  }
+
+  const enValues = values(en.translation as Tree);
+
+  it.each([
+    ['Portuguese', values(pt.translation as Tree)],
+    ['Spanish', values(es.translation as Tree)],
+  ])('uses the same placeholders in English and %s', (_, translated) => {
+    const mismatches = Object.keys(enValues).filter(
+      key => placeholders(enValues[key]).join() !== placeholders(translated[key] ?? '').join(),
+    );
+    expect(mismatches).toEqual([]);
   });
 });
