@@ -5,7 +5,7 @@ import { bigNumberToFloat } from '@utils'
 import { useSettingsContext } from '@hooks'
 import { RegeneratorPool, InspectorPool, ResearcherPool, DeveloperPool, ContributorPool, ActivistPool } from '@contracts'
 
-interface PoolWithdrawalProps {
+export interface PoolWithdrawalProps {
   user: string;
   era: number;
   amount: number;

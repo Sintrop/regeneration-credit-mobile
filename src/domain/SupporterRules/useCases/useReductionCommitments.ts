@@ -22,8 +22,6 @@ export function useReductionCommitments(address?: string) {
 
     const web3 = new Web3(RPC_URL);
     const supporterContract = new web3.eth.Contract(SupporterRules.abi as any, SupporterRules.address);
-    const researcherContract = new web3.eth.Contract(ResearcherRules.abi as any, ResearcherRules.address);
-
     async function fetchCommitments() {
       try {
         console.log('[useReductionCommitments] Calling getReductionCommitments for:', address);

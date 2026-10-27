@@ -45,7 +45,6 @@ export function Map({
   const [markers, setMarkers] = useState<CoordinateProps[]>([]);
   const [pathPolyline, setPathPolyline] = useState<[number, number][]>([]);
   const [mapPosition, setMapPosition] = useState<[number, number] | null>(null);
-  const [isReady, setIsReady] = useState(false);
   const { locationStatus } = usePermissions();
 
   useEffect(() => {
@@ -56,11 +55,9 @@ export function Map({
       if (validCoords.length > 0) {
         setMapPosition([validCoords[0].longitude, validCoords[0].latitude]);
       }
-      setIsReady(true);
     } else {
       setMarkers([]);
       setMapPosition(null);
-      setIsReady(false);
     }
   }, [coords])
 

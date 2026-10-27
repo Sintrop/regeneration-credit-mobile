@@ -14,10 +14,10 @@ export interface SettingsContextProps {
 export const SettingsContext = createContext({} as SettingsContextProps);
 
 export function SettingsProvider({ children }: SettingsProviderProps) {
-  const [rpc, setRpc] = useState("https://rpc.sintrop.com");
-  const [ipfsGateway, setIpfsGateway] = useState("https://ipfs.sintrop.com");
-  const [ipfsApi, setIpfsApi] = useState("https://apiipfs.sintrop.com");
-  const [explorerUrl, setExplorerUrl] = useState("https://explorer.sintrop.com");
+  const [rpc] = useState("https://rpc.sintrop.com");
+  const [ipfsGateway] = useState("https://ipfs.sintrop.com");
+  const [ipfsApi] = useState("https://apiipfs.sintrop.com");
+  const [explorerUrl] = useState("https://explorer.sintrop.com");
 
   return (
     <SettingsContext.Provider

@@ -2,7 +2,6 @@ import { TouchableOpacity, View } from "react-native";
 import { useTranslation } from "react-i18next";
 
 import { Text } from "@components";
-import { useUserContext } from "@hooks";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { AppStackParamsList } from "@routes";
 import { useNavigation } from "@react-navigation/native";
@@ -12,7 +11,6 @@ type NavigationProps = NativeStackNavigationProp<AppStackParamsList, "HomeScreen
 export function UserWithoutRegister() {
   const { t } = useTranslation();
   const navigation = useNavigation<NavigationProps>();
-  const { userType, isConnected } = useUserContext();
 
   function handleGoToRegister() {
     navigation.navigate("RegisterScreen");

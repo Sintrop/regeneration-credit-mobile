@@ -13,7 +13,7 @@ function parseInvitation(data: InvitationContractProps): InvitationProps {
 function parseDelation(data: DelationContractProps): DelationProps {
   return {
     id: bigNumberToFloat(data.id),
-    createdAt: 0,
+    createdAt: bigNumberToFloat(data.createdAtBlock),
     informer: data.informer,
     reported: data.reported,
     testimony: data.testimony,
