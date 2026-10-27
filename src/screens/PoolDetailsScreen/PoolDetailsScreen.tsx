@@ -9,6 +9,7 @@ import { usePoolData } from "@domain";
 
 import { WithdrawArea } from "./components/WithdrawArea";
 import { EraCard } from "./components/EraCard";
+import colors from "../../theme/colors";
 
 type ScreenProps = NativeStackScreenProps<AppStackParamsList, 'PoolDetailsScreen'>
 export function PoolDetailsScreen({ route }: ScreenProps) {
@@ -17,8 +18,8 @@ export function PoolDetailsScreen({ route }: ScreenProps) {
   const { data } = usePoolData({ userType });
 
   const pieData = [
-    { value: data?.balance ?? 0, color: '#75d63a' },
-    { value: data?.usedTokens ?? 0, color: '#012939' },
+    { value: data?.balance ?? 0, color: colors.green.primary },
+    { value: data?.usedTokens ?? 0, color: colors.card.secondary },
   ];
 
   return (
@@ -45,11 +46,11 @@ export function PoolDetailsScreen({ route }: ScreenProps) {
         
         <View className="w-full gap-1">
           <View className="flex-row items-center gap-2">
-            <View className="w-4 h-4 rounded-full bg-[#75d63a]"/>
+            <View className="w-4 h-4 rounded-full bg-green-primary"/>
             <Text className="text-white text-sm">Saldo disponível ({Intl.NumberFormat('pt-BR', { maximumFractionDigits: 1 }).format(data?.balancePercentage ?? 0)}%)</Text>
           </View>
           <View className="flex-row items-center gap-2">
-            <View className="w-4 h-4 rounded-full bg-[#012939]"/>
+            <View className="w-4 h-4 rounded-full bg-card-secondary"/>
             <Text className="text-white text-sm">{t('poolsScreen.distributedTokens')}</Text>
           </View>
         </View>

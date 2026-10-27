@@ -2,6 +2,7 @@ import { View } from "react-native";
 import ContentLoader, { Rect } from 'react-content-loader/native';
 
 import { Text } from "@components";
+import colors from "../../../theme/colors";
 
 interface Props {
   label: string;
@@ -34,8 +35,8 @@ function Loading() {
       width={100}
       height={25}
       viewBox={`0 0 100 25`}
-      backgroundColor="#012939"
-      foregroundColor="#ecebeb"
+      backgroundColor={colors.card.secondary}
+      foregroundColor={colors.skeleton}
     >
       <Rect x="1" y="1" rx="3" ry="3" width="100" height="15" /> 
     </ContentLoader>

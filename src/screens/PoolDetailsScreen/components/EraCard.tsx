@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 
 import { Text } from "@components";
 import { usePoolEra } from "@domain";
+import colors from "../../../theme/colors";
 
 interface EraCardProps {
   userType: number;
@@ -64,7 +65,7 @@ export function EraCard({ userType, currentEra }: EraCardProps) {
 
       <View className="w-full p-5 rounded-2xl bg-card-primary gap-4">
         {isLoading ? (
-          <ActivityIndicator color="#75d63a" />
+          <ActivityIndicator color={colors.green.primary} />
         ) : (
           <>
             <View className="flex-row justify-between items-center">
