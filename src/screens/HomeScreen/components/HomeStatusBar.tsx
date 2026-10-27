@@ -57,7 +57,7 @@ export function HomeStatusBar() {
 
   if (isLoading) {
     return (
-      <View className="bg-blue-primary/20 -mx-3 mb-4 h-8 flex-row items-center justify-center">
+      <View className="bg-green-primary/10 -mx-3 mb-4 h-8 flex-row items-center justify-center">
         <Animated.Text style={{ color: '#fff', fontSize: 12 }}>{t('homeScreen.loadingEraInfo')}</Animated.Text>
       </View>
     );
@@ -69,7 +69,7 @@ export function HomeStatusBar() {
   });
 
   return (
-    <View className="bg-blue-primary/20 -mx-3 mb-4 h-8 flex-row items-center border-y border-blue-primary/30">
+    <View className="bg-green-primary/10 -mx-3 mb-4 h-8 flex-row items-center border-y border-green-primary/20">
       <MarqueeText text={tickerText} />
     </View>
   );
