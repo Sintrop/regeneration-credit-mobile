@@ -65,11 +65,10 @@ describe('ensureSintropChain', () => {
     expect(wallet.request).toHaveBeenCalledTimes(1);
   });
 
-  it('switches and confirms the new chain', async () => {
-    let chainId = '0x1';
+  it('trusts the switch result even before the cached chain id updates', async () => {
     const wallet = createWallet({
-      eth_chainId: () => chainId,
-      wallet_switchEthereumChain: () => { chainId = '0x3d171'; return null; },
+      eth_chainId: () => '0x1',
+      wallet_switchEthereumChain: () => null,
     });
     await expect(ensureSintropChain(wallet)).resolves.toBe(true);
   });

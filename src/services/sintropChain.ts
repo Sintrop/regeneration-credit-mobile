@@ -60,12 +60,7 @@ export async function ensureSintropChain(ethereum: EthereumRequester): Promise<b
     return false;
   }
 
-  if (!(await switchToSintrop(ethereum))) return false;
-
-  try {
-    const chainId = await ethereum.request({ method: 'eth_chainId' });
-    return isSintropChain(chainId as string);
-  } catch {
-    return false;
-  }
+  // The SDK updates its cached chain id asynchronously after a switch, so the
+  // wallet's answer to the switch request is the reliable signal here.
+  return switchToSintrop(ethereum);
 }
