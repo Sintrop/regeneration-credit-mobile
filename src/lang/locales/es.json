@@ -385,7 +385,7 @@
       "invalidated": "Invalidada"
     },
     "poolsScreen": {
-      "title": "Distribución de tokens",
+      "title": "Retirar tokens",
       "regeneratorsPool": "Pool de regeneradores",
       "inspectorsPool": "Pool de inspectores",
       "researchersPool": "Pool de investigadores",
@@ -430,7 +430,7 @@
       "distributedTokens": "Tokens distribuidos"
     },
     "poolsDetailsScreen": {
-      "title": "Detalles",
+      "title": "Pool",
       "totalTokens": "Total de tokens",
       "currentEra": "Fase actual",
       "balance": "Saldo disponible",
@@ -604,6 +604,47 @@
       "confirmVote": "Confirmar voto",
       "voteSent": "Voto registrado",
       "openChip": "Votación abierta: {{votes}}/{{needed}}"
+    },
+    "pools": {
+      "yourPool": "Tu pool",
+      "distributedOf": "{{distributed}} de {{total}} RC distribuidos",
+      "perEra": "Por fase",
+      "inPool": "En el pool",
+      "howItWorksTitle": "Cómo funciona el retiro",
+      "howItWorks": "Cada pool distribuye una cantidad de Créditos de Regeneración por fase, dividida entre los usuarios según los niveles que obtuvieron en esa fase. Una fase solo puede retirarse después de que termina, una fase por retiro.",
+      "eraEndsIn": "La fase termina en",
+      "distributed": "Distribuido",
+      "ofTotal": "de {{total}} RC en total · {{balance}} RC aún en el pool",
+      "epoch": "Época",
+      "epochHint": "Cada 12 fases el valor por fase se reduce a la mitad",
+      "yourPosition": "Tu posición",
+      "yourEra": "Tu fase en el pool",
+      "levelsThisEra": "Tus niveles en la fase {{era}}",
+      "nextWithdraw": "Próximo retiro: fase {{era}}",
+      "emptyEra": "No tienes niveles en la fase {{era}}. El retiro solo te avanza a la fase {{next}}.",
+      "estimateDetail": "Tus {{levels}} de {{total}} niveles de la fase",
+      "waitEraEnd": "Tu fase {{era}} aún está en curso. Retiro disponible en {{duration}}.",
+      "advanceEra": "Avanzar a la fase {{next}}",
+      "withdrawEra": "Retirar créditos de la fase {{era}}",
+      "oneEraPerWithdraw_one": "Cada retiro procesa una fase.",
+      "oneEraPerWithdraw_other": "Cada retiro procesa una fase. Tienes {{count}} fases por procesar.",
+      "withdrawDone": "Retiro realizado",
+      "erasTitle": "Distribución por fase",
+      "eraChip": "Fase {{era}}",
+      "now": "actual",
+      "phaseCurrent": "Fase en curso: los retiros se abren cuando termine",
+      "phaseClaimable": "Fase terminada: retiros disponibles",
+      "withdrawnInEra": "Retirado en esta fase",
+      "eraTokens": "de {{tokens}} RC destinados a esta fase",
+      "levels": "Niveles",
+      "withdrawalsCount": "Retiros",
+      "whoWithdrew": "Quién ya retiró",
+      "noWithdrawals": "Nadie ha retirado de esta fase todavía.",
+      "noWithdrawalsCurrent": "Los retiros de esta fase se abren cuando termine.",
+      "advancedOnly": "Solo avanzó",
+      "toReceive": "Créditos por recibir",
+      "inWithdrawals_one": "en {{count}} retiro",
+      "inWithdrawals_other": "en {{count}} retiros, uno por fase terminada"
     }
   }
 }

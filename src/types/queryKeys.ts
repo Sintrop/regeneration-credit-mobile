@@ -41,5 +41,8 @@ export enum QueryKeys {
   PublishingRules = 'PublishingRules',
   UserTimers = 'UserTimers',
   ValidationStatus = 'ValidationStatus',
-  VotingContext = 'VotingContext'
+  VotingContext = 'VotingContext',
+  PoolOverview = 'PoolOverview',
+  PoolEraDetails = 'PoolEraDetails',
+  PoolUserPosition = 'PoolUserPosition'
 }

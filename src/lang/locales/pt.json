@@ -385,7 +385,7 @@
       "invalidated": "Invalidada"
     },
     "poolsScreen": {
-      "title": "Distribuição de tokens",
+      "title": "Sacar tokens",
       "regeneratorsPool": "Pool de regeneradores",
       "inspectorsPool": "Pool de inspetores",
       "researchersPool": "Pool de pesquisadores",
@@ -430,7 +430,7 @@
       "distributedTokens": "Tokens distribuídos"
     },
     "poolsDetailsScreen": {
-      "title": "Detalhes",
+      "title": "Pool",
       "totalTokens": "Total de tokens",
       "currentEra": "Fase atual",
       "balance": "Saldo disponível",
@@ -604,6 +604,47 @@
       "confirmVote": "Confirmar voto",
       "voteSent": "Voto registrado",
       "openChip": "Votação aberta: {{votes}}/{{needed}}"
+    },
+    "pools": {
+      "yourPool": "Seu pool",
+      "distributedOf": "{{distributed}} de {{total}} RC distribuídos",
+      "perEra": "Por fase",
+      "inPool": "No pool",
+      "howItWorksTitle": "Como funciona o saque",
+      "howItWorks": "Cada pool distribui uma quantidade de Créditos de Regeneração por fase, dividida entre os usuários pelos níveis que conquistaram naquela fase. Os créditos de uma fase só podem ser sacados depois que ela termina, uma fase por saque.",
+      "eraEndsIn": "Fase termina em",
+      "distributed": "Distribuído",
+      "ofTotal": "de {{total}} RC no total · {{balance}} RC ainda no pool",
+      "epoch": "Época",
+      "epochHint": "A cada 12 fases o valor por fase cai pela metade",
+      "yourPosition": "Sua posição",
+      "yourEra": "Sua fase no pool",
+      "levelsThisEra": "Seus níveis na fase {{era}}",
+      "nextWithdraw": "Próximo saque: fase {{era}}",
+      "emptyEra": "Você não tem níveis na fase {{era}}. O saque apenas avança sua fase para a {{next}}.",
+      "estimateDetail": "Seus {{levels}} de {{total}} níveis da fase",
+      "waitEraEnd": "Sua fase {{era}} ainda está em andamento. Saque liberado em {{duration}}.",
+      "advanceEra": "Avançar para a fase {{next}}",
+      "withdrawEra": "Sacar créditos da fase {{era}}",
+      "oneEraPerWithdraw_one": "Cada saque processa uma fase.",
+      "oneEraPerWithdraw_other": "Cada saque processa uma fase. Você tem {{count}} fases para processar.",
+      "withdrawDone": "Saque realizado",
+      "erasTitle": "Distribuição por fase",
+      "eraChip": "Fase {{era}}",
+      "now": "atual",
+      "phaseCurrent": "Fase em andamento: os saques abrem quando ela terminar",
+      "phaseClaimable": "Fase encerrada: saques liberados",
+      "withdrawnInEra": "Sacado nesta fase",
+      "eraTokens": "de {{tokens}} RC destinados a esta fase",
+      "levels": "Níveis",
+      "withdrawalsCount": "Saques",
+      "whoWithdrew": "Quem já sacou",
+      "noWithdrawals": "Ninguém sacou desta fase ainda.",
+      "noWithdrawalsCurrent": "Os saques desta fase abrem quando ela terminar.",
+      "advancedOnly": "Só avançou",
+      "toReceive": "Créditos a receber",
+      "inWithdrawals_one": "em {{count}} saque",
+      "inWithdrawals_other": "em {{count}} saques, um por fase encerrada"
     }
   }
 }

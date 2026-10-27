@@ -26,3 +26,4 @@ export * from "./StatBox/StatBox";
 export * from "./UserBadge/UserBadge";
 export * from "./Invalidation/InvalidationCard";
 export * from "./Actions/TimerAction";
+export * from "./ProgressBar/ProgressBar";
