@@ -20,6 +20,7 @@ async function getResearches(rpc: string): Promise<PublishedResource[]> {
     era: item.era,
     file: item.file,
     createdAtBlock: item.createdAt,
+    validationsCount: item.validationsCount,
   }));
 }
 
@@ -36,6 +37,7 @@ async function getContributions(rpc: string): Promise<PublishedResource[]> {
     era: item.era,
     file: item.report,
     createdAtBlock: item.createdAt,
+    validationsCount: item.validationsCount,
   }));
 }
 
@@ -52,6 +54,7 @@ async function getReports(rpc: string): Promise<PublishedResource[]> {
     era: item.era,
     file: item.report,
     createdAtBlock: item.createdAtBlockNumber,
+    validationsCount: item.validationsCount,
   }));
 }
 

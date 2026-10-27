@@ -2,7 +2,7 @@ import { TouchableOpacity, View } from "react-native";
 import { useTranslation } from "react-i18next";
 
 import { Text, UserBadge } from "@components";
-import { PublishedResource, PublishedResourceType } from "@domain";
+import { PublishedResource, PublishedResourceType, useVotingContext } from "@domain";
 import { cleanResourceText, resourceHeading } from "@utils";
 
 const TYPE_STYLE: Record<PublishedResourceType, { label: string; badge: string }> = {
@@ -22,6 +22,8 @@ export function ResourceCard({ resource, onPress, onPressAuthor }: Props) {
   const style = TYPE_STYLE[resource.type];
   const heading = resourceHeading(resource.title, resource.body);
   const summary = resource.title ? cleanResourceText(resource.body) : "";
+  const voting = useVotingContext();
+  const votingOpen = !!voting && voting.currentEra[resource.type] === resource.era;
 
   return (
     <TouchableOpacity
@@ -37,6 +39,12 @@ export function ResourceCard({ resource, onPress, onPressAuthor }: Props) {
       </View>
 
       <Text className="text-white text-base font-bold" numberOfLines={3}>{heading}</Text>
+
+      {votingOpen && voting && (
+        <Text className="self-start text-xs font-semibold px-3 py-1 rounded-full overflow-hidden bg-red-400/15 text-red-300">
+          {t("invalidation.openChip", { votes: resource.validationsCount, needed: voting.votesNeeded })}
+        </Text>
+      )}
 
       {!!summary && (
         <Text className="text-gray-300 text-sm" numberOfLines={3}>{summary}</Text>

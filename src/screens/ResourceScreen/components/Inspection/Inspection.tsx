@@ -2,7 +2,7 @@ import { View } from "react-native";
 import { useTranslation } from "react-i18next";
 
 import { useGetInspection } from "@domain";
-import { DataItem, Text, StatBox } from "@components";
+import { DataItem, Text, StatBox, InvalidationCard } from "@components";
 
 import { Regenerator } from "./Regenerator";
 import { Inspector } from "./Inspector";
@@ -49,6 +49,7 @@ export function Inspection({ id }: Props) {
 
       {inspection && (
         <View className="gap-3">
+          <InvalidationCard target="inspection" idOrAddress={id} />
           <Regenerator address={inspection.regenerator} />
           <Inspector address={inspection.inspector} />
           <Reports 

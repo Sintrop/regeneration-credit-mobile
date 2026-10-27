@@ -2,7 +2,7 @@ import { View } from "react-native";
 import { useTranslation } from "react-i18next";
 
 import { useGetRegenerator, useProjectDescription } from "@domain";
-import { Certificate, DataItem, Text } from "@components";
+import { Certificate, DataItem, Text, InvalidationCard } from "@components";
 
 import { HeaderProfile } from "../HeaderProfile/HeaderProfile";
 import { AboutSection } from "../AboutSection/AboutSection";
@@ -34,6 +34,8 @@ export function Regenerator({ address, changeScrollEnabled }: Props) {
       />
 
       <View className="gap-3 px-2">
+        <InvalidationCard target="user" idOrAddress={address} />
+
         <AboutSection text={projectDescription} isLoading={isLoadingDescription} />
         
         <View className="gap-1 p-5 rounded-2xl bg-card-primary">

@@ -549,7 +549,7 @@
       "inviteDelay": "Você convidou alguém recentemente. Próximo convite liberado em {{duration}}."
     },
     "timers": {
-      "title": "Seus prazos",
+      "title": "Suas ações",
       "availableNow": "Disponível agora",
       "availableIn": "Disponível em {{duration}}",
       "opensNextEra": "Bloqueado no fim da fase. Abre em {{duration}}",
@@ -574,7 +574,36 @@
         "withdraw": "Sacar tokens"
       },
       "tickerAvailable_one": "Você tem {{count}} ação disponível",
-      "tickerAvailable_other": "Você tem {{count}} ações disponíveis"
+      "tickerAvailable_other": "Você tem {{count}} ações disponíveis",
+      "allActions": "Todas as ações"
+    },
+    "invalidation": {
+      "title": "Votos para invalidar",
+      "votes": "{{votes}}/{{needed}} votos",
+      "openUntil": "Votação aberta até o fim da fase, em {{duration}}.",
+      "closed": {
+        "eraClosed": "Fase encerrada: este recurso não pode mais ser invalidado.",
+        "alreadyInvalidated": "Este recurso já foi invalidado.",
+        "notInspected": "Apenas inspeções realizadas podem ser invalidadas.",
+        "supporter": "Apoiadores não podem ser invalidados.",
+        "regeneratorImmune": "Regeneradores com 6 inspeções ficam imunes à invalidação.",
+        "alreadyDenied": "Este usuário já foi invalidado."
+      },
+      "voterBlocked": {
+        "levelRequired": "Para votar, seu nível precisa estar acima da média do seu tipo de usuário.",
+        "alreadyVoted": "Você já votou aqui.",
+        "waitTimeBetweenVotes": "Você votou recentemente. Próximo voto liberado em {{duration}}.",
+        "voterDenied": "Sua conta foi invalidada e não pode votar."
+      },
+      "voteButton": "Votar para invalidar",
+      "voteDescription": {
+        "resource": "Vote para invalidar se o recurso for falso, plagiado ou não cumprir as regras. Ao atingir os votos necessários, ele é invalidado e o autor recebe uma penalidade.",
+        "user": "Vote para invalidar se o usuário for falso ou estiver agindo de má-fé. Ao atingir os votos necessários, o usuário é bloqueado no sistema."
+      },
+      "justification": "Justificativa",
+      "confirmVote": "Confirmar voto",
+      "voteSent": "Voto registrado",
+      "openChip": "Votação aberta: {{votes}}/{{needed}}"
     }
   }
 }

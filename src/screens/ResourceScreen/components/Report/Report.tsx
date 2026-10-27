@@ -3,7 +3,7 @@ import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { useNavigation } from "@react-navigation/native";
 import { useTranslation } from "react-i18next";
 
-import { DataItem, Icon, Text } from "@components";
+import { DataItem, Icon, Text, InvalidationCard } from "@components";
 import { useGetReport } from "@domain";
 import { AppStackParamsList } from "@routes";
 import { useSettingsContext } from "@hooks";
@@ -48,6 +48,8 @@ export function Report({ id }: Props) {
 
         <Text className="text-white">{report?.description}</Text>
       </View>
+
+      <InvalidationCard target="report" idOrAddress={id} />
 
       <Developer address={report?.developer ? report.developer : ""} />
 

@@ -3,7 +3,7 @@ import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { useNavigation } from "@react-navigation/native";
 import { useTranslation } from "react-i18next";
 
-import { DataItem, Icon, Text } from "@components";
+import { DataItem, Icon, Text, InvalidationCard } from "@components";
 import { useGetResearch } from "@domain";
 import { AppStackParamsList } from "@routes";
 import { useSettingsContext } from "@hooks";
@@ -53,6 +53,8 @@ export function Research({ id }: Props) {
 
         <Text className="text-white">{research?.thesis}</Text>
       </View>
+
+      <InvalidationCard target="research" idOrAddress={id} />
 
       <Researcher address={research?.researcher ? research.researcher : ""} />
 

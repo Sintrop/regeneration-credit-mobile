@@ -3,7 +3,7 @@ import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { useNavigation } from "@react-navigation/native";
 import { useTranslation } from "react-i18next";
 
-import { DataItem, Icon, Text } from "@components";
+import { DataItem, Icon, Text, InvalidationCard } from "@components";
 import { useGetContribution } from "@domain";
 import { AppStackParamsList } from "@routes";
 import { useSettingsContext } from "@hooks";
@@ -48,6 +48,8 @@ export function Contribution({ id }: Props) {
 
         <Text className="text-white">{contribution?.description}</Text>
       </View>
+
+      <InvalidationCard target="contribution" idOrAddress={id} />
 
       <Contributor address={contribution?.contributor ? contribution.contributor : ""} />
 

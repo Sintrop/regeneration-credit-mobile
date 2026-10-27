@@ -549,7 +549,7 @@
       "inviteDelay": "You invited someone recently. Next invitation opens in {{duration}}."
     },
     "timers": {
-      "title": "Your timers",
+      "title": "Your actions",
       "availableNow": "Available now",
       "availableIn": "Available in {{duration}}",
       "opensNextEra": "Blocked at the end of the era. Opens in {{duration}}",
@@ -574,7 +574,36 @@
         "withdraw": "Withdraw tokens"
       },
       "tickerAvailable_one": "You have {{count}} action available",
-      "tickerAvailable_other": "You have {{count}} actions available"
+      "tickerAvailable_other": "You have {{count}} actions available",
+      "allActions": "All actions"
+    },
+    "invalidation": {
+      "title": "Invalidation votes",
+      "votes": "{{votes}}/{{needed}} votes",
+      "openUntil": "Voting open until the end of the era, in {{duration}}.",
+      "closed": {
+        "eraClosed": "Era ended: this resource can no longer be invalidated.",
+        "alreadyInvalidated": "This resource has already been invalidated.",
+        "notInspected": "Only completed inspections can be invalidated.",
+        "supporter": "Supporters cannot be invalidated.",
+        "regeneratorImmune": "Regenerators with 6 inspections are immune to invalidation.",
+        "alreadyDenied": "This user has already been invalidated."
+      },
+      "voterBlocked": {
+        "levelRequired": "To vote, your level must be above the average of your user type.",
+        "alreadyVoted": "You have already voted here.",
+        "waitTimeBetweenVotes": "You voted recently. Next vote opens in {{duration}}.",
+        "voterDenied": "Your account was invalidated and cannot vote."
+      },
+      "voteButton": "Vote to invalidate",
+      "voteDescription": {
+        "resource": "Vote to invalidate if the resource is fake, plagiarized or breaks the rules. Once the required votes are reached, it is invalidated and the author receives a penalty.",
+        "user": "Vote to invalidate if the user is fake or acting in bad faith. Once the required votes are reached, the user is blocked from the system."
+      },
+      "justification": "Justification",
+      "confirmVote": "Confirm vote",
+      "voteSent": "Vote registered",
+      "openChip": "Voting open: {{votes}}/{{needed}}"
     }
   }
 }

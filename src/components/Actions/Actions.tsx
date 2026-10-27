@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { ReactNode, useRef } from "react";
 import { TouchableOpacity, View } from "react-native";
 import { useTranslation } from "react-i18next";
 import { Portal } from "react-native-portalize";
@@ -13,7 +13,12 @@ import { InspectorActions } from "./InspectorActions";
 import { RegeneratorActions } from "./RegeneratorActions";
 import { ContributorActions, DeveloperActions, ResearcherActions } from "./PublisherActions";
 
-export function Actions() {
+interface Props {
+  /** Custom trigger; defaults to the floating "Actions" button. */
+  renderTrigger?: (open: () => void) => ReactNode;
+}
+
+export function Actions({ renderTrigger }: Props) {
   const { bottom } = useAppSafeArea();
   const { t } = useTranslation();
   const modalRef = useRef<Modalize>(null);
@@ -27,14 +32,16 @@ export function Actions() {
 
   return (
     <View>
-      <TouchableOpacity
-        className="px-10 h-12 rounded-full bg-green-primary items-center justify-center elevation-lg"
-        onPress={openModal}
-      >
-        <Text className="font-semibold text-white">
-          {t('actions.title')}
-        </Text>
-      </TouchableOpacity>
+      {renderTrigger ? renderTrigger(openModal) : (
+        <TouchableOpacity
+          className="px-10 h-12 rounded-full bg-green-primary items-center justify-center elevation-lg"
+          onPress={openModal}
+        >
+          <Text className="font-semibold text-white">
+            {t('actions.title')}
+          </Text>
+        </TouchableOpacity>
+      )}
 
       <Portal>
         <Modalize

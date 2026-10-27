@@ -9,4 +9,5 @@ export interface PublishedResource {
   era: number;
   file: string;
   createdAtBlock: number;
+  validationsCount: number;
 }
