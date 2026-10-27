@@ -169,7 +169,8 @@
       "newPubli": "Puedes hacer una publicación en el feed. Para ello usamos el sistema de compensación: eliges un ítem de la calculadora de impacto y compensas un valor en (RC). Así puedes añadir un texto como descripción de tu compensación",
       "selectAnItem": "Selecciona un ítem",
       "touchHereToSelect": "Toca aquí para seleccionar",
-      "itemImpact": "Impacto: {{impact}} g CO2/{{unit}}"
+      "itemImpact": "Impacto: {{impact}} g CO2/{{unit}}",
+      "howManyUnitsToOffset": "¿Cuántos {{unit}} quieres compensar?"
     },
     "impactCalculator": {
       "title": "Calc. de impacto",

@@ -40,6 +40,17 @@ export function applyPercentageDiscount(wei: string, percentage: number): string
 }
 
 /**
+ * Formats a required amount to fill an amount input, rounding up so the value
+ * always covers what was asked for.
+ */
+export function requiredAmountToInput(amount: number, maxDecimals = 6): string {
+  if (!Number.isFinite(amount) || amount <= 0) return '';
+  const factor = 10 ** maxDecimals;
+  const roundedUp = Math.ceil(Number((amount * factor).toPrecision(15))) / factor;
+  return roundedUp.toFixed(maxDecimals).replace(/\.?0+$/, '');
+}
+
+/**
  * Formats a balance to fill an amount input, truncating (never rounding up) so
  * the value never exceeds the balance it came from.
  */

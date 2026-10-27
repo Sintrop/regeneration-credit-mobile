@@ -169,7 +169,8 @@
       "newPubli": "You can post to your feed. To do this, we'll use the compensation system, where you choose an item from the impact calculator and offset it with a value in (RC). You can then add text describing your compensation.",
       "selectAnItem": "Select an item",
       "touchHereToSelect": "Touch here to select",
-      "itemImpact": "Impact: {{impact}} g CO2/{{unit}}"
+      "itemImpact": "Impact: {{impact}} g CO2/{{unit}}",
+      "howManyUnitsToOffset": "How many {{unit}} do you want to offset?"
     },
     "impactCalculator": {
       "title": "Impact calculator",

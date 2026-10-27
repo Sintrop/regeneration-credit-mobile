@@ -2,6 +2,7 @@ import {
   amountToWei,
   applyPercentageDiscount,
   balanceToInput,
+  requiredAmountToInput,
   normalizeAmountInput,
   parseAmountInput,
 } from '../src/utils/tokenAmount';
@@ -84,5 +85,22 @@ describe('balanceToInput', () => {
 
   it('produces input that amountToWei accepts', () => {
     expect(amountToWei(balanceToInput(1234.5678912345))).toBe('1234567891000000000000');
+  });
+});
+
+describe('requiredAmountToInput', () => {
+  it('rounds up so the amount covers what is required', () => {
+    expect(requiredAmountToInput(1.0000001)).toBe('1.000001');
+    expect(requiredAmountToInput(2.5)).toBe('2.5');
+    expect(requiredAmountToInput(12)).toBe('12');
+  });
+
+  it('does not round up values that are exact up to float noise', () => {
+    expect(requiredAmountToInput(0.1 + 0.2)).toBe('0.3');
+  });
+
+  it('returns an empty string for zero or invalid amounts', () => {
+    expect(requiredAmountToInput(0)).toBe('');
+    expect(requiredAmountToInput(NaN)).toBe('');
   });
 });
