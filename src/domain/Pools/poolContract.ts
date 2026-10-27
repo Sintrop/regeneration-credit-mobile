@@ -61,9 +61,25 @@ async function currentEpoch({ rpc, userType }: { rpc: string; userType: number }
   return bigNumberToFloat(response);
 }
 
+async function nextEraIn({ rpc, userType, currentEra }: { rpc: string; userType: number; currentEra: number }): Promise<number> {
+  const pool = poolContracts[userType];
+  if (!pool) return 0;
+
+  const provider = new Web3(new Web3.providers.HttpProvider(rpc));
+  const contract = new provider.eth.Contract(pool.abi, pool.address);
+
+  try {
+    const response = await contract.methods.nextEraIn(currentEra).call() as string;
+    return bigNumberToFloat(response);
+  } catch (e) {
+    return 0;
+  }
+}
+
 export const poolContract = {
   getEra,
   currentContractEra,
   currentEpoch,
+  nextEraIn,
   poolContracts
 }

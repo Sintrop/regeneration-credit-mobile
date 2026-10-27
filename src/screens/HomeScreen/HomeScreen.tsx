@@ -10,6 +10,7 @@ import { useUserContext } from '@hooks';
 
 import { UserWithoutRegister } from './components/UserWithoutRegister';
 import { LoadingFeed } from './components/LoadingFeed';
+import { HomeStatusBar } from './components/HomeStatusBar';
 
 type ScreenProps = NativeStackScreenProps<AppStackParamsList, 'HomeScreen'>
 export function HomeScreen({ navigation }: ScreenProps) {
@@ -18,14 +19,16 @@ export function HomeScreen({ navigation }: ScreenProps) {
   const { isConnected, userType } = useUserContext();
 
   function handleNextPage() {
-    if (atualPage < totalPages){
+    if (atualPage < totalPages) {
       nextPage();
     }
   }
 
   function headerList() {
     return (
-      <View className='px-3'>
+      <View className='px-3 -mt-3'>
+        <HomeStatusBar />
+
         {isConnected && (
           <>
             {userType === 0 && (
@@ -99,11 +102,11 @@ export function HomeScreen({ navigation }: ScreenProps) {
 
   function renderItemFeed({ item }: ListRenderItemInfo<FeedItemProps>) {
     return (
-      <FeedItem 
-        key={item.id} 
-        id={item.resourceId} 
-        type={item.resourceType} 
-        additionalData={item?.additionalData} 
+      <FeedItem
+        key={item.id}
+        id={item.resourceId}
+        type={item.resourceType}
+        additionalData={item?.additionalData}
       />
     )
   }
@@ -117,7 +120,7 @@ export function HomeScreen({ navigation }: ScreenProps) {
           renderItem={renderItemFeed}
           contentContainerClassName="pt-3 gap-3 pb-10"
           ListHeaderComponent={headerList}
-          ListEmptyComponent={<EmptyList isLoading={true}/>}
+          ListEmptyComponent={<EmptyList isLoading={true} />}
           onEndReachedThreshold={0.5}
           onEndReached={handleNextPage}
           refreshing={isLoading}

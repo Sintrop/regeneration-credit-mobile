@@ -108,3 +108,4 @@ export * from "./Pools/useCases/useWithdrawals";
 export * from "./Pools/poolService";
 
 export * from "./RCMarket";
+export * from "./Pools/useCases/useCurrentEra";
