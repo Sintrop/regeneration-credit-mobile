@@ -2,7 +2,7 @@ import { FlatList, ListRenderItemInfo, TouchableOpacity, View } from 'react-nati
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { useTranslation } from 'react-i18next';
 
-import { Screen, FeedItem, Text, Icon, Actions, Offset } from '@components';
+import { Screen, FeedItem, Text, Actions, Offset } from '@components';
 import { useNewFeed } from '@domain';
 import { FeedItemProps } from '@database';
 import { AppStackParamsList } from '@routes';
@@ -11,10 +11,10 @@ import { useUserContext } from '@hooks';
 import { UserWithoutRegister } from './components/UserWithoutRegister';
 import { LoadingFeed } from './components/LoadingFeed';
 import { HomeStatusBar } from './components/HomeStatusBar';
+import { HomeShortcuts } from './components/HomeShortcuts';
 
 type ScreenProps = NativeStackScreenProps<AppStackParamsList, 'HomeScreen'>
-export function HomeScreen({ navigation }: ScreenProps) {
-  const { t } = useTranslation();
+export function HomeScreen(_: ScreenProps) {
   const { list, isLoading, nextPage, atualPage, totalPages, refresh } = useNewFeed();
   const { isConnected, userType } = useUserContext();
 
@@ -37,65 +37,7 @@ export function HomeScreen({ navigation }: ScreenProps) {
           </>
         )}
 
-        {/* <UserWithoutRegister /> */}
-
-        <View className='flex-row justify-center gap-4'>
-          <TouchableOpacity
-            className='w-[48%] h-12 rounded-2xl items-center justify-center flex-row gap-3 bg-card-primary'
-            onPress={() => navigation.navigate('ImpactCalculatorScreen')}
-          >
-            <Icon name="impactCalculator" size={20} />
-            <Text className='text-white'>{t('impactCalculator.title')}</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            className='w-[48%] h-12 rounded-2xl items-center justify-center flex-row gap-3 bg-card-primary'
-            onPress={() => navigation.navigate('MyTokensScreen')}
-          >
-            <Icon name="tokens" size={20} />
-            <Text className='text-white'>{t('myTokens.title')}</Text>
-          </TouchableOpacity>
-        </View>
-        <View className='flex-row justify-center gap-4 mt-2'>
-          <TouchableOpacity
-            className='flex-1 h-12 rounded-2xl items-center justify-center flex-row gap-3 bg-card-primary'
-            onPress={() => navigation.navigate('TokenImpactScreen')}
-          >
-            <Icon name="rcStats" size={20} />
-            <Text className='text-white'>{t('tokenImpact.title')}</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            className='flex-1 h-12 rounded-2xl items-center justify-center flex-row gap-3 bg-card-primary'
-            onPress={() => navigation.navigate('CommunityScreen')}
-          >
-            <Icon name="community" size={20} />
-            <Text className='text-white'>{t('community.title')}</Text>
-          </TouchableOpacity>
-        </View>
-        <View className='flex-row justify-center gap-4 mt-2'>
-          <TouchableOpacity
-            className='flex-1 h-12 rounded-2xl items-center justify-center flex-row gap-3 bg-card-primary'
-            onPress={() => navigation.navigate('InspectionsScreen')}
-          >
-            <Icon name="inspections" size={20} />
-            <Text className='text-white'>{t('inspections.title')}</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            className='flex-1 h-12 rounded-2xl items-center justify-center flex-row gap-3 bg-card-primary'
-            onPress={() => navigation.navigate('PoolsScreen')}
-          >
-            <Icon name="pools" size={20} />
-            <Text className='text-white'>{t('poolsScreen.titleBtn')}</Text>
-          </TouchableOpacity>
-        </View>
-        <View className='flex-row justify-center gap-4 mt-2'>
-          <TouchableOpacity
-            className='flex-1 h-12 rounded-2xl items-center justify-center flex-row gap-3 bg-emerald-700'
-            onPress={() => navigation.navigate('MarketScreen')}
-          >
-            <Icon name="tokens" size={20} />
-            <Text className='text-white'>{t('common.market')}</Text>
-          </TouchableOpacity>
-        </View>
+        <HomeShortcuts />
       </View>
     )
   }

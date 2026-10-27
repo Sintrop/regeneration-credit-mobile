@@ -7,7 +7,16 @@
       "register": "Registrar",
       "newPubli": "Nova publicação",
       "loadingEraInfo": "Carregando informações...",
-      "currentEraTicker": "Fase atual: {{era}}  •  Próxima fase em {{duration}}"
+      "currentEraTicker": "Fase atual: {{era}}  •  Próxima fase em {{duration}}",
+      "shortcuts": {
+        "myTokens": "Meus tokens",
+        "withdrawTokens": "Sacar tokens",
+        "market": "Mercado",
+        "calculator": "Calculadora",
+        "impact": "Impacto",
+        "community": "Comunidade",
+        "inspections": "Inspeções"
+      }
     },
     "feed": {
       "requestedAnInspection": "Solicitou uma inspeção",
@@ -363,7 +372,6 @@
     },
     "poolsScreen": {
       "title": "Distribuição de tokens",
-      "titleBtn": "Distrib. de tokens",
       "regeneratorsPool": "Pool de regeneradores",
       "inspectorsPool": "Pool de inspetores",
       "researchersPool": "Pool de pesquisadores",
