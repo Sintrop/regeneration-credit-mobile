@@ -11,6 +11,10 @@ import { Offset } from "./components/Offset/Offset";
 import { UserRegistered } from "./components/UserRegistered/UserRegistered";
 import { DeclaredCommitment } from "./components/DeclaredCommitment/DeclaredCommitment";
 import { PoolWithdrawal } from "./components/PoolWithdrawal/PoolWithdrawal";
+import { Invitation } from "./components/Invitation/Invitation";
+import { TreeFunding } from "./components/TreeFunding/TreeFunding";
+import { RegeneratorEnteredPool } from "./components/RegeneratorEnteredPool/RegeneratorEnteredPool";
+import { MarketOffer } from "./components/MarketOffer/MarketOffer";
 
 export interface BaseComponentsProps {
   id: number;
@@ -39,5 +43,9 @@ const componentByType: Record<ResourcesTypes, ComponentType<BaseComponentsProps>
   offset: Offset,
   "user-registered": UserRegistered,
   "declared-commitment": DeclaredCommitment,
-  "pool-withdrawal": PoolWithdrawal
+  "pool-withdrawal": PoolWithdrawal,
+  invitation: Invitation,
+  "tree-funding": TreeFunding,
+  "regenerator-entered-pool": RegeneratorEnteredPool,
+  "market-offer": MarketOffer
 }

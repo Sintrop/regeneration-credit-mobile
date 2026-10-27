@@ -35,7 +35,17 @@
       "declaredItem": "Item declarado",
       "advancedToEra": "Avançou para a fase {{era}}",
       "creditsReceived": "Créditos recebidos",
-      "poolPaymentDescription": "Pagamento de Créditos de Regeneração pelos serviços prestados na fase {{era}}"
+      "poolPaymentDescription": "Pagamento de Créditos de Regeneração pelos serviços prestados na fase {{era}}",
+      "invitationSent": "Convite enviado",
+      "invitedToBe": "Convidou um novo usuário para entrar como",
+      "invitationAccepted": "Convite aceito: usuário cadastrado",
+      "invitationPending": "Aguardando o cadastro do convidado",
+      "fundedTreePlanting": "Financiou o plantio de árvores",
+      "certificateTotal": "Total do certificado: {{amount}} RC",
+      "enteredPoolTitle": "Começou a receber Créditos de Regeneração",
+      "enteredPoolDescription": "Concluiu as 3 inspeções mínimas e entrou no pool de regeneradores.",
+      "newMarketOffer": "Nova oferta no Mercado #{{id}}",
+      "seeOnMarket": "Ver no Mercado"
     },
     "userDetails": {
       "title": "Detalhes do usuário",

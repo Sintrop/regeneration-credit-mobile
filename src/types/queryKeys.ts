@@ -33,5 +33,9 @@ export enum QueryKeys {
   PoolData = 'PoolData',
   PoolEra = 'PoolEra',
   CurrentEra = 'CurrentEra',
-  PublishedResources = 'PublishedResources'
+  PublishedResources = 'PublishedResources',
+  FeedInvitations = 'FeedInvitations',
+  FeedTreeFundings = 'FeedTreeFundings',
+  FeedRegeneratorsEnteredPool = 'FeedRegeneratorsEnteredPool',
+  FeedMarketOffers = 'FeedMarketOffers'
 }

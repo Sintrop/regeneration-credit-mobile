@@ -112,3 +112,5 @@ export * from "./Pools/useCases/useCurrentEra";
 
 export * from "./Resources/types";
 export * from "./Resources/useCases/usePublishedResources";
+export * from "./Feed/events/types";
+export * from "./Feed/useCases/useFeedEvents";

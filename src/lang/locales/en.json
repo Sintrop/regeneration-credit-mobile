@@ -35,7 +35,17 @@
       "declaredItem": "Declared item",
       "advancedToEra": "Advanced to era {{era}}",
       "creditsReceived": "Credits received",
-      "poolPaymentDescription": "Regeneration Credits payment for services provided in era {{era}}"
+      "poolPaymentDescription": "Regeneration Credits payment for services provided in era {{era}}",
+      "invitationSent": "Invitation sent",
+      "invitedToBe": "Invited a new user to join as",
+      "invitationAccepted": "Invitation accepted: user registered",
+      "invitationPending": "Waiting for the invited user to register",
+      "fundedTreePlanting": "Funded tree planting",
+      "certificateTotal": "Certificate total: {{amount}} RC",
+      "enteredPoolTitle": "Started earning Regeneration Credits",
+      "enteredPoolDescription": "Completed the minimum 3 inspections and entered the regenerators pool.",
+      "newMarketOffer": "New market offer #{{id}}",
+      "seeOnMarket": "See on the market"
     },
     "userDetails": {
       "title": "User details",

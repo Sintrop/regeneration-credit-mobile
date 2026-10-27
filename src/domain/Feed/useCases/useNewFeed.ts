@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { FeedItemProps } from "@database";
-import { feedAdapter, useAcceptedInspections, useContributionAdded, useDeclaredCommitment, useOffsets, useRealizedInspections, useReportAdded, useRequestedInspections, useResearchsPublished, useUserRegistered, useWithdrawals } from "@domain";
+import { feedAdapter, useFeedEvents, useAcceptedInspections, useContributionAdded, useDeclaredCommitment, useOffsets, useRealizedInspections, useReportAdded, useRequestedInspections, useResearchsPublished, useUserRegistered, useWithdrawals } from "@domain";
 import { paginateList } from "@utils";
 import { useEffect, useState } from "react";
 
@@ -30,10 +30,11 @@ export function useNewFeed(): ReturnUseNewFeed {
   const { acceptedInspections, isLoading: isLoadingAcceptedInspections, refetch: refetchAcceptedInspections } = useAcceptedInspections();
   const { commitments, isLoading: isLoadingCommitments, refetch: refetchCommitments } = useDeclaredCommitment();
   const { withdrawals, isLoading: isLoadingWithdrawals, refetch: refetchWithdrawals } = useWithdrawals();
+  const feedEvents = useFeedEvents();
 
   useEffect(() => {
     createFeedList()
-  }, [offsets, realizedInspections, reports, researchs, contributions, usersRegistered, requestedInspections, commitments, withdrawals])
+  }, [offsets, realizedInspections, reports, researchs, contributions, usersRegistered, requestedInspections, acceptedInspections, commitments, withdrawals, feedEvents.invitations, feedEvents.treeFundings, feedEvents.regeneratorsEnteredPool, feedEvents.marketOffers])
 
   function createFeedList() {
     const newListFeed: FeedItemProps[] = [];
@@ -67,6 +68,11 @@ export function useNewFeed(): ReturnUseNewFeed {
     const withdrawalsFeed = withdrawals.map(feedAdapter.parseWithdrawalToFeed);
     newListFeed.push(...withdrawalsFeed);
 
+    newListFeed.push(...feedEvents.invitations.map(feedAdapter.parseInvitationToFeed));
+    newListFeed.push(...feedEvents.treeFundings.map(feedAdapter.parseTreeFundingToFeed));
+    newListFeed.push(...feedEvents.regeneratorsEnteredPool.map(feedAdapter.parseRegeneratorEnteredPoolToFeed));
+    newListFeed.push(...feedEvents.marketOffers.map(feedAdapter.parseMarketOfferToFeed));
+
     const sortedList = newListFeed.sort((a, b) => b.createdAt - a.createdAt)
     const paginate = paginateList<FeedItemProps>({ atualPage, itemsPerPage, list: sortedList });
     setList(sortedList);
@@ -97,6 +103,7 @@ export function useNewFeed(): ReturnUseNewFeed {
     refetchAcceptedInspections();
     refetchCommitments();
     refetchWithdrawals();
+    feedEvents.refetch();
   }
 
   return {
@@ -105,7 +112,8 @@ export function useNewFeed(): ReturnUseNewFeed {
       isLoadingReports || isLoadingResearchs ||
       isLoadingContributions || isLoadingUsersRegistered ||
       isLoadingRequestedInspections || isLoadingAcceptedInspections ||
-      isLoadingCommitments || isLoadingWithdrawals,
+      isLoadingCommitments || isLoadingWithdrawals ||
+      feedEvents.isLoading,
     list: listPage,
     nextPage: handleNextPage,
     atualPage,
