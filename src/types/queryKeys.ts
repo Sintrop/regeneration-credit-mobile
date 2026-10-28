@@ -47,5 +47,6 @@ export enum QueryKeys {
   PoolUserPosition = 'PoolUserPosition',
   AllInspections = 'AllInspections',
   GetCalculatorItem = 'GetCalculatorItem',
-  SupporterCompensations = 'SupporterCompensations'
+  SupporterCompensations = 'SupporterCompensations',
+  InvitedUsers = 'InvitedUsers'
 }

@@ -15,9 +15,11 @@ interface Props {
   resource: PublishedResource;
   onPress: (resource: PublishedResource) => void;
   onPressAuthor: (address: string) => void;
+  /** Hide the author row, e.g. on the author's own profile. */
+  hideAuthor?: boolean;
 }
 
-export function ResourceCard({ resource, onPress, onPressAuthor }: Props) {
+export function ResourceCard({ resource, onPress, onPressAuthor, hideAuthor }: Props) {
   const { t } = useTranslation();
   const style = TYPE_STYLE[resource.type];
   const heading = resourceHeading(resource.title, resource.body);
@@ -50,12 +52,16 @@ export function ResourceCard({ resource, onPress, onPressAuthor }: Props) {
         <Text className="text-gray-300 text-sm" numberOfLines={3}>{summary}</Text>
       )}
 
-      <View className="flex-row items-center justify-between gap-3 pt-3 border-t border-card-secondary">
-        <View className="flex-1">
-          <UserBadge address={resource.author} label={t("resourcesList.publishedBy")} onPress={onPressAuthor} />
-        </View>
+      {hideAuthor ? (
         <Text className="text-green-primary text-sm font-semibold">{t("resourcesList.open")} ›</Text>
-      </View>
+      ) : (
+        <View className="flex-row items-center justify-between gap-3 pt-3 border-t border-card-secondary">
+          <View className="flex-1">
+            <UserBadge address={resource.author} label={t("resourcesList.publishedBy")} onPress={onPressAuthor} />
+          </View>
+          <Text className="text-green-primary text-sm font-semibold">{t("resourcesList.open")} ›</Text>
+        </View>
+      )}
     </TouchableOpacity>
   );
 }

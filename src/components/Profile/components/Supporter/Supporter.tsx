@@ -17,6 +17,7 @@ import { useBlocksDuration } from "@hooks";
 
 import { HeaderProfile } from "../HeaderProfile/HeaderProfile";
 import { Invitation } from "../Invitation/Invitation";
+import { InvitedUsers } from "../Sections/InvitedUsers";
 
 function useFormat() {
   const { i18n } = useTranslation();
@@ -176,6 +177,7 @@ export function Supporter({ address }: Props) {
           </View>
         )}
 
+        <InvitedUsers address={address} />
         <Invitation address={address} />
 
         <View className="gap-1 p-5 rounded-2xl bg-card-primary">

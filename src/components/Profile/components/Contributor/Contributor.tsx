@@ -7,6 +7,8 @@ import { DataItem, InvalidationCard } from "@components";
 import { HeaderProfile } from "../HeaderProfile/HeaderProfile";
 import { Invitation } from "../Invitation/Invitation";
 import { UserDelations } from "../UserDelations/UserDelations";
+import { InvitedUsers } from "../Sections/InvitedUsers";
+import { PublishedResources } from "../Sections/PublishedResources";
 
 interface Props {
   address: string
@@ -39,6 +41,8 @@ export function Contributor({ address }: Props) {
           <DataItem title={t("profile.registeredAt")} value={contributor.createdAt} />
         </View>
 
+        <PublishedResources address={address} />
+        <InvitedUsers address={address} />
         <Invitation address={address} />
         <UserDelations address={address} />
       </View>

@@ -108,7 +108,10 @@
       "contributedWith": "Contributed with",
       "certificates": "Certificates",
       "errorOnGetUser": "Error loading the profile",
-      "declaredReductionCommitments": "Declared reduction commitments"
+      "declaredReductionCommitments": "Declared reduction commitments",
+      "publishedResources": "Published resources",
+      "noPublishedResources": "No resources published yet.",
+      "invitedBy": "Invited by"
     },
     "pdfView": {
       "title": "PDF View"
@@ -699,6 +702,13 @@
       "ago": "{{duration}} ago",
       "commitmentImpact": "{{impact}} t CO₂ offset",
       "commitmentsHint": "Items the supporter publicly committed to reduce."
+    },
+    "invitedUsers": {
+      "title": "Invited users",
+      "as": "as",
+      "registered": "Registered",
+      "pending": "Waiting for registration",
+      "empty": "No invitations sent yet."
     }
   }
 }

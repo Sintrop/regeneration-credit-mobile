@@ -108,7 +108,10 @@
       "contributedWith": "Contribuyó con",
       "certificates": "Certificados",
       "errorOnGetUser": "Error al cargar el perfil",
-      "declaredReductionCommitments": "Compromisos de reducción declarados"
+      "declaredReductionCommitments": "Compromisos de reducción declarados",
+      "publishedResources": "Recursos publicados",
+      "noPublishedResources": "Aún no hay recursos publicados.",
+      "invitedBy": "Invitado por"
     },
     "pdfView": {
       "title": "Vista de PDF"
@@ -699,6 +702,13 @@
       "ago": "hace {{duration}}",
       "commitmentImpact": "{{impact}} t CO₂ compensadas",
       "commitmentsHint": "Ítems que el apoyador se comprometió públicamente a reducir."
+    },
+    "invitedUsers": {
+      "title": "Usuarios invitados",
+      "as": "como",
+      "registered": "Registrado",
+      "pending": "Esperando registro",
+      "empty": "Aún no se enviaron invitaciones."
     }
   }
 }
