@@ -36,7 +36,7 @@ export function HomeScreen(_: ScreenProps) {
 
         {isConnected && (
           <>
-            {userType === 0 && (
+            {userType === 0 && !rpcUnstable && (
               <UserWithoutRegister />
             )}
           </>
