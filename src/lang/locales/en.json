@@ -374,7 +374,17 @@
       "descContributors": "Contributors perform generic contributions to the project and are subject to validation and penalty mechanisms.",
       "descActivists": "Activists are responsible for inviting new Regenerators and Inspectors, and they earn rewards based on the approval of their invited users.",
       "descSupporters": "Finance ecosystem regeneration, purchase Regeneration Credit directly from the community, exchange it for the certificate, and prove your commitment to the regeneration of terrestrial ecosystems.",
-      "registered": "Registered"
+      "registered": "Registered",
+      "vacancies_one": "{{count}} open vacancy",
+      "vacancies_other": "{{count}} open vacancies",
+      "noVacancies": "No vacancies right now",
+      "unlimited": "Unlimited vacancies",
+      "openRegistration": "Open registration, no invitation",
+      "invitedBy": "Invited by",
+      "poolPerEra": "Pool: {{tokens}} RC per era",
+      "seeMembers": "See members",
+      "join": "Register",
+      "regeneratorCap": "Open vacancies (up to 500k active)"
     },
     "inspections": {
       "title": "Inspections",

@@ -374,7 +374,17 @@
       "descDevelopers": "Os desenvolvedores são os principais responsáveis ​​pelo desenvolvimento do projeto por meio do envio de relatórios de desenvolvimento, que estão sujeitos a mecanismos de validação e penalidade.",
       "descContributors": "Os colaboradores realizam contribuições genéricas ao projeto e estão sujeitos a mecanismos de validação e penalidade.",
       "descActivists": "Os ativistas são responsáveis ​​por convidar novos Regeneradores e Inspetores, e eles ganham recompensas com base na aprovação dos usuários convidados.",
-      "descSupporters": "Financie a regeneração de ecossistemas, compre o Crédito de Regeneração diretamente da comunidade, troque-o pelo certificado e prove seu compromisso com a regeneração dos ecossistemas terrestres."
+      "descSupporters": "Financie a regeneração de ecossistemas, compre o Crédito de Regeneração diretamente da comunidade, troque-o pelo certificado e prove seu compromisso com a regeneração dos ecossistemas terrestres.",
+      "vacancies_one": "{{count}} vaga aberta",
+      "vacancies_other": "{{count}} vagas abertas",
+      "noVacancies": "Sem vagas no momento",
+      "unlimited": "Vagas ilimitadas",
+      "openRegistration": "Cadastro livre, sem convite",
+      "invitedBy": "Convite de",
+      "poolPerEra": "Pool: {{tokens}} RC por fase",
+      "seeMembers": "Ver membros",
+      "join": "Fazer meu cadastro",
+      "regeneratorCap": "Vagas abertas (até 500 mil ativos)"
     },
     "inspections": {
       "title": "Inspeções",
