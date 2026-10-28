@@ -280,7 +280,17 @@
       "invalidAddress": "Endereço inválido",
       "amount": "Quantidade",
       "max": "Máx",
-      "transferInfo": "A transação será processada na blockchain da Sintrop"
+      "transferInfo": "A transação será processada na blockchain da Sintrop",
+      "gasHint": "para taxas da rede",
+      "certified": "Total compensado (certificado)",
+      "receive": "Receber",
+      "receiveHint": "Envie RC ou SIN para este endereço na rede Sintrop.",
+      "copyAddress": "Copiar endereço",
+      "connectToSee": "Conecte sua carteira para ver seu saldo e suas transações.",
+      "kind": {
+        "burn": "Compensação / queima",
+        "poolWithdraw": "Saque do pool de {{pool}}"
+      }
     },
     "tx": {
       "title": "Transação",

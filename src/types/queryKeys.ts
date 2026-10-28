@@ -48,5 +48,7 @@ export enum QueryKeys {
   AllInspections = 'AllInspections',
   GetCalculatorItem = 'GetCalculatorItem',
   SupporterCompensations = 'SupporterCompensations',
-  InvitedUsers = 'InvitedUsers'
+  InvitedUsers = 'InvitedUsers',
+  Transfers = 'Transfers',
+  Commissions = 'Commissions'
 }

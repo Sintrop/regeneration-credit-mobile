@@ -280,7 +280,17 @@
       "invalidAddress": "Invalid address",
       "amount": "Amount",
       "max": "Max",
-      "transferInfo": "The transaction will be processed on the Sintrop blockchain"
+      "transferInfo": "The transaction will be processed on the Sintrop blockchain",
+      "gasHint": "for network fees",
+      "certified": "Total offset (certificate)",
+      "receive": "Receive",
+      "receiveHint": "Send RC or SIN to this address on the Sintrop network.",
+      "copyAddress": "Copy address",
+      "connectToSee": "Connect your wallet to see your balance and transactions.",
+      "kind": {
+        "burn": "Offset / burn",
+        "poolWithdraw": "Withdrawal from the {{pool}} pool"
+      }
     },
     "tx": {
       "title": "Transaction",

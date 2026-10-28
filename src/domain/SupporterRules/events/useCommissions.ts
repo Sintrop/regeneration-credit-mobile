@@ -1,75 +1,35 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-import { useEffect, useState } from 'react';
-import Web3, { EventLog } from 'web3';
+import { useQuery } from "@tanstack/react-query";
 
-import { bigNumberToFloat } from '@utils';
-import { useSettingsContext } from '@hooks';
-import { SupporterRules } from '@contracts';
-import { TxProps } from '@domain';
+import { SupporterRules } from "@contracts";
+import { useSettingsContext } from "@hooks";
+import { QueryKeys } from "@types";
 
-interface ReturnUseCommissions {
-  isLoading: boolean;
-  commissions: TxProps[];
-}
-export function useCommissions({ address }: { address: string; }): ReturnUseCommissions {
-  const [commissions, setCommissions] = useState<TxProps[]>([])
-  const { rpc } = useSettingsContext()
+import { fetchEvents, toNumber } from "../../Feed/events/fetchEvents";
+import { TxProps } from "../../Tx/types";
 
-  useEffect(() => {
-    setCommissions([])
-    handleGetEvents()
-  }, [])
-
-  async function handleGetEvents(): Promise<void> {
-    const response = await getPastEvents({
-      rpcUrl: rpc,
-      address
-    })
-
-    const newArray: TxProps[] = []
-
-    for (let i = 0; i < response.length; i++) {
-      const event = response[i]
-      const values = event?.returnValues
-      newArray.push({
-        coin: 'RC',
-        type: 'RECEIVE',
-        blockNumber: bigNumberToFloat(event?.blockNumber as string),
-        hash: event?.transactionHash ?? '',
-        from: values?.supporter as string,
-        to: values?.inviter as string,
-        value: bigNumberToFloat(values?.amount as string)
-      })
-    }
-
-    setCommissions(newArray)
-  }
-
-  return {
-    isLoading: false,
-    commissions
-  }
+/** SupporterRules.CommissionsPaid received by the address as inviter. */
+async function getCommissions(rpc: string, address: string): Promise<TxProps[]> {
+  const events = await fetchEvents(rpc, SupporterRules, "CommissionsPaid", { inviter: address });
+  return events
+    .map(event => ({
+      coin: "RC" as const,
+      type: "RECEIVE" as const,
+      kind: "receive" as const,
+      blockNumber: toNumber(event.blockNumber),
+      hash: event.transactionHash ?? "",
+      from: String(event.returnValues.supporter),
+      to: String(event.returnValues.inviter),
+      value: toNumber(event.returnValues.amount),
+    }))
+    .sort((a, b) => b.blockNumber - a.blockNumber);
 }
 
-interface GetPastEventsProps {
-  rpcUrl: string;
-  address: string;
-}
-async function getPastEvents({
-  rpcUrl,
-  address
-}: GetPastEventsProps): Promise<EventLog[]> {
-  const web3 = new Web3(rpcUrl)
-  const contractAbi = SupporterRules.abi;
-  const contractAddress = SupporterRules.address;
-
-  const contract = new web3.eth.Contract(contractAbi, contractAddress)
-
-  //@ts-ignore
-  const events = await contract.getPastEvents('CommissionsPaid', {
-    filter: { inviter: address },
-    fromBlock: 1400000,
-    toBlock: 'latest'
-  })
-  return events as EventLog[]
+export function useCommissions({ address }: { address?: string }) {
+  const { rpc } = useSettingsContext();
+  const { data, isLoading } = useQuery({
+    queryKey: [QueryKeys.Commissions, address],
+    queryFn: () => getCommissions(rpc, address as string),
+    enabled: !!address,
+  });
+  return { commissions: data ?? [], isLoading: !!address && isLoading };
 }

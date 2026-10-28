@@ -7,16 +7,29 @@ import Clipboard from "@react-native-clipboard/clipboard";
 import Toast from "react-native-toast-message";
 
 import { Icon, Text } from "@components";
-import { TxProps } from "@domain";
-import { useAppSafeArea, useSettingsContext, useUserContext } from "@hooks";
+import { TxProps, useBlockNumber, useGetUser, useUserBasicData } from "@domain";
+import { useAppSafeArea, useBlocksDuration, useSettingsContext, useUserContext } from "@hooks";
+
+import { POOL_NAME_KEY } from "../../PoolsScreen/poolLabels";
+
+function CounterpartyName({ address, prefix }: { address: string; prefix: string }) {
+  const { userType } = useGetUser({ address });
+  const { user } = useUserBasicData({ address, userType });
+  const name = user?.name?.trim() || `${address.slice(0, 6)}...${address.slice(-4)}`;
+  return (
+    <Text className="text-white font-semibold" numberOfLines={1}>{prefix} {name}</Text>
+  );
+}
 
 interface Props {
   tx: TxProps;
 }
 export function TxItem({ tx }: Props) {
   const { explorerUrl } = useSettingsContext();
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const { address } = useUserContext();
+  const { blockNumber } = useBlockNumber();
+  const formatBlocks = useBlocksDuration();
   const { bottom } = useAppSafeArea();
   const modalRef = useRef<Modalize>(null);
 
@@ -24,38 +37,33 @@ export function TxItem({ tx }: Props) {
     Linking.openURL(`${explorerUrl}/tx/${tx.hash}`);
   }
 
+  const kind = tx.kind ?? (tx.type === "RECEIVE" ? "receive" : "send");
+  const incoming = kind === "receive" || kind === "poolWithdraw";
+  const counterparty = incoming ? tx.from : tx.to;
+  const when = blockNumber > tx.blockNumber ? t("supporterProfile.ago", { duration: formatBlocks(blockNumber - tx.blockNumber).split(" (")[0] }) : "";
+
   return (
     <>
-      <TouchableOpacity 
-        className="p-3 rounded-2xl bg-card-primary w-full flex-row justify-between mb-1"
+      <TouchableOpacity
+        className="p-4 rounded-2xl bg-card-primary w-full flex-row items-center gap-3 mb-2"
         onPress={() => modalRef.current?.open()}
       >
-        <View className="flex-row gap-2">
-          <View className="bg-white w-12 h-12 rounded-full items-center justify-center">
-            <Icon
-              name={tx.coin === 'RC' ? 'rc' : 'sin'}
-              size={25}
-            />
-          </View>
-          <View className="w-[150]">
-            <Text className="text-gray-300 text-sm">
-              {tx.type === 'RECEIVE' ? t('myTokens.from') : t('myTokens.to')}
-            </Text>
-            <Text className="text-white max-w-[90%]" numberOfLines={1} >
-              {tx.type === 'RECEIVE' ? tx.from : tx.to}
-            </Text>
-          </View>
+        <View className={`w-10 h-10 rounded-full items-center justify-center ${incoming ? "bg-green-primary/15" : kind === "burn" ? "bg-amber-400/15" : "bg-red-400/15"}`}>
+          <Icon name={incoming ? "arrowDown" : "arrowUp"} color={incoming ? "#75d63a" : kind === "burn" ? "#fbbf24" : "#f87171"} size={18} />
         </View>
-
-        <View className="flex-row items-center gap-1">
-          <Text className="font-semibold text-white">
-            {Intl.NumberFormat('pt-BR').format(tx.value / 10 ** 18)}
-          </Text>
-          <Icon 
-            name={tx.type === 'RECEIVE' ? 'arrowUp' : 'arrowDown'}
-            color={tx.type === 'RECEIVE' ? 'green' : 'red'}
-          />
+        <View className="flex-1">
+          {kind === "burn" ? (
+            <Text className="text-white font-semibold">{t("myTokens.kind.burn")}</Text>
+          ) : kind === "poolWithdraw" ? (
+            <Text className="text-white font-semibold">{t("myTokens.kind.poolWithdraw", { pool: t(POOL_NAME_KEY[tx.poolType ?? 1]) })}</Text>
+          ) : (
+            <CounterpartyName address={counterparty} prefix={incoming ? t("myTokens.from") : t("myTokens.to")} />
+          )}
+          <Text className="text-gray-400 text-xs">{when}</Text>
         </View>
+        <Text className={`font-bold ${incoming ? "text-green-primary" : "text-white"}`}>
+          {incoming ? "+" : "-"}{Intl.NumberFormat(i18n.language, { maximumFractionDigits: 2 }).format(tx.value / 10 ** 18)} RC
+        </Text>
       </TouchableOpacity>
 
       <Portal>
@@ -98,7 +106,7 @@ export function TxItem({ tx }: Props) {
 
               <ItemValue
                 label={t('common.value')}
-                value={Intl.NumberFormat('pt-BR').format(tx.value / 10 ** 18)}
+                value={Intl.NumberFormat(i18n.language, { maximumFractionDigits: 6 }).format(tx.value / 10 ** 18)}
                 suffix={tx.coin.toUpperCase()}
               />
             </View>
