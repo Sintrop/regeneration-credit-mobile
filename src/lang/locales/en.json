@@ -730,6 +730,36 @@
       "inspectionsDone": "{{done}} of {{total}} inspections",
       "lastTrees": "Trees (latest)",
       "technicalData": "Technical data"
+    },
+    "feedNews": {
+      "stage": {
+        "requested": "Inspection request #{{id}}",
+        "accepted": "Inspection #{{id}} accepted",
+        "realized": "Inspection #{{id}} completed"
+      },
+      "requested": "{{regenerator}} requested an inspection of their regeneration area.",
+      "accepted": "{{inspector}} accepted to inspect the area of {{regenerator}}.",
+      "realized": "{{inspector}} inspected the area of {{regenerator}}.",
+      "waitingInspector": "Waiting for an inspector to accept.",
+      "seeInspection": "See inspection",
+      "offsetBadge": "Offset",
+      "offsetItem": "offsetting {{item}}",
+      "offsetImpact": "Funds the sequestration of ~{{tonnes}} t of CO₂.",
+      "seeSupporter": "See supporter",
+      "treeFundingBadge": "Tree planting",
+      "treesFunded": "~{{trees}} trees funded",
+      "researchBadge": "Research #{{id}}",
+      "reportBadge": "Development report #{{id}}",
+      "contributionBadge": "Contribution #{{id}}",
+      "read": "Read",
+      "commitmentBadge": "Reduction commitment",
+      "commitment": "Publicly committed to reduce the use of {{item}}.",
+      "withdrawBadge": "Withdrawal · {{pool}} pool",
+      "newUserBadge": "New member",
+      "newUser": "{{name}} joined the community as {{type}}.",
+      "invitationBadge": "Invitation",
+      "poolBadge": "Milestone",
+      "marketBadge": "Market"
     }
   }
 }

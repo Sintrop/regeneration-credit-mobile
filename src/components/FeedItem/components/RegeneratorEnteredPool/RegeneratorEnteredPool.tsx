@@ -6,6 +6,7 @@ import { BaseComponentsProps, Text } from "@components";
 
 import { HeaderItem } from "../HeaderItem/HeaderItem";
 import { useFeedUser } from "../useFeedUser";
+import { FeedBadge } from "../FeedBadge";
 
 export function RegeneratorEnteredPool({ additionalData }: BaseComponentsProps) {
   const { t } = useTranslation();
@@ -15,7 +16,7 @@ export function RegeneratorEnteredPool({ additionalData }: BaseComponentsProps) 
   if (!event) return null;
 
   return (
-    <View>
+    <View className="gap-3">
       <HeaderItem
         name={user.name}
         address={event.address}
@@ -24,10 +25,9 @@ export function RegeneratorEnteredPool({ additionalData }: BaseComponentsProps) 
         isLoading={user.isLoading}
       />
 
-      <View className="my-3 gap-2 p-3 rounded-xl bg-green-primary/10 border border-green-primary/30">
-        <Text className="font-bold text-green-primary">{t("feed.enteredPoolTitle")}</Text>
-        <Text className="text-white">{t("feed.enteredPoolDescription")}</Text>
-      </View>
+      <FeedBadge label={t("feedNews.poolBadge")} tone="green" />
+      <Text className="text-white text-base font-bold leading-6">{t("feed.enteredPoolTitle")}</Text>
+      <Text className="text-gray-300">{t("feed.enteredPoolDescription")}</Text>
     </View>
   );
 }

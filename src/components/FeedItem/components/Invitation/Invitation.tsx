@@ -9,6 +9,7 @@ import { AppStackParamsList } from "@routes";
 
 import { HeaderItem } from "../HeaderItem/HeaderItem";
 import { useFeedUser } from "../useFeedUser";
+import { FeedBadge } from "../FeedBadge";
 
 type NavigationProps = NativeStackNavigationProp<AppStackParamsList, "HomeScreen">;
 
@@ -28,7 +29,7 @@ export function Invitation({ additionalData }: BaseComponentsProps) {
   const registered = invited.userType > 0;
 
   return (
-    <View>
+    <View className="gap-3">
       <HeaderItem
         name={inviter.name}
         address={invitation.inviter}
@@ -37,8 +38,8 @@ export function Invitation({ additionalData }: BaseComponentsProps) {
         isLoading={inviter.isLoading}
       />
 
-      <View className="my-3 gap-3">
-        <Text className="font-bold text-white">{t("feed.invitationSent")}</Text>
+      <View className="gap-3">
+        <FeedBadge label={t("feedNews.invitationBadge")} tone="blue" />
         <Text className="text-white">
           {t("feed.invitedToBe")}{" "}
           <UserTypeText userType={invitation.invitedType as UserTypeTextType} className="text-green-primary font-semibold" />

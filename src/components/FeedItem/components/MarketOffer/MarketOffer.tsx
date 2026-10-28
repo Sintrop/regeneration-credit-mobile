@@ -10,6 +10,7 @@ import { AppStackParamsList } from "@routes";
 import { HeaderItem } from "../HeaderItem/HeaderItem";
 import { useFeedUser } from "../useFeedUser";
 import { formatOfferPrice } from "../../../../screens/MarketScreen/formatOfferPrice";
+import { FeedBadge } from "../FeedBadge";
 
 type NavigationProps = NativeStackNavigationProp<AppStackParamsList, "HomeScreen">;
 
@@ -22,7 +23,7 @@ export function MarketOffer({ additionalData }: BaseComponentsProps) {
   if (!offer) return null;
 
   return (
-    <View>
+    <View className="gap-3">
       <HeaderItem
         name={seller.name}
         address={offer.seller}
@@ -31,8 +32,8 @@ export function MarketOffer({ additionalData }: BaseComponentsProps) {
         isLoading={seller.isLoading}
       />
 
-      <View className="my-3 gap-3">
-        <Text className="font-bold text-white">{t("feed.newMarketOffer", { id: offer.offerId })}</Text>
+      <View className="gap-3">
+        <FeedBadge label={`${t("feedNews.marketBadge")} · ${t("market.offer", { id: offer.offerId })}`} tone="amber" />
         <View className="flex-row items-end justify-between p-3 rounded-xl bg-card-secondary">
           <View>
             <Text className="text-gray-400 text-xs">{t("market.amount")}</Text>

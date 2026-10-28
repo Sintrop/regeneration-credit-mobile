@@ -730,6 +730,36 @@
       "inspectionsDone": "{{done}} de {{total}} inspecciones",
       "lastTrees": "Árboles (última)",
       "technicalData": "Datos técnicos"
+    },
+    "feedNews": {
+      "stage": {
+        "requested": "Solicitud de inspección #{{id}}",
+        "accepted": "Inspección #{{id}} aceptada",
+        "realized": "Inspección #{{id}} realizada"
+      },
+      "requested": "{{regenerator}} solicitó una inspección de su área de regeneración.",
+      "accepted": "{{inspector}} aceptó inspeccionar el área de {{regenerator}}.",
+      "realized": "{{inspector}} inspeccionó el área de {{regenerator}}.",
+      "waitingInspector": "Esperando que un inspector acepte.",
+      "seeInspection": "Ver inspección",
+      "offsetBadge": "Compensación",
+      "offsetItem": "compensando {{item}}",
+      "offsetImpact": "Financia el secuestro de ~{{tonnes}} t de CO₂.",
+      "seeSupporter": "Ver apoyador",
+      "treeFundingBadge": "Plantación de árboles",
+      "treesFunded": "~{{trees}} árboles financiados",
+      "researchBadge": "Investigación #{{id}}",
+      "reportBadge": "Informe de desarrollo #{{id}}",
+      "contributionBadge": "Contribución #{{id}}",
+      "read": "Leer",
+      "commitmentBadge": "Compromiso de reducción",
+      "commitment": "Asumió públicamente el compromiso de reducir el consumo de {{item}}.",
+      "withdrawBadge": "Retiro · pool de {{pool}}",
+      "newUserBadge": "Nuevo miembro",
+      "newUser": "{{name}} se unió a la comunidad como {{type}}.",
+      "invitationBadge": "Invitación",
+      "poolBadge": "Hito",
+      "marketBadge": "Mercado"
     }
   }
 }

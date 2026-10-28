@@ -29,7 +29,7 @@ interface Props {
 export function FeedItem({ id, type, additionalData }: Props) {
   const Component = componentByType[type];
   return (
-    <View className="w-full bg-card-primary p-5">
+    <View className="mx-3 mb-3 rounded-2xl bg-card-primary p-4">
       <Component id={id} additionalData={additionalData} />
     </View>
   )
