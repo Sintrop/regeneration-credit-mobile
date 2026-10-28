@@ -44,5 +44,6 @@ export enum QueryKeys {
   VotingContext = 'VotingContext',
   PoolOverview = 'PoolOverview',
   PoolEraDetails = 'PoolEraDetails',
-  PoolUserPosition = 'PoolUserPosition'
+  PoolUserPosition = 'PoolUserPosition',
+  AllInspections = 'AllInspections'
 }

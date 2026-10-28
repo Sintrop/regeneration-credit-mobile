@@ -375,7 +375,26 @@
       "acceptInspection": "Aceitar inspeção",
       "thisInspectionCanAcceptIn": "Essa inspeção pode ser aceita em {{duration}}",
       "expireIn": "Expira em {{duration}}",
-      "expiredAgo": "Expirou há {{duration}}"
+      "expiredAgo": "Expirou há {{duration}}",
+      "view": {
+        "cards": "Cards",
+        "table": "Tabela"
+      },
+      "loadingAll": "Carregando todas as inspeções...",
+      "realizedCount": "Realizadas",
+      "treesCounted": "Árvores contadas",
+      "avgScore": "Pontuação média",
+      "columns": {
+        "id": "ID",
+        "status": "Status",
+        "regenerator": "Regenerador",
+        "inspector": "Inspetor",
+        "trees": "Árvores",
+        "biodiversity": "Biodiv.",
+        "score": "Pont.",
+        "era": "Fase",
+        "inspectedAt": "Bloco"
+      }
     },
     "inspectionStatus": {
       "open": "Aberta",
