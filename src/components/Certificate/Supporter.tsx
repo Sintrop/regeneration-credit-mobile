@@ -8,6 +8,7 @@ import { Icon, Text } from "@components";
 //@ts-ignore
 import RCLogo from "../../assets/images/rc.png";
 import { DownloadContainer } from "./DownloadContainer";
+import { formatArea } from "@utils";
 
 interface Props {
   address: string;
@@ -72,7 +73,7 @@ export function Supporter({ address }: Props) {
             <View className="flex-row items-center gap-1">
               <Text className="text-white text-sm">{t('common.area')}:</Text>
               <Text className="text-white text-sm font-semibold">
-                {formatImpact(areaImpact)} m²
+                {formatArea(areaImpact, i18n.language)}
               </Text>
             </View>
           </View>

@@ -3,3 +3,4 @@ export * from "./paginateList";export * from "./tokenAmount";
 export * from "./blocksToDuration";
 export * from "./resourceText";
 export * from "./byteLength";
+export * from "./formatArea";

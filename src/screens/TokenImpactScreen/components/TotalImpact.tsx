@@ -6,20 +6,9 @@ import { Icon, Text } from "@components";
 
 import { ImpactItem } from "./ImpactItem";
 
-// Helper function to format numbers with comma as decimal separator
-function formatNumber(value?: number | string): string {
-  if (value === undefined || value === null) return '0';
-  const num = typeof value === 'string' ? parseFloat(value) : value;
-  if (isNaN(num)) return '0';
-  // Use Intl.NumberFormat with pt-BR for comma as decimal separator
-  return new Intl.NumberFormat('pt-BR', { 
-    minimumFractionDigits: 2,
-    maximumFractionDigits: 2 
-  }).format(num);
-}
-
 export function TotalImpact() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const formatNumber = (value: number) => Intl.NumberFormat(i18n.language, { maximumFractionDigits: 2 }).format(value || 0);
   const { isLoading, area, biodiversity, carbon, trees } = useTotalImpact();
 
   // Convert carbon from g to tonnes (g -> kg -> t)
@@ -27,7 +16,7 @@ export function TotalImpact() {
   // Convert area from m² to hectares (1 ha = 10000 m²)
   const areaHa = area / 10000;
   // Trees should be whole numbers only, with dot for thousands
-  const treesWhole = Math.round(trees).toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+  const treesWhole = Intl.NumberFormat(i18n.language, { maximumFractionDigits: 0 }).format(trees);
 
   return (
     <View className="gap-1">

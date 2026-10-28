@@ -18,6 +18,7 @@ import { useBlocksDuration } from "@hooks";
 import { HeaderProfile } from "../HeaderProfile/HeaderProfile";
 import { Invitation } from "../Invitation/Invitation";
 import { InvitedUsers } from "../Sections/InvitedUsers";
+import { formatArea } from "@utils";
 
 function useFormat() {
   const { i18n } = useTranslation();
@@ -27,7 +28,7 @@ function useFormat() {
 
 /** Total certified RC and its impact equivalents (impact per token from RegenerationCreditImpact). */
 function ImpactSummary({ address, compensationsCount }: { address: string; compensationsCount: number }) {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const format = useFormat();
   const { certificated } = useCertificatedTokens({ address });
   const { area, biodiversity, carbon, trees } = useImpactPerToken();
@@ -36,7 +37,7 @@ function ImpactSummary({ address, compensationsCount }: { address: string; compe
     { label: t("supporterProfile.carbon"), value: `${format((certificated * carbon) / 1e6)} t` },
     { label: t("common.trees"), value: format(certificated * trees) },
     { label: t("common.biodiversity"), value: format(certificated * biodiversity) },
-    { label: t("common.area"), value: `${format(certificated * area)} m²` },
+    { label: t("common.area"), value: formatArea(certificated * area, i18n.language) },
   ];
 
   return (

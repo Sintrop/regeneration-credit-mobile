@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 
 import { Icon, Text } from "@components";
 import { useImpactPerToken } from "@domain";
+import { formatArea } from "@utils";
 
 export function TokenImpact() {
   const { t, i18n } = useTranslation();
@@ -34,8 +35,7 @@ export function TokenImpact() {
           />
           <ImpactItem 
             label={t('common.area')}
-            value={formatNumber(area)}
-            suffix="m²"
+            value={formatArea(area, i18n.language)}
           />
         </View>
       </View>
