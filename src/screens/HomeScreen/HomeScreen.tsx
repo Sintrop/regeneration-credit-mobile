@@ -68,7 +68,7 @@ export function HomeScreen(_: ScreenProps) {
           keyExtractor={item => item.id.toString()}
           renderItem={renderItemFeed}
           contentContainerClassName="pt-3 gap-3 pb-10"
-          ListHeaderComponent={headerList}
+          ListHeaderComponent={headerList()}
           ListEmptyComponent={<EmptyList isLoading={!rpcUnstable} />}
           onEndReachedThreshold={0.5}
           onEndReached={handleNextPage}
