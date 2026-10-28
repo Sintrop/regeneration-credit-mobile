@@ -8,7 +8,7 @@ import Clipboard from "@react-native-clipboard/clipboard";
 import Toast from "react-native-toast-message";
 
 import { Icon, Text } from "@components";
-import { useBalance, useCertificatedTokens } from "@domain";
+import { useBalance, useCertificatedTokens, useNativeBalance } from "@domain";
 import { useAppSafeArea, useUserContext } from "@hooks";
 
 //@ts-ignore
@@ -21,7 +21,8 @@ interface BalanceProps {
 }
 
 export function Balance({ onTransfer }: BalanceProps) {
-  const { address, balanceSIN } = useUserContext();
+  const { address } = useUserContext();
+  const { balance: balanceSIN, isLoading: isLoadingSin } = useNativeBalance(address);
   const { t, i18n } = useTranslation();
   const { bottom } = useAppSafeArea();
   const { balance, isLoading: isLoadingRc } = useBalance({ address });
@@ -57,7 +58,11 @@ export function Balance({ onTransfer }: BalanceProps) {
 
       <View className="flex-row items-center gap-3">
         <Image source={SINIcon} className="w-8 h-8" resizeMode="contain" />
-        <Text className="text-white text-lg">{showBalance ? format(balanceSIN) : hidden} <Text className="text-gray-300 text-sm">SIN</Text></Text>
+        {isLoadingSin ? (
+          <ActivityIndicator color="white" />
+        ) : (
+          <Text className="text-white text-lg">{showBalance ? format(balanceSIN) : hidden} <Text className="text-gray-300 text-sm">SIN</Text></Text>
+        )}
         <Text className="text-gray-500 text-xs">{t("myTokens.gasHint")}</Text>
       </View>
 

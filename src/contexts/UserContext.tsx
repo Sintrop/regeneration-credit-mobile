@@ -2,7 +2,7 @@ import { createContext, ReactNode } from "react";
 import { useTranslation } from "react-i18next";
 import { Linking, Alert } from "react-native";
 import { useSDK } from "@metamask/sdk-react";
-import { useGetUser } from "@domain";
+import { useGetUser, useNativeBalance } from "@domain";
 import { switchToSintrop } from "@services";
 
 export interface UserProviderProps {
@@ -29,11 +29,10 @@ export function UserProvider({ children }: UserProviderProps) {
     account,
     connected,
     connecting,
-    balance,
   } = useSDK();
   const { t } = useTranslation();
   const { userType, refetch: refetchUserType } = useGetUser({ address: account })
-  const balanceSIN = balance ? parseInt(balance, 16) / 10 ** 18 : 0;
+  const { balance: balanceSIN, refetch: refetchBalanceSIN } = useNativeBalance(account);
 
   function showWalletNotFound() {
     Alert.alert(
@@ -75,6 +74,7 @@ export function UserProvider({ children }: UserProviderProps) {
 
   function refetchUser() {
     refetchUserType();
+    refetchBalanceSIN();
   }
 
   return (

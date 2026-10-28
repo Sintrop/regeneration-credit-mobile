@@ -3,6 +3,7 @@ import { createContext, ReactNode, useEffect, useState } from "react";
 import { ActivityIndicator, Alert, Linking, Modal, TouchableOpacity, View } from "react-native";
 import { useTranslation } from "react-i18next";
 import { useSDK } from "@metamask/sdk-react";
+import { useQueryClient } from "@tanstack/react-query";
 import Web3 from "web3";
 import Clipboard from "@react-native-clipboard/clipboard";
 import { ethers } from "ethers";
@@ -10,6 +11,10 @@ import { ethers } from "ethers";
 import { Icon, Text } from "@components";
 import { useSettingsContext } from "@hooks";
 import { ensureSintropChain } from "@services";
+import { QueryKeys } from "@types";
+
+/** Data that every confirmed transaction may change. */
+const KEYS_TO_REFRESH = [QueryKeys.NativeBalance, QueryKeys.GetBalance, QueryKeys.Transfers, QueryKeys.UserTimers];
 import Toast from "react-native-toast-message";
 
 interface SendTransactionProps {
@@ -62,6 +67,7 @@ export function TxProvider({ children }: TxProviderProps) {
   const { rpc } = useSettingsContext();
   const { t } = useTranslation();
   const { provider: ethereum } = useSDK();
+  const queryClient = useQueryClient();
   const [hash, setHash] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [showModalTx, setShowModalTx] = useState(false);
@@ -137,6 +143,7 @@ export function TxProvider({ children }: TxProviderProps) {
     const response = await getReceiptTx(txHash);
     if (response.hasReceipt) {
       if (response.successTx) {
+        KEYS_TO_REFRESH.forEach(key => queryClient.invalidateQueries({ queryKey: [key] }));
         setIsSuccess(true);
         setIsError(false);
         setIsLoading(false);

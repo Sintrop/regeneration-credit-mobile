@@ -17,7 +17,7 @@ interface Props {
 export type TokenType = 'RC' | 'SIN';
 
 export function TransferModal({ visible, onClose }: Props) {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const { address, balanceSIN } = useUserContext();
   const { balance: balanceRC, refetch: refetchBalance } = useBalance({ address });
   const { registerContinueAction, sendTransaction } = useTxContext();
@@ -135,8 +135,8 @@ export function TransferModal({ visible, onClose }: Props) {
             <TextComponent className="text-gray-400 text-sm">{t('common.yourBalance')}</TextComponent>
             <TextComponent className="text-white text-xl font-semibold mt-1">
               {selectedToken === 'RC' 
-                ? `${balanceRC?.toFixed(5) || '0'} RC`
-                : `${balanceSIN?.toFixed(5) || '0'} SIN`
+                ? `${Intl.NumberFormat(i18n.language, { maximumFractionDigits: 5 }).format(balanceRC ?? 0)} RC`
+                : `${Intl.NumberFormat(i18n.language, { maximumFractionDigits: 5 }).format(balanceSIN ?? 0)} SIN`
               }
             </TextComponent>
           </View>
