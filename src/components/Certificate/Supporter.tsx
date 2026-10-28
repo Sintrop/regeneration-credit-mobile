@@ -13,18 +13,11 @@ interface Props {
   address: string;
 }
 
-// Helper to format numbers with 5 decimal places using comma as decimal separator
-function formatImpact(value: number): string {
-  return value.toFixed(5).replace('.', ',');
-}
-
-// Helper to format whole numbers with dot for thousands
-function formatWhole(value: number): string {
-  return Math.round(value).toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
-}
 
 export function Supporter({ address }: Props) {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const formatImpact = (value: number) => Intl.NumberFormat(i18n.language, { minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(value);
+  const formatWhole = (value: number) => Intl.NumberFormat(i18n.language, { maximumFractionDigits: 2 }).format(value);
   const { supporter } = useGetSupporter({ address });
   const { certificated } = useCertificatedTokens({ address });
   const { area, biodiversity, carbon, trees } = useImpactPerToken();
@@ -38,7 +31,7 @@ export function Supporter({ address }: Props) {
   // Carbon in tonnes (g -> tonnes: divide by 1e6)
   const carbonTonnes = carbonImpact / 1e6;
 
-  const parsedName = supporter?.name.replaceAll(' ', '-').toLowerCase();
+  const parsedName = supporter?.name?.replaceAll(' ', '-').toLowerCase() ?? '';
   const qrLink = 'https://users.regenerationcredit.org/supporter/' + address + '/' + parsedName;
 
   return (

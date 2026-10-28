@@ -129,3 +129,5 @@ export * from "./Pools/poolMath";
 export * from "./Pools/poolOverviewService";
 export * from "./Pools/useCases/usePoolScreens";
 export * from "./InspectionRules/useCases/useAllInspections";
+export * from "./SupporterRules/compensations/supporterCompensations";
+export * from "./SupporterRules/compensations/useSupporterCompensations";

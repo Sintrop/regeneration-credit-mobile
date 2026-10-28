@@ -6,11 +6,11 @@ interface ContractRef {
 }
 
 /** All past logs of one event since genesis. */
-export async function fetchEvents(rpc: string, contract: ContractRef, eventName: string): Promise<EventLog[]> {
+export async function fetchEvents(rpc: string, contract: ContractRef, eventName: string, filter?: Record<string, string>): Promise<EventLog[]> {
   const web3 = new Web3(rpc);
   const instance = new web3.eth.Contract(contract.abi, contract.address);
   //@ts-ignore
-  const events = await instance.getPastEvents(eventName, { fromBlock: 0, toBlock: "latest" });
+  const events = await instance.getPastEvents(eventName, { filter, fromBlock: 0, toBlock: "latest" });
   return events as EventLog[];
 }
 

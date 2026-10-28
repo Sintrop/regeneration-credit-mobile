@@ -664,6 +664,22 @@
       "toReceive": "Credits to receive",
       "inWithdrawals_one": "in {{count}} withdrawal",
       "inWithdrawals_other": "in {{count}} withdrawals, one per ended era"
+    },
+    "supporterProfile": {
+      "totalCompensated": "Total offset",
+      "compensationsCount_one": "in {{count}} offset",
+      "compensationsCount_other": "in {{count}} offsets",
+      "fundingImpact": "Funding the impact of",
+      "carbon": "CO₂ sequestered",
+      "impactNote": "Equivalence based on the impact per credit recorded on the blockchain.",
+      "certificateHint": "Public, verifiable certificate. It can be saved and shared, and the QR code opens the supporter profile.",
+      "compensations": "Offsets",
+      "offset": "Offset",
+      "treeFunding": "Funded tree planting",
+      "noCompensations": "No offsets yet.",
+      "ago": "{{duration}} ago",
+      "commitmentImpact": "{{impact}} t CO₂ offset",
+      "commitmentsHint": "Items the supporter publicly committed to reduce."
     }
   }
 }

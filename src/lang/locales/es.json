@@ -664,6 +664,22 @@
       "toReceive": "Créditos por recibir",
       "inWithdrawals_one": "en {{count}} retiro",
       "inWithdrawals_other": "en {{count}} retiros, uno por fase terminada"
+    },
+    "supporterProfile": {
+      "totalCompensated": "Total compensado",
+      "compensationsCount_one": "en {{count}} compensación",
+      "compensationsCount_other": "en {{count}} compensaciones",
+      "fundingImpact": "Financiando el impacto de",
+      "carbon": "CO₂ secuestrado",
+      "impactNote": "Equivalencia calculada con el impacto por crédito registrado en la blockchain.",
+      "certificateHint": "Certificado público y verificable. Puede guardarse y compartirse, y el código QR abre el perfil del apoyador.",
+      "compensations": "Compensaciones",
+      "offset": "Compensación",
+      "treeFunding": "Financió la plantación de árboles",
+      "noCompensations": "Aún no hay compensaciones.",
+      "ago": "hace {{duration}}",
+      "commitmentImpact": "{{impact}} t CO₂ compensadas",
+      "commitmentsHint": "Ítems que el apoyador se comprometió públicamente a reducir."
     }
   }
 }

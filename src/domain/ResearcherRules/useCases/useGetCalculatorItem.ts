@@ -10,8 +10,9 @@ interface Props {
 export function useGetCalculatorItem({ itemId }: Props) {
   const { rpc } = useSettingsContext();
   const { data, isLoading, isError, refetch } = useQuery({
-    queryKey: [QueryKeys.GetResearch, itemId],
-    queryFn: () => researcherService.getCalculatorItem({ itemId, rpc })
+    queryKey: [QueryKeys.GetCalculatorItem, itemId],
+    queryFn: () => researcherService.getCalculatorItem({ itemId, rpc }),
+    enabled: itemId > 0
   })
 
   return {
