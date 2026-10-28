@@ -15,3 +15,4 @@ export * from "./PoolDetailsScreen/PoolDetailsScreen";
 export * from "./MarketScreen/MarketScreen";
 export * from "./ResourcesListScreen/ResourcesListScreen";
 export * from "./SettingsScreen/SettingsScreen";
+export * from "./HelpScreen/HelpScreen";

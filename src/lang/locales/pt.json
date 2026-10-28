@@ -146,7 +146,7 @@
       "invalidAddress": "Endereço inválido",
       "block": "Bloco",
       "value": "Valor",
-      "copiedToClipboard": "Copiado para à área de transferência",
+      "copiedToClipboard": "Copiado para a área de transferência",
       "you": "Você",
       "inspections": "Inspeções",
       "area": "Área",
@@ -788,6 +788,106 @@
       "description": "O servidor RPC que o app usa para ler a blockchain não está respondendo, por isso alguns dados podem não carregar. Você pode trocar para outro RPC da rede Sintrop ou voltar mais tarde.",
       "changeRpc": "Trocar RPC",
       "retry": "Tentar novamente"
+    },
+    "help": {
+      "title": "Ajuda",
+      "welcomeTitle": "Bem-vindo ao Crédito de Regeneração",
+      "welcomeText": "Sistema de regeneração da Natureza pessoa a pessoa. Aqui estão os passos para começar, os dados da rede Sintrop e as respostas para as dúvidas mais comuns.",
+      "newcomerTitle": "Novo por aqui?",
+      "newcomerText": "Veja como começar, configurar a carteira e se cadastrar.",
+      "settingsLink": "Como começar, dados da rede, endereços dos contratos e perguntas frequentes.",
+      "stepsTitle": "Como começar",
+      "steps": {
+        "wallet": {
+          "title": "Instale o MetaMask",
+          "text": "O app usa a carteira MetaMask para assinar as transações. Instale o app do MetaMask e crie a sua carteira. Guarde a frase de recuperação em um lugar seguro e nunca a compartilhe."
+        },
+        "connect": {
+          "title": "Conecte a carteira",
+          "text": "Toque em Conectar no topo da tela inicial. O app pede para o MetaMask adicionar e selecionar a rede Sintrop, é só aprovar. Se preferir, adicione a rede à mão com os dados abaixo."
+        },
+        "gas": {
+          "title": "Tenha um pouco de SIN",
+          "text": "SIN é a moeda da rede Sintrop e paga as taxas de cada transação. Para receber SIN de outro usuário, compartilhe o endereço da sua carteira, que fica em Meus tokens."
+        },
+        "register": {
+          "title": "Faça o seu cadastro",
+          "text": "O cadastro de Apoiador é aberto a qualquer carteira. Os demais tipos de usuário precisam de um convite registrado na blockchain para o endereço da sua carteira. Com a carteira conectada, a tela inicial mostra a opção de cadastro."
+        },
+        "token": {
+          "title": "Veja seus RC no MetaMask",
+          "text": "No MetaMask, com a rede Sintrop selecionada, use Importar token e cole o endereço do contrato do token RC, que está logo abaixo."
+        }
+      },
+      "downloadMetamask": "Baixar MetaMask",
+      "metamaskManual": "Manual do MetaMask (PDF)",
+      "addNetwork": "Adicionar rede Sintrop no MetaMask",
+      "openMyTokens": "Abrir Meus tokens",
+      "copy": "Copiar",
+      "networkTitle": "Dados da rede Sintrop",
+      "networkText": "Use estes dados para adicionar a rede à mão no MetaMask. Toque em um campo para copiar.",
+      "networkName": "Nome da rede",
+      "rpcUrl": "URL do RPC",
+      "chainId": "ID da chain",
+      "currencySymbol": "Símbolo da moeda",
+      "explorer": "Explorador de blocos",
+      "tokenTitle": "Token Crédito de Regeneração (RC)",
+      "tokenText": "Dados para importar o RC na sua carteira.",
+      "tokenAddress": "Endereço do contrato",
+      "tokenSymbol": "Símbolo",
+      "tokenDecimals": "Casas decimais",
+      "contractsTitle": "Contratos do protocolo",
+      "contractsText": "Os contratos estão implantados na rede Sintrop, foram auditados pela Nethermind Security e têm o código aberto no GitHub.",
+      "showContracts": "Mostrar os {{count}} endereços",
+      "hideContracts": "Ocultar endereços",
+      "faqTitle": "Perguntas frequentes",
+      "faq": {
+        "whatIs": {
+          "q": "O que é o Crédito de Regeneração?",
+          "a": "É um pagamento por serviços ambientais pessoa a pessoa. Quem regenera ecossistemas ganha tokens de Crédito de Regeneração (RC), e o impacto por trás de cada token é verificado por um processo de inspeção descentralizado."
+        },
+        "howEarn": {
+          "q": "Como alguém ganha RC?",
+          "a": "Cada tipo de usuário tem um pool que distribui tokens a cada era, proporcionalmente ao nível de cada um dentro do seu tipo. O nível sobe fazendo o trabalho do papel: o regenerador pelo resultado das inspeções da sua área, o inspetor por inspeção realizada, o pesquisador por pesquisa publicada, o desenvolvedor e o contribuidor por relatório e o ativista quando um convidado completa as primeiras inspeções."
+        },
+        "invite": {
+          "q": "Preciso de convite para me cadastrar?",
+          "a": "Só o Apoiador se cadastra sem convite. Ativistas convidam regeneradores, inspetores e outros ativistas. Pesquisadores, desenvolvedores e contribuidores são convidados por usuários do mesmo tipo. O convite fica registrado na blockchain para o endereço da carteira convidada, então peça o convite e depois faça o cadastro com a mesma carteira."
+        },
+        "sin": {
+          "q": "Por que preciso de SIN?",
+          "a": "SIN é a moeda da rede Sintrop e paga as taxas das transações: cadastro, convites, inspeções, publicações, votos, saques e compensações. Consultar dados no app é gratuito. Sem SIN na carteira, a transação não é enviada."
+        },
+        "eras": {
+          "q": "O que são eras e épocas?",
+          "a": "O protocolo é dividido em eras de cerca de 6 meses. Em cada era, os pools distribuem uma quantidade fixa de tokens. A cada 12 eras (uma época), a emissão por era cai pela metade. O tempo até a próxima era aparece no topo da tela inicial."
+        },
+        "withdraw": {
+          "q": "Como saco meus tokens?",
+          "a": "Em Sacar tokens, escolha o pool do seu tipo de usuário. Os tokens de uma era ficam disponíveis para saque depois que ela termina, de acordo com o seu nível naquela era."
+        },
+        "inspection": {
+          "q": "Como funciona uma inspeção?",
+          "a": "O regenerador pede a inspeção da sua área. Um inspetor aceita o pedido, vai até a área dentro do prazo e registra a contagem de árvores e de espécies, com fotos e relatório. Cada inspetor só pode inspecionar um mesmo regenerador uma vez. O regenerador passa a receber tokens depois de 3 inspeções feitas por 3 inspetores diferentes."
+        },
+        "validation": {
+          "q": "Quem verifica se as informações são verdadeiras?",
+          "a": "Pesquisadores, desenvolvedores e contribuidores formam a camada de validação e votam para invalidar usuários, inspeções e publicações fraudulentas. Cada registro só pode ser contestado durante a era em que foi criado."
+        },
+        "offset": {
+          "q": "O que é compensar?",
+          "a": "O apoiador troca RC por um certificado: os tokens são queimados e o certificado registra na blockchain quanto de regeneração verificada aquela compensação financiou. Se o apoiador foi convidado, 5% da compensação feita pelo app vão para quem o convidou."
+        },
+        "security": {
+          "q": "Meus fundos estão seguros?",
+          "a": "O MetaMask é uma carteira de autocustódia, ou seja, só você tem as chaves. O app nunca pede a sua frase de recuperação, e toda transação precisa ser confirmada por você no MetaMask. Nunca compartilhe a frase de recuperação com ninguém."
+        },
+        "rpc": {
+          "q": "O app não carrega os dados. O que faço?",
+          "a": "O app lê a blockchain por um servidor RPC público. Se ele ficar instável, um aviso aparece no topo da tela. Você pode trocar o RPC em Configurações ou tentar de novo mais tarde."
+        }
+      },
+      "moreInfo": "Mais informações no site do Crédito de Regeneração"
     }
   }
 }

@@ -28,3 +28,4 @@ export * from "./Actions/TimerAction";
 export * from "./ProgressBar/ProgressBar";
 export * from "./RpcStatusBanner/RpcStatusBanner";
 export * from "./LanguageSelector/SettingsButton";
+export * from "./HelpButton/HelpButton";

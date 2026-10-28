@@ -13,6 +13,7 @@ import { LoadingFeed } from './components/LoadingFeed';
 import { HomeStatusBar } from './components/HomeStatusBar';
 import { HomeShortcuts } from './components/HomeShortcuts';
 import { UserTimersCard } from './components/UserTimersCard';
+import { NewcomerCard } from './components/NewcomerCard';
 
 type ScreenProps = NativeStackScreenProps<AppStackParamsList, 'HomeScreen'>
 export function HomeScreen(_: ScreenProps) {
@@ -30,6 +31,8 @@ export function HomeScreen(_: ScreenProps) {
     return (
       <View className='px-3 -mt-3'>
         <HomeStatusBar />
+
+        {!isConnected && <NewcomerCard />}
 
         {isConnected && (
           <>

@@ -788,6 +788,106 @@
       "description": "The RPC server the app uses to read the blockchain is not responding, so some data may not load. You can switch to another Sintrop network RPC or come back later.",
       "changeRpc": "Change RPC",
       "retry": "Try again"
+    },
+    "help": {
+      "title": "Help",
+      "welcomeTitle": "Welcome to Regeneration Credit",
+      "welcomeText": "Peer-to-peer Nature regeneration system. Here are the steps to get started, the Sintrop network data and answers to the most common questions.",
+      "newcomerTitle": "New here?",
+      "newcomerText": "See how to get started, set up your wallet and register.",
+      "settingsLink": "Getting started, network data, contract addresses and FAQ.",
+      "stepsTitle": "Getting started",
+      "steps": {
+        "wallet": {
+          "title": "Install MetaMask",
+          "text": "The app uses the MetaMask wallet to sign transactions. Install the MetaMask app and create your wallet. Keep the recovery phrase in a safe place and never share it."
+        },
+        "connect": {
+          "title": "Connect your wallet",
+          "text": "Tap Connect at the top of the home screen. The app asks MetaMask to add and select the Sintrop network, just approve it. If you prefer, add the network by hand with the data below."
+        },
+        "gas": {
+          "title": "Get some SIN",
+          "text": "SIN is the Sintrop network currency and pays the fee of every transaction. To receive SIN from another user, share your wallet address, shown in My tokens."
+        },
+        "register": {
+          "title": "Register",
+          "text": "Supporter registration is open to any wallet. The other user types need an invitation recorded on the blockchain for your wallet address. With your wallet connected, the home screen shows the registration option."
+        },
+        "token": {
+          "title": "See your RC in MetaMask",
+          "text": "In MetaMask, with the Sintrop network selected, use Import token and paste the RC token contract address shown below."
+        }
+      },
+      "downloadMetamask": "Download MetaMask",
+      "metamaskManual": "MetaMask guide (PDF, Portuguese)",
+      "addNetwork": "Add Sintrop network to MetaMask",
+      "openMyTokens": "Open My tokens",
+      "copy": "Copy",
+      "networkTitle": "Sintrop network data",
+      "networkText": "Use this data to add the network by hand in MetaMask. Tap a field to copy it.",
+      "networkName": "Network name",
+      "rpcUrl": "RPC URL",
+      "chainId": "Chain ID",
+      "currencySymbol": "Currency symbol",
+      "explorer": "Block explorer",
+      "tokenTitle": "Regeneration Credit token (RC)",
+      "tokenText": "Data to import RC into your wallet.",
+      "tokenAddress": "Contract address",
+      "tokenSymbol": "Symbol",
+      "tokenDecimals": "Decimals",
+      "contractsTitle": "Protocol contracts",
+      "contractsText": "The contracts are deployed on the Sintrop network, were audited by Nethermind Security and are open source on GitHub.",
+      "showContracts": "Show the {{count}} addresses",
+      "hideContracts": "Hide addresses",
+      "faqTitle": "Frequently asked questions",
+      "faq": {
+        "whatIs": {
+          "q": "What is Regeneration Credit?",
+          "a": "It is a peer-to-peer payment for environmental services. Those who regenerate ecosystems earn Regeneration Credit (RC) tokens, and the impact behind each token is verified by a decentralized inspection process."
+        },
+        "howEarn": {
+          "q": "How does someone earn RC?",
+          "a": "Each user type has a pool that distributes tokens every era, in proportion to each user's level within their type. The level goes up by doing the role's work: the regenerator through the results of their area's inspections, the inspector per inspection carried out, the researcher per published research, the developer and the contributor per report, and the activist when an invited user completes their first inspections."
+        },
+        "invite": {
+          "q": "Do I need an invitation to register?",
+          "a": "Only Supporters register without an invitation. Activists invite regenerators, inspectors and other activists. Researchers, developers and contributors are invited by users of the same type. The invitation is recorded on the blockchain for the invited wallet address, so ask for the invitation and then register with the same wallet."
+        },
+        "sin": {
+          "q": "Why do I need SIN?",
+          "a": "SIN is the Sintrop network currency and pays transaction fees: registration, invitations, inspections, publications, votes, withdrawals and offsets. Browsing data in the app is free. Without SIN in your wallet, the transaction is not sent."
+        },
+        "eras": {
+          "q": "What are eras and epochs?",
+          "a": "The protocol is divided into eras of about 6 months. In each era, the pools distribute a fixed amount of tokens. Every 12 eras (one epoch), the emission per era is cut in half. The time until the next era is shown at the top of the home screen."
+        },
+        "withdraw": {
+          "q": "How do I withdraw my tokens?",
+          "a": "In Withdraw tokens, choose the pool for your user type. The tokens of an era become available for withdrawal after it ends, according to your level in that era."
+        },
+        "inspection": {
+          "q": "How does an inspection work?",
+          "a": "The regenerator requests an inspection of their area. An inspector accepts the request, visits the area within the deadline and records the tree and species counts, with photos and a report. Each inspector can inspect the same regenerator only once. The regenerator starts receiving tokens after 3 inspections by 3 different inspectors."
+        },
+        "validation": {
+          "q": "Who checks that the information is true?",
+          "a": "Researchers, developers and contributors form the validation layer and vote to invalidate fraudulent users, inspections and publications. Each record can only be challenged during the era in which it was created."
+        },
+        "offset": {
+          "q": "What is offsetting?",
+          "a": "The supporter exchanges RC for a certificate: the tokens are burned and the certificate records on the blockchain how much verified regeneration that offset funded. If the supporter was invited, 5% of an offset made through the app goes to whoever invited them."
+        },
+        "security": {
+          "q": "Are my funds safe?",
+          "a": "MetaMask is a self-custody wallet, which means only you hold the keys. The app never asks for your recovery phrase, and every transaction must be confirmed by you in MetaMask. Never share your recovery phrase with anyone."
+        },
+        "rpc": {
+          "q": "The app does not load data. What should I do?",
+          "a": "The app reads the blockchain through a public RPC server. If it becomes unstable, a warning appears at the top of the screen. You can switch the RPC in Settings or try again later."
+        }
+      },
+      "moreInfo": "More information on the Regeneration Credit website"
     }
   }
 }

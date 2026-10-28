@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { ActivityIndicator, TouchableOpacity, View } from "react-native";
 import { useTranslation } from "react-i18next";
 import Toast from "react-native-toast-message";
@@ -6,11 +7,13 @@ import Toast from "react-native-toast-message";
 import { Screen, Text, TextInput } from "@components";
 import { useSettingsContext } from "@hooks";
 import { DEFAULT_RPC } from "@services";
+import { AppStackParamsList } from "@routes";
 
 import { changeAppLanguage } from "../../lang/i18n";
 import { LanguageCode, SUPPORTED_LANGUAGES, resolveLanguage } from "../../lang/languages";
 
-export function SettingsScreen() {
+type ScreenProps = NativeStackScreenProps<AppStackParamsList, "SettingsScreen">;
+export function SettingsScreen({ navigation }: ScreenProps) {
   const { t, i18n } = useTranslation();
   const { rpc, isDefaultRpc, rpcHealth, changeRpc, resetRpc, recheckRpc } = useSettingsContext();
   const [customRpc, setCustomRpc] = useState("");
@@ -105,6 +108,17 @@ export function SettingsScreen() {
 
           <Text className="text-gray-500 text-xs">{t("settings.chainNote")}</Text>
         </View>
+
+        <TouchableOpacity
+          className="flex-row items-center justify-between p-4 rounded-2xl bg-card-primary"
+          onPress={() => navigation.navigate("HelpScreen")}
+        >
+          <View className="flex-1 gap-1">
+            <Text className="text-white font-bold text-lg">{t("help.title")}</Text>
+            <Text className="text-gray-300 text-sm">{t("help.settingsLink")}</Text>
+          </View>
+          <Text className="text-green-primary text-xl">›</Text>
+        </TouchableOpacity>
       </View>
     </Screen>
   );
