@@ -719,6 +719,17 @@
       "registered": "Registrado",
       "pending": "Esperando registro",
       "empty": "Aún no se enviaron invitaciones."
+    },
+    "regeneratorProfile": {
+      "journey": "Recorrido del regenerador",
+      "statusComplete": "Misión completada: 6 inspecciones realizadas",
+      "statusEarning": "Recibiendo Créditos de Regeneración",
+      "statusToPool_one": "Falta {{count}} inspección para empezar a recibir",
+      "statusToPool_other": "Faltan {{count}} inspecciones para empezar a recibir",
+      "pendingInspection": "Solicitud de inspección abierta",
+      "inspectionsDone": "{{done}} de {{total}} inspecciones",
+      "lastTrees": "Árboles (última)",
+      "technicalData": "Datos técnicos"
     }
   }
 }
