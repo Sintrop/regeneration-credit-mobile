@@ -6,6 +6,9 @@ export const SUPPORTED_LANGUAGES = [
 
 export type LanguageCode = typeof SUPPORTED_LANGUAGES[number]['code'];
 
+/** Language of a fresh install; most users are in Brazil. The choice in Settings is saved and wins after that. */
+export const DEFAULT_LANGUAGE: LanguageCode = 'pt';
+
 export const FALLBACK_LANGUAGE: LanguageCode = 'en';
 
 export function isSupportedLanguage(value?: string | null): value is LanguageCode {

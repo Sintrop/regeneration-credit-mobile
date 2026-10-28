@@ -166,8 +166,6 @@ export function Supporter({ address }: Props) {
           <Certificate address={address} type="supporter" />
         </View>
 
-        <CompensationsList compensations={compensations} isLoading={isLoadingCompensations} />
-
         {commitments.length > 0 && (
           <View className="gap-2 p-5 rounded-2xl bg-card-primary">
             <Text className="font-bold text-white text-xl">{t('profile.declaredReductionCommitments')}</Text>
@@ -185,6 +183,8 @@ export function Supporter({ address }: Props) {
           <DataItem title="ID" value={supporter.id} />
           <DataItem title={t("profile.registeredAt")} value={supporter.createdAt} />
         </View>
+
+        <CompensationsList compensations={compensations} isLoading={isLoadingCompensations} />
       </View>
     </View>
   )

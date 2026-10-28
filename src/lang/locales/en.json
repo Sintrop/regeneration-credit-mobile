@@ -5,7 +5,7 @@
       "userWithoutRegister": "User without register",
       "descriptionRegister": "To perform some actions in the system you need to register",
       "register": "Register",
-      "newPubli": "New publication",
+      "newPubli": "New offset",
       "loadingEraInfo": "Loading information...",
       "currentEraTicker": "Current era: {{era}}  •  Next era in {{duration}}",
       "feedUnavailable": "The feed couldn't be loaded right now.",
@@ -192,11 +192,13 @@
       "insufficientApprovedTokens": "Insufficient approved tokens",
       "labelInputDescription": "Message (Optional)",
       "madeOffset": "Made offset",
-      "newPubli": "You can post to your feed. To do this, we'll use the compensation system, where you choose an item from the impact calculator and offset it with a value in (RC). You can then add text describing your compensation.",
+      "newPubli": "Choose an item from the impact calculator and offset an amount in RC. The tokens are burned and the certificate records the offset. You can add a message, shown with the offset in the feed.",
       "selectAnItem": "Select an item",
       "touchHereToSelect": "Touch here to select",
       "itemImpact": "Impact: {{impact}} g CO2/{{unit}}",
-      "howManyUnitsToOffset": "How many {{unit}} do you want to offset?"
+      "howManyUnitsToOffset": "How many {{unit}} do you want to offset?",
+      "newOffset": "New offset",
+      "newOffsetHint": "Offset a calculator item and get the certificate"
     },
     "impactCalculator": {
       "title": "Impact calculator",
@@ -291,7 +293,8 @@
       "kind": {
         "burn": "Offset / burn",
         "poolWithdraw": "Withdrawal from the {{pool}} pool"
-      }
+      },
+      "transferDone": "Transfer completed"
     },
     "tx": {
       "title": "Transaction",
@@ -331,10 +334,12 @@
       "burnTokens": "Burn tokens",
       "howMuchDoYouWantToBurn": "How much do you want to burn?",
       "burnedTokens": "Burned tokens",
-      "compensate": "Compensate"
+      "compensate": "Compensate",
+      "inviteSupporterHint": "Earn a 5% commission on the offsets of the users you invite",
+      "inviteSupporterCommission": "You receive a 5% commission, in RC, on every offset made by the supporters you invite. The contract pays the commission directly to your wallet."
     },
     "actionsDescriptions": {
-      "inviteSupporter": "Supporters can invite Supporters to the system, respecting the specific supporter delay.",
+      "inviteSupporter": "Invite other supporters to the system. The invitation is recorded on the blockchain for the invited wallet address, and the interval between invitations set by the contract must be respected.",
       "inviteRegenerator": "Activists can invite Regenerators to the system, respecting the specific activist delay.",
       "inviteInspector": "Activists can invite Inspectors to the system, respecting the specific activist delay.",
       "inviteActivist": "Activists can invite Activists to the system, respecting the specific activist delay.",
@@ -532,7 +537,10 @@
       "error": "Error",
       "errorCreatingOffer": "Error creating offer",
       "errorCancelingOffer": "Error canceling offer",
-      "errorConfirmingSale": "Error confirming sale"
+      "errorConfirmingSale": "Error confirming sale",
+      "offerCreated": "Offer published",
+      "offerCancelled": "Offer cancelled",
+      "saleConfirmed": "Sale completed"
     },
     "duration": {
       "days_one": "~{{count}} day",
@@ -781,7 +789,12 @@
         "timeout": "The RPC did not answer in time.",
         "unreachable": "Could not connect to this RPC.",
         "wrongChain": "This RPC is not on the Sintrop network."
-      }
+      },
+      "wallet": "Wallet",
+      "connectedWallet": "Connected wallet",
+      "disconnect": "Disconnect wallet",
+      "disconnectTitle": "Disconnect wallet?",
+      "disconnectMessage": "The app stops using this wallet. You can connect the same or another wallet later with the Connect button."
     },
     "rpcStatus": {
       "title": "Network connection unstable",

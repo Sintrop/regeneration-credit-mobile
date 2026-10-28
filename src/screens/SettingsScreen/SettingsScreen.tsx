@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next";
 import Toast from "react-native-toast-message";
 
 import { Screen, Text, TextInput } from "@components";
-import { useSettingsContext } from "@hooks";
+import { useSettingsContext, useUserContext } from "@hooks";
 import { DEFAULT_RPC } from "@services";
 import { AppStackParamsList } from "@routes";
 
@@ -16,6 +16,7 @@ type ScreenProps = NativeStackScreenProps<AppStackParamsList, "SettingsScreen">;
 export function SettingsScreen({ navigation }: ScreenProps) {
   const { t, i18n } = useTranslation();
   const { rpc, isDefaultRpc, rpcHealth, changeRpc, resetRpc, recheckRpc } = useSettingsContext();
+  const { address, isConnected, handleDisconnect } = useUserContext();
   const [customRpc, setCustomRpc] = useState("");
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -108,6 +109,17 @@ export function SettingsScreen({ navigation }: ScreenProps) {
 
           <Text className="text-gray-500 text-xs">{t("settings.chainNote")}</Text>
         </View>
+
+        {isConnected && (
+          <View className="p-4 rounded-2xl bg-card-primary gap-2">
+            <Text className="text-white font-bold text-lg">{t("settings.wallet")}</Text>
+            <Text className="text-gray-400 text-xs">{t("settings.connectedWallet")}</Text>
+            <Text className="text-white text-sm" numberOfLines={1} ellipsizeMode="middle">{address}</Text>
+            <TouchableOpacity onPress={handleDisconnect} className="self-start mt-1" hitSlop={8}>
+              <Text className="text-red-300 text-sm font-semibold">{t("settings.disconnect")}</Text>
+            </TouchableOpacity>
+          </View>
+        )}
 
         <TouchableOpacity
           className="flex-row items-center justify-between p-4 rounded-2xl bg-card-primary"

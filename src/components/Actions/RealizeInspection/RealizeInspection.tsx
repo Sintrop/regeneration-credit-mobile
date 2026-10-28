@@ -1,4 +1,4 @@
-import { Children, cloneElement, isValidElement, ReactNode, useEffect, useRef, useState } from "react";
+import { Children, cloneElement, isValidElement, ReactNode, useRef, useState } from "react";
 import { ActivityIndicator, ScrollView, TouchableOpacity, View, Keyboard } from "react-native";
 import { useTranslation } from "react-i18next";
 import { Modalize } from "react-native-modalize";
@@ -34,23 +34,22 @@ export function RealizeInspection({ children }: Props) {
   const [reportUri, setReportUri] = useState<string | null>(null);
   const [proofPhotosUri, setProofPhotosUri] = useState<string | null>(null);
 
-  useEffect(() => {
-    registerContinueAction(() => {
-      //action success
-      Toast.show({
-        type: 'success',
-        text1: t('actions.realizedInspection')
-      });
-      setInspectionId('');
-      setTrees('');
-      setBiodiversity('');
-      setReportUri(null);
-      setProofPhotosUri(null);
-      closeModal();
-    })
-  }, []);
+  function onTxSuccess() {
+    //action success
+    Toast.show({
+      type: 'success',
+      text1: t('actions.realizedInspection')
+    });
+    setInspectionId('');
+    setTrees('');
+    setBiodiversity('');
+    setReportUri(null);
+    setProofPhotosUri(null);
+    closeModal();
+  }
 
   async function handleRealize() {
+    registerContinueAction(onTxSuccess);
     if (!reportUri || !proofPhotosUri) return;
     let reportHash = '';
     let proofPhotosHash = '';

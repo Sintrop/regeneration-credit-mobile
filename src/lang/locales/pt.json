@@ -5,7 +5,7 @@
       "userWithoutRegister": "Usuário sem registro",
       "descriptionRegister": "Para realizar algumas ações no sistema você precisa se registrar",
       "register": "Registrar",
-      "newPubli": "Nova publicação",
+      "newPubli": "Nova compensação",
       "loadingEraInfo": "Carregando informações...",
       "currentEraTicker": "Fase atual: {{era}}  •  Próxima fase em {{duration}}",
       "feedUnavailable": "Não foi possível carregar o feed agora.",
@@ -192,11 +192,13 @@
       "insufficientApprovedTokens": "Tokens aprovados insuficientes",
       "labelInputDescription": "Mensagem (Opcional)",
       "madeOffset": "Compensação realizada",
-      "newPubli": "Voce pode fazer uma publicação no feed. Para isso, vamos utilizar o sistema de compensação, onde você escolhe um item da calculadora de impacto e compensa um valor em (RC). Com isso você pode adicionar um texto como descrição da sua compensação",
+      "newPubli": "Escolha um item da calculadora de impacto e compense um valor em RC. Os tokens são queimados e o certificado registra a compensação. Você pode adicionar uma mensagem, que aparece junto da compensação no feed.",
       "selectAnItem": "Selecione um item",
       "touchHereToSelect": "Toque aqui para selecionar",
       "itemImpact": "Impacto: {{impact}} g CO2/{{unit}}",
-      "howManyUnitsToOffset": "Quantos {{unit}} deseja compensar?"
+      "howManyUnitsToOffset": "Quantos {{unit}} deseja compensar?",
+      "newOffset": "Nova compensação",
+      "newOffsetHint": "Compense um item da calculadora e receba o certificado"
     },
     "impactCalculator": {
       "title": "Calcul. de impacto",
@@ -291,7 +293,8 @@
       "kind": {
         "burn": "Compensação / queima",
         "poolWithdraw": "Saque do pool de {{pool}}"
-      }
+      },
+      "transferDone": "Transferência realizada"
     },
     "tx": {
       "title": "Transação",
@@ -331,10 +334,12 @@
       "burnTokens": "Queimar tokens",
       "howMuchDoYouWantToBurn": "Quantos tokens você quer queimar?",
       "burnedTokens": "Tokens queimados",
-      "compensate": "Compensar"
+      "compensate": "Compensar",
+      "inviteSupporterHint": "Ganhe 5% de comissão sobre as compensações dos seus convidados",
+      "inviteSupporterCommission": "Você recebe 5% de comissão, em RC, sobre cada compensação feita pelos apoiadores que você convidar. A comissão é paga pelo contrato direto na sua carteira."
     },
     "actionsDescriptions": {
-      "inviteSupporter": "Apoiadores podem convidar Apoiadores para o sistema, respeitando o atraso específico de apoiador.",
+      "inviteSupporter": "Convide outros apoiadores para o sistema. O convite fica registrado na blockchain para o endereço da carteira convidada, e é preciso respeitar o intervalo entre convites definido no contrato.",
       "inviteRegenerator": "Ativistas podem convidar Regeneradores para o sistema, respeitando o atraso específico de ativista.",
       "inviteInspector": "Ativistas podem convidar Inspetores para o sistema, respeitando o atraso específico de ativista.",
       "inviteActivist": "Ativistas podem convidar Ativistas para o sistema, respeitando o atraso específico de ativista.",
@@ -532,7 +537,10 @@
       "error": "Erro",
       "errorCreatingOffer": "Erro ao criar oferta",
       "errorCancelingOffer": "Erro ao cancelar oferta",
-      "errorConfirmingSale": "Erro ao concluir venda"
+      "errorConfirmingSale": "Erro ao concluir venda",
+      "offerCreated": "Oferta publicada",
+      "offerCancelled": "Oferta cancelada",
+      "saleConfirmed": "Venda concluída"
     },
     "duration": {
       "days_one": "~{{count}} dia",
@@ -781,7 +789,12 @@
         "timeout": "O RPC não respondeu a tempo.",
         "unreachable": "Não foi possível conectar a este RPC.",
         "wrongChain": "Este RPC não é da rede Sintrop."
-      }
+      },
+      "wallet": "Carteira",
+      "connectedWallet": "Carteira conectada",
+      "disconnect": "Desconectar carteira",
+      "disconnectTitle": "Desconectar carteira?",
+      "disconnectMessage": "O app deixa de usar esta carteira. Você pode conectar a mesma ou outra carteira depois pelo botão Conectar."
     },
     "rpcStatus": {
       "title": "Instabilidade na conexão com a rede",

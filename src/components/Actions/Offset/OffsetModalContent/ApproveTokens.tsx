@@ -25,15 +25,13 @@ export function ApproveTokens({ refetchApprovedTokens }: Props) {
   const [inputTokens, setInputTokens] = useState('');
   const [insufficientBalance, setInsufficientBalance] = useState(false);
 
-  useEffect(() => {
-    registerContinueAction(() => {
-      Toast.show({
-        type: 'success',
-        text1: t('offset.approvedTokens')
-      });
-      refetchApprovedTokens();
-    })
-  }, []);
+  function onTxSuccess() {
+    Toast.show({
+      type: 'success',
+      text1: t('offset.approvedTokens')
+    });
+    refetchApprovedTokens();
+  }
 
   useEffect(() => {
     if (inputTokens.trim()) {
@@ -51,6 +49,7 @@ export function ApproveTokens({ refetchApprovedTokens }: Props) {
   const isValidAmount = valueInWei !== null && BigInt(valueInWei) > 0n;
 
   async function handleApprove() {
+    registerContinueAction(onTxSuccess);
     if (!valueInWei || !isValidAmount) return;
     sendTransaction({
       interactWithContract: true,

@@ -8,9 +8,10 @@ import { ApproveTokens } from "./ApproveTokens";
 import { OffsetTokens } from "./OffsetTokens";
 
 interface Props {
-  item: CalculatorItemProps
+  item: CalculatorItemProps;
+  onDone?: () => void;
 }
-export function OffsetModalContent({ item }: Props) {
+export function OffsetModalContent({ item, onDone }: Props) {
   const { address } = useUserContext();
   const { t } = useTranslation();
   const { bottom } = useAppSafeArea();
@@ -43,6 +44,7 @@ export function OffsetModalContent({ item }: Props) {
               refetchApprovedTokens={refetchApprovedTokens}
               approvedTokens={approvedTokens}
               item={item}
+              onDone={onDone}
             />
           )}
         </>

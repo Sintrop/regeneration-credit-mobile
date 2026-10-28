@@ -22,8 +22,9 @@ interface Props {
   refetchApprovedTokens: () => void;
   approvedTokens: number;
   item: CalculatorItemProps;
+  onDone?: () => void;
 }
-export function OffsetTokens({ refetchApprovedTokens, approvedTokens, item }: Props) {
+export function OffsetTokens({ refetchApprovedTokens, approvedTokens, item, onDone }: Props) {
   const { t } = useTranslation();
   const { address } = useUserContext();
   const { balance, isLoading } = useBalance({ address });
@@ -53,15 +54,14 @@ export function OffsetTokens({ refetchApprovedTokens, approvedTokens, item }: Pr
     if (needed > 0) setInputTokens(requiredAmountToInput(needed));
   }
 
-  useEffect(() => {
-    registerContinueAction(() => {
-      Toast.show({
-        type: 'success',
-        text1: t('offset.madeOffset')
-      });
-      refetchApprovedTokens();
-    })
-  }, []);
+  function onTxSuccess() {
+    Toast.show({
+      type: 'success',
+      text1: t('offset.madeOffset')
+    });
+    refetchApprovedTokens();
+    onDone?.();
+  }
 
   useEffect(() => {
     if (inputTokens.trim()) {
@@ -80,6 +80,7 @@ export function OffsetTokens({ refetchApprovedTokens, approvedTokens, item }: Pr
 
   async function handleOffset() {
     if (!valueInWei || !isValidAmount) return;
+    registerContinueAction(onTxSuccess);
     const commissionPercentage = 5;
     const minAmountToBurn = applyPercentageDiscount(valueInWei, commissionPercentage);
 

@@ -16,6 +16,7 @@ export interface UserContextProps {
   userType: number;
   balanceSIN: number;
   handleConnect: () => void;
+  handleDisconnect: () => void;
   switchToSintropChain: () => void;
   refetchUser: () => void;
 }
@@ -67,6 +68,21 @@ export function UserProvider({ children }: UserProviderProps) {
     }
   }
 
+  function handleDisconnect() {
+    Alert.alert(
+      t('settings.disconnectTitle'),
+      t('settings.disconnectMessage'),
+      [
+        { text: t('common.cancel'), style: "cancel" },
+        {
+          text: t('settings.disconnect'),
+          style: "destructive",
+          onPress: () => { sdk?.terminate().catch(() => {}); },
+        },
+      ]
+    );
+  }
+
   async function switchToSintropChain() {
     if (!ethereum) return;
     await switchToSintrop(ethereum);
@@ -85,6 +101,7 @@ export function UserProvider({ children }: UserProviderProps) {
         connecting,
         userType,
         handleConnect, 
+        handleDisconnect,
         switchToSintropChain,
         refetchUser,
         balanceSIN

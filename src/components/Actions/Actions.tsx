@@ -67,15 +67,17 @@ export function Actions({ renderTrigger }: Props) {
 
 interface ActionItemProps {
   label: string;
+  hint?: string;
   onPress?: () => void;
 }
-export function ActionItem({ label, onPress }: ActionItemProps) {
+export function ActionItem({ label, hint, onPress }: ActionItemProps) {
   return (
     <TouchableOpacity
-      className="w-full h-12 flex-row items-center px-2 border-b border-card-secondary"
+      className={`w-full justify-center px-2 border-b border-card-secondary ${hint ? "min-h-14 py-2" : "h-12"}`}
       onPress={onPress}
     >
       <Text className="text-white">{label}</Text>
+      {!!hint && <Text className="text-gray-400 text-xs mt-0.5">{hint}</Text>}
     </TouchableOpacity>
   )
 }

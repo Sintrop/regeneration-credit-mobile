@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { TouchableOpacity, View } from "react-native";
 import { useTranslation } from "react-i18next";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
@@ -8,7 +7,7 @@ import Config from 'react-native-config';
 import { Icon, InspectionStatus, Text, AcceptInspection, StatBox } from "@components";
 import { InspectionProps, useBlockNumber, useGetInspection } from "@domain";
 import { AppStackParamsList } from "@routes";
-import { useBlocksDuration, useTxContext, useUserContext } from "@hooks";
+import { useBlocksDuration, useUserContext } from "@hooks";
 
 import { Regenerator } from "./Regenerator";
 import { Inspector } from "./Inspector";
@@ -20,9 +19,8 @@ interface Props {
 }
 export function InspectionItem({ inspectionId }: Props) {
   const { userType } = useUserContext();
-  const { registerContinueAction } = useTxContext();
   const { t } = useTranslation();
-  const { inspection, isLoading, refetch } = useGetInspection({ inspectionId });
+  const { inspection, isLoading } = useGetInspection({ inspectionId });
   const { blockNumber } = useBlockNumber();
   const formatBlocks = useBlocksDuration();
 
@@ -35,12 +33,6 @@ export function InspectionItem({ inspectionId }: Props) {
   const canAcceptIn = canAcceptBlock - blockNumber;
   const expireBlock = acceptedAt + blocksToExpire
   const expireIn = expireBlock - blockNumber ;
-
-  useEffect(() => {
-    registerContinueAction(() => {
-      refetch();
-    })
-  }, []);
 
   if (!inspection || isLoading) {
     return (

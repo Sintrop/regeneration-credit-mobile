@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
 import { ActivityIndicator, Alert, Keyboard, KeyboardAvoidingView, Modal, Platform, ScrollView, TouchableOpacity, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
+import Toast from "react-native-toast-message";
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { utils } from 'web3';
@@ -78,8 +79,12 @@ export function MarketScreen() {
 
   useEffect(() => {
     loadOffers();
-    registerContinueAction(() => loadOffers());
   }, []);
+
+  function onMarketTx(message: string) {
+    Toast.show({ type: 'success', text1: t(message) });
+    loadOffers();
+  }
 
   function handleGoToUser(seller: string) {
     navigation.navigate('UserDetailsScreen', { address: seller });
@@ -95,7 +100,7 @@ export function MarketScreen() {
       t('market.cancelOfferMessage'),
       [
         { text: t('common.no'), style: 'cancel' },
-        { text: t('common.yes'), onPress: () => cancelOffer({ offerId }) },
+        { text: t('common.yes'), onPress: () => { registerContinueAction(() => onMarketTx('market.offerCancelled')); cancelOffer({ offerId }); } },
       ]
     );
   }
@@ -112,6 +117,7 @@ export function MarketScreen() {
       Alert.alert(t('market.error'), t('common.invalidAddress'));
       return;
     }
+    registerContinueAction(() => onMarketTx('market.saleConfirmed'));
     confirmSale({ offerId: confirmingOfferId, buyer });
     setConfirmingOfferId(null);
   }
@@ -143,6 +149,7 @@ export function MarketScreen() {
       return;
     }
 
+    registerContinueAction(() => onMarketTx('market.offerCreated'));
     createOffer({
       amountRC: sanitizedAmount,
       unitPrice: newOffer.price.trim(),

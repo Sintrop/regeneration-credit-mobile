@@ -1,6 +1,7 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Modal, View, TouchableOpacity, TextInput as RNTextInput, Keyboard } from "react-native";
 import { useTranslation } from "react-i18next";
+import Toast from "react-native-toast-message";
 import { utils } from "web3";
 
 import { Text as TextComponent, Icon } from "@components";
@@ -27,14 +28,13 @@ export function TransferModal({ visible, onClose }: Props) {
   const [amount, setAmount] = useState('');
   const [isAddressValid, setIsAddressValid] = useState(true);
 
-  useEffect(() => {
-    registerContinueAction(() => {
-      onClose();
-      refetchBalance();
-      setToAddress('');
-      setAmount('');
-    });
-  }, []);
+  function onTxSuccess() {
+    Toast.show({ type: 'success', text1: t('myTokens.transferDone') });
+    onClose();
+    refetchBalance();
+    setToAddress('');
+    setAmount('');
+  }
 
   function validateAddress(address: string): boolean {
     return utils.isAddress(address);
@@ -79,6 +79,7 @@ export function TransferModal({ visible, onClose }: Props) {
   }
 
   function handleTransferSIN() {
+    registerContinueAction(onTxSuccess);
     sendTransaction({
       interactWithContract: false,
       params: [{
@@ -89,6 +90,7 @@ export function TransferModal({ visible, onClose }: Props) {
   }
 
   function handleTransferRC() {
+    registerContinueAction(onTxSuccess);
     sendTransaction({
       interactWithContract: true,
       contractAbi: RegenerationCredit.abi,

@@ -11,10 +11,8 @@ import { ethers } from "ethers";
 import { Icon, Text } from "@components";
 import { useSettingsContext } from "@hooks";
 import { ensureSintropChain } from "@services";
-import { QueryKeys } from "@types";
 
 /** Data that every confirmed transaction may change. */
-const KEYS_TO_REFRESH = [QueryKeys.NativeBalance, QueryKeys.GetBalance, QueryKeys.Transfers, QueryKeys.UserTimers];
 import Toast from "react-native-toast-message";
 
 interface SendTransactionProps {
@@ -143,7 +141,8 @@ export function TxProvider({ children }: TxProviderProps) {
     const response = await getReceiptTx(txHash);
     if (response.hasReceipt) {
       if (response.successTx) {
-        KEYS_TO_REFRESH.forEach(key => queryClient.invalidateQueries({ queryKey: [key] }));
+        // Balances, timers and every on-screen read may have changed with this transaction.
+        queryClient.invalidateQueries();
         setIsSuccess(true);
         setIsError(false);
         setIsLoading(false);
@@ -224,6 +223,7 @@ export function TxProvider({ children }: TxProviderProps) {
     if (onContinueSuccessAction && isSuccess) {
       onContinueSuccessAction();
     }
+    setOnContinueSuccessAction(null);
     setShowModalTx(false);
     setIsError(false);
     setIsSuccess(false);

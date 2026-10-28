@@ -1,4 +1,4 @@
-import { Children, cloneElement, isValidElement, ReactNode, useEffect, useRef, useState } from "react";
+import { Children, cloneElement, isValidElement, ReactNode, useRef, useState } from "react";
 import { TouchableOpacity, View } from "react-native";
 import { Modalize } from "react-native-modalize";
 import { Portal } from "react-native-portalize";
@@ -32,19 +32,18 @@ export function InviteActivist({ children }: Props) {
 
   const { invite } = useInvite();
 
-  useEffect(() => {
-    registerContinueAction(() => {
-      //action success
-      Toast.show({
-        type: 'success',
-        text1: t('actions.inviteSent')
-      });
-      setWalletToInvite('');
-      closeModal();
-    })
-  }, []);
+  function onTxSuccess() {
+    //action success
+    Toast.show({
+      type: 'success',
+      text1: t('actions.inviteSent')
+    });
+    setWalletToInvite('');
+    closeModal();
+  }
 
   function handleInvite() {
+    registerContinueAction(onTxSuccess);
     invite({
       address: walletToInvite,
       userType: 6

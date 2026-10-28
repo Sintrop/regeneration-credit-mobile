@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { ActivityIndicator, Image, Keyboard, TouchableOpacity, View } from "react-native";
 import { useTranslation } from "react-i18next";
 
-import { useAppSafeArea, useKeyboardStatus, useUserContext } from "@hooks";
+import { useAppSafeArea, useKeyboardStatus, useTxContext, useUserContext } from "@hooks";
 import { Text, TextInput } from "@components";
 import { useBalance, useBurn } from "@domain";
 import { amountToWei, parseAmountInput } from "@utils";
@@ -10,8 +10,9 @@ import { amountToWei, parseAmountInput } from "@utils";
 //@ts-ignore
 import RCIcon from "../../../../assets/images/rc.png";
 
-export function BurnTokensModalContent() {
+export function BurnTokensModalContent({ onDone }: { onDone?: () => void }) {
   const { address } = useUserContext();
+  const { registerContinueAction } = useTxContext();
   const { t } = useTranslation();
   const { bottom } = useAppSafeArea();
   const { keyboardHeight, keyboardOpen } = useKeyboardStatus();
@@ -41,6 +42,10 @@ export function BurnTokensModalContent() {
 
   async function handleBurn() {
     if (!valueInWei || !isValidAmount) return;
+    registerContinueAction(() => {
+      setInputTokens('');
+      onDone?.();
+    });
     burnTokens({ value: valueInWei });
   }
 

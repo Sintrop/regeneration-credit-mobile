@@ -1,113 +1,65 @@
-import { Children, cloneElement, isValidElement, ReactNode, useEffect, useRef, useState } from "react";
-import { TouchableOpacity, View } from "react-native";
-import { Modalize } from "react-native-modalize";
-import { Portal } from "react-native-portalize";
-
-import { useAppSafeArea, useKeyboardStatus, useTxContext } from "@hooks";
-import { Text, TextInput } from "@components";
+import { ReactNode, useState } from "react";
+import { View } from "react-native";
 import { useTranslation } from "react-i18next";
 import { utils } from "web3";
 import Toast from "react-native-toast-message";
+
+import { Text, TextInput } from "@components";
 import { useInvite } from "@domain";
+import { useTxContext } from "@hooks";
 
-interface ModalControls {
-  openModal: () => void;
-  closeModal: () => void;
-}
+import { ActionSheet } from "../Publisher/ActionSheet";
+import { SubmitButton } from "../Publisher/SubmitButton";
 
-interface Props {
-  children: ReactNode;
-}
-
-export function InviteSupporter({ children }: Props) {
+/** SupporterRules.offset pays INVITER_PERCENTAGE (5%) of each offset made by an invited supporter to the inviter. */
+function InviteSupporterForm({ onDone }: { onDone: () => void }) {
   const { t } = useTranslation();
-  const { bottom } = useAppSafeArea();
-  const { keyboardHeight, keyboardOpen } = useKeyboardStatus();
-  const paddingBottom = keyboardOpen ? keyboardHeight + 100 : bottom + 20;
   const { registerContinueAction } = useTxContext();
-  const modal = useRef<Modalize>(null);
-
-  const [walletToInvite, setWalletToInvite] = useState<string>('');
-  const isAddress = utils.isAddress(walletToInvite);
-
   const { invite } = useInvite();
-
-  useEffect(() => {
-    registerContinueAction(() => {
-      //action success
-      Toast.show({
-        type: 'success',
-        text1: t('actions.inviteSent')
-      });
-      setWalletToInvite('');
-      closeModal();
-    })
-  }, []);
+  const [wallet, setWallet] = useState("");
+  const isAddress = utils.isAddress(wallet.trim());
 
   function handleInvite() {
-    invite({
-      address: walletToInvite,
-      userType: 7
-    })
+    if (!isAddress) return;
+    registerContinueAction(() => {
+      Toast.show({ type: "success", text1: t("actions.inviteSent") });
+      setWallet("");
+      onDone();
+    });
+    invite({ address: wallet.trim(), userType: 7 });
   }
-
-  function openModal() {
-    modal.current?.open();
-  }
-
-  function closeModal() {
-    modal.current?.close();
-  }
-
-  const enhancedChildren = Children.map(children, child => {
-    if (isValidElement<ModalControls>(child)) {
-      return cloneElement(child, { openModal, closeModal });
-    }
-    return child;
-  });
 
   return (
-    <View>
-      {enhancedChildren}
-
-      <Portal>
-        <Modalize
-          ref={modal}
-          adjustToContentHeight
-          modalStyle={{ backgroundColor: 'transparent' }}
-        >
-          <View 
-            className="rounded-t-2xl p-5 bg-card-primary"
-            style={{ paddingBottom }}
-          >
-            <Text className="text-white text-center">{t('actions.inviteSupporter')}</Text>
-
-            <View className="mt-5 gap-5">
-              <Text className="text-white">{t('actionsDescriptions.inviteSupporter')}</Text>
-
-              <View className="gap-1">
-                <TextInput
-                  label={t('actions.walletWantToInvite')}
-                  value={walletToInvite}
-                  onChangeText={setWalletToInvite}
-                />
-
-                {walletToInvite.trim() && !isAddress && (
-                  <Text className="text-red-500">{t('common.invalidAddress')}</Text>
-                )}
-              </View>
-
-              <TouchableOpacity
-                className="w-full h-12 rounded-2xl flex-row items-center justify-center bg-green-primary disabled:opacity-50"
-                onPress={handleInvite}
-                disabled={!walletToInvite.trim() || !isAddress}
-              >
-                <Text className="text-white font-semibold">{t('actions.invite')}</Text>
-              </TouchableOpacity>
-            </View>
-          </View>
-        </Modalize>
-      </Portal>
+    <View className="gap-4">
+      <View className="p-3 rounded-xl bg-green-primary/10 border border-green-primary/40">
+        <Text className="text-white text-sm">{t("actions.inviteSupporterCommission")}</Text>
+      </View>
+      <View className="gap-1">
+        <TextInput
+          label={t("actions.walletWantToInvite")}
+          placeholder="0x..."
+          value={wallet}
+          onChangeText={setWallet}
+          autoCapitalize="none"
+          autoCorrect={false}
+        />
+        {!!wallet && !isAddress && <Text className="text-red-400 text-xs">{t("common.invalidAddress")}</Text>}
+      </View>
+      <SubmitButton label={t("actions.invite")} onPress={handleInvite} disabled={!isAddress} />
     </View>
+  );
+}
+
+export function InviteSupporter({ children }: { children: ReactNode }) {
+  const { t } = useTranslation();
+
+  return (
+    <ActionSheet
+      title={t("actions.inviteSupporter")}
+      description={t("actionsDescriptions.inviteSupporter")}
+      content={({ close }) => <InviteSupporterForm onDone={close} />}
+    >
+      {children}
+    </ActionSheet>
   );
 }
