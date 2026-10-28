@@ -2,6 +2,7 @@ import {
   SINTROP_CHAIN_PARAMS,
   ensureSintropChain,
   isSintropChain,
+  sendTransactionOnSintrop,
   switchToSintrop,
 } from '../src/services/sintropChain';
 
@@ -79,5 +80,61 @@ describe('ensureSintropChain', () => {
       wallet_switchEthereumChain: () => { throw rpcError(4001); },
     });
     await expect(ensureSintropChain(wallet)).resolves.toBe(false);
+  });
+});
+
+describe('sendTransactionOnSintrop', () => {
+  const tx = { from: '0xabc', to: '0xdef', data: '0x' };
+
+  it('sends directly when the wallet is already on Sintrop', async () => {
+    const wallet = createWallet({
+      eth_chainId: () => '0x3d171',
+      eth_sendTransaction: () => '0xhash',
+    });
+    await expect(sendTransactionOnSintrop(wallet, tx)).resolves.toBe('0xhash');
+    expect(wallet.request).toHaveBeenCalledTimes(2);
+  });
+
+  it('switches network and sends in one batch when on another network', async () => {
+    const wallet = createWallet({
+      eth_chainId: () => '0x1',
+      metamask_batch: params => {
+        const [network, send] = params as { method: string }[];
+        expect(network.method).toBe('wallet_switchEthereumChain');
+        expect(send.method).toBe('eth_sendTransaction');
+        return [null, '0xhash'];
+      },
+    });
+    await expect(sendTransactionOnSintrop(wallet, tx)).resolves.toBe('0xhash');
+  });
+
+  it('adds the network in the batch when the wallet does not know it', async () => {
+    const wallet = createWallet({
+      eth_chainId: () => '0x1',
+      metamask_batch: params => {
+        const [network] = params as { method: string }[];
+        if (network.method === 'wallet_switchEthereumChain') throw rpcError(4902);
+        return [null, '0xhash'];
+      },
+    });
+    await expect(sendTransactionOnSintrop(wallet, tx)).resolves.toBe('0xhash');
+  });
+
+  it('falls back to switch then send when the wallet has no batch support', async () => {
+    const wallet = createWallet({
+      eth_chainId: () => '0x1',
+      metamask_batch: () => { throw rpcError(-32601); },
+      wallet_switchEthereumChain: () => null,
+      eth_sendTransaction: () => '0xhash',
+    });
+    await expect(sendTransactionOnSintrop(wallet, tx)).resolves.toBe('0xhash');
+  });
+
+  it('propagates a user rejection without retrying', async () => {
+    const wallet = createWallet({
+      eth_chainId: () => '0x1',
+      metamask_batch: () => { throw rpcError(4001); },
+    });
+    await expect(sendTransactionOnSintrop(wallet, tx)).rejects.toMatchObject({ code: 4001 });
   });
 });

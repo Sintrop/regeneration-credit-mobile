@@ -8,7 +8,8 @@ export type TimerKey =
   | "vote"
   | "invite"
   | "inviteRegeneratorInspector"
-  | "withdraw";
+  | "withdraw"
+  | "offset";
 
 export type TimerStatus = "available" | "waiting" | "blocked" | "done" | "inProgress";
 
@@ -112,6 +113,9 @@ const PUBLISH_KEY: Record<number, TimerKey> = { 3: "publishResearch", 4: "publis
 export function buildUserTimers(input: TimerInputs): UserTimer[] {
   const { userType, currentBlock } = input;
   const timers: UserTimer[] = [];
+
+  // SupporterRules.offset has no time gate (only the 1 RC minimum), so it is always open.
+  if (userType === 7) timers.push({ key: "offset", status: "available" });
 
   if (userType === 1 && input.regenerator) {
     const r = input.regenerator;

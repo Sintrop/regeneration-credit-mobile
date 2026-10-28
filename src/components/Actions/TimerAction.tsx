@@ -10,6 +10,7 @@ import { AppStackParamsList } from "@routes";
 import { RequestInspection } from "./RequestInspection/RequestInspection";
 import { InviteActivist } from "./Invite/InviteActivist";
 import { InviteRegenerator } from "./Invite/InviteRegenerator";
+import { Offset } from "./Offset/Offset";
 import { InviteSupporter } from "./Invite/InviteSupporter";
 import { ActionSheet } from "./Publisher/ActionSheet";
 import { PublishResourceForm } from "./Publisher/PublishResourceForm";
@@ -63,6 +64,8 @@ export function TimerAction({ timer, children }: Props) {
       if (userType === 6) return <InviteActivist>{children}</InviteActivist>;
       if (userType === 7) return <InviteSupporter>{children}</InviteSupporter>;
       return children;
+    case "offset":
+      return <Offset>{children}</Offset>;
     case "inviteRegeneratorInspector":
       return <InviteRegenerator>{children}</InviteRegenerator>;
     case "requestInspection":

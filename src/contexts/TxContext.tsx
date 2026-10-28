@@ -10,7 +10,7 @@ import { ethers } from "ethers";
 
 import { Icon, Text } from "@components";
 import { useSettingsContext } from "@hooks";
-import { ensureSintropChain } from "@services";
+import { isUserRejection, sendTransactionOnSintrop } from "@services";
 
 /** Data that every confirmed transaction may change. */
 import Toast from "react-native-toast-message";
@@ -95,12 +95,6 @@ export function TxProvider({ children }: TxProviderProps) {
     setErrorMessage('');
 
     try {
-      const onSintrop = await ensureSintropChain(ethereum);
-      if (!onSintrop) {
-        setErrorMessage(t('tx.wrongChain'));
-        throw new Error('Wallet is not connected to the Sintrop network');
-      }
-
       let txParams: Record<string, string>;
 
       if (txData.interactWithContract) {
@@ -124,11 +118,14 @@ export function TxProvider({ children }: TxProviderProps) {
         };
       }
 
-      const response = await ethereum.request({
-        method: 'eth_sendTransaction',
-        params: [txParams],
-      });
-      setHash(response as string);
+      try {
+        setHash(await sendTransactionOnSintrop(ethereum, txParams));
+      } catch (error) {
+        if (!isUserRejection(error) && (error as Error)?.message?.includes('Sintrop network')) {
+          setErrorMessage(t('tx.wrongChain'));
+        }
+        throw error;
+      }
     } catch (e) {
       console.log(e);
       setIsLoading(false);

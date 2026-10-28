@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 
 import { Actions, Text, TimerAction } from "@components";
 import { UserTimer, useUserTimers } from "@domain";
-import { useBlocksDuration } from "@hooks";
+import { useBlocksDuration, useUserContext } from "@hooks";
 
 const STATUS_COLOR: Record<UserTimer["status"], string> = {
   available: "bg-green-primary",
@@ -42,7 +42,10 @@ function useTimerDescription() {
 export function UserTimersCard() {
   const { t } = useTranslation();
   const { timers, isLoading } = useUserTimers();
+  const { userType } = useUserContext();
   const describe = useTimerDescription();
+  const labelFor = (timer: UserTimer) =>
+    timer.key === "invite" && userType === 7 ? t("timers.actions.inviteSupporter") : t(`timers.actions.${timer.key}`);
 
   if (!isLoading && timers.length === 0) return null;
 
@@ -63,7 +66,7 @@ export function UserTimersCard() {
       ) : (
         timers.map(timer => (
           <TimerAction key={timer.key} timer={timer}>
-            <TimerRow timer={timer} description={describe(timer)} label={t(`timers.actions.${timer.key}`)} />
+            <TimerRow timer={timer} description={describe(timer)} label={labelFor(timer)} />
           </TimerAction>
         ))
       )}

@@ -631,7 +631,9 @@
         "vote": "Votar para invalidar",
         "invite": "Convidar",
         "inviteRegeneratorInspector": "Convidar regenerador ou inspetor",
-        "withdraw": "Sacar tokens"
+        "withdraw": "Sacar tokens",
+        "offset": "Nova compensação",
+        "inviteSupporter": "Convidar apoiador · 5% de comissão"
       },
       "tickerAvailable_one": "Você tem {{count}} ação disponível",
       "tickerAvailable_other": "Você tem {{count}} ações disponíveis",
@@ -815,9 +817,13 @@
           "title": "Instale o MetaMask",
           "text": "O app usa a carteira MetaMask para assinar as transações. Instale o app do MetaMask e crie a sua carteira. Guarde a frase de recuperação em um lugar seguro e nunca a compartilhe."
         },
+        "network": {
+          "title": "Adicione a rede Sintrop",
+          "text": "O Crédito de Regeneração roda na rede Sintrop. Toque no botão abaixo e aprove no MetaMask: a rede é adicionada e selecionada, e se a carteira ainda não estiver conectada, a conexão acontece na mesma etapa. Se preferir, adicione a rede à mão com os dados mais abaixo."
+        },
         "connect": {
           "title": "Conecte a carteira",
-          "text": "Toque em Conectar no topo da tela inicial. O app pede para o MetaMask adicionar e selecionar a rede Sintrop, é só aprovar. Se preferir, adicione a rede à mão com os dados abaixo."
+          "text": "Toque em Conectar no topo da tela inicial e aprove no MetaMask. Depois de aprovar, volte para o app."
         },
         "gas": {
           "title": "Compre ou receba um pouco de SIN",
@@ -909,7 +915,8 @@
       },
       "moreInfo": "Mais informações no site do Crédito de Regeneração",
       "openProfile": "Abrir meu perfil",
-      "openMarket": "Abrir Mercado"
+      "openMarket": "Abrir Mercado",
+      "connected": "Carteira conectada ✓"
     }
   }
 }

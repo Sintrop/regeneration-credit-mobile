@@ -64,3 +64,55 @@ export async function ensureSintropChain(ethereum: EthereumRequester): Promise<b
   // wallet's answer to the switch request is the reliable signal here.
   return switchToSintrop(ethereum);
 }
+
+const METHOD_NOT_FOUND_ERRORS = [-32601, 4200];
+const USER_REJECTED_ERROR = 4001;
+
+export function isUserRejection(error: unknown): boolean {
+  return errorCode(error) === USER_REJECTED_ERROR;
+}
+
+/**
+ * Sends a transaction on Sintrop with a single trip to the wallet.
+ * When the wallet is on another network, the network switch (or add) and the
+ * transaction go together in one metamask_batch request instead of two prompts.
+ * Wallets without metamask_batch fall back to switching first, then sending.
+ * Resolves with the transaction hash.
+ */
+export async function sendTransactionOnSintrop(
+  ethereum: EthereumRequester,
+  txParams: Record<string, string>,
+): Promise<string> {
+  const send = { method: 'eth_sendTransaction', params: [txParams] };
+
+  let chainId: unknown;
+  try {
+    chainId = await ethereum.request({ method: 'eth_chainId' });
+  } catch {
+    chainId = undefined;
+  }
+  if (isSintropChain(chainId as string)) {
+    return await ethereum.request(send) as string;
+  }
+
+  const batch = (networkRequest: { method: string; params: unknown[] }) =>
+    ethereum.request({ method: 'metamask_batch', params: [networkRequest, send] }) as Promise<unknown[]>;
+
+  try {
+    let results: unknown[];
+    try {
+      results = await batch({ method: 'wallet_switchEthereumChain', params: [{ chainId: SINTROP_CHAIN_ID }] });
+    } catch (error) {
+      if (errorCode(error) !== UNRECOGNIZED_CHAIN_ERROR) throw error;
+      results = await batch({ method: 'wallet_addEthereumChain', params: [SINTROP_CHAIN_PARAMS] });
+    }
+    return results[results.length - 1] as string;
+  } catch (error) {
+    if (!METHOD_NOT_FOUND_ERRORS.includes(errorCode(error) ?? 0)) throw error;
+  }
+
+  if (!(await switchToSintrop(ethereum))) {
+    throw new Error('Wallet is not connected to the Sintrop network');
+  }
+  return await ethereum.request(send) as string;
+}

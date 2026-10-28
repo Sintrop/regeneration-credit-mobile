@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 import { Linking, Alert } from "react-native";
 import { useSDK } from "@metamask/sdk-react";
 import { useGetUser, useNativeBalance } from "@domain";
-import { switchToSintrop } from "@services";
+import { SINTROP_CHAIN_PARAMS, isUserRejection, switchToSintrop } from "@services";
 
 export interface UserProviderProps {
   children: ReactNode;
@@ -17,6 +17,7 @@ export interface UserContextProps {
   balanceSIN: number;
   handleConnect: () => void;
   handleDisconnect: () => void;
+  addSintropNetwork: () => void;
   switchToSintropChain: () => void;
   refetchUser: () => void;
 }
@@ -50,22 +51,38 @@ export function UserProvider({ children }: UserProviderProps) {
   }
 
   async function handleConnect() {
-    try {
-      if (!sdk) {
-        showWalletNotFound();
-        return;
-      }
+    if (!sdk) {
+      showWalletNotFound();
+      return;
+    }
 
+    // Connects and adds/selects the Sintrop network in a single trip to the wallet.
+    try {
+      await sdk.connectWith({ method: 'wallet_addEthereumChain', params: [SINTROP_CHAIN_PARAMS] });
+      return;
+    } catch (e: any) {
+      if (isUserRejection(e) || e?.message?.includes('user rejected')) return;
+    }
+
+    // Wallets without connectWith support: connect, then switch network.
+    try {
       const accounts = await sdk.connect();
       if (accounts && (accounts as string[])[0]) {
         switchToSintropChain();
       }
     } catch (e: any) {
-      if (e?.message?.includes('user rejected') || e?.code === 4001) {
-        return;
-      }
+      if (isUserRejection(e) || e?.message?.includes('user rejected')) return;
       showWalletNotFound();
     }
+  }
+
+  /** Adds and selects Sintrop in the wallet, connecting first in the same trip when needed. */
+  async function addSintropNetwork() {
+    if (connected) {
+      await switchToSintropChain();
+      return;
+    }
+    await handleConnect();
   }
 
   function handleDisconnect() {
@@ -102,6 +119,7 @@ export function UserProvider({ children }: UserProviderProps) {
         userType,
         handleConnect, 
         handleDisconnect,
+        addSintropNetwork,
         switchToSintropChain,
         refetchUser,
         balanceSIN

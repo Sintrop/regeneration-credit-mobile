@@ -631,7 +631,9 @@
         "vote": "Vote to invalidate",
         "invite": "Invite",
         "inviteRegeneratorInspector": "Invite regenerator or inspector",
-        "withdraw": "Withdraw tokens"
+        "withdraw": "Withdraw tokens",
+        "offset": "New offset",
+        "inviteSupporter": "Invite supporter · 5% commission"
       },
       "tickerAvailable_one": "You have {{count}} action available",
       "tickerAvailable_other": "You have {{count}} actions available",
@@ -815,9 +817,13 @@
           "title": "Install MetaMask",
           "text": "The app uses the MetaMask wallet to sign transactions. Install the MetaMask app and create your wallet. Keep the recovery phrase in a safe place and never share it."
         },
+        "network": {
+          "title": "Add the Sintrop network",
+          "text": "Regeneration Credit runs on the Sintrop network. Tap the button below and approve in MetaMask: the network is added and selected, and if your wallet is not connected yet, it connects in the same step. If you prefer, add the network by hand with the data further below."
+        },
         "connect": {
           "title": "Connect your wallet",
-          "text": "Tap Connect at the top of the home screen. The app asks MetaMask to add and select the Sintrop network, just approve it. If you prefer, add the network by hand with the data below."
+          "text": "Tap Connect at the top of the home screen and approve in MetaMask. After approving, come back to the app."
         },
         "gas": {
           "title": "Buy or receive some SIN",
@@ -909,7 +915,8 @@
       },
       "moreInfo": "More information on the Regeneration Credit website",
       "openProfile": "Open my profile",
-      "openMarket": "Open Market"
+      "openMarket": "Open Market",
+      "connected": "Wallet connected ✓"
     }
   }
 }

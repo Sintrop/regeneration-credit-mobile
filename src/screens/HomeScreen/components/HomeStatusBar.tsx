@@ -55,7 +55,8 @@ export function HomeStatusBar() {
   const { data, isLoading, isError } = useCurrentEra();
   const formatBlocks = useBlocksDuration();
   const { timers } = useUserTimers();
-  const availableCount = timers.filter(timer => timer.status === 'available').length;
+  // Offsetting is always open, so it would keep the ticker permanently on.
+  const availableCount = timers.filter(timer => timer.status === 'available' && timer.key !== 'offset').length;
 
   const { currentEra = 0, nextEraIn = 0 } = data || {};
 

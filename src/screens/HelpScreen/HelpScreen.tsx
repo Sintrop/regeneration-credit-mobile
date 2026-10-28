@@ -108,7 +108,7 @@ function FaqItem({ faqKey }: { faqKey: string }) {
 type ScreenProps = NativeStackScreenProps<AppStackParamsList, "HelpScreen">;
 export function HelpScreen({ navigation }: ScreenProps) {
   const { t, i18n } = useTranslation();
-  const { address, isConnected, handleConnect, switchToSintropChain } = useUserContext();
+  const { address, isConnected, handleConnect, addSintropNetwork } = useUserContext();
   const [showContracts, setShowContracts] = useState(false);
 
   return (
@@ -129,9 +129,12 @@ export function HelpScreen({ navigation }: ScreenProps) {
                     <LinkButton label={t("help.metamaskManual")} onPress={() => Linking.openURL(METAMASK_MANUAL_URL)} />
                   </>
                 )}
+                {key === "network" && (
+                  <LinkButton primary label={t("help.addNetwork")} onPress={addSintropNetwork} />
+                )}
                 {key === "connect" && (
                   isConnected
-                    ? <LinkButton label={t("help.addNetwork")} onPress={switchToSintropChain} />
+                    ? <Text className="text-green-primary text-sm font-semibold">{t("help.connected")}</Text>
                     : <LinkButton primary label={t("common.connect")} onPress={handleConnect} />
                 )}
                 {key === "gas" && isConnected && (
