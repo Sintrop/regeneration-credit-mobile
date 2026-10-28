@@ -210,7 +210,16 @@
       "treeEqualsTokens": "1 Árbol = {{tokens}} RCs",
       "tokensPerTreeDescription": "Actualmente {{tokens}} Créditos de Regeneración equivalen a 1 árbol",
       "howManyTreesToFund": "¿Cuántos árboles quieres financiar?",
-      "errorDeclaringCommitment": "Error al declarar el compromiso"
+      "errorDeclaringCommitment": "Error al declarar el compromiso",
+      "perUnit": "{{impact}} g CO₂e por {{unit}}",
+      "perOneUnit": "por 1 {{unit}}",
+      "showMore": "Ver detalles y calcular ›",
+      "showLess": "Cerrar",
+      "publishedBy": "Investigación publicada por",
+      "quickResult": "{{carbon}} kg de CO₂e: compensa con ~{{tokens}} RC",
+      "supporterOnly": "La compensación y el compromiso de reducción están disponibles para apoyadores registrados.",
+      "searchItem": "Buscar ítem (ej.: gasolina)",
+      "noItems": "No se encontraron ítems."
     },
     "register": {
       "title": "Registrarse",

@@ -6,13 +6,10 @@ import { Text, BurnTokens as ActionBurn } from "@components";
 import { useUserContext } from "@hooks";
 import { useImpactPerToken } from "@domain";
 
-// Helper to format with 2 decimal places using comma as decimal separator
-function formatNumber(value: number): string {
-  return value.toFixed(2).replace('.', ',');
-}
 
 export function BurnTokens() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const formatNumber = (value: number) => Intl.NumberFormat(i18n.language, { maximumFractionDigits: 2 }).format(value);
   const { trees } = useImpactPerToken();
   
   // Calculate tokens per tree: 1 / trees per token

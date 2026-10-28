@@ -210,7 +210,16 @@
       "treeEqualsTokens": "1 Tree = {{tokens}} RCs",
       "tokensPerTreeDescription": "Currently {{tokens}} Regeneration Credits are equivalent to 1 tree",
       "howManyTreesToFund": "How many trees do you want to fund?",
-      "errorDeclaringCommitment": "Error declaring commitment"
+      "errorDeclaringCommitment": "Error declaring commitment",
+      "perUnit": "{{impact}} g CO₂e per {{unit}}",
+      "perOneUnit": "per 1 {{unit}}",
+      "showMore": "See details and calculate ›",
+      "showLess": "Close",
+      "publishedBy": "Research published by",
+      "quickResult": "{{carbon}} kg of CO₂e: offset with ~{{tokens}} RC",
+      "supporterOnly": "Offsets and reduction commitments are available to registered supporters.",
+      "searchItem": "Search item (e.g. gasoline)",
+      "noItems": "No items found."
     },
     "register": {
       "title": "Register",
