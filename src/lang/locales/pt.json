@@ -807,12 +807,16 @@
           "text": "Toque em Conectar no topo da tela inicial. O app pede para o MetaMask adicionar e selecionar a rede Sintrop, é só aprovar. Se preferir, adicione a rede à mão com os dados abaixo."
         },
         "gas": {
-          "title": "Tenha um pouco de SIN",
-          "text": "SIN é a moeda da rede Sintrop e paga as taxas de cada transação. Para receber SIN de outro usuário, compartilhe o endereço da sua carteira, que fica em Meus tokens."
+          "title": "Compre ou receba um pouco de SIN",
+          "text": "SIN é a moeda da rede Sintrop e paga as taxas de cada transação, como o cadastro. Compre ou receba SIN de outro usuário: para isso, copie o endereço da sua carteira no seu perfil e envie para quem vai te mandar o SIN."
         },
         "register": {
           "title": "Faça o seu cadastro",
           "text": "O cadastro de Apoiador é aberto a qualquer carteira. Os demais tipos de usuário precisam de um convite registrado na blockchain para o endereço da sua carteira. Com a carteira conectada, a tela inicial mostra a opção de cadastro."
+        },
+        "earn": {
+          "title": "Compre RC ou preste um serviço",
+          "text": "Para ter créditos na sua carteira, compre RC de outro usuário pelo Mercado ou preste um serviço ao sistema, como regenerar, inspecionar, pesquisar, desenvolver, contribuir ou convidar novos usuários. Cada serviço rende tokens dos pools a cada era."
         },
         "token": {
           "title": "Veja seus RC no MetaMask",
@@ -822,7 +826,6 @@
       "downloadMetamask": "Baixar MetaMask",
       "metamaskManual": "Manual do MetaMask (PDF)",
       "addNetwork": "Adicionar rede Sintrop no MetaMask",
-      "openMyTokens": "Abrir Meus tokens",
       "copy": "Copiar",
       "networkTitle": "Dados da rede Sintrop",
       "networkText": "Use estes dados para adicionar a rede à mão no MetaMask. Toque em um campo para copiar.",
@@ -849,6 +852,10 @@
         "howEarn": {
           "q": "Como alguém ganha RC?",
           "a": "Cada tipo de usuário tem um pool que distribui tokens a cada era, proporcionalmente ao nível de cada um dentro do seu tipo. O nível sobe fazendo o trabalho do papel: o regenerador pelo resultado das inspeções da sua área, o inspetor por inspeção realizada, o pesquisador por pesquisa publicada, o desenvolvedor e o contribuidor por relatório e o ativista quando um convidado completa as primeiras inspeções."
+        },
+        "buy": {
+          "q": "Como comprar o Crédito de Regeneração?",
+          "a": "Pelo Mercado do app. Lá ficam as ofertas publicadas pelos usuários, com a quantidade, o preço por RC, a forma de pagamento e o contato do vendedor. Combine a compra diretamente com o vendedor e passe o endereço da sua carteira para receber os RC. O app não intermedeia o pagamento, então confira o endereço do vendedor antes de pagar, já que nomes podem se repetir."
         },
         "invite": {
           "q": "Preciso de convite para me cadastrar?",
@@ -887,7 +894,9 @@
           "a": "O app lê a blockchain por um servidor RPC público. Se ele ficar instável, um aviso aparece no topo da tela. Você pode trocar o RPC em Configurações ou tentar de novo mais tarde."
         }
       },
-      "moreInfo": "Mais informações no site do Crédito de Regeneração"
+      "moreInfo": "Mais informações no site do Crédito de Regeneração",
+      "openProfile": "Abrir meu perfil",
+      "openMarket": "Abrir Mercado"
     }
   }
 }

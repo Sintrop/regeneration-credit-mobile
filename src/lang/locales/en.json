@@ -807,12 +807,16 @@
           "text": "Tap Connect at the top of the home screen. The app asks MetaMask to add and select the Sintrop network, just approve it. If you prefer, add the network by hand with the data below."
         },
         "gas": {
-          "title": "Get some SIN",
-          "text": "SIN is the Sintrop network currency and pays the fee of every transaction. To receive SIN from another user, share your wallet address, shown in My tokens."
+          "title": "Buy or receive some SIN",
+          "text": "SIN is the Sintrop network currency and pays the fee of every transaction, such as registration. Buy or receive SIN from another user: copy your wallet address from your profile and send it to whoever will send you the SIN."
         },
         "register": {
           "title": "Register",
           "text": "Supporter registration is open to any wallet. The other user types need an invitation recorded on the blockchain for your wallet address. With your wallet connected, the home screen shows the registration option."
+        },
+        "earn": {
+          "title": "Buy RC or provide a service",
+          "text": "To have credits in your wallet, buy RC from another user in the Market or provide a service to the system, such as regenerating, inspecting, researching, developing, contributing or inviting new users. Each service earns tokens from the pools every era."
         },
         "token": {
           "title": "See your RC in MetaMask",
@@ -822,7 +826,6 @@
       "downloadMetamask": "Download MetaMask",
       "metamaskManual": "MetaMask guide (PDF, Portuguese)",
       "addNetwork": "Add Sintrop network to MetaMask",
-      "openMyTokens": "Open My tokens",
       "copy": "Copy",
       "networkTitle": "Sintrop network data",
       "networkText": "Use this data to add the network by hand in MetaMask. Tap a field to copy it.",
@@ -849,6 +852,10 @@
         "howEarn": {
           "q": "How does someone earn RC?",
           "a": "Each user type has a pool that distributes tokens every era, in proportion to each user's level within their type. The level goes up by doing the role's work: the regenerator through the results of their area's inspections, the inspector per inspection carried out, the researcher per published research, the developer and the contributor per report, and the activist when an invited user completes their first inspections."
+        },
+        "buy": {
+          "q": "How do I buy Regeneration Credit?",
+          "a": "Through the app's Market. It lists the offers published by users, with the amount, the price per RC, the payment method and the seller's contact. Arrange the purchase directly with the seller and give them your wallet address to receive the RC. The app does not handle the payment, so check the seller's address before paying, since names can repeat."
         },
         "invite": {
           "q": "Do I need an invitation to register?",
@@ -887,7 +894,9 @@
           "a": "The app reads the blockchain through a public RPC server. If it becomes unstable, a warning appears at the top of the screen. You can switch the RPC in Settings or try again later."
         }
       },
-      "moreInfo": "More information on the Regeneration Credit website"
+      "moreInfo": "More information on the Regeneration Credit website",
+      "openProfile": "Open my profile",
+      "openMarket": "Open Market"
     }
   }
 }

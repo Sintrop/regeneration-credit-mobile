@@ -80,11 +80,12 @@ export const CONTRACT_ROWS: HelpRow[] = [
   { label: "RCMarket", value: RCMarket.address },
 ];
 
-export const STEP_KEYS = ["wallet", "connect", "gas", "register", "token"] as const;
+export const STEP_KEYS = ["wallet", "connect", "gas", "register", "earn", "token"] as const;
 
 export const FAQ_KEYS = [
   "whatIs",
   "howEarn",
+  "buy",
   "invite",
   "sin",
   "eras",

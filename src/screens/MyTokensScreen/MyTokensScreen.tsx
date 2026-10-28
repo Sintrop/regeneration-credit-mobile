@@ -30,11 +30,14 @@ export function MyTokensScreen() {
   if (!isConnected) {
     return (
       <Screen title={t('myTokens.title')} showBackButton>
-        <View className="flex-1 items-center justify-center px-8 gap-4">
-          <Text className="text-white text-center">{t('myTokens.connectToSee')}</Text>
-          <TouchableOpacity className="h-12 px-8 rounded-2xl items-center justify-center bg-green-primary" onPress={handleConnect}>
-            <Text className="text-green-secondary font-bold">{t('common.connect')}</Text>
-          </TouchableOpacity>
+        <View className="p-5 gap-5">
+          <Balance onConnect={handleConnect} />
+          <View className="p-5 rounded-2xl bg-card-primary items-center gap-4">
+            <Text className="text-white text-center">{t('myTokens.connectToSee')}</Text>
+            <TouchableOpacity className="h-12 px-8 rounded-2xl items-center justify-center bg-green-primary" onPress={handleConnect}>
+              <Text className="text-green-secondary font-bold">{t('common.connect')}</Text>
+            </TouchableOpacity>
+          </View>
         </View>
       </Screen>
     );

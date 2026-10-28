@@ -18,9 +18,11 @@ import SINIcon from "../../../assets/images/sin.png";
 
 interface BalanceProps {
   onTransfer?: () => void;
+  /** Shown before the wallet is connected: zero balances and actions that ask to connect. */
+  onConnect?: () => void;
 }
 
-export function Balance({ onTransfer }: BalanceProps) {
+export function Balance({ onTransfer, onConnect }: BalanceProps) {
   const { address } = useUserContext();
   const { balance: balanceSIN, isLoading: isLoadingSin } = useNativeBalance(address);
   const { t, i18n } = useTranslation();
@@ -73,18 +75,20 @@ export function Balance({ onTransfer }: BalanceProps) {
         </View>
       )}
 
-      <TouchableOpacity className="flex-row items-center gap-2" onPress={handleCopy} hitSlop={5}>
-        <Text className="text-gray-400 text-xs flex-1" numberOfLines={1}>{address}</Text>
-        <Icon name="copy" size={18} />
-      </TouchableOpacity>
+      {!!address && (
+        <TouchableOpacity className="flex-row items-center gap-2" onPress={handleCopy} hitSlop={5}>
+          <Text className="text-gray-400 text-xs flex-1" numberOfLines={1}>{address}</Text>
+          <Icon name="copy" size={18} />
+        </TouchableOpacity>
+      )}
 
       <View className="flex-row gap-3">
-        {onTransfer && (
-          <TouchableOpacity className="flex-1 h-12 rounded-2xl items-center justify-center bg-green-primary" onPress={onTransfer}>
+        {(onTransfer || onConnect) && (
+          <TouchableOpacity className="flex-1 h-12 rounded-2xl items-center justify-center bg-green-primary" onPress={onConnect ?? onTransfer}>
             <Text className="text-green-secondary font-bold">{t("myTokens.transfer")}</Text>
           </TouchableOpacity>
         )}
-        <TouchableOpacity className="flex-1 h-12 rounded-2xl items-center justify-center border border-green-primary" onPress={() => receiveModal.current?.open()}>
+        <TouchableOpacity className="flex-1 h-12 rounded-2xl items-center justify-center border border-green-primary" onPress={() => onConnect ? onConnect() : receiveModal.current?.open()}>
           <Text className="text-green-primary font-bold">{t("myTokens.receive")}</Text>
         </TouchableOpacity>
       </View>

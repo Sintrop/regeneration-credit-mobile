@@ -108,7 +108,7 @@ function FaqItem({ faqKey }: { faqKey: string }) {
 type ScreenProps = NativeStackScreenProps<AppStackParamsList, "HelpScreen">;
 export function HelpScreen({ navigation }: ScreenProps) {
   const { t, i18n } = useTranslation();
-  const { isConnected, handleConnect, switchToSintropChain } = useUserContext();
+  const { address, isConnected, handleConnect, switchToSintropChain } = useUserContext();
   const [showContracts, setShowContracts] = useState(false);
 
   return (
@@ -135,7 +135,10 @@ export function HelpScreen({ navigation }: ScreenProps) {
                     : <LinkButton primary label={t("common.connect")} onPress={handleConnect} />
                 )}
                 {key === "gas" && isConnected && (
-                  <LinkButton label={t("help.openMyTokens")} onPress={() => navigation.navigate("MyTokensScreen")} />
+                  <LinkButton label={t("help.openProfile")} onPress={() => navigation.navigate("ProfileScreen", { address })} />
+                )}
+                {key === "earn" && (
+                  <LinkButton label={t("help.openMarket")} onPress={() => navigation.navigate("MarketScreen")} />
                 )}
               </Step>
             ))}
