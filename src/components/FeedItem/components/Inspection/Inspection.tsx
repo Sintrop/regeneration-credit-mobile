@@ -12,6 +12,7 @@ import { LoadingFeedItem } from "../LoadingFeedItem";
 import { HeaderItem } from "../HeaderItem/HeaderItem";
 import { FeedBadge, FeedTone } from "../FeedBadge";
 import { FeedLink } from "../FeedLink";
+import { AreaThumbnail } from "./AreaThumbnail";
 
 type NavigationProps = NativeStackNavigationProp<AppStackParamsList, "HomeScreen">;
 type Stage = "requested" | "accepted" | "realized";
@@ -62,6 +63,13 @@ export function Inspection({ id, additionalData }: BaseComponentsProps) {
       <Text className="text-white text-base leading-6">{headline}</Text>
 
       {stage === "requested" && <Text className="text-gray-400 text-sm">{t("feedNews.waitingInspector")}</Text>}
+
+      {stage === "realized" && (
+        <AreaThumbnail
+          address={inspection.regenerator}
+          onPress={() => navigation.navigate("UserDetailsScreen", { address: inspection.regenerator })}
+        />
+      )}
 
       {stage === "realized" && (
         <View className="flex-row p-4 rounded-xl bg-card-secondary">

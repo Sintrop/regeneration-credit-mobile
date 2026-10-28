@@ -6,6 +6,7 @@ import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { OffsetProps, useGetCalculatorItem, useImpactPerToken, useUserBasicData } from "@domain";
 import { BaseComponentsProps, Text } from "@components";
 import { AppStackParamsList } from "@routes";
+import { formatCarbon } from "@utils";
 
 import { LoadingFeedItem } from "../LoadingFeedItem";
 import { HeaderItem } from "../HeaderItem/HeaderItem";
@@ -29,7 +30,7 @@ export function Offset({ additionalData }: BaseComponentsProps) {
 
   const amount = offset.amountBurned / 10 ** 18;
   const format = (value: number) => Intl.NumberFormat(i18n.language, { maximumFractionDigits: 2 }).format(value);
-  const co2Tonnes = (amount * carbon) / 1e6;
+  const co2Grams = amount * carbon;
 
   return (
     <View className="gap-3">
@@ -51,8 +52,8 @@ export function Offset({ additionalData }: BaseComponentsProps) {
         </View>
       )}
 
-      {co2Tonnes > 0 && (
-        <Text className="text-gray-400 text-sm">{t("feedNews.offsetImpact", { tonnes: format(co2Tonnes) })}</Text>
+      {co2Grams > 0 && (
+        <Text className="text-gray-400 text-sm">{t("feedNews.offsetImpact", { amount: formatCarbon(co2Grams, i18n.language) })}</Text>
       )}
 
       <FeedLink label={t("feedNews.seeSupporter")} onPress={() => navigation.navigate("UserDetailsScreen", { address: offset.address })} />

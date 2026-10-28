@@ -18,7 +18,7 @@ import { useBlocksDuration } from "@hooks";
 import { HeaderProfile } from "../HeaderProfile/HeaderProfile";
 import { Invitation } from "../Invitation/Invitation";
 import { InvitedUsers } from "../Sections/InvitedUsers";
-import { formatArea } from "@utils";
+import { formatArea, formatCarbon } from "@utils";
 
 function useFormat() {
   const { i18n } = useTranslation();
@@ -34,7 +34,7 @@ function ImpactSummary({ address, compensationsCount }: { address: string; compe
   const { area, biodiversity, carbon, trees } = useImpactPerToken();
 
   const items = [
-    { label: t("supporterProfile.carbon"), value: `${format((certificated * carbon) / 1e6)} t` },
+    { label: t("supporterProfile.carbon"), value: formatCarbon(certificated * carbon, i18n.language) },
     { label: t("common.trees"), value: format(certificated * trees) },
     { label: t("common.biodiversity"), value: format(certificated * biodiversity) },
     { label: t("common.area"), value: formatArea(certificated * area, i18n.language) },

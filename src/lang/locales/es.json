@@ -744,7 +744,7 @@
       "seeInspection": "Ver inspección",
       "offsetBadge": "Compensación",
       "offsetItem": "compensando {{item}}",
-      "offsetImpact": "Financia el secuestro de ~{{tonnes}} t de CO₂.",
+      "offsetImpact": "Financia el secuestro de ~{{amount}} de CO₂.",
       "seeSupporter": "Ver apoyador",
       "treeFundingBadge": "Plantación de árboles",
       "treesFunded": "~{{trees}} árboles financiados",

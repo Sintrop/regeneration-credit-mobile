@@ -744,7 +744,7 @@
       "seeInspection": "See inspection",
       "offsetBadge": "Offset",
       "offsetItem": "offsetting {{item}}",
-      "offsetImpact": "Funds the sequestration of ~{{tonnes}} t of CO₂.",
+      "offsetImpact": "Funds the sequestration of ~{{amount}} of CO₂.",
       "seeSupporter": "See supporter",
       "treeFundingBadge": "Tree planting",
       "treesFunded": "~{{trees}} trees funded",

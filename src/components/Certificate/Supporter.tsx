@@ -8,7 +8,7 @@ import { Icon, Text } from "@components";
 //@ts-ignore
 import RCLogo from "../../assets/images/rc.png";
 import { DownloadContainer } from "./DownloadContainer";
-import { formatArea } from "@utils";
+import { formatArea, formatCarbon } from "@utils";
 
 interface Props {
   address: string;
@@ -29,8 +29,6 @@ export function Supporter({ address }: Props) {
   const areaImpact = certificated * area;
   const bioImpact = certificated * biodiversity;
 
-  // Carbon in tonnes (g -> tonnes: divide by 1e6)
-  const carbonTonnes = carbonImpact / 1e6;
 
   const parsedName = supporter?.name?.replaceAll(' ', '-').toLowerCase() ?? '';
   const qrLink = 'https://users.regenerationcredit.org/supporter/' + address + '/' + parsedName;
@@ -55,7 +53,7 @@ export function Supporter({ address }: Props) {
             <View className="flex-row items-center gap-1">
               <Text className="text-white text-sm">{t('common.carbon')}:</Text>
               <Text className="text-white text-sm font-semibold">
-                {formatImpact(carbonTonnes)} t
+                {formatCarbon(carbonImpact, i18n.language)}
               </Text>
             </View>
             <View className="flex-row items-center gap-1">

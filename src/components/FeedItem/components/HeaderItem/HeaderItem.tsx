@@ -43,6 +43,7 @@ export function HeaderItem({ address, name, photo, createdAt, isLoading }: Props
       <Avatar address={address ?? ""} photoHash={photo} size={44} />
       <View className="flex-1">
         <Text className="font-bold text-white" numberOfLines={1}>{name?.trim() || short}</Text>
+        {!!name?.trim() && <Text className="text-gray-300 text-xs" numberOfLines={1}>{short}</Text>}
         <Text className="text-gray-400 text-xs" numberOfLines={1}>
           {[ago, createdAt ? `${t("common.block")} ${createdAt}` : ""].filter(Boolean).join(" · ")}
         </Text>
