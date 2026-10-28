@@ -4,7 +4,7 @@ import { useNavigation } from "@react-navigation/native";
 import { useTranslation } from "react-i18next";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 
-import { Avatar, Icon, LanguageSelector, Text } from "@components";
+import { Avatar, Icon, SettingsButton, Text } from "@components";
 import { useUserContext } from "@hooks";
 import { AppStackParamsList } from "@routes";
 
@@ -49,7 +49,7 @@ export function Header({ home, title, showBackButton }: HeaderProps) {
         </View>
 
         <View className="flex-row items-center gap-3">
-          <LanguageSelector />
+          <SettingsButton />
           {isConnected ? (
             <TouchableOpacity 
               className="flex-row items-center gap-2"

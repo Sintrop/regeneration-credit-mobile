@@ -23,7 +23,11 @@ LogBox.ignoreLogs([
   'Sender: Failed to send batch',
 ]);
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: { retry: 2 },
+  },
+});
 
 function App() {
   useEffect(() => {

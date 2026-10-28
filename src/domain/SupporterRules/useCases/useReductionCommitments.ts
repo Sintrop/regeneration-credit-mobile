@@ -3,10 +3,11 @@ import Web3 from "web3";
 
 import { SupporterRules, ResearcherRules } from "@contracts";
 import { rcImpactContract } from "@domain/RegenerationCreditImpact/rcImpactContract";
+import { useSettingsContext } from "@hooks";
 
-const RPC_URL = 'https://rpc.sintrop.com';
 
 export function useReductionCommitments(address?: string) {
+  const { rpc: RPC_URL } = useSettingsContext();
   const [commitments, setCommitments] = useState<number[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -53,7 +54,7 @@ export function useReductionCommitments(address?: string) {
     }
 
     fetchCommitments();
-  }, [address]);
+  }, [address, RPC_URL]);
 
   console.log('[useReductionCommitments] Returning:', { commitments, isLoading, error });
 
@@ -61,6 +62,7 @@ export function useReductionCommitments(address?: string) {
 }
 
 export function useCalculatorItemById(itemId: number, supporterAddress?: string) {
+  const { rpc: RPC_URL } = useSettingsContext();
   const [item, setItem] = useState<any>(null);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -130,7 +132,7 @@ export function useCalculatorItemById(itemId: number, supporterAddress?: string)
     }
 
     fetchItem();
-  }, [itemId, supporterAddress]);
+  }, [itemId, supporterAddress, RPC_URL]);
 
   return { item, isLoading };
 }

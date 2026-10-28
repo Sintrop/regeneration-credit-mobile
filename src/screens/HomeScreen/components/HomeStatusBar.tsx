@@ -52,12 +52,14 @@ function MarqueeText({ text }: { text: string }) {
 
 export function HomeStatusBar() {
   const { t } = useTranslation();
-  const { data, isLoading } = useCurrentEra();
+  const { data, isLoading, isError } = useCurrentEra();
   const formatBlocks = useBlocksDuration();
   const { timers } = useUserTimers();
   const availableCount = timers.filter(timer => timer.status === 'available').length;
 
   const { currentEra = 0, nextEraIn = 0 } = data || {};
+
+  if (isError || (!isLoading && currentEra < 1)) return null;
 
   if (isLoading) {
     return (

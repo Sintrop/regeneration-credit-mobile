@@ -8,7 +8,7 @@ import { utils } from 'web3';
 import { Screen, Text, TextInput, UserBadge } from '@components';
 import { AppStackParamsList } from '@routes';
 import { getRCMarketContract, useCreateOffer, useCancelOffer, useConfirmSale } from '@domain/RCMarket';
-import { useAppSafeArea, useTxContext, useUserContext } from '@hooks';
+import { useAppSafeArea, useSettingsContext, useTxContext, useUserContext } from '@hooks';
 
 import { formatOfferPrice } from './formatOfferPrice';
 
@@ -32,6 +32,7 @@ export function MarketScreen() {
   const { t, i18n } = useTranslation();
   const { bottom } = useAppSafeArea();
   const { address } = useUserContext();
+  const { rpc } = useSettingsContext();
   const { registerContinueAction } = useTxContext();
   const { createOffer } = useCreateOffer();
   const { cancelOffer } = useCancelOffer();
@@ -46,7 +47,7 @@ export function MarketScreen() {
 
   const loadOffers = useCallback(async () => {
     try {
-      const contract = getRCMarketContract();
+      const contract = getRCMarketContract(rpc);
       const count = Number(await contract.methods.getOffersCount().call());
       const ids = Array.from({ length: count }, (_, index) => count - index);
 
@@ -73,7 +74,7 @@ export function MarketScreen() {
     } finally {
       setLoading(false);
     }
-  }, []);
+  }, [rpc]);
 
   useEffect(() => {
     loadOffers();

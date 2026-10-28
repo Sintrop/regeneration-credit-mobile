@@ -6,7 +6,7 @@ import { Screen, FeedItem, Text, Actions, Offset } from '@components';
 import { useNewFeed } from '@domain';
 import { FeedItemProps } from '@database';
 import { AppStackParamsList } from '@routes';
-import { useUserContext } from '@hooks';
+import { useSettingsContext, useUserContext } from '@hooks';
 
 import { UserWithoutRegister } from './components/UserWithoutRegister';
 import { LoadingFeed } from './components/LoadingFeed';
@@ -18,6 +18,7 @@ type ScreenProps = NativeStackScreenProps<AppStackParamsList, 'HomeScreen'>
 export function HomeScreen(_: ScreenProps) {
   const { list, isLoading, nextPage, atualPage, totalPages, refresh } = useNewFeed();
   const { isConnected, userType } = useUserContext();
+  const { rpcUnstable } = useSettingsContext();
 
   function handleNextPage() {
     if (atualPage < totalPages) {
@@ -65,7 +66,7 @@ export function HomeScreen(_: ScreenProps) {
           renderItem={renderItemFeed}
           contentContainerClassName="pt-3 gap-3 pb-10"
           ListHeaderComponent={headerList}
-          ListEmptyComponent={<EmptyList isLoading={true} />}
+          ListEmptyComponent={<EmptyList isLoading={!rpcUnstable} />}
           onEndReachedThreshold={0.5}
           onEndReached={handleNextPage}
           refreshing={isLoading}
@@ -92,6 +93,8 @@ interface EmptyListProps {
   isLoading: boolean
 }
 function EmptyList({ isLoading }: EmptyListProps) {
+  const { t } = useTranslation();
+
   if (isLoading) {
     return (
       <View className='flex-1 w-full h-full'>
@@ -100,7 +103,11 @@ function EmptyList({ isLoading }: EmptyListProps) {
     )
   }
 
-  return <View />
+  return (
+    <View className='items-center px-8 py-16'>
+      <Text className='text-gray-300 text-center'>{t('homeScreen.feedUnavailable')}</Text>
+    </View>
+  )
 }
 
 interface OffsetButtonProps {

@@ -8,6 +8,7 @@
       "newPubli": "Nova publicação",
       "loadingEraInfo": "Carregando informações...",
       "currentEraTicker": "Fase atual: {{era}}  •  Próxima fase em {{duration}}",
+      "feedUnavailable": "Não foi possível carregar o feed agora.",
       "shortcuts": {
         "myTokens": "Meus tokens",
         "withdrawTokens": "Sacar tokens",
@@ -760,6 +761,33 @@
       "invitationBadge": "Convite",
       "poolBadge": "Marco",
       "marketBadge": "Mercado"
+    },
+    "settings": {
+      "title": "Configurações",
+      "network": "Rede (RPC)",
+      "rpcDescription": "O app lê os dados da blockchain Sintrop por um servidor RPC público. Se o padrão estiver instável, você pode usar outro endereço da rede Sintrop.",
+      "currentRpc": "RPC em uso",
+      "default": "padrão",
+      "rpcOnline": "Online · {{ms}} ms · bloco {{block}}",
+      "testAgain": "Testar novamente",
+      "customRpc": "Outro endereço de RPC",
+      "testAndSave": "Testar e usar este RPC",
+      "restoreDefault": "Voltar para o padrão ({{rpc}})",
+      "rpcSaved": "RPC atualizado",
+      "rpcRestored": "RPC padrão restaurado",
+      "chainNote": "Só são aceitos RPCs da rede Sintrop (chain ID 250225). As transações continuam sendo enviadas pela sua carteira.",
+      "rpcError": {
+        "invalidUrl": "Endereço inválido. Use um endereço começando com https://",
+        "timeout": "O RPC não respondeu a tempo.",
+        "unreachable": "Não foi possível conectar a este RPC.",
+        "wrongChain": "Este RPC não é da rede Sintrop."
+      }
+    },
+    "rpcStatus": {
+      "title": "Instabilidade na conexão com a rede",
+      "description": "O servidor RPC que o app usa para ler a blockchain não está respondendo, por isso alguns dados podem não carregar. Você pode trocar para outro RPC da rede Sintrop ou voltar mais tarde.",
+      "changeRpc": "Trocar RPC",
+      "retry": "Tentar novamente"
     }
   }
 }
