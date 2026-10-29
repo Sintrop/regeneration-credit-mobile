@@ -123,6 +123,17 @@ export function SettingsScreen({ navigation }: ScreenProps) {
 
         <TouchableOpacity
           className="flex-row items-center justify-between p-4 rounded-2xl bg-card-primary"
+          onPress={() => navigation.navigate("ContractsScreen")}
+        >
+          <View className="flex-1 gap-1">
+            <Text className="text-white font-bold text-lg">{t("contracts.settingsTitle")}</Text>
+            <Text className="text-gray-300 text-sm">{t("contracts.settingsText")}</Text>
+          </View>
+          <Text className="text-green-primary text-xl">›</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          className="flex-row items-center justify-between p-4 rounded-2xl bg-card-primary"
           onPress={() => navigation.navigate("HelpScreen")}
         >
           <View className="flex-1 gap-1">

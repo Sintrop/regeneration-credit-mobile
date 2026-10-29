@@ -955,6 +955,69 @@
       "openProfile": "Open my profile",
       "openMarket": "Open Market",
       "connected": "Wallet connected ✓"
+    },
+    "contracts": {
+      "title": "Contracts",
+      "settingsTitle": "Contracts (advanced)",
+      "settingsText": "Query and call the protocol contracts' functions directly.",
+      "openFromHelp": "Read and interact with the contracts",
+      "introTitle": "Direct access to the contracts",
+      "introText": "Here are all the protocol contracts on the Sintrop network, with their read and write functions. Reads are free. Writes send a transaction through your wallet, as in the desktop core.",
+      "searchPlaceholder": "Search contract, address or function",
+      "noResults": "No contract found.",
+      "notFound": "Contract not found.",
+      "readCount_one": "{{count}} read",
+      "readCount_other": "{{count}} reads",
+      "writeCount_one": "{{count}} write",
+      "writeCount_other": "{{count}} writes",
+      "groups": {
+        "token": "Token and impact",
+        "community": "Community",
+        "inspection": "Inspections",
+        "roles": "User rules",
+        "pools": "Pools",
+        "governance": "Validation",
+        "market": "Market"
+      },
+      "tab": {
+        "read": "Read",
+        "write": "Write"
+      },
+      "viewOnExplorer": "View on explorer",
+      "natspecNote": "Descriptions taken from the contract source comments.",
+      "readHint": "Free queries, no wallet needed. Open a function, fill in the fields and tap Query.",
+      "searchFunction": "Search function",
+      "noFunctions": "No function found.",
+      "writeWarningTitle": "Direct contract call",
+      "writeWarning": "These functions send a transaction through your wallet without the checks the app makes on other screens. A wrong parameter can revert the transaction and spend SIN on fees. Use them only if you know what the function does.",
+      "query": "Query",
+      "sendTransaction": "Send transaction",
+      "send": "Send",
+      "result": "Result",
+      "asTokenAmount": "Amount in RC (convert to 18 decimals)",
+      "confirmTitle": "Send transaction?",
+      "confirmMessage": "You are about to call {{fn}} on the {{contract}} contract. The transaction opens in MetaMask for you to confirm.",
+      "txDone": "Transaction {{fn}} confirmed",
+      "placeholder": {
+        "integer": "Whole number",
+        "address": "0x...",
+        "bool": "true or false",
+        "hex": "0x...",
+        "json": "[1, 2, 3]",
+        "text": "Text"
+      },
+      "argError": {
+        "required": "Required field.",
+        "integer": "Use a whole number, without decimals.",
+        "negative": "This field does not accept negative numbers.",
+        "address": "Invalid address.",
+        "bool": "Use true or false.",
+        "hex": "Use a hexadecimal value starting with 0x.",
+        "bytes32": "Wrong length for this type.",
+        "json": "Use list format, e.g. [1, 2].",
+        "array": "This field expects a list.",
+        "amount": "Invalid amount."
+      }
     }
   }
 }

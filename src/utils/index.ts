@@ -7,3 +7,4 @@ export * from "./formatArea";
 export * from "./formatCarbon";
 export * from "./staticMapUrl";
 export * from "./impactBreakdown";
+export * from "./contractCall";

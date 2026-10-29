@@ -955,6 +955,69 @@
       "openProfile": "Abrir mi perfil",
       "openMarket": "Abrir Mercado",
       "connected": "Billetera conectada ✓"
+    },
+    "contracts": {
+      "title": "Contratos",
+      "settingsTitle": "Contratos (avanzado)",
+      "settingsText": "Consulta y llama directamente las funciones de los contratos del protocolo.",
+      "openFromHelp": "Leer e interactuar con los contratos",
+      "introTitle": "Acceso directo a los contratos",
+      "introText": "Aquí están todos los contratos del protocolo en la red Sintrop, con sus funciones de lectura y escritura. Las lecturas son gratuitas. Las escrituras envían una transacción con tu billetera, como en el core de escritorio.",
+      "searchPlaceholder": "Buscar contrato, dirección o función",
+      "noResults": "No se encontró ningún contrato.",
+      "notFound": "Contrato no encontrado.",
+      "readCount_one": "{{count}} lectura",
+      "readCount_other": "{{count}} lecturas",
+      "writeCount_one": "{{count}} escritura",
+      "writeCount_other": "{{count}} escrituras",
+      "groups": {
+        "token": "Token e impacto",
+        "community": "Comunidad",
+        "inspection": "Inspecciones",
+        "roles": "Reglas de los usuarios",
+        "pools": "Pools",
+        "governance": "Validación",
+        "market": "Mercado"
+      },
+      "tab": {
+        "read": "Lectura",
+        "write": "Escritura"
+      },
+      "viewOnExplorer": "Ver en el explorador",
+      "natspecNote": "Descripciones tomadas de los comentarios del código del contrato (en inglés).",
+      "readHint": "Consultas gratuitas, sin billetera. Abre una función, completa los campos y toca Consultar.",
+      "searchFunction": "Buscar función",
+      "noFunctions": "No se encontró ninguna función.",
+      "writeWarningTitle": "Llamada directa al contrato",
+      "writeWarning": "Estas funciones envían una transacción con tu billetera sin las verificaciones que la app hace en las otras pantallas. Un parámetro incorrecto puede revertir la transacción y gastar tarifa en SIN. Úsalas solo si sabes lo que hace la función.",
+      "query": "Consultar",
+      "sendTransaction": "Enviar transacción",
+      "send": "Enviar",
+      "result": "Resultado",
+      "asTokenAmount": "Valor en RC (convertir a 18 decimales)",
+      "confirmTitle": "¿Enviar transacción?",
+      "confirmMessage": "Vas a llamar {{fn}} en el contrato {{contract}}. La transacción se abrirá en MetaMask para que la confirmes.",
+      "txDone": "Transacción {{fn}} confirmada",
+      "placeholder": {
+        "integer": "Número entero",
+        "address": "0x...",
+        "bool": "true o false",
+        "hex": "0x...",
+        "json": "[1, 2, 3]",
+        "text": "Texto"
+      },
+      "argError": {
+        "required": "Campo obligatorio.",
+        "integer": "Usa un número entero, sin decimales.",
+        "negative": "Este campo no acepta números negativos.",
+        "address": "Dirección inválida.",
+        "bool": "Usa true o false.",
+        "hex": "Usa un valor hexadecimal que empiece con 0x.",
+        "bytes32": "Tamaño incorrecto para este tipo.",
+        "json": "Usa el formato de lista, p. ej. [1, 2].",
+        "array": "Este campo espera una lista.",
+        "amount": "Valor inválido."
+      }
     }
   }
 }

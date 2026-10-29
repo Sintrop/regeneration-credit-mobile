@@ -955,6 +955,69 @@
       "openProfile": "Abrir meu perfil",
       "openMarket": "Abrir Mercado",
       "connected": "Carteira conectada ✓"
+    },
+    "contracts": {
+      "title": "Contratos",
+      "settingsTitle": "Contratos (avançado)",
+      "settingsText": "Consulte e chame diretamente as funções dos contratos do protocolo.",
+      "openFromHelp": "Ler e interagir com os contratos",
+      "introTitle": "Acesso direto aos contratos",
+      "introText": "Aqui estão todos os contratos do protocolo na rede Sintrop, com as funções de leitura e de escrita. As leituras são gratuitas. As escritas enviam uma transação pela sua carteira, como no core desktop.",
+      "searchPlaceholder": "Buscar contrato, endereço ou função",
+      "noResults": "Nenhum contrato encontrado.",
+      "notFound": "Contrato não encontrado.",
+      "readCount_one": "{{count}} leitura",
+      "readCount_other": "{{count}} leituras",
+      "writeCount_one": "{{count}} escrita",
+      "writeCount_other": "{{count}} escritas",
+      "groups": {
+        "token": "Token e impacto",
+        "community": "Comunidade",
+        "inspection": "Inspeções",
+        "roles": "Regras dos usuários",
+        "pools": "Pools",
+        "governance": "Validação",
+        "market": "Mercado"
+      },
+      "tab": {
+        "read": "Leitura",
+        "write": "Escrita"
+      },
+      "viewOnExplorer": "Ver no explorador",
+      "natspecNote": "Descrições tiradas dos comentários do código do contrato (em inglês).",
+      "readHint": "Consultas gratuitas, sem carteira. Abra uma função, preencha os campos e toque em Consultar.",
+      "searchFunction": "Buscar função",
+      "noFunctions": "Nenhuma função encontrada.",
+      "writeWarningTitle": "Chamada direta ao contrato",
+      "writeWarning": "Estas funções enviam uma transação pela sua carteira sem as checagens que o app faz nas outras telas. Um parâmetro errado pode reverter a transação e gastar taxa em SIN. Use só se souber o que a função faz.",
+      "query": "Consultar",
+      "sendTransaction": "Enviar transação",
+      "send": "Enviar",
+      "result": "Resultado",
+      "asTokenAmount": "Valor em RC (converter para 18 casas)",
+      "confirmTitle": "Enviar transação?",
+      "confirmMessage": "Você vai chamar {{fn}} no contrato {{contract}}. A transação será aberta no MetaMask para você confirmar.",
+      "txDone": "Transação {{fn}} confirmada",
+      "placeholder": {
+        "integer": "Número inteiro",
+        "address": "0x...",
+        "bool": "true ou false",
+        "hex": "0x...",
+        "json": "[1, 2, 3]",
+        "text": "Texto"
+      },
+      "argError": {
+        "required": "Campo obrigatório.",
+        "integer": "Use um número inteiro, sem vírgula.",
+        "negative": "Este campo não aceita números negativos.",
+        "address": "Endereço inválido.",
+        "bool": "Use true ou false.",
+        "hex": "Use um valor hexadecimal começando com 0x.",
+        "bytes32": "Tamanho incorreto para este tipo.",
+        "json": "Use o formato de lista, ex.: [1, 2].",
+        "array": "Este campo espera uma lista.",
+        "amount": "Valor inválido."
+      }
     }
   }
 }

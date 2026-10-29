@@ -16,3 +16,5 @@ export * from "./MarketScreen/MarketScreen";
 export * from "./ResourcesListScreen/ResourcesListScreen";
 export * from "./SettingsScreen/SettingsScreen";
 export * from "./HelpScreen/HelpScreen";
+export * from "./ContractsScreen/ContractsScreen";
+export * from "./ContractScreen/ContractScreen";

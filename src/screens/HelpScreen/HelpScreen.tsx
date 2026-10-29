@@ -158,6 +158,7 @@ export function HelpScreen({ navigation }: ScreenProps) {
 
         <Card title={t("help.contractsTitle")} description={t("help.contractsText")}>
           {showContracts && CONTRACT_ROWS.map(row => <CopyRow key={row.label} row={row} translateLabel={false} />)}
+          <LinkButton primary label={t("contracts.openFromHelp")} onPress={() => navigation.navigate("ContractsScreen")} />
           <TouchableOpacity onPress={() => setShowContracts(value => !value)} className="self-start" hitSlop={8}>
             <Text className="text-green-primary text-sm font-semibold">
               {showContracts ? t("help.hideContracts") : t("help.showContracts", { count: CONTRACT_ROWS.length })}
