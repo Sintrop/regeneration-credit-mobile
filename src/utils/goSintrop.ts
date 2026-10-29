@@ -32,16 +32,15 @@ export function nodeCommand(os: NodeOs, address: string): string {
   return `${binary} --identity Sintrop --datadir ./sintrop_node --sintrop --syncmode "full" --networkid 250225 --cache=1024 --port 25225 --http.vhosts=* --http.addr "0.0.0.0" --http.port 8545 --http=true --miner.threads=1 --miner.etherbase=${etherbase} console`;
 }
 
-/** Terminal commands to unpack the release and allow the binary to run. */
+/** Terminal commands to unpack the release. The zip already stores geth as executable. */
 export function extractCommands(os: NodeOs, assetName: string): string[] {
   if (os === "windows") return [];
   const commands = [
     "cd ~/Downloads",
     `unzip ${assetName} -d go-sintrop`,
     "cd go-sintrop",
-    "chmod +x geth",
   ];
-  // Files downloaded by a browser are quarantined by Gatekeeper and refuse to run until it is lifted.
+  // geth is only ad-hoc signed, so Gatekeeper blocks the browser-downloaded copy until the quarantine is lifted.
   if (os === "macos") commands.push("xattr -d com.apple.quarantine geth");
   return commands;
 }

@@ -844,7 +844,7 @@
     },
     "help": {
       "title": "Ayuda",
-      "welcomeTitle": "Bienvenido a Crédito de Regeneración",
+      "welcomeTitle": "Te damos la bienvenida a Crédito de Regeneración",
       "welcomeText": "Sistema de regeneración de la Naturaleza persona a persona. Aquí están los pasos para empezar, los datos de la red Sintrop y las respuestas a las dudas más comunes.",
       "newcomerTitle": "¿Nuevo por aquí?",
       "newcomerText": "Mira cómo empezar, configurar la billetera y registrarte.",
@@ -1047,8 +1047,8 @@
       "extractTitle": "Extrae el archivo",
       "extract": {
         "windows": "En la carpeta Descargas, haz clic derecho en el archivo y elige Extraer todo. Abre la carpeta extraída, que tiene el archivo geth.exe.",
-        "ubuntu": "Abre la Terminal y ejecuta los comandos de abajo, uno por vez. Toca un comando para copiarlo.",
-        "macos": "Abre la Terminal y ejecuta los comandos de abajo, uno por vez. El último desbloquea el archivo, que macOS bloquea por venir de internet. Toca un comando para copiarlo."
+        "ubuntu": "Extrae el archivo desde la propia carpeta (clic derecho > Extraer aquí) y abre la Terminal dentro de la carpeta extraída. Si prefieres hacerlo todo por la Terminal, usa los comandos de abajo. Toca un comando para copiarlo.",
+        "macos": "Extrae el archivo desde la propia carpeta (doble clic en el .zip) y abre la Terminal dentro de la carpeta extraída. Antes de la primera ejecución, ejecuta el último comando de abajo: desbloquea geth, que macOS bloquea por venir de internet. Si prefieres hacerlo todo por la Terminal, usa todos los comandos en orden."
       },
       "runTitle": "Inicia el nodo",
       "run": {

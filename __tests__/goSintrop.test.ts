@@ -45,4 +45,8 @@ describe('extractCommands', () => {
     expect(extractCommands('ubuntu', 'go-sintrop-linux-v1.0.1.zip')).not.toContain('xattr -d com.apple.quarantine geth');
     expect(extractCommands('windows', 'go-sintrop-win64-v1.0.1.zip')).toEqual([]);
   });
+
+  it('does not need chmod, since the zip keeps the executable permission', () => {
+    expect(extractCommands('ubuntu', 'go-sintrop-linux-v1.0.1.zip')).not.toContain('chmod +x geth');
+  });
 });

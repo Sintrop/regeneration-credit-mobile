@@ -844,7 +844,7 @@
     },
     "help": {
       "title": "Ajuda",
-      "welcomeTitle": "Bem-vindo ao Crédito de Regeneração",
+      "welcomeTitle": "Boas-vindas ao Crédito de Regeneração",
       "welcomeText": "Sistema de regeneração da Natureza pessoa a pessoa. Aqui estão os passos para começar, os dados da rede Sintrop e as respostas para as dúvidas mais comuns.",
       "newcomerTitle": "Novo por aqui?",
       "newcomerText": "Veja como começar, configurar a carteira e se cadastrar.",
@@ -1047,8 +1047,8 @@
       "extractTitle": "Extraia o arquivo",
       "extract": {
         "windows": "Na pasta Downloads, clique com o botão direito no arquivo e escolha Extrair tudo. Abra a pasta extraída, que tem o arquivo geth.exe.",
-        "ubuntu": "Abra o Terminal e rode os comandos abaixo, um de cada vez. Toque em um comando para copiar.",
-        "macos": "Abra o Terminal e rode os comandos abaixo, um de cada vez. O último libera o arquivo, que o macOS bloqueia por ter vindo da internet. Toque em um comando para copiar."
+        "ubuntu": "Extraia o arquivo pela própria pasta (botão direito > Extrair aqui) e abra o Terminal dentro da pasta extraída. Se preferir fazer tudo pelo Terminal, use os comandos abaixo. Toque em um comando para copiar.",
+        "macos": "Extraia o arquivo pela própria pasta (dois cliques no .zip) e abra o Terminal dentro da pasta extraída. Antes da primeira execução, rode o último comando abaixo: ele libera o geth, que o macOS bloqueia por ter vindo da internet. Se preferir fazer tudo pelo Terminal, use todos os comandos na ordem."
       },
       "runTitle": "Inicie o nó",
       "run": {

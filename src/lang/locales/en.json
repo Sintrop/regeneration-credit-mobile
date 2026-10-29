@@ -1047,8 +1047,8 @@
       "extractTitle": "Extract the file",
       "extract": {
         "windows": "In the Downloads folder, right-click the file and choose Extract All. Open the extracted folder, which contains geth.exe.",
-        "ubuntu": "Open Terminal and run the commands below, one at a time. Tap a command to copy it.",
-        "macos": "Open Terminal and run the commands below, one at a time. The last one unblocks the file, which macOS blocks because it came from the internet. Tap a command to copy it."
+        "ubuntu": "Extract the file from the folder itself (right-click > Extract Here) and open Terminal inside the extracted folder. If you prefer to do it all in Terminal, use the commands below. Tap a command to copy it.",
+        "macos": "Extract the file from the folder itself (double-click the .zip) and open Terminal inside the extracted folder. Before the first run, run the last command below: it unblocks geth, which macOS blocks because it came from the internet. If you prefer to do it all in Terminal, run all the commands in order."
       },
       "runTitle": "Start the node",
       "run": {
