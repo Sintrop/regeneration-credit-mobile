@@ -1026,7 +1026,7 @@
       "settingsText": "Run a Sintrop network node on your computer and earn SINTROP for the blocks you find.",
       "introTitle": "The network behind Regeneration Credit",
       "introText": "Regeneration Credit runs on the Sintrop blockchain, a distributed database kept by the computers connected to the network, the nodes. Each node stores a copy of every transaction and helps process new ones. The computers that find blocks are rewarded with SINTROP, the network's unit of syntropy, which also pays every transaction fee.",
-      "introSmallNetwork": "While the network is still small, an ordinary computer mining with its processor alone can find some blocks. That way anyone can get SINTROP for fees and register as a supporter without depending on anyone.",
+      "introSmallNetwork": "Results depend on the network difficulty, but it is possible to find some blocks even mining with the processor alone. That way anyone can get SINTROP for fees and register as a supporter without depending on anyone.",
       "addressTitle": "Address that receives the reward",
       "addressConnected": "The reward goes to the connected wallet. The address is already filled in the commands below.",
       "addressPaste": "Paste your wallet address. It is filled in the commands below.",

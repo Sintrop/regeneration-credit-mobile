@@ -1026,7 +1026,7 @@
       "settingsText": "Ejecuta un nodo de la red Sintrop en tu computadora y recibe SINTROP por los bloques encontrados.",
       "introTitle": "La red detrás de Crédito de Regeneración",
       "introText": "Crédito de Regeneración funciona en la blockchain Sintrop, una base de datos distribuida mantenida por las computadoras conectadas a la red, los nodos. Cada nodo guarda una copia de todas las transacciones y ayuda a procesar las nuevas. Las computadoras que encuentran los bloques son remuneradas con SINTROP, la unidad de sintropía de la red, que también paga las tarifas de cada transacción.",
-      "introSmallNetwork": "Con la red todavía pequeña, una computadora común minando solo con el procesador puede encontrar algunos bloques. Así cualquier persona consigue SINTROP para las tarifas y se registra como apoyador sin depender de nadie.",
+      "introSmallNetwork": "El resultado depende de la dificultad de la red, pero es posible encontrar algunos bloques incluso minando solo con el procesador. Así cualquier persona consigue SINTROP para las tarifas y se registra como apoyador sin depender de nadie.",
       "addressTitle": "Dirección que recibe la recompensa",
       "addressConnected": "La recompensa va a la billetera conectada. La dirección ya está en los comandos de abajo.",
       "addressPaste": "Pega la dirección de tu billetera. Se completa en los comandos de abajo.",
