@@ -1,6 +1,7 @@
 import { useRef, useState } from "react";
 import { ActivityIndicator, Image, TouchableOpacity, View } from "react-native";
 import { useTranslation } from "react-i18next";
+import { NATIVE_UNIT } from "@utils";
 import { Modalize } from "react-native-modalize";
 import { Portal } from "react-native-portalize";
 import QRCode from "react-native-qrcode-svg";
@@ -63,7 +64,7 @@ export function Balance({ onTransfer, onConnect }: BalanceProps) {
         {isLoadingSin ? (
           <ActivityIndicator color="white" />
         ) : (
-          <Text className="text-white text-lg">{showBalance ? format(balanceSIN) : hidden} <Text className="text-gray-300 text-sm">SIN</Text></Text>
+          <Text className="text-white text-lg">{showBalance ? format(balanceSIN) : hidden} <Text className="text-gray-300 text-sm">{NATIVE_UNIT}</Text></Text>
         )}
         <Text className="text-gray-500 text-xs">{t("myTokens.gasHint")}</Text>
       </View>

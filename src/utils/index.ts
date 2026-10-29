@@ -8,3 +8,4 @@ export * from "./formatCarbon";
 export * from "./staticMapUrl";
 export * from "./impactBreakdown";
 export * from "./contractCall";
+export * from "./goSintrop";

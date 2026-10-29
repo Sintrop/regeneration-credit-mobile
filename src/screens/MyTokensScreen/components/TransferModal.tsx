@@ -8,7 +8,7 @@ import { Text as TextComponent, Icon } from "@components";
 import { useTxContext, useUserContext } from "@hooks";
 import { RegenerationCredit } from "@contracts";
 import { useBalance } from "@domain";
-import { amountToWei, balanceToInput, parseAmountInput } from "@utils";
+import { amountToWei, balanceToInput, parseAmountInput, NATIVE_UNIT } from "@utils";
 
 interface Props {
   visible: boolean;
@@ -129,7 +129,7 @@ export function TransferModal({ visible, onClose }: Props) {
               className={`flex-1 h-12 rounded-xl items-center justify-center flex-row gap-2 ${selectedToken === 'SIN' ? 'bg-green-600' : 'bg-gray-700'}`}
               onPress={() => handleTokenSelect('SIN')}
             >
-              <TextComponent className="text-white font-semibold">SIN</TextComponent>
+              <TextComponent className="text-white font-semibold">{NATIVE_UNIT}</TextComponent>
             </TouchableOpacity>
           </View>
 
@@ -138,7 +138,7 @@ export function TransferModal({ visible, onClose }: Props) {
             <TextComponent className="text-white text-xl font-semibold mt-1">
               {selectedToken === 'RC' 
                 ? `${Intl.NumberFormat(i18n.language, { maximumFractionDigits: 5 }).format(balanceRC ?? 0)} RC`
-                : `${Intl.NumberFormat(i18n.language, { maximumFractionDigits: 5 }).format(balanceSIN ?? 0)} SIN`
+                : `${Intl.NumberFormat(i18n.language, { maximumFractionDigits: 5 }).format(balanceSIN ?? 0)} ${NATIVE_UNIT}`
               }
             </TextComponent>
           </View>

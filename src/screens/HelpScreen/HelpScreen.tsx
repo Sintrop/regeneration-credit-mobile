@@ -137,8 +137,13 @@ export function HelpScreen({ navigation }: ScreenProps) {
                     ? <Text className="text-green-primary text-sm font-semibold">{t("help.connected")}</Text>
                     : <LinkButton primary label={t("common.connect")} onPress={handleConnect} />
                 )}
-                {key === "gas" && isConnected && (
-                  <LinkButton label={t("help.openProfile")} onPress={() => navigation.navigate("ProfileScreen", { address })} />
+                {key === "gas" && (
+                  <>
+                    <LinkButton primary label={t("help.howToMine")} onPress={() => navigation.navigate("MiningScreen")} />
+                    {isConnected && (
+                      <LinkButton label={t("help.openProfile")} onPress={() => navigation.navigate("ProfileScreen", { address })} />
+                    )}
+                  </>
                 )}
                 {key === "earn" && (
                   <LinkButton label={t("help.openMarket")} onPress={() => navigation.navigate("MarketScreen")} />

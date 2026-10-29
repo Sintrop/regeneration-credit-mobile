@@ -292,7 +292,7 @@
       "gasHint": "para taxas da rede",
       "certified": "Total compensado (certificado)",
       "receive": "Receber",
-      "receiveHint": "Envie RC ou SIN para este endereço na rede Sintrop.",
+      "receiveHint": "Envie RC ou SINTROP para este endereço na rede Sintrop.",
       "copyAddress": "Copiar endereço",
       "connectToSee": "Conecte sua carteira para ver seu saldo e suas transações.",
       "kind": {
@@ -864,8 +864,8 @@
           "text": "Toque em Conectar no topo da tela inicial e aprove no MetaMask. Depois de aprovar, volte para o app."
         },
         "gas": {
-          "title": "Compre ou receba um pouco de SIN",
-          "text": "SIN é a moeda da rede Sintrop e paga as taxas de cada transação, como o cadastro. Compre ou receba SIN de outro usuário: para isso, copie o endereço da sua carteira no seu perfil e envie para quem vai te mandar o SIN."
+          "title": "Compre, receba ou minere SINTROP",
+          "text": "SINTROP é a unidade da rede Sintrop e paga as taxas de cada transação, como o cadastro. Você pode receber de outro usuário, copiando o endereço da sua carteira no seu perfil, ou minerar com o seu próprio computador."
         },
         "register": {
           "title": "Faça o seu cadastro",
@@ -889,7 +889,7 @@
       "networkName": "Nome da rede",
       "rpcUrl": "URL do RPC",
       "chainId": "ID da chain",
-      "currencySymbol": "Símbolo da moeda",
+      "currencySymbol": "Símbolo da moeda (no MetaMask)",
       "explorer": "Explorador de blocos",
       "tokenTitle": "Token Crédito de Regeneração (RC)",
       "tokenText": "Dados para importar o RC na sua carteira.",
@@ -919,8 +919,8 @@
           "a": "Só o Apoiador se cadastra sem convite. Ativistas convidam regeneradores, inspetores e outros ativistas. Pesquisadores, desenvolvedores e contribuidores são convidados por usuários do mesmo tipo. O convite fica registrado na blockchain para o endereço da carteira convidada, então peça o convite e depois faça o cadastro com a mesma carteira."
         },
         "sin": {
-          "q": "Por que preciso de SIN?",
-          "a": "SIN é a moeda da rede Sintrop e paga as taxas das transações: cadastro, convites, inspeções, publicações, votos, saques e compensações. Consultar dados no app é gratuito. Sem SIN na carteira, a transação não é enviada."
+          "q": "O que é SINTROP e por que preciso dele?",
+          "a": "O Crédito de Regeneração usa a blockchain Sintrop, um banco de dados distribuído mantido pelos computadores conectados à rede. Os computadores que encontram os blocos recebem SINTROP, a unidade de sintropia da rede, que paga as taxas das transações: cadastro, convites, inspeções, publicações, votos, saques e compensações. Consultar dados no app é gratuito. Você pode receber SINTROP de outro usuário ou minerar no seu computador. No MetaMask, a moeda aparece com o símbolo SIN."
         },
         "eras": {
           "q": "O que são eras e épocas?",
@@ -954,7 +954,8 @@
       "moreInfo": "Mais informações no site do Crédito de Regeneração",
       "openProfile": "Abrir meu perfil",
       "openMarket": "Abrir Mercado",
-      "connected": "Carteira conectada ✓"
+      "connected": "Carteira conectada ✓",
+      "howToMine": "Como minerar SINTROP"
     },
     "contracts": {
       "title": "Contratos",
@@ -989,7 +990,7 @@
       "searchFunction": "Buscar função",
       "noFunctions": "Nenhuma função encontrada.",
       "writeWarningTitle": "Chamada direta ao contrato",
-      "writeWarning": "Estas funções enviam uma transação pela sua carteira sem as checagens que o app faz nas outras telas. Um parâmetro errado pode reverter a transação e gastar taxa em SIN. Use só se souber o que a função faz.",
+      "writeWarning": "Estas funções enviam uma transação pela sua carteira sem as checagens que o app faz nas outras telas. Um parâmetro errado pode reverter a transação e gastar taxa em SINTROP. Use só se souber o que a função faz.",
       "query": "Consultar",
       "sendTransaction": "Enviar transação",
       "send": "Enviar",
@@ -1018,6 +1019,64 @@
         "array": "Este campo espera uma lista.",
         "amount": "Valor inválido."
       }
+    },
+    "mining": {
+      "title": "Minerar SINTROP",
+      "settingsTitle": "Minerar SINTROP (avançado)",
+      "settingsText": "Rode um nó da rede Sintrop no seu computador e receba SINTROP pelos blocos encontrados.",
+      "introTitle": "A rede por trás do Crédito de Regeneração",
+      "introText": "O Crédito de Regeneração roda na blockchain Sintrop, um banco de dados distribuído mantido pelos computadores conectados à rede, os nós. Cada nó guarda uma cópia de todas as transações e ajuda a processar as novas. Os computadores que encontram os blocos são remunerados com SINTROP, a unidade de sintropia da rede, que também paga as taxas de cada transação.",
+      "introSmallNetwork": "Com a rede ainda pequena, um computador comum, minerando só com o processador, pode encontrar alguns blocos. Assim, qualquer pessoa consegue o SINTROP para as taxas e faz o cadastro de apoiador sem depender de ninguém.",
+      "addressTitle": "Endereço que vai receber a recompensa",
+      "addressConnected": "A recompensa vai para a carteira conectada. O endereço já está preenchido nos comandos abaixo.",
+      "addressPaste": "Cole o endereço da sua carteira. Ele é preenchido nos comandos abaixo.",
+      "os": {
+        "windows": "Windows",
+        "ubuntu": "Ubuntu",
+        "macos": "macOS"
+      },
+      "downloadTitle": "Baixe o go-sintrop",
+      "download": {
+        "windows": "No computador, baixe o arquivo {{file}} da página de versões do go-sintrop.",
+        "ubuntu": "No computador, baixe o arquivo {{file}} da página de versões do go-sintrop.",
+        "macos": "No computador, baixe o arquivo {{file}} da página de versões do go-sintrop."
+      },
+      "macAppleSilicon": "A versão para macOS funciona em Macs com processador Apple (M1 ou mais novo).",
+      "downloadButton": "Baixar go-sintrop {{version}}",
+      "openReleases": "Abrir página de versões",
+      "extractTitle": "Extraia o arquivo",
+      "extract": {
+        "windows": "Na pasta Downloads, clique com o botão direito no arquivo e escolha Extrair tudo. Abra a pasta extraída, que tem o arquivo geth.exe.",
+        "ubuntu": "Abra o Terminal e rode os comandos abaixo, um de cada vez. Toque em um comando para copiar.",
+        "macos": "Abra o Terminal e rode os comandos abaixo, um de cada vez. O último libera o arquivo, que o macOS bloqueia por ter vindo da internet. Toque em um comando para copiar."
+      },
+      "runTitle": "Inicie o nó",
+      "run": {
+        "windows": "Na pasta do geth.exe, clique na barra de endereço, digite powershell e aperte Enter. No PowerShell que abrir, cole e rode o comando abaixo.",
+        "ubuntu": "No mesmo Terminal, cole e rode o comando abaixo.",
+        "macos": "No mesmo Terminal, cole e rode o comando abaixo."
+      },
+      "runAddressFilled": "O seu endereço já está no comando, no campo miner.etherbase.",
+      "runAddressMissing": "Informe o endereço da sua carteira acima para ele entrar no comando, no campo miner.etherbase.",
+      "syncTitle": "Espere a sincronização",
+      "syncText": "O nó começa a baixar uma cópia completa da blockchain. Isso leva um tempo. Ele está sincronizado quando o número do bloco no Terminal chegar ao bloco atual da rede.",
+      "currentBlock": "Bloco atual da rede: {{block}}",
+      "mineTitle": "Comece a minerar",
+      "mineText": "Com o nó sincronizado, digite no próprio console do geth:",
+      "stopText": "Para parar a mineração:",
+      "exitText": "Para desligar o nó com segurança, aperte Ctrl + D. Não feche a janela direto.",
+      "rewardTitle": "Receba e use os SINTROP",
+      "rewardText": "Cada bloco encontrado envia a recompensa para o seu endereço. O saldo aparece em Meus tokens. Com SINTROP na carteira, você já pode pagar as taxas e fazer o cadastro de apoiador.",
+      "openMyTokens": "Abrir Meus tokens",
+      "registerSupporter": "Fazer cadastro",
+      "tipsTitle": "Dicas",
+      "tipComputerOn": "O computador precisa ficar ligado e conectado à internet enquanto minera. Quanto mais tempo minerando, mais chances de encontrar blocos.",
+      "tipRenewable": "A rede Sintrop incentiva o uso de energia renovável, como solar, eólica ou hídrica, nos computadores que mineram.",
+      "guideTitle": "Guia completo",
+      "guideText": "Para montar um computador dedicado, minerar com placa de vídeo e resolver problemas comuns, veja o guia completo de nó e mineração no Ubuntu, publicado como contribuição na comunidade.",
+      "openGuide": "Abrir o guia completo",
+      "openTutorials": "Tutoriais em sintrop.com",
+      "commandCopied": "Comando copiado"
     }
   }
 }

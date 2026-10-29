@@ -292,7 +292,7 @@
       "gasHint": "for network fees",
       "certified": "Total offset (certificate)",
       "receive": "Receive",
-      "receiveHint": "Send RC or SIN to this address on the Sintrop network.",
+      "receiveHint": "Send RC or SINTROP to this address on the Sintrop network.",
       "copyAddress": "Copy address",
       "connectToSee": "Connect your wallet to see your balance and transactions.",
       "kind": {
@@ -864,8 +864,8 @@
           "text": "Tap Connect at the top of the home screen and approve in MetaMask. After approving, come back to the app."
         },
         "gas": {
-          "title": "Buy or receive some SIN",
-          "text": "SIN is the Sintrop network currency and pays the fee of every transaction, such as registration. Buy or receive SIN from another user: copy your wallet address from your profile and send it to whoever will send you the SIN."
+          "title": "Buy, receive or mine SINTROP",
+          "text": "SINTROP is the Sintrop network unit and pays the fee of every transaction, such as registration. You can receive it from another user, copying your wallet address from your profile, or mine it with your own computer."
         },
         "register": {
           "title": "Register",
@@ -889,7 +889,7 @@
       "networkName": "Network name",
       "rpcUrl": "RPC URL",
       "chainId": "Chain ID",
-      "currencySymbol": "Currency symbol",
+      "currencySymbol": "Currency symbol (in MetaMask)",
       "explorer": "Block explorer",
       "tokenTitle": "Regeneration Credit token (RC)",
       "tokenText": "Data to import RC into your wallet.",
@@ -919,8 +919,8 @@
           "a": "Only Supporters register without an invitation. Activists invite regenerators, inspectors and other activists. Researchers, developers and contributors are invited by users of the same type. The invitation is recorded on the blockchain for the invited wallet address, so ask for the invitation and then register with the same wallet."
         },
         "sin": {
-          "q": "Why do I need SIN?",
-          "a": "SIN is the Sintrop network currency and pays transaction fees: registration, invitations, inspections, publications, votes, withdrawals and offsets. Browsing data in the app is free. Without SIN in your wallet, the transaction is not sent."
+          "q": "What is SINTROP and why do I need it?",
+          "a": "Regeneration Credit uses the Sintrop blockchain, a distributed database kept by the computers connected to the network. The computers that find blocks earn SINTROP, the network's unit of syntropy, which pays transaction fees: registration, invitations, inspections, publications, votes, withdrawals and offsets. Browsing data in the app is free. You can receive SINTROP from another user or mine it on your computer. In MetaMask the currency shows with the symbol SIN."
         },
         "eras": {
           "q": "What are eras and epochs?",
@@ -954,7 +954,8 @@
       "moreInfo": "More information on the Regeneration Credit website",
       "openProfile": "Open my profile",
       "openMarket": "Open Market",
-      "connected": "Wallet connected ✓"
+      "connected": "Wallet connected ✓",
+      "howToMine": "How to mine SINTROP"
     },
     "contracts": {
       "title": "Contracts",
@@ -989,7 +990,7 @@
       "searchFunction": "Search function",
       "noFunctions": "No function found.",
       "writeWarningTitle": "Direct contract call",
-      "writeWarning": "These functions send a transaction through your wallet without the checks the app makes on other screens. A wrong parameter can revert the transaction and spend SIN on fees. Use them only if you know what the function does.",
+      "writeWarning": "These functions send a transaction through your wallet without the checks the app makes on other screens. A wrong parameter can revert the transaction and spend SINTROP on fees. Use them only if you know what the function does.",
       "query": "Query",
       "sendTransaction": "Send transaction",
       "send": "Send",
@@ -1018,6 +1019,64 @@
         "array": "This field expects a list.",
         "amount": "Invalid amount."
       }
+    },
+    "mining": {
+      "title": "Mine SINTROP",
+      "settingsTitle": "Mine SINTROP (advanced)",
+      "settingsText": "Run a Sintrop network node on your computer and earn SINTROP for the blocks you find.",
+      "introTitle": "The network behind Regeneration Credit",
+      "introText": "Regeneration Credit runs on the Sintrop blockchain, a distributed database kept by the computers connected to the network, the nodes. Each node stores a copy of every transaction and helps process new ones. The computers that find blocks are rewarded with SINTROP, the network's unit of syntropy, which also pays every transaction fee.",
+      "introSmallNetwork": "While the network is still small, an ordinary computer mining with its processor alone can find some blocks. That way anyone can get SINTROP for fees and register as a supporter without depending on anyone.",
+      "addressTitle": "Address that receives the reward",
+      "addressConnected": "The reward goes to the connected wallet. The address is already filled in the commands below.",
+      "addressPaste": "Paste your wallet address. It is filled in the commands below.",
+      "os": {
+        "windows": "Windows",
+        "ubuntu": "Ubuntu",
+        "macos": "macOS"
+      },
+      "downloadTitle": "Download go-sintrop",
+      "download": {
+        "windows": "On your computer, download the {{file}} file from the go-sintrop releases page.",
+        "ubuntu": "On your computer, download the {{file}} file from the go-sintrop releases page.",
+        "macos": "On your computer, download the {{file}} file from the go-sintrop releases page."
+      },
+      "macAppleSilicon": "The macOS build runs on Macs with Apple chips (M1 or newer).",
+      "downloadButton": "Download go-sintrop {{version}}",
+      "openReleases": "Open releases page",
+      "extractTitle": "Extract the file",
+      "extract": {
+        "windows": "In the Downloads folder, right-click the file and choose Extract All. Open the extracted folder, which contains geth.exe.",
+        "ubuntu": "Open Terminal and run the commands below, one at a time. Tap a command to copy it.",
+        "macos": "Open Terminal and run the commands below, one at a time. The last one unblocks the file, which macOS blocks because it came from the internet. Tap a command to copy it."
+      },
+      "runTitle": "Start the node",
+      "run": {
+        "windows": "In the geth.exe folder, click the address bar, type powershell and press Enter. In the PowerShell window, paste and run the command below.",
+        "ubuntu": "In the same Terminal, paste and run the command below.",
+        "macos": "In the same Terminal, paste and run the command below."
+      },
+      "runAddressFilled": "Your address is already in the command, in the miner.etherbase field.",
+      "runAddressMissing": "Enter your wallet address above so it goes into the command, in the miner.etherbase field.",
+      "syncTitle": "Wait for the sync",
+      "syncText": "The node starts downloading a full copy of the blockchain. This takes a while. It is in sync when the block number in the Terminal reaches the network's current block.",
+      "currentBlock": "Network's current block: {{block}}",
+      "mineTitle": "Start mining",
+      "mineText": "With the node in sync, type in the geth console:",
+      "stopText": "To stop mining:",
+      "exitText": "To shut the node down safely, press Ctrl + D. Do not just close the window.",
+      "rewardTitle": "Receive and use SINTROP",
+      "rewardText": "Each block found sends the reward to your address. The balance shows in My tokens. With SINTROP in your wallet you can pay fees and register as a supporter.",
+      "openMyTokens": "Open My tokens",
+      "registerSupporter": "Register",
+      "tipsTitle": "Tips",
+      "tipComputerOn": "The computer must stay on and online while mining. The longer it mines, the more chances to find blocks.",
+      "tipRenewable": "The Sintrop network encourages renewable energy, such as solar, wind or hydro, for mining computers.",
+      "guideTitle": "Complete guide",
+      "guideText": "To build a dedicated computer, mine with a graphics card and solve common problems, see the complete node and mining guide for Ubuntu, published as a community contribution.",
+      "openGuide": "Open the complete guide",
+      "openTutorials": "Tutorials at sintrop.com",
+      "commandCopied": "Command copied"
     }
   }
 }

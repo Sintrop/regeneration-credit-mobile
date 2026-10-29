@@ -18,6 +18,7 @@ import {
   HelpScreen,
   ContractsScreen,
   ContractScreen,
+  MiningScreen,
   ResourcesTypes, 
   TokenImpactScreen, 
   UserDetailsScreen, 
@@ -35,6 +36,7 @@ export type AppStackParamsList = {
   HelpScreen: undefined;
   ContractsScreen: undefined;
   ContractScreen: { name: string };
+  MiningScreen: undefined;
   TokenImpactScreen: undefined;
   CommunityScreen: undefined;
   InspectionsScreen: undefined;
@@ -89,6 +91,7 @@ export function AppStack() {
       <Stack.Screen name="HelpScreen" component={HelpScreen} />
       <Stack.Screen name="ContractsScreen" component={ContractsScreen} />
       <Stack.Screen name="ContractScreen" component={ContractScreen} />
+      <Stack.Screen name="MiningScreen" component={MiningScreen} />
     </Stack.Navigator>
   );
 }
