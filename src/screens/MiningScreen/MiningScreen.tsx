@@ -149,6 +149,11 @@ export function MiningScreen({ navigation }: ScreenProps) {
           <Step index={1} title={t("mining.downloadTitle")}>
             <Paragraph>{t(`mining.download.${os}`, { file: assetName })}</Paragraph>
             {os === "macos" && <Paragraph>{t("mining.macAppleSilicon")}</Paragraph>}
+            <View className="p-3 rounded-xl bg-amber-400/10 border border-amber-400/30 gap-1">
+              <Text className="text-amber-300 text-sm font-semibold">{t("mining.unknownSourceTitle")}</Text>
+              <Text className="text-gray-200 text-sm">{t("mining.unknownSourceText")}</Text>
+              <Text className="text-gray-200 text-sm">{t(`mining.unknownSource.${os}`)}</Text>
+            </View>
             <LinkButton
               primary
               label={release ? t("mining.downloadButton", { version: release.tag }) : t("mining.openReleases")}

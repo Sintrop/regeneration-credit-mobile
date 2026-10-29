@@ -1076,7 +1076,14 @@
       "guideText": "To build a dedicated computer, mine with a graphics card and solve common problems, see the complete node and mining guide for Ubuntu, published as a community contribution.",
       "openGuide": "Open the complete guide",
       "openTutorials": "Tutorials at sintrop.com",
-      "commandCopied": "Command copied"
+      "commandCopied": "Command copied",
+      "unknownSourceTitle": "Unknown source warning",
+      "unknownSourceText": "Your browser and system will warn that the program comes from an unknown source. This is expected: go-sintrop is open source and comes straight from Sintrop's official GitHub repository. Allow the download and the execution to continue.",
+      "unknownSource": {
+        "windows": "On Windows, keep the file when the browser asks. If \"Windows protected your PC\" appears, click More info and then Run anyway.",
+        "ubuntu": "On Ubuntu, keep the file when the browser asks.",
+        "macos": "On macOS, the unblock command in step 2 clears the block. If the warning still appears, open System Settings > Privacy & Security and click Open Anyway."
+      }
     }
   }
 }

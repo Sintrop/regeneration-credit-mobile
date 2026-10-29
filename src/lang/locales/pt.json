@@ -1076,7 +1076,14 @@
       "guideText": "Para montar um computador dedicado, minerar com placa de vídeo e resolver problemas comuns, veja o guia completo de nó e mineração no Ubuntu, publicado como contribuição na comunidade.",
       "openGuide": "Abrir o guia completo",
       "openTutorials": "Tutoriais em sintrop.com",
-      "commandCopied": "Comando copiado"
+      "commandCopied": "Comando copiado",
+      "unknownSourceTitle": "Aviso de origem desconhecida",
+      "unknownSourceText": "O navegador e o sistema vão avisar que o programa é de origem desconhecida. Isso é esperado: o go-sintrop é de código aberto e vem direto do repositório oficial da Sintrop no GitHub. Autorize o download e a execução para continuar.",
+      "unknownSource": {
+        "windows": "No Windows, mantenha o arquivo quando o navegador perguntar. Se aparecer \"O Windows protegeu o computador\", clique em Mais informações e depois em Executar assim mesmo.",
+        "ubuntu": "No Ubuntu, mantenha o arquivo quando o navegador perguntar.",
+        "macos": "No macOS, o comando de liberação do passo 2 resolve o bloqueio. Se ainda aparecer o aviso, abra Ajustes do Sistema > Privacidade e Segurança e clique em Abrir mesmo assim."
+      }
     }
   }
 }
