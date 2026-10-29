@@ -133,3 +133,4 @@ export * from "./SupporterRules/compensations/supporterCompensations";
 export * from "./SupporterRules/compensations/useSupporterCompensations";
 export * from "./InvitationRules/useCases/useInvitedUsers";
 export * from "./Chain/useCases/useNativeBalance";
+export * from "./InspectionRules/useCases/useImpactSettlement";

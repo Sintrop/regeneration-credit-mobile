@@ -51,5 +51,7 @@ export enum QueryKeys {
   InvitedUsers = 'InvitedUsers',
   Transfers = 'Transfers',
   Commissions = 'Commissions',
-  NativeBalance = 'NativeBalance'
+  NativeBalance = 'NativeBalance',
+  ImpactSettlement = 'ImpactSettlement',
+  ImpactEras = 'ImpactEras'
 }

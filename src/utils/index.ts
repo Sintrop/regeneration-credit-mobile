@@ -6,3 +6,4 @@ export * from "./byteLength";
 export * from "./formatArea";
 export * from "./formatCarbon";
 export * from "./staticMapUrl";
+export * from "./impactBreakdown";
