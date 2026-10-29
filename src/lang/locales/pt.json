@@ -115,7 +115,12 @@
       "invitedBy": "Convidado por"
     },
     "pdfView": {
-      "title": "Visualização de PDF"
+      "title": "Visualização de PDF",
+      "loading": "Carregando PDF...",
+      "loadingProgress": "Carregando PDF... {{percent}}%",
+      "errorTitle": "Não foi possível abrir o PDF aqui",
+      "errorDescription": "O arquivo fica no IPFS e pode demorar a ficar disponível. Tente abrir no navegador.",
+      "openInBrowser": "Abrir no navegador"
     },
     "common": {
       "regenerator": "Regenerador",
