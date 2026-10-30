@@ -13,4 +13,4 @@ export interface FeedItemProps {
   additionalData?: string;
 }
 
-export type ResourcesTypes = "inspection" | "report" | "research" | "contribution" | "offset" | "user-registered" | "declared-commitment" | "pool-withdrawal"
+export type ResourcesTypes = "inspection" | "report" | "research" | "contribution" | "offset" | "user-registered" | "declared-commitment" | "pool-withdrawal" | "invitation" | "tree-funding" | "regenerator-entered-pool" | "market-offer" | "rc-transfer"

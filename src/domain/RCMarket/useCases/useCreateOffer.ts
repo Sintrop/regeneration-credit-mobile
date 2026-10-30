@@ -1,7 +1,7 @@
+import i18next from "i18next";
 import React from "react";
 import { useSDK } from "@metamask/sdk-react";
 import Toast from "react-native-toast-message";
-import { utils } from "web3";
 
 import { RCMarket } from "@contracts";
 import { useTxContext } from "@hooks";
@@ -27,7 +27,7 @@ export function useCreateOffer(): ReturnUseCreateOffer {
     if (!ethereum) {
       Toast.show({
         type: 'error',
-        text1: 'Provider is undefined'
+        text1: i18next.t('common.walletUnavailable')
       });
       return;
     }
@@ -40,13 +40,12 @@ export function useCreateOffer(): ReturnUseCreateOffer {
         contractAbi: RCMarket.abi,
         contractAddress: RCMarket.address,
         methodName: 'createOffer',
-        // amountRC needs to be a number, unitPrice is a string
-        params: [parseFloat(data.amountRC), data.unitPrice, data.paymentMethod, data.description]
+        params: [data.amountRC, data.unitPrice, data.paymentMethod, data.description]
       });
     } catch (error) {
       Toast.show({
         type: 'error',
-        text1: 'Error creating offer',
+        text1: i18next.t('market.errorCreatingOffer'),
         text2: String(error)
       });
     } finally {

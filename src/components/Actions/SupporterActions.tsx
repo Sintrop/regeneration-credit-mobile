@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import { ActionItem } from "@components";
 
 import { InviteSupporter } from "./Invite/InviteSupporter";
+import { Offset } from "./Offset/Offset";
 import { BurnTokens } from "./BurnTokens/BurnTokens";
 
 export function SupporterActions() {
@@ -11,11 +12,14 @@ export function SupporterActions() {
 
   return (
     <View>
+      <Offset>
+        <ActionButton label={t('offset.newOffset')} hint={t('offset.newOffsetHint')} />
+      </Offset>
       <BurnTokens>
         <ActionButton label={t('actions.burnTokens')}/>
       </BurnTokens>
       <InviteSupporter>
-        <ActionButton label={t('actions.inviteSupporter')}/>
+        <ActionButton label={t('actions.inviteSupporter')} hint={t('actions.inviteSupporterHint')} />
       </InviteSupporter>
     </View>
   )
@@ -24,9 +28,10 @@ export function SupporterActions() {
 interface ActionButtonProps {
   openModal?: () => void;
   label: string;
+  hint?: string;
 }
-function ActionButton({ openModal, label }: ActionButtonProps) {
+function ActionButton({ openModal, label, hint }: ActionButtonProps) {
   return (
-    <ActionItem label={label} onPress={openModal} />
+    <ActionItem label={label} hint={hint} onPress={openModal} />
   )
 }

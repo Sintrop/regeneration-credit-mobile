@@ -1,10 +1,8 @@
 import Web3 from "web3";
 import RCMarket from "../../contracts/RCMarket.json";
 
-const RPC_URL = "https://rpc.sintrop.com";
-
-export function getRCMarketContract() {
-  const provider = new Web3(new Web3.providers.HttpProvider(RPC_URL));
+export function getRCMarketContract(rpc: string) {
+  const provider = new Web3(new Web3.providers.HttpProvider(rpc));
   return new provider.eth.Contract(RCMarket.abi, RCMarket.address);
 }
 

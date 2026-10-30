@@ -2,16 +2,17 @@ import { useEffect, useState } from "react";
 import { ActivityIndicator, Image, Keyboard, TouchableOpacity, View } from "react-native";
 import { useTranslation } from "react-i18next";
 
-import { useAppSafeArea, useKeyboardStatus, useUserContext } from "@hooks";
+import { useAppSafeArea, useKeyboardStatus, useTxContext, useUserContext } from "@hooks";
 import { Text, TextInput } from "@components";
 import { useBalance, useBurn } from "@domain";
+import { amountToWei, parseAmountInput } from "@utils";
 
 //@ts-ignore
 import RCIcon from "../../../../assets/images/rc.png";
-import { utils } from "web3";
 
-export function BurnTokensModalContent() {
+export function BurnTokensModalContent({ onDone }: { onDone?: () => void }) {
   const { address } = useUserContext();
+  const { registerContinueAction } = useTxContext();
   const { t } = useTranslation();
   const { bottom } = useAppSafeArea();
   const { keyboardHeight, keyboardOpen } = useKeyboardStatus();
@@ -26,7 +27,7 @@ export function BurnTokensModalContent() {
 
   useEffect(() => {
     if (inputTokens.trim()) {
-      if (parseFloat(inputTokens) > balance) {
+      if (parseAmountInput(inputTokens) > balance) {
         setInsufficientBalance(true);
       } else {
         setInsufficientBalance(false);
@@ -36,9 +37,16 @@ export function BurnTokensModalContent() {
     }
   }, [balance, inputTokens]);
 
+  const valueInWei = amountToWei(inputTokens);
+  const isValidAmount = valueInWei !== null && BigInt(valueInWei) > 0n;
+
   async function handleBurn() {
-    const value = utils.toWei(inputTokens, 'ether');
-    burnTokens({ value: parseFloat(value) });
+    if (!valueInWei || !isValidAmount) return;
+    registerContinueAction(() => {
+      setInputTokens('');
+      onDone?.();
+    });
+    burnTokens({ value: valueInWei });
   }
 
   return (
@@ -86,7 +94,7 @@ export function BurnTokensModalContent() {
 
       <TouchableOpacity
         className="w-full h-12 items-center justify-center bg-blue-primary rounded-2xl mt-5 disabled:opacity-50"
-        disabled={isLoading || insufficientBalance || !inputTokens.trim()}
+        disabled={isLoading || insufficientBalance || !isValidAmount}
         onPress={handleBurn}
       >
         <Text className="text-white font-semibold">{t('actions.burnTokens')}</Text>

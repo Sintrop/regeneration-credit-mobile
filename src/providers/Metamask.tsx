@@ -18,8 +18,8 @@ const SdkConfig = ({ children }: { children: React.ReactNode }) => {
           '0x3D171': 'https://rpc.sintrop.com',
         },
         logging: {
-          developerMode: true,
-          plaintext: true,
+          developerMode: false,
+          plaintext: false,
         },
         openDeeplink: (link: string) => {
           Linking.openURL(link);

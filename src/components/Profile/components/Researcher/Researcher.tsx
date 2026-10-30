@@ -2,11 +2,13 @@ import { View } from "react-native";
 import { useTranslation } from "react-i18next";
 
 import { useGetResearcher } from "@domain";
-import { DataItem } from "@components";
+import { DataItem, InvalidationCard } from "@components";
 
 import { HeaderProfile } from "../HeaderProfile/HeaderProfile";
 import { Invitation } from "../Invitation/Invitation";
 import { UserDelations } from "../UserDelations/UserDelations";
+import { InvitedUsers } from "../Sections/InvitedUsers";
+import { PublishedResources } from "../Sections/PublishedResources";
 
 interface Props {
   address: string
@@ -29,6 +31,8 @@ export function Researcher({ address }: Props) {
       />
 
       <View className="gap-3 px-2">
+        <InvalidationCard target="user" idOrAddress={address} />
+
         <View className="gap-1 p-5 rounded-2xl bg-card-primary">
           <DataItem title="ID" value={researcher.id} />
           <DataItem title={t("profile.hashProofPhoto")} value={researcher.proofPhoto} />
@@ -40,6 +44,8 @@ export function Researcher({ address }: Props) {
           <DataItem title={t("profile.registeredAt")} value={researcher.createdAt} />
         </View>
 
+        <PublishedResources address={address} />
+        <InvitedUsers address={address} />
         <Invitation address={address} />
         <UserDelations address={address} />
       </View>

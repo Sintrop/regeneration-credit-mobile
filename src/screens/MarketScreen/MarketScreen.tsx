@@ -1,574 +1,389 @@
-import React, { useEffect, useState } from 'react';
-import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Alert, TextInput, Modal, Platform, Keyboard } from 'react-native';
+import { useCallback, useEffect, useState } from 'react';
+import { ActivityIndicator, Alert, Keyboard, KeyboardAvoidingView, Modal, Platform, ScrollView, TouchableOpacity, View } from 'react-native';
+import { useTranslation } from 'react-i18next';
+import Toast from "react-native-toast-message";
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { utils } from 'web3';
+
+import { Screen, Text, TextInput, UserBadge } from '@components';
 import { AppStackParamsList } from '@routes';
 import { getRCMarketContract, useCreateOffer, useCancelOffer, useConfirmSale } from '@domain/RCMarket';
-import { useAppSafeArea, useUserContext } from '@hooks';
+import { useAppSafeArea, useSettingsContext, useTxContext, useUserContext } from '@hooks';
+
+import { formatOfferPrice } from './formatOfferPrice';
 
 type NavigationProp = NativeStackNavigationProp<AppStackParamsList>;
+
+const PAYMENT_METHODS = ['PIX', 'TED', 'Dinheiro'];
+const EMPTY_OFFER = { amount: '', price: '', method: 'PIX', description: '' };
 
 interface Offer {
   id: number;
   seller: string;
   amount: number;
-  pricePerUnit: any;
+  unitPrice: string;
   paymentMethod: string;
   description: string;
-  status: number;
-  active?: boolean;
-  completedAt?: number;
-  buyer?: string;
+  active: boolean;
 }
 
 export function MarketScreen() {
   const navigation = useNavigation<NavigationProp>();
-  const { top } = useAppSafeArea();
-  const { address, isConnected, handleConnect } = useUserContext();
-  const { createOffer, isLoading: isCreatingOffer } = useCreateOffer();
+  const { t, i18n } = useTranslation();
+  const { bottom } = useAppSafeArea();
+  const { address } = useUserContext();
+  const { rpc } = useSettingsContext();
+  const { registerContinueAction } = useTxContext();
+  const { createOffer } = useCreateOffer();
   const { cancelOffer } = useCancelOffer();
   const { confirmSale } = useConfirmSale();
+
   const [offers, setOffers] = useState<Offer[]>([]);
   const [loading, setLoading] = useState(true);
   const [showModal, setShowModal] = useState(false);
-  const [newOffer, setNewOffer] = useState({ amount: '', price: '', method: 'PIX', description: '' });
+  const [newOffer, setNewOffer] = useState(EMPTY_OFFER);
+  const [confirmingOfferId, setConfirmingOfferId] = useState<number | null>(null);
+  const [buyerAddress, setBuyerAddress] = useState('');
 
-  const loadOffers = async () => {
+  const loadOffers = useCallback(async () => {
     try {
-      const contract = getRCMarketContract();
-      
-      // Try to get offers count - if function doesn't exist, set to 0
-      let count = 0;
-      try {
-        const countResult = await contract.methods.getOffersCount().call();
-        count = Number(countResult);
-      } catch (e) {
-        console.log('getOffersCount not available, trying alternative method');
-      }
-      
-      if (count === 0) {
-        setOffers([]);
-        setLoading(false);
-        return;
-      }
-      
-      const offersData: Offer[] = [];
-      
-      for (let i = 1; i <= count; i++) {
+      const contract = getRCMarketContract(rpc);
+      const count = Number(await contract.methods.getOffersCount().call());
+      const ids = Array.from({ length: count }, (_, index) => count - index);
+
+      const results = await Promise.all(ids.map(async id => {
         try {
-          const offer = await contract.methods.getOffer(i).call();
-          offersData.push({
-            id: i,
+          const offer = await contract.methods.getOffer(id).call() as any;
+          return {
+            id,
             seller: offer.seller,
             amount: Number(offer.amountRC),
-            pricePerUnit: offer.unitPrice, // It's a string, not a number
+            unitPrice: String(offer.unitPrice),
             paymentMethod: offer.paymentMethod,
             description: offer.description,
-            status: offer.active ? 0 : 1, // 0 = active, 1 = inactive
             active: offer.active,
-            completedAt: Number(offer.completedAt),
-            buyer: offer.buyer,
-          });
-        } catch (e) {
-          console.log('Erro ao carregar oferta', i, e);
+          } as Offer;
+        } catch {
+          return null;
         }
-      }
-      
-      setOffers(offersData.reverse());
+      }));
+
+      setOffers(results.filter((offer): offer is Offer => offer !== null && offer.active));
     } catch (error) {
-      console.error('Erro ao carregar ofertas:', error);
+      console.log('Error loading market offers', error);
     } finally {
       setLoading(false);
     }
-  };
+  }, [rpc]);
 
   useEffect(() => {
     loadOffers();
   }, []);
 
-  const getStatusText = (status: number) => {
-    switch (status) {
-      case 0: return 'Ativa';
-      case 1: return 'Vendida';
-      case 2: return 'Cancelada';
-      default: return 'Desconhecido';
-    }
-  };
-
-  const getStatusColor = (status: number) => {
-    switch (status) {
-      case 0: return '#00D9C0';
-      case 1: return '#F59E0B';
-      case 2: return '#EF4444';
-      default: return '#6B7280';
-    }
-  };
-
-  function handleGoToUser(address: string) {
-    navigation.navigate("UserDetailsScreen", { address });
+  function onMarketTx(message: string) {
+    Toast.show({ type: 'success', text1: t(message) });
+    loadOffers();
   }
 
-  const handleBuy = () => {
-    Alert.alert('Comprar', 'O mercado é apenas informativo, entre em contato com o vendedor através das informações descritas na oferta e compre diretamente com ele.');
-  };
+  function handleGoToUser(seller: string) {
+    navigation.navigate('UserDetailsScreen', { address: seller });
+  }
 
-  const handleCancel = (offerId: number) => {
+  function handleBuy() {
+    Alert.alert(t('market.buyTitle'), t('market.buyMessage'));
+  }
+
+  function handleCancel(offerId: number) {
     Alert.alert(
-      'Cancelar Oferta',
-      'Tem certeza que deseja cancelar esta oferta?',
+      t('market.cancelOfferTitle'),
+      t('market.cancelOfferMessage'),
       [
-        { text: 'Não', style: 'cancel' },
-        { 
-          text: 'Sim', 
-          onPress: () => {
-            cancelOffer({ offerId });
-            loadOffers(); // Recarrega lista após cancelar
-          }
-        }
+        { text: t('common.no'), style: 'cancel' },
+        { text: t('common.yes'), onPress: () => { registerContinueAction(() => onMarketTx('market.offerCancelled')); cancelOffer({ offerId }); } },
       ]
     );
-  };
+  }
 
-  const handleConfirm = (offerId: number) => {
-    // Need buyer address
-    Alert.prompt(
-      'Confirmar Venda',
-      'Digite o endereço da carteira do comprador:',
-      [
-        { text: 'Cancelar', style: 'cancel' },
-        { 
-          text: 'Confirmar',
-          onPress: (buyerAddress?: string) => {
-            if (buyerAddress && buyerAddress.startsWith('0x')) {
-              confirmSale({ offerId, buyer: buyerAddress });
-              loadOffers(); // Recarrega lista após confirmar
-            } else {
-              Alert.alert('Erro', 'Endereço inválido');
-            }
-          }
-        }
-      ],
-      'plain-text'
-    );
-  };
+  function handleConfirm(offerId: number) {
+    setBuyerAddress('');
+    setConfirmingOfferId(offerId);
+  }
 
-  const handleCreateOffer = async () => {
+  function handleSubmitConfirmSale() {
+    const buyer = buyerAddress.trim();
+    if (confirmingOfferId === null) return;
+    if (!utils.isAddress(buyer)) {
+      Alert.alert(t('market.error'), t('common.invalidAddress'));
+      return;
+    }
+    registerContinueAction(() => onMarketTx('market.saleConfirmed'));
+    confirmSale({ offerId: confirmingOfferId, buyer });
+    setConfirmingOfferId(null);
+  }
+
+  function handleCreateOffer() {
     if (!address) {
-      Alert.alert('Erro', 'Conecte a carteira primeiro!');
-      return;
-    }
-    
-    if (!newOffer.amount || !newOffer.price || !newOffer.description) {
-      Alert.alert('Erro', 'Preencha todos os campos!');
-      return;
-    }
-    
-    if (newOffer.description.length > 500) {
-      Alert.alert('Erro', 'A descrição deve ter no máximo 500 caracteres!');
+      Alert.alert(t('market.error'), t('market.connectWalletFirst'));
       return;
     }
 
-    // Sanitize amount: replace comma with dot
-    const sanitizedAmount = newOffer.amount.replace(',', '.');
-    const unitPrice = newOffer.price; // unitPrice is a string, no conversion needed
-    
-    // Send raw values - useCreateOffer will handle conversion
+    if (!newOffer.amount || !newOffer.price || !newOffer.description) {
+      Alert.alert(t('market.error'), t('market.fillAllFields'));
+      return;
+    }
+
+    if (newOffer.description.length > 500) {
+      Alert.alert(t('market.error'), t('market.descriptionTooLong'));
+      return;
+    }
+
+    if (newOffer.price.length > 50) {
+      Alert.alert(t('market.error'), t('market.priceTooLong'));
+      return;
+    }
+
+    const sanitizedAmount = newOffer.amount.trim();
+    if (!/^\d+$/.test(sanitizedAmount) || Number(sanitizedAmount) <= 0) {
+      Alert.alert(t('common.integerAmountRequired'));
+      return;
+    }
+
+    registerContinueAction(() => onMarketTx('market.offerCreated'));
     createOffer({
       amountRC: sanitizedAmount,
-      unitPrice: unitPrice,
+      unitPrice: newOffer.price.trim(),
       paymentMethod: newOffer.method,
       description: newOffer.description,
     });
-    
-    setShowModal(false);
-    setNewOffer({ amount: '', price: '', method: 'PIX', description: '' });
-    
-    // Reload offers after creating
-    loadOffers();
-  };
 
-  const shortenAddress = (addr: string) => {
-    return addr.slice(0, 6) + '...' + addr.slice(-4);
-  };
+    setShowModal(false);
+    setNewOffer(EMPTY_OFFER);
+  }
+
+  const isOwnOffer = (offer: Offer) => !!address && offer.seller.toLowerCase() === address.toLowerCase();
 
   return (
-    <View style={[styles.container, { paddingTop: top }]}>
-      <View style={styles.header}>
-        <TouchableOpacity onPress={() => navigation.goBack()}>
-          <Text style={styles.backButton}>← Voltar</Text>
-        </TouchableOpacity>
-        <Text style={styles.title}>Mercado RC</Text>
-        <View style={{ width: 60 }} />
+    <Screen title={t('market.title')} showBackButton>
+      <View className="flex-1">
+        <View className="flex-1">
+          {loading ? (
+            <View className="flex-1 items-center justify-center gap-2">
+              <ActivityIndicator color="white" size={30} />
+              <Text className="text-gray-300">{t('market.loadingOffers')}</Text>
+            </View>
+          ) : (
+            <OffersList
+              offers={offers}
+              bottomInset={bottom + 90}
+              locale={i18n.language}
+              isOwnOffer={isOwnOffer}
+              onBuy={handleBuy}
+              onCancel={handleCancel}
+              onConfirm={handleConfirm}
+              onPressSeller={handleGoToUser}
+            />
+          )}
+        </View>
+
+        <View className="absolute left-3 right-3" style={{ bottom: bottom + 16 }}>
+          <TouchableOpacity
+            className="h-12 rounded-2xl items-center justify-center bg-green-primary"
+            style={{ shadowColor: '#000', shadowOpacity: 0.35, shadowRadius: 8, shadowOffset: { width: 0, height: 4 }, elevation: 6 }}
+            onPress={() => setShowModal(true)}
+          >
+            <Text className="text-green-secondary font-bold">{t('market.publishOffer')}</Text>
+          </TouchableOpacity>
+        </View>
       </View>
 
-      <ScrollView style={styles.content}>
-        {loading ? (
-          <Text style={styles.loadingText}>Carregando ofertas...</Text>
-        ) : offers.length === 0 ? (
-          <Text style={styles.emptyText}>Nenhuma oferta disponível</Text>
-        ) : (
-          offers.filter(offer => offer.status === 0).map((offer) => (
-            <View key={offer.id} style={styles.offerCard}>
-              <View style={styles.offerHeader}>
-                <Text style={styles.offerId}>Oferta #{offer.id}</Text>
-                <View style={[styles.statusBadge, { backgroundColor: getStatusColor(offer.status) }]}>
-                  <Text style={styles.statusText}>{getStatusText(offer.status)}</Text>
-                </View>
-              </View>
-              
-              <View style={styles.offerDetails}>
-                <View style={styles.detailRow}>
-                  <Text style={styles.detailLabel}>Quantidade:</Text>
-                  <Text style={styles.detailValue}>{offer.amount} RC</Text>
-                </View>
-                <View style={styles.detailRow}>
-                  <Text style={styles.detailLabel}>Preço unitário:</Text>
-                  <Text style={styles.detailValue}>{offer.pricePerUnit}</Text>
-                </View>
-                <View style={styles.detailRow}>
-                </View>
-                <View style={styles.detailRow}>
-                  <Text style={styles.detailLabel}>Pagamento:</Text>
-                  <Text style={styles.detailValue}>{offer.paymentMethod}</Text>
-                </View>
-                <View style={styles.detailRow}>
-                  <Text style={styles.detailLabel}>Vendedor:</Text>
-                  <TouchableOpacity onPress={() => handleGoToUser(offer.seller)}>
-                    <Text style={[styles.detailValue, { color: '#00D9C0' }]}>{shortenAddress(offer.seller)}</Text>
-                  </TouchableOpacity>
-                </View>
-              </View>
-              
-              {offer.description ? (
-                <Text style={styles.description}>{offer.description}</Text>
-              ) : null}
-              
-              <View style={styles.offerActions}>
-                <TouchableOpacity style={styles.buyButton} onPress={handleBuy}>
-                  <Text style={styles.buyButtonText}>Comprar</Text>
-                </TouchableOpacity>
-                
-                {address && offer.seller.toLowerCase() === address.toLowerCase() && offer.status === 0 && (
-                  <>
-                    <TouchableOpacity style={styles.cancelButton} onPress={() => handleCancel(offer.id)}>
-                      <Text style={styles.cancelButtonText}>Cancelar</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity style={styles.confirmButton} onPress={() => handleConfirm(offer.id)}>
-                      <Text style={styles.confirmButtonText}>Concluir</Text>
-                    </TouchableOpacity>
-                  </>
-                )}
-              </View>
-            </View>
-          ))
-        )}
-      </ScrollView>
+      <Modal visible={showModal} animationType="slide" transparent onRequestClose={() => setShowModal(false)}>
+        <KeyboardAvoidingView
+          className="flex-1 justify-end bg-black/70"
+          behavior={Platform.OS === 'ios' ? 'padding' : undefined}
+        >
+          <View className="w-full p-5 gap-4 rounded-t-2xl bg-card-primary" style={{ paddingBottom: bottom + 20 }}>
+            <Text className="text-white text-lg font-bold text-center">{t('market.newOffer')}</Text>
 
-      <TouchableOpacity style={styles.fab} onPress={() => setShowModal(true)}>
-        <Text style={styles.fabText}>+ Publicar Oferta</Text>
-      </TouchableOpacity>
-
-      <Modal visible={showModal} animationType="slide" transparent>
-        <View style={styles.modalOverlay}>
-          <View style={styles.modalContent}>
-            <Text style={styles.modalTitle}>Nova Oferta</Text>
-            
-            <Text style={styles.inputLabel}>Quantidade de RC:</Text>
             <TextInput
-              style={styles.input}
+              label={t('market.amountLabel')}
               placeholder="Ex: 100"
-              keyboardType="numeric"
+              keyboardType="number-pad"
               value={newOffer.amount}
-              onChangeText={(text) => setNewOffer({ ...newOffer, amount: text })}
+              onChangeText={amount => setNewOffer({ ...newOffer, amount })}
               returnKeyType="done"
-              blurOnSubmit
               onSubmitEditing={() => Keyboard.dismiss()}
             />
-            
-            <Text style={styles.inputLabel}>Preço por RC (R$):</Text>
+
             <TextInput
-              style={styles.input}
-              placeholder="Ex: 5.00"
-              keyboardType="numeric"
+              label={t('market.priceLabel')}
+              placeholder="Ex: 0,15"
+              keyboardType="decimal-pad"
+              maxLength={50}
               value={newOffer.price}
-              onChangeText={(text) => setNewOffer({ ...newOffer, price: text })}
+              onChangeText={price => setNewOffer({ ...newOffer, price })}
               returnKeyType="done"
-              blurOnSubmit
               onSubmitEditing={() => Keyboard.dismiss()}
             />
-            
-            <Text style={styles.inputLabel}>Método de Pagamento:</Text>
-            <View style={styles.methodSelector}>
-              {['PIX', 'TED', 'Dinheiro'].map((method) => (
-                <TouchableOpacity
-                  key={method}
-                  style={[styles.methodButton, newOffer.method === method && styles.methodButtonActive]}
-                  onPress={() => setNewOffer({ ...newOffer, method })}
-                >
-                  <Text style={[styles.methodText, newOffer.method === method && styles.methodTextActive]}>{method}</Text>
-                </TouchableOpacity>
-              ))}
+
+            <View>
+              <Text className="text-gray-300 mb-2">{t('market.paymentMethodLabel')}</Text>
+              <View className="flex-row gap-2">
+                {PAYMENT_METHODS.map(method => (
+                  <TouchableOpacity
+                    key={method}
+                    className={`flex-1 h-10 rounded-xl items-center justify-center ${newOffer.method === method ? 'bg-green-btn' : 'bg-card-secondary'}`}
+                    onPress={() => setNewOffer({ ...newOffer, method })}
+                  >
+                    <Text className="text-white font-semibold">{method === 'Dinheiro' ? t('market.cash') : method}</Text>
+                  </TouchableOpacity>
+                ))}
+              </View>
             </View>
-            
-            <Text style={styles.inputLabel}>Descrição (opcional):</Text>
+
             <TextInput
-              style={[styles.input, styles.textArea]}
-              placeholder="Ex: Vendo X Créditos por Y BRL cada. Contato: meucontato@contato.com"
+              label={t('market.descriptionLabel')}
+              placeholder={t('market.descriptionPlaceholder')}
               multiline
-              numberOfLines={3}
+              maxLength={500}
               value={newOffer.description}
-              onChangeText={(text) => setNewOffer({ ...newOffer, description: text })}
+              onChangeText={description => setNewOffer({ ...newOffer, description })}
             />
-            
-            <View style={styles.modalActions}>
-              <TouchableOpacity style={styles.modalCancel} onPress={() => setShowModal(false)}>
-                <Text style={styles.modalCancelText}>Cancelar</Text>
+
+            <View className="flex-row gap-3 mt-2">
+              <TouchableOpacity
+                className="flex-1 h-12 rounded-2xl items-center justify-center bg-card-secondary"
+                onPress={() => setShowModal(false)}
+              >
+                <Text className="text-white font-semibold">{t('common.cancel')}</Text>
               </TouchableOpacity>
-              <TouchableOpacity style={styles.modalSubmit} onPress={handleCreateOffer}>
-                <Text style={styles.modalSubmitText}>Publicar</Text>
+              <TouchableOpacity
+                className="flex-1 h-12 rounded-2xl items-center justify-center bg-green-btn"
+                onPress={handleCreateOffer}
+              >
+                <Text className="text-white font-semibold">{t('market.publish')}</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        </KeyboardAvoidingView>
+      </Modal>
+
+      <Modal visible={confirmingOfferId !== null} animationType="fade" transparent onRequestClose={() => setConfirmingOfferId(null)}>
+        <View className="flex-1 items-center justify-center bg-black/70">
+          <View className="w-[90%] p-5 gap-4 rounded-2xl bg-card-primary">
+            <Text className="text-white text-lg font-bold text-center">{t('market.confirmSaleTitle')}</Text>
+            <TextInput
+              label={t('market.confirmSaleMessage')}
+              placeholder="0x..."
+              autoCapitalize="none"
+              autoCorrect={false}
+              value={buyerAddress}
+              onChangeText={setBuyerAddress}
+            />
+            <View className="flex-row gap-3">
+              <TouchableOpacity
+                className="flex-1 h-12 rounded-2xl items-center justify-center bg-card-secondary"
+                onPress={() => setConfirmingOfferId(null)}
+              >
+                <Text className="text-white font-semibold">{t('common.cancel')}</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                className="flex-1 h-12 rounded-2xl items-center justify-center bg-blue-primary"
+                onPress={handleSubmitConfirmSale}
+              >
+                <Text className="text-white font-semibold">{t('common.confirm')}</Text>
               </TouchableOpacity>
             </View>
           </View>
         </View>
       </Modal>
-    </View>
+    </Screen>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#0D1B2A',
-  },
-  header: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    padding: 20,
-    paddingTop: Platform.OS === 'ios' ? 50 : 20,
-    backgroundColor: '#1B263B',
-  },
-  backButton: {
-    color: '#00D9C0',
-    fontSize: 16,
-    fontWeight: 'bold',
-  },
-  title: {
-    color: '#fff',
-    fontSize: 20,
-    fontWeight: 'bold',
-  },
-  content: {
-    flex: 1,
-    padding: 16,
-  },
-  loadingText: {
-    color: '#778DA9',
-    textAlign: 'center',
-    marginTop: 40,
-  },
-  emptyText: {
-    color: '#778DA9',
-    textAlign: 'center',
-    marginTop: 40,
-  },
-  offerCard: {
-    backgroundColor: '#1B263B',
-    borderRadius: 16,
-    padding: 16,
-    marginBottom: 16,
-    borderWidth: 1,
-    borderColor: '#2D3A4F',
-  },
-  offerHeader: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    marginBottom: 12,
-  },
-  offerId: {
-    color: '#fff',
-    fontSize: 16,
-    fontWeight: 'bold',
-  },
-  statusBadge: {
-    paddingHorizontal: 12,
-    paddingVertical: 4,
-    borderRadius: 12,
-  },
-  statusText: {
-    color: '#0D1B2A',
-    fontSize: 12,
-    fontWeight: 'bold',
-  },
-  offerDetails: {
-    marginBottom: 12,
-  },
-  detailRow: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginBottom: 8,
-  },
-  detailLabel: {
-    color: '#778DA9',
-    fontSize: 14,
-  },
-  detailValue: {
-    color: '#fff',
-    fontSize: 14,
-    fontWeight: '600',
-  },
-  description: {
-    color: '#778DA9',
-    fontSize: 14,
-    fontStyle: 'italic',
-    marginBottom: 12,
-    padding: 8,
-    backgroundColor: '#0D1B2A',
-    borderRadius: 8,
-  },
-  offerActions: {
-    flexDirection: 'row',
-    gap: 8,
-    marginTop: 8,
-  },
-  buyButton: {
-    flex: 1,
-    backgroundColor: '#1E3A5F', // Fundo azul
-    padding: 12,
-    borderRadius: 8,
-    alignItems: 'center',
-    borderWidth: 1,
-    borderColor: '#00D9C0', // Borda verde água
-  },
-  buyButtonText: {
-    color: '#00D9C0', // Texto verde água
-    fontWeight: 'bold',
-  },
-  cancelButton: {
-    backgroundColor: '#1E3A5F',
-    padding: 12,
-    borderRadius: 8,
-    alignItems: 'center',
-    borderWidth: 1,
-    borderColor: '#EF4444',
-  },
-  cancelButtonText: {
-    color: '#EF4444',
-    fontWeight: 'bold',
-  },
-  confirmButton: {
-    backgroundColor: '#1E3A5F',
-    padding: 12,
-    borderRadius: 8,
-    alignItems: 'center',
-    borderWidth: 1,
-    borderColor: '#F59E0B',
-  },
-  confirmButtonText: {
-    color: '#F59E0B',
-    fontWeight: 'bold',
-  },
-  fab: {
-    position: 'absolute',
-    bottom: 20,
-    left: 20,
-    right: 20,
-    backgroundColor: '#00D9C0',
-    padding: 16,
-    borderRadius: 12,
-    alignItems: 'center',
-  },
-  fabText: {
-    color: '#0D1B2A',
-    fontWeight: 'bold',
-    fontSize: 16,
-  },
-  modalOverlay: {
-    flex: 1,
-    backgroundColor: 'rgba(0,0,0,0.8)',
-    justifyContent: 'flex-end',
-  },
-  modalContent: {
-    backgroundColor: '#1B263B',
-    borderTopLeftRadius: 24,
-    borderTopRightRadius: 24,
-    padding: 24,
-  },
-  modalTitle: {
-    color: '#fff',
-    fontSize: 20,
-    fontWeight: 'bold',
-    marginBottom: 20,
-  },
-  input: {
-    backgroundColor: '#0D1B2A',
-    color: '#fff',
-    padding: 16,
-    borderRadius: 12,
-    marginBottom: 12,
-    fontSize: 16,
-  },
-  inputLabel: {
-    color: '#778DA9',
-    fontSize: 14,
-    marginBottom: 8,
-    marginTop: 4,
-  },
-  methodSelector: {
-    flexDirection: 'row',
-    gap: 8,
-    marginBottom: 12,
-  },
-  methodButton: {
-    flex: 1,
-    padding: 12,
-    borderRadius: 8,
-    backgroundColor: '#0D1B2A',
-    borderWidth: 1,
-    borderColor: '#2D3A4F',
-    alignItems: 'center',
-  },
-  methodButtonActive: {
-    backgroundColor: '#00D9C0',
-    borderColor: '#00D9C0',
-  },
-  methodText: {
-    color: '#778DA9',
-    fontWeight: '600',
-  },
-  methodTextActive: {
-    color: '#0D1B2A',
-  },
-  textArea: {
-    height: 80,
-    textAlignVertical: 'top',
-  },
-  modalActions: {
-    flexDirection: 'row',
-    gap: 12,
-    marginTop: 12,
-  },
-  modalCancel: {
-    flex: 1,
-    backgroundColor: '#374151',
-    padding: 16,
-    borderRadius: 12,
-    alignItems: 'center',
-  },
-  modalCancelText: {
-    color: '#fff',
-    fontWeight: 'bold',
-  },
-  modalSubmit: {
-    flex: 1,
-    backgroundColor: '#00D9C0',
-    padding: 16,
-    borderRadius: 12,
-    alignItems: 'center',
-  },
-  modalSubmitText: {
-    color: '#0D1B2A',
-    fontWeight: 'bold',
-  },
-});
+interface OffersListProps {
+  offers: Offer[];
+  bottomInset: number;
+  locale: string;
+  isOwnOffer: (offer: Offer) => boolean;
+  onBuy: () => void;
+  onCancel: (offerId: number) => void;
+  onConfirm: (offerId: number) => void;
+  onPressSeller: (seller: string) => void;
+}
+
+function OffersList({ offers, bottomInset, locale, isOwnOffer, onBuy, onCancel, onConfirm, onPressSeller }: OffersListProps) {
+  const { t } = useTranslation();
+
+  if (offers.length === 0) {
+    return (
+      <View className="flex-1 items-center justify-center px-8">
+        <Text className="text-gray-300 text-center">{t('market.noOffers')}</Text>
+      </View>
+    );
+  }
+
+  return (
+    <ScrollView
+      className="px-3 pt-5"
+      contentContainerStyle={{ gap: 12, paddingBottom: bottomInset }}
+      showsVerticalScrollIndicator={false}
+    >
+      {offers.map(offer => (
+        <View key={offer.id} className="p-4 rounded-2xl bg-card-primary gap-3">
+          <View className="flex-row items-center justify-between">
+            <Text className="text-gray-300 text-sm">{t('market.offer', { id: offer.id })}</Text>
+            <Text className="text-white text-xs font-semibold px-3 py-1 rounded-full bg-card-secondary">
+              {offer.paymentMethod === 'Dinheiro' ? t('market.cash') : offer.paymentMethod}
+            </Text>
+          </View>
+
+          <View className="flex-row items-end justify-between">
+            <View>
+              <Text className="text-gray-400 text-xs">{t('market.amount')}</Text>
+              <Text className="text-white text-2xl font-bold">
+                {Intl.NumberFormat(locale).format(offer.amount)} RC
+              </Text>
+            </View>
+            <View className="items-end">
+              <Text className="text-gray-400 text-xs">{t('market.unitPrice')}</Text>
+              <Text className="text-green-primary text-xl font-bold">{formatOfferPrice(offer.unitPrice, locale)}</Text>
+            </View>
+          </View>
+
+          {!!offer.description && (
+            <Text className="text-gray-300 p-3 rounded-xl bg-card-secondary">{offer.description}</Text>
+          )}
+
+          <UserBadge address={offer.seller} label={t('market.seller')} onPress={onPressSeller} />
+
+          <View className="flex-row gap-2">
+            <TouchableOpacity
+              className="flex-1 h-11 rounded-2xl items-center justify-center bg-green-btn"
+              onPress={onBuy}
+            >
+              <Text className="text-white font-semibold">{t('market.buy')}</Text>
+            </TouchableOpacity>
+
+            {isOwnOffer(offer) && (
+              <>
+                <TouchableOpacity
+                  className="flex-1 h-11 rounded-2xl items-center justify-center border border-red-400"
+                  onPress={() => onCancel(offer.id)}
+                >
+                  <Text className="text-red-400 font-semibold">{t('market.cancel')}</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  className="flex-1 h-11 rounded-2xl items-center justify-center bg-blue-primary"
+                  onPress={() => onConfirm(offer.id)}
+                >
+                  <Text className="text-white font-semibold">{t('market.complete')}</Text>
+                </TouchableOpacity>
+              </>
+            )}
+          </View>
+        </View>
+      ))}
+    </ScrollView>
+  );
+}

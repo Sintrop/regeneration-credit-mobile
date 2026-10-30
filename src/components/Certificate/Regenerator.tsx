@@ -8,13 +8,14 @@ import { Icon, Text } from "@components";
 import { DownloadContainer } from "./DownloadContainer";
 //@ts-ignore
 import RCLogo from "../../assets/images/rc.png";
+import { formatArea } from "@utils";
 
 interface Props {
   address: string;
 }
 
 export function Regenerator({ address }: Props) {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const { regenerator } = useGetRegenerator({ address });
   const { treesAverage, bioAverage } = useUserInspections({ address });
 
@@ -48,7 +49,7 @@ export function Regenerator({ address }: Props) {
             <View className="flex-row items-center gap-1">
               <Text className="text-white text-sm">{t('profile.totalArea')}:</Text>
               <Text className="text-white text-sm font-semibold">
-                {Intl.NumberFormat('pt-BR').format(regenerator?.totalArea ?? 0)} m²
+                {formatArea(regenerator?.totalArea ?? 0, i18n.language)}
               </Text>
             </View>
             <View className="flex-row items-center gap-1">

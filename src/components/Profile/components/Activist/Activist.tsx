@@ -2,11 +2,12 @@ import { View } from "react-native";
 import { useTranslation } from "react-i18next";
 
 import { useActivist } from "@domain";
-import { DataItem } from "@components";
+import { DataItem, InvalidationCard } from "@components";
 
 import { HeaderProfile } from "../HeaderProfile/HeaderProfile";
 import { Invitation } from "../Invitation/Invitation";
 import { UserDelations } from "../UserDelations/UserDelations";
+import { InvitedUsers } from "../Sections/InvitedUsers";
 
 interface Props {
   address: string
@@ -29,6 +30,8 @@ export function Activist({ address }: Props) {
       />
 
       <View className="gap-3 px-2">
+        <InvalidationCard target="user" idOrAddress={address} />
+
         <View className="gap-1 p-5 rounded-2xl bg-card-primary">
           <DataItem title="ID" value={activist.id} />
           <DataItem title={t("profile.hashProofPhoto")} value={activist.proofPhoto} />
@@ -36,6 +39,7 @@ export function Activist({ address }: Props) {
           <DataItem title={t("profile.registeredAt")} value={activist.createdAt} />
         </View>
 
+        <InvitedUsers address={address} />
         <Invitation address={address} />
         <UserDelations address={address} />
       </View>

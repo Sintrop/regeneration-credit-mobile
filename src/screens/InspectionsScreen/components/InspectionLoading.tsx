@@ -1,6 +1,7 @@
 import React from "react";
 import { useWindowDimensions, View } from "react-native";
 import ContentLoader, { Rect, Circle } from "react-content-loader/native";
+import colors from "../../../theme/colors";
 
 export function InspectionLoading() {
   const { width } = useWindowDimensions();
@@ -12,8 +13,8 @@ export function InspectionLoading() {
         width={width - 60}
         height={150}
         viewBox={`0 0 ${width - 60} 150`}
-        backgroundColor="#012939"
-        foregroundColor="#ecebeb"
+        backgroundColor={colors.card.secondary}
+        foregroundColor={colors.skeleton}
       >
         <Rect x="43" y="12" rx="3" ry="3" width="190" height="13" /> 
         <Rect x="44" y="30" rx="3" ry="3" width="164" height="9" /> 

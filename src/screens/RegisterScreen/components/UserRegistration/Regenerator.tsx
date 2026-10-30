@@ -1,10 +1,10 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { TouchableOpacity, View } from "react-native";
 import { useTranslation } from "react-i18next";
 import Toast from "react-native-toast-message";
 
 import { Map, Text, TextInput } from "@components";
-import { calculateArea } from "@services";
+import { calculateArea, isValidRegenerationArea } from "@services";
 import { usePermissions, useResetNavigation, useTxContext, useUploadToIpfs, useUserContext } from "@hooks";
 import { CoordinateProps, useAddRegenerator } from "@domain";
 
@@ -29,19 +29,18 @@ export function Regenerator({ name, changeScrollEnabled }: BaseRegistrationProps
 
   const { locationStatus, requestLocationPermission } = usePermissions();
   
-  useEffect(() => {
-    registerContinueAction(() => {
-      //action success
-      Toast.show({
-        type: 'success',
-        text1: t('register.successRegister')
-      });
-      refetchUser();
-      resetToHomeScreen();
-    })
-  }, []);
+  function onTxSuccess() {
+    //action success
+    Toast.show({
+      type: 'success',
+      text1: t('register.successRegister')
+    });
+    refetchUser();
+    resetToHomeScreen();
+  }
 
   async function handleRegister() {
+    registerContinueAction(onTxSuccess);
     if (!proofPhoto) return;
     let proofPhotoHash = '';
 
@@ -125,6 +124,12 @@ export function Regenerator({ name, changeScrollEnabled }: BaseRegistrationProps
             <Text className="text-white mt-3">
               {t('register.areaSize')}: {Intl.NumberFormat('pt-BR').format(areaSize)} m²
             </Text>
+
+            {coordinates.length >= 3 && !isValidRegenerationArea({ coordinatesCount: coordinates.length, areaSize }) && (
+              <Text className="text-red-400 mt-1">
+                {t('register.descriptionRegenerationArea2')} {t('register.descriptionRegenerationArea3')}
+              </Text>
+            )}
           </View>
         )}
       </View>
@@ -132,7 +137,7 @@ export function Regenerator({ name, changeScrollEnabled }: BaseRegistrationProps
       <RegisterBtn
         label={t('register.title')}
         onPress={handleRegister}
-        disabled={!name.trim() || !description.trim() || !proofPhoto || coordinates.length < 3 || areaSize < 3500 || !inviteIsOk}
+        disabled={!name.trim() || !description.trim() || !proofPhoto || !isValidRegenerationArea({ coordinatesCount: coordinates.length, areaSize }) || !inviteIsOk}
         isLoading={uploading}
       />
     </View>

@@ -2,7 +2,7 @@ import { View } from "react-native";
 import { useTranslation } from "react-i18next";
 
 import { useGetInspection } from "@domain";
-import { DataItem, Text } from "@components";
+import { DataItem, Text, StatBox, InvalidationCard } from "@components";
 
 import { Regenerator } from "./Regenerator";
 import { Inspector } from "./Inspector";
@@ -23,17 +23,17 @@ export function Inspection({ id }: Props) {
         </Text>
 
         <View className="flex-row justify-between gap-5 my-3">
-          <ResultItem 
+          <StatBox 
             title={t("resourceScreen.rScore")}
             value={inspection?.regenerationScore}
           />
   
-          <ResultItem 
+          <StatBox 
             title={t("common.biodiversity")}
             value={inspection?.biodiversityResult}
           />
   
-          <ResultItem 
+          <StatBox 
             title={t("common.trees")}
             value={inspection?.treesResult}
           />
@@ -49,6 +49,7 @@ export function Inspection({ id }: Props) {
 
       {inspection && (
         <View className="gap-3">
+          <InvalidationCard target="inspection" idOrAddress={id} />
           <Regenerator address={inspection.regenerator} />
           <Inspector address={inspection.inspector} />
           <Reports 
@@ -57,19 +58,6 @@ export function Inspection({ id }: Props) {
           />
         </View>
       )}
-    </View>
-  )
-}
-
-interface ResultItemProps {
-  title: string;
-  value?: string | number;
-}
-function ResultItem({ title, value }: ResultItemProps) {
-  return (
-    <View className="w-28 p-3 border-2 border-white rounded-2xl items-center">
-      <Text className="font-bold text-white text-3xl">{value}</Text>
-      <Text className="text-sm text-white text-center">{title}</Text>
     </View>
   )
 }

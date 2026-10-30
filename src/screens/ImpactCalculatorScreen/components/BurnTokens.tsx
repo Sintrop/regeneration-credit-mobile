@@ -6,13 +6,10 @@ import { Text, BurnTokens as ActionBurn } from "@components";
 import { useUserContext } from "@hooks";
 import { useImpactPerToken } from "@domain";
 
-// Helper to format with 2 decimal places using comma as decimal separator
-function formatNumber(value: number): string {
-  return value.toFixed(2).replace('.', ',');
-}
 
 export function BurnTokens() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const formatNumber = (value: number) => Intl.NumberFormat(i18n.language, { maximumFractionDigits: 2 }).format(value);
   const { trees } = useImpactPerToken();
   
   // Calculate tokens per tree: 1 / trees per token
@@ -34,7 +31,7 @@ export function BurnTokens() {
         
         {/* Calculator Section */}
         <View className="border border-green-500 rounded-xl p-3 bg-green-900/20">
-          <Text className="text-white text-sm mb-2">Quantas árvores deseja financiar?</Text>
+          <Text className="text-white text-sm mb-2">{t('impactCalculator.howManyTreesToFund')}</Text>
           <RNTextInput
             className="bg-transparent text-white h-10 px-3 rounded-lg mb-2 border border-gray-500"
             placeholderTextColor="#666"
@@ -48,13 +45,13 @@ export function BurnTokens() {
           />
           {tokensNeeded > 0 && (
             <Text className="text-green-400 font-semibold">
-              Compense {formatNumber(tokensNeeded)} Créditos de Regeneração
+              {t('common.compensateTokens', { tokens: formatNumber(tokensNeeded) })}
             </Text>
           )}
         </View>
 
         <ActionBurn>
-          <BurnButton tokensNeeded={tokensNeeded} />
+          <BurnButton />
         </ActionBurn>
       </View>
     </View>
@@ -63,9 +60,8 @@ export function BurnTokens() {
 
 interface BurnButtonProps {
   openModal?: () => void;
-  tokensNeeded: number;
 }
-function BurnButton({ openModal, tokensNeeded }: BurnButtonProps) {
+function BurnButton({ openModal }: BurnButtonProps) {
   const { isConnected } = useUserContext();
   const { t } = useTranslation();
 

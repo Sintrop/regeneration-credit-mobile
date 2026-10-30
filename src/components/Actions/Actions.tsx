@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { ReactNode, useRef } from "react";
 import { TouchableOpacity, View } from "react-native";
 import { useTranslation } from "react-i18next";
 import { Portal } from "react-native-portalize";
@@ -11,8 +11,14 @@ import { SupporterActions } from "./SupporterActions";
 import { ActivistActions } from "./ActivistActions";
 import { InspectorActions } from "./InspectorActions";
 import { RegeneratorActions } from "./RegeneratorActions";
+import { ContributorActions, DeveloperActions, ResearcherActions } from "./PublisherActions";
 
-export function Actions() {
+interface Props {
+  /** Custom trigger; defaults to the floating "Actions" button. */
+  renderTrigger?: (open: () => void) => ReactNode;
+}
+
+export function Actions({ renderTrigger }: Props) {
   const { bottom } = useAppSafeArea();
   const { t } = useTranslation();
   const modalRef = useRef<Modalize>(null);
@@ -26,14 +32,16 @@ export function Actions() {
 
   return (
     <View>
-      <TouchableOpacity
-        className="px-10 h-12 rounded-full bg-green-primary items-center justify-center elevation-lg"
-        onPress={openModal}
-      >
-        <Text className="font-semibold text-white">
-          {t('actions.title')}
-        </Text>
-      </TouchableOpacity>
+      {renderTrigger ? renderTrigger(openModal) : (
+        <TouchableOpacity
+          className="px-10 h-12 rounded-full bg-green-primary items-center justify-center elevation-lg"
+          onPress={openModal}
+        >
+          <Text className="font-semibold text-white">
+            {t('actions.title')}
+          </Text>
+        </TouchableOpacity>
+      )}
 
       <Portal>
         <Modalize
@@ -59,15 +67,17 @@ export function Actions() {
 
 interface ActionItemProps {
   label: string;
+  hint?: string;
   onPress?: () => void;
 }
-export function ActionItem({ label, onPress }: ActionItemProps) {
+export function ActionItem({ label, hint, onPress }: ActionItemProps) {
   return (
     <TouchableOpacity
-      className="w-full h-12 flex-row items-center px-2 border-b border-card-secondary"
+      className={`w-full justify-center px-2 border-b border-card-secondary ${hint ? "min-h-14 py-2" : "h-12"}`}
       onPress={onPress}
     >
       <Text className="text-white">{label}</Text>
+      {!!hint && <Text className="text-gray-400 text-xs mt-0.5">{hint}</Text>}
     </TouchableOpacity>
   )
 }
@@ -76,9 +86,9 @@ const userActions = {
   0: WithoutActions,
   1: RegeneratorActions,
   2: InspectorActions,
-  3: WithoutActions,
-  4: WithoutActions,
-  5: WithoutActions,
+  3: ResearcherActions,
+  4: DeveloperActions,
+  5: ContributorActions,
   6: ActivistActions,
   7: SupporterActions,
 }

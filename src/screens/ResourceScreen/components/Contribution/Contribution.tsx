@@ -3,7 +3,7 @@ import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { useNavigation } from "@react-navigation/native";
 import { useTranslation } from "react-i18next";
 
-import { DataItem, Icon, Text } from "@components";
+import { DataItem, Icon, Text, InvalidationCard } from "@components";
 import { useGetContribution } from "@domain";
 import { AppStackParamsList } from "@routes";
 import { useSettingsContext } from "@hooks";
@@ -35,10 +35,10 @@ export function Contribution({ id }: Props) {
 
         <DataItem title="ID" value={id} />
         <DataItem title={t("resourceScreen.createdAt")} value={contribution?.createdAt} />
-        <DataItem title="Era" value={contribution?.era} />
+        <DataItem title={t('resourceScreen.era')} value={contribution?.era} />
         <DataItem title={t("resourceScreen.invalidatedAt")} value={contribution?.invalidatedAt} />
         <DataItem title={t("resourceScreen.validationsCount")} value={contribution?.validationsCount} />
-        <DataItem title="Valid" value={contribution?.valid.toString()} />
+        <DataItem title={t('resourceScreen.valid')} value={contribution?.valid ? t('common.yes') : t('common.no')} />
       </View>
 
       <View className="p-3 rounded-2xl bg-card-primary gap-1">
@@ -48,6 +48,8 @@ export function Contribution({ id }: Props) {
 
         <Text className="text-white">{contribution?.description}</Text>
       </View>
+
+      <InvalidationCard target="contribution" idOrAddress={id} />
 
       <Contributor address={contribution?.contributor ? contribution.contributor : ""} />
 

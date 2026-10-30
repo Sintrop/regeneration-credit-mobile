@@ -5,8 +5,20 @@
       "userWithoutRegister": "User without register",
       "descriptionRegister": "To perform some actions in the system you need to register",
       "register": "Register",
-      "newPubli": "New publication",
-      "": ""
+      "newPubli": "New offset",
+      "loadingEraInfo": "Loading information...",
+      "currentEraTicker": "Current era: {{era}}  •  Next era in {{duration}}",
+      "feedUnavailable": "The feed couldn't be loaded right now.",
+      "shortcuts": {
+        "myTokens": "My tokens",
+        "withdrawTokens": "Withdraw tokens",
+        "market": "Market",
+        "calculator": "Calculator",
+        "impact": "Impact",
+        "community": "Community",
+        "inspections": "Inspections",
+        "resources": "Resources"
+      }
     },
     "feed": {
       "requestedAnInspection": "Requested an inspection",
@@ -15,19 +27,32 @@
       "rScore": "Score",
       "burnedTokens": "Burned tokens",
       "compensatedItem": "Compensated item",
-    "compensate": "Compensate", 
+      "compensate": "Compensate",
       "newUser": "New user",
       "theUser": "The user",
       "registeredAs": "registered as",
       "seeResource": "See resource",
       "declaredCommitmentItem": "Declared his/her commitment to reduction",
-      "declaredItem": "Declared item"
+      "declaredItem": "Declared item",
+      "advancedToEra": "Advanced to era {{era}}",
+      "creditsReceived": "Credits received",
+      "poolPaymentDescription": "Regeneration Credits payment for services provided in era {{era}}",
+      "invitationSent": "Invitation sent",
+      "invitedToBe": "Invited a new user to join as",
+      "invitationAccepted": "Invitation accepted: user registered",
+      "invitationPending": "Waiting for the invited user to register",
+      "fundedTreePlanting": "Funded tree planting",
+      "certificateTotal": "Certificate total: {{amount}} RC",
+      "enteredPoolTitle": "Started earning Regeneration Credits",
+      "enteredPoolDescription": "Completed the minimum 3 inspections and entered the regenerators pool.",
+      "newMarketOffer": "New market offer #{{id}}",
+      "seeOnMarket": "See on the market"
     },
     "userDetails": {
       "title": "User details",
       "errorOnGetUser": "Error on get user"
     },
-    "resourceScreen" : {
+    "resourceScreen": {
       "title": "Resource details",
       "inspectionData": "Inspection data",
       "rScore": "Score",
@@ -46,7 +71,9 @@
       "seeResearch": "See research",
       "researchData": "Research data",
       "contributionData": "Contribution data",
-      "seeContribution": "See contribution"
+      "seeContribution": "See contribution",
+      "valid": "Valid",
+      "era": "Era"
     },
     "profile": {
       "title": "Profile",
@@ -80,10 +107,21 @@
       "inspection": "Inspection",
       "seeMore": "See more",
       "contributedWith": "Contributed with",
-      "certificates": "Certificates"
+      "certificates": "Certificates",
+      "errorOnGetUser": "Error loading the profile",
+      "declaredReductionCommitments": "Declared reduction commitments",
+      "publishedResources": "Published resources",
+      "noPublishedResources": "No resources published yet.",
+      "invitedBy": "Invited by",
+      "transferTo": "Transfer"
     },
     "pdfView": {
-      "title": "PDF View"
+      "title": "PDF View",
+      "loading": "Loading PDF...",
+      "loadingProgress": "Loading PDF... {{percent}}%",
+      "errorTitle": "The PDF couldn't be opened here",
+      "errorDescription": "The file is stored on IPFS and may take a while to become available. Try opening it in the browser.",
+      "openInBrowser": "Open in browser"
     },
     "common": {
       "regenerator": "Regenerator",
@@ -124,7 +162,30 @@
       "impact": "Impact",
       "data": "Data",
       "share": "Share",
-      "ago": "ago"
+      "ago": "ago",
+      "takeAnother": "Take another",
+      "confirm": "Confirm",
+      "walletNotFound": "Wallet not found",
+      "walletNotFoundDescription": "To connect, you need a Web3 wallet such as MetaMask installed. Do you want to install MetaMask?",
+      "cancel": "Cancel",
+      "install": "Install",
+      "integerAmountRequired": "Amount must be a whole number of RC",
+      "loading": "Loading",
+      "loadingData": "Loading data...",
+      "compensateTokens": "Compensate {{tokens}} Regeneration Credits",
+      "addressCopied": "Address copied",
+      "addressCopiedDescription": "The wallet address was copied to the clipboard.",
+      "user": "User",
+      "selectAnOption": "Select an option",
+      "language": "Language",
+      "connect": "Connect",
+      "item": "Item",
+      "walletUnavailable": "Wallet unavailable. Connect your wallet and try again.",
+      "errorTakingPhoto": "Error taking the photo",
+      "access": "Open",
+      "market": "Market",
+      "offsetAction": "Offset",
+      "fundingImpactOf": "Funding the impact of:"
     },
     "offset": {
       "title": "Offset",
@@ -137,9 +198,13 @@
       "insufficientApprovedTokens": "Insufficient approved tokens",
       "labelInputDescription": "Message (Optional)",
       "madeOffset": "Made offset",
-      "newPubli": "You can post to your feed. To do this, we'll use the compensation system, where you choose an item from the impact calculator and offset it with a value in (RC). You can then add text describing your compensation.",
+      "newPubli": "Choose an item from the impact calculator and offset an amount in RC. The tokens are burned and the certificate records the offset. You can add a message, shown with the offset in the feed.",
       "selectAnItem": "Select an item",
-      "touchHereToSelect": "Touch here to select"
+      "touchHereToSelect": "Touch here to select",
+      "itemImpact": "Impact: {{impact}} g CO2/{{unit}}",
+      "howManyUnitsToOffset": "How many {{unit}} do you want to offset?",
+      "newOffset": "New offset",
+      "newOffsetHint": "Offset a calculator item and get the certificate"
     },
     "impactCalculator": {
       "title": "Impact calculator",
@@ -149,7 +214,24 @@
       "descBurnTokens": "Fund the planting of real trees through the Regeneration Credit compensation system, contribute to the regeneration of terrestrial ecosystems and increase your certificate to prove your commitment to the Planet.",
       "tokenImpact": "Impact",
       "totalImpactEra": "Total impact era",
-      "impactPerToken": "Impact per Regeneration Credit"
+      "impactPerToken": "Impact per Regeneration Credit",
+      "declareCommitment": "Declare commitment",
+      "declareCommitmentQuestion": "Would you like to publicly declare the reduction commitment for \"{{item}}\"?",
+      "declare": "Declare",
+      "commitment": "Commitment",
+      "treeEqualsTokens": "1 Tree = {{tokens}} RCs",
+      "tokensPerTreeDescription": "Currently {{tokens}} Regeneration Credits are equivalent to 1 tree",
+      "howManyTreesToFund": "How many trees do you want to fund?",
+      "errorDeclaringCommitment": "Error declaring commitment",
+      "perUnit": "{{impact}} g CO₂e per {{unit}}",
+      "perOneUnit": "per 1 {{unit}}",
+      "showMore": "See details and calculate ›",
+      "showLess": "Close",
+      "publishedBy": "Research published by",
+      "quickResult": "{{carbon}} kg of CO₂e: offset with ~{{tokens}} RC",
+      "supporterOnly": "Offsets and reduction commitments are available to registered supporters.",
+      "searchItem": "Search item (e.g. gasoline)",
+      "noItems": "No items found."
     },
     "register": {
       "title": "Register",
@@ -186,7 +268,8 @@
       "areaSize": "Area size",
       "useYourLocation": "Use your location",
       "useYourLocationDescription": "By allowing us to use your location, we will locate it on the map, making it easier to find your regeneration area.",
-      "useMyLocation": "Use my location"
+      "useMyLocation": "Use my location",
+      "nameTooLong": "The name must have at most {{max}} bytes (accented letters count as 2)"
     },
     "myTokens": {
       "title": "My tokens",
@@ -206,7 +289,19 @@
       "invalidAddress": "Invalid address",
       "amount": "Amount",
       "max": "Max",
-      "transferInfo": "The transaction will be processed on the Sintrop blockchain"
+      "transferInfo": "The transaction will be processed on the Sintrop blockchain",
+      "gasHint": "for network fees",
+      "certified": "Total offset (certificate)",
+      "receive": "Receive",
+      "receiveHint": "Send RC or SINTROP to this address on the Sintrop network.",
+      "copyAddress": "Copy address",
+      "connectToSee": "Connect your wallet to see your balance and transactions.",
+      "kind": {
+        "burn": "Offset / burn",
+        "poolWithdraw": "Withdrawal from the {{pool}} pool"
+      },
+      "transferDone": "Transfer completed",
+      "recipient": "Recipient"
     },
     "tx": {
       "title": "Transaction",
@@ -218,7 +313,8 @@
       "hashCopiedToTransferArea": "Hash copied to transfer area",
       "viewOnExplorer": "View on explorer",
       "errorOnGetErrorMessage": "Error on get error message",
-      "errorDetails": "Error details"
+      "errorDetails": "Error details",
+      "wrongChain": "Could not switch to the Sintrop network. Open your wallet and select it manually."
     },
     "actions": {
       "title": "Actions",
@@ -243,10 +339,14 @@
       "requestInspection": "Request inspection",
       "requestedInspection": "Requested inspection",
       "burnTokens": "Burn tokens",
-      "howMuchDoYouWantToBurn": "How much do you want to burn?"
+      "howMuchDoYouWantToBurn": "How much do you want to burn?",
+      "burnedTokens": "Burned tokens",
+      "compensate": "Compensate",
+      "inviteSupporterHint": "Earn a 5% commission on the offsets of the users you invite",
+      "inviteSupporterCommission": "You receive a 5% commission, in RC, on every offset made by the supporters you invite. The contract pays the commission directly to your wallet."
     },
     "actionsDescriptions": {
-      "inviteSupporter": "Supporters can invite Supporters to the system, respecting the specific supporter delay.",
+      "inviteSupporter": "Invite other supporters to the system. The invitation is recorded on the blockchain for the invited wallet address, and the interval between invitations set by the contract must be respected.",
       "inviteRegenerator": "Activists can invite Regenerators to the system, respecting the specific activist delay.",
       "inviteInspector": "Activists can invite Inspectors to the system, respecting the specific activist delay.",
       "inviteActivist": "Activists can invite Activists to the system, respecting the specific activist delay.",
@@ -257,24 +357,55 @@
     },
     "fileInput": {
       "selectAnother": "Select another",
-      "selectFile": "Select file",
-      "": ""
+      "selectFile": "Select file"
     },
     "map": {
       "clearSelection": "Clear selection",
-      "removeLastPoint": "Remove last point",
-      "": ""
+      "removeLastPoint": "Remove last point"
     },
     "tokenImpact": {
-      "title": "Token impact",
-      "totalSupply": "Total supply",
-      "totalLocked": "Total locked",
-      "totalCertified": "Total certified",
-      "circulatingSupply": "Circulating supply",
-      "tokenData": "Token data",
+      "title": "Impact",
+      "systemImpact": "Verified system impact",
+      "carbonSequestered": "of CO₂ sequestered in the regeneration areas",
+      "species": "Species",
+      "areaInRegeneration": "Area in regeneration",
+      "systemImpactNote": "Calculated by the RegenerationCreditImpact contract from the inspections already counted.",
       "impactPerToken": "Impact per Regeneration Credit",
-      "totalImpact": "Total impact",
-      "totalImpactPerEra": "Total impact per era"
+      "impactPerTokenDescription": "What each RC represents today: total impact divided by the effective token supply.",
+      "howTitle": "How the impact is calculated",
+      "howDescription": "Every number comes from the contracts, with current values.",
+      "howAverage_one": "Average trees per inspection ({{count}} inspection counted)",
+      "howAverage_other": "Average trees per inspection ({{count}} inspections counted)",
+      "howRegenerators": "Certified regenerators",
+      "howTrees": "Estimated trees in the system",
+      "howCarbon": "{{kg}} kg of CO₂ per tree",
+      "howPerToken": "Divided by the effective supply",
+      "howNote": "The average per inspection is multiplied by the regenerators who completed their certification inspections. Each tree counts as 100 kg of sequestered carbon.",
+      "tokenData": "Token supply",
+      "tokenDataDescription": "RC is created in the pools and reaches circulation as rewards. Certified tokens were burned in offsets.",
+      "inPools": "Still in the pools",
+      "circulatingSupply": "Circulating",
+      "totalCertified": "Certified (burned)",
+      "totalSupply": "Current supply",
+      "effectiveSupply": "Effective supply (circulating + certified)",
+      "totalImpactPerEra": "Impact per era",
+      "perEraDescription": "Trees and species recorded in each era's inspections.",
+      "era": "Era {{era}}",
+      "current": "current",
+      "treesCounted": "Trees counted",
+      "speciesCounted": "Species recorded",
+      "treesPerInspection": "Trees per inspection",
+      "status": {
+        "settled": "Counted in the impact",
+        "pending": "Ended, waiting to be counted",
+        "current": "In progress"
+      },
+      "statusNote": {
+        "settled": "This era's numbers are already part of the system impact.",
+        "pending": "The era has ended. Its numbers join the system impact at the contract's next update, which happens with the next completed inspection.",
+        "current": "The numbers join the system impact after the era ends and goes through validation."
+      },
+      "source": "Data read from the contracts on the Sintrop network"
     },
     "community": {
       "title": "Community",
@@ -301,7 +432,18 @@
       "descDevelopers": "Developers are primarily responsible for the development of the project through submitting development reports, which are subject to validation and penalty mechanisms.",
       "descContributors": "Contributors perform generic contributions to the project and are subject to validation and penalty mechanisms.",
       "descActivists": "Activists are responsible for inviting new Regenerators and Inspectors, and they earn rewards based on the approval of their invited users.",
-      "descSupporters": "Finance ecosystem regeneration, purchase Regeneration Credit directly from the community, exchange it for the certificate, and prove your commitment to the regeneration of terrestrial ecosystems."
+      "descSupporters": "Finance ecosystem regeneration, purchase Regeneration Credit directly from the community, exchange it for the certificate, and prove your commitment to the regeneration of terrestrial ecosystems.",
+      "registered": "Registered",
+      "vacancies_one": "{{count}} open vacancy",
+      "vacancies_other": "{{count}} open vacancies",
+      "noVacancies": "No vacancies right now",
+      "unlimited": "Unlimited vacancies",
+      "openRegistration": "Open registration, no invitation",
+      "invitedBy": "Invited by",
+      "poolPerEra": "Pool: {{tokens}} RC per era",
+      "seeMembers": "See members",
+      "join": "Register",
+      "regeneratorCap": "Open vacancies (up to 500k active)"
     },
     "inspections": {
       "title": "Inspections",
@@ -309,9 +451,28 @@
       "score": "Score",
       "seeInspection": "See",
       "acceptInspection": "Accept inspection",
-      "thisInspectionCanAcceptIn": "This inspection can accept in",
-      "expireIn": "Expire in",
-      "expired": "Expired"
+      "thisInspectionCanAcceptIn": "This inspection can be accepted in {{duration}}",
+      "expireIn": "Expires in {{duration}}",
+      "expiredAgo": "Expired {{duration}} ago",
+      "view": {
+        "cards": "Cards",
+        "table": "Table"
+      },
+      "loadingAll": "Loading all inspections...",
+      "realizedCount": "Completed",
+      "treesCounted": "Trees counted",
+      "avgScore": "Average score",
+      "columns": {
+        "id": "ID",
+        "status": "Status",
+        "regenerator": "Regenerator",
+        "inspector": "Inspector",
+        "trees": "Trees",
+        "biodiversity": "Biodiv.",
+        "score": "Score",
+        "era": "Era",
+        "inspectedAt": "Block"
+      }
     },
     "inspectionStatus": {
       "open": "Open",
@@ -319,6 +480,614 @@
       "realized": "Realized",
       "expired": "Expired",
       "invalidated": "Invalidated"
+    },
+    "poolsScreen": {
+      "title": "Withdraw tokens",
+      "regeneratorsPool": "Regenerators pool",
+      "inspectorsPool": "Inspectors pool",
+      "researchersPool": "Researchers pool",
+      "developersPool": "Developers pool",
+      "contributorsPool": "Contributors pool",
+      "activistsPool": "Activists pool",
+      "validationPool": "Validation pool",
+      "descRegeneratorPool": "This contract manages the distribution of Regeneration Credit tokens as a reward to regenerators for the regeneration service they provide.",
+      "descInspectorsPool": "This contract manages the distribution of Regeneration Credit tokens as a reward to inspectors for inspecting, counting trees and assessing biodiversity in the regenerators' areas.",
+      "descResearchersPool": "This contract manages the distribution of Regeneration Credit tokens as a reward to researchers for research and methodology improvement.",
+      "descDevelopersPool": "This contract manages the distribution of Regeneration Credit tokens as a reward to developers for building the system's software.",
+      "descContributorsPool": "This contract manages the distribution of Regeneration Credit tokens as a reward to contributors for their participation, mainly general services to the system such as translation, community support, design, PR etc.",
+      "descActivistsPool": "This contract manages the distribution of Regeneration Credit tokens as a reward to activists for their participation, mainly inviting new users.",
+      "descValidationPool": "This contract manages the distribution of Regeneration Credit tokens as a reward to validators.",
+      "regenerator": "Regenerator",
+      "inspector": "Inspector",
+      "researcher": "Researcher",
+      "developer": "Developer",
+      "contributor": "Contributor",
+      "activist": "Activist",
+      "validation": "Validation",
+      "contractBalance": "Contract balance",
+      "currentEra": "Current era",
+      "currentEpoch": "Current epoch",
+      "usersWhoCashedOut": "Users who withdrew",
+      "withdrawnTokens": "Withdrawn tokens",
+      "difficulty": "Difficulty",
+      "tokensThisEra": "Tokens this era",
+      "see": "See",
+      "totalFunds": "Total funds",
+      "youDoNotHaveWithdrawAvailableInThisEra": "No withdrawal available in this era",
+      "youHaveWithdrawsAvailable": "You have withdrawals available",
+      "poolEra": "Pool era",
+      "yourEraOnPool": "Your era in the pool",
+      "availablesWithdraws": "Available withdrawals",
+      "withdraw": "Withdraw",
+      "advanceToNextEra": "Advance to the next era",
+      "nextEra": "Next era",
+      "nextEraDescription": "When the button is enabled, you can advance to the next era and, if eligible, receive your Regeneration Credits as a reward for the services provided in the previous era.",
+      "yourLevel": "Your level",
+      "maxLevel": "Max level",
+      "distributedTokens": "Distributed tokens"
+    },
+    "poolsDetailsScreen": {
+      "title": "Pool",
+      "totalTokens": "Total tokens",
+      "currentEra": "Current era",
+      "balance": "Available balance",
+      "currentEpoch": "Current epoch",
+      "distributionPerPhase": "Distribution per era",
+      "eraData": "Data per era",
+      "claimsCount": "Withdrawals made",
+      "tokens": "Distributed tokens",
+      "levels": "Difficulty"
+    },
+    "market": {
+      "title": "RC Market",
+      "back": "Back",
+      "loadingOffers": "Loading offers...",
+      "noOffers": "No offers available",
+      "offer": "Offer #{{id}}",
+      "statusActive": "Active",
+      "statusSold": "Sold",
+      "statusCancelled": "Cancelled",
+      "statusUnknown": "Unknown",
+      "amount": "Amount",
+      "unitPrice": "Unit price",
+      "payment": "Payment",
+      "seller": "Seller",
+      "buy": "Buy",
+      "cancel": "Cancel",
+      "complete": "Complete",
+      "publishOffer": "+ Publish offer",
+      "newOffer": "New offer",
+      "amountLabel": "RC amount",
+      "priceLabel": "Price per RC (R$)",
+      "paymentMethodLabel": "Payment method",
+      "cash": "Cash",
+      "descriptionLabel": "Description and contact",
+      "descriptionPlaceholder": "E.g.: Selling X Credits for Y BRL each. Contact: mycontact@contact.com",
+      "publish": "Publish",
+      "buyTitle": "Buy",
+      "buyMessage": "The market is informational only. Contact the seller using the information in the offer and buy directly from them.",
+      "cancelOfferTitle": "Cancel offer",
+      "cancelOfferMessage": "Are you sure you want to cancel this offer?",
+      "confirmSaleTitle": "Complete sale",
+      "confirmSaleMessage": "Enter the buyer wallet address:",
+      "connectWalletFirst": "Connect your wallet first",
+      "fillAllFields": "Fill in all fields",
+      "descriptionTooLong": "The description must have at most 500 characters",
+      "priceTooLong": "The price must have at most 50 characters",
+      "error": "Error",
+      "errorCreatingOffer": "Error creating offer",
+      "errorCancelingOffer": "Error canceling offer",
+      "errorConfirmingSale": "Error confirming sale",
+      "offerCreated": "Offer published",
+      "offerCancelled": "Offer cancelled",
+      "saleConfirmed": "Sale completed"
+    },
+    "duration": {
+      "days_one": "~{{count}} day",
+      "days_other": "~{{count}} days",
+      "hours_one": "~{{count}} hour",
+      "hours_other": "~{{count}} hours",
+      "minutes_one": "~{{count}} minute",
+      "minutes_other": "~{{count}} minutes",
+      "withBlocks": "{{duration}} ({{blocks}} blocks)"
+    },
+    "resourcesList": {
+      "title": "Resources",
+      "filterAll": "All",
+      "researches": "Researches",
+      "contributions": "Contributions",
+      "reports": "Reports",
+      "research": "Research",
+      "contribution": "Contribution",
+      "report": "Development report",
+      "era": "Era {{era}}",
+      "open": "Open",
+      "loading": "Loading resources...",
+      "empty": "No resources published yet",
+      "error": "Could not load the resources",
+      "publishedBy": "Published by"
+    },
+    "publisher": {
+      "publishResearch": "Publish research",
+      "publishResearchDescription": "Publish a research: a new calculator item, a methodology improvement or a regeneration study. Each valid publication adds a level in the researchers pool.",
+      "publishReport": "Publish development report",
+      "publishReportDescription": "Publish a report of the development work done on the system. Each valid report adds a level in the developers pool.",
+      "publishContribution": "Publish contribution",
+      "publishContributionDescription": "Publish a report of your contribution to the system (translation, community support, design, outreach etc.). Each valid contribution adds a level in the contributors pool.",
+      "publishItem": "Publish calculator item",
+      "publishItemDescription": "Add an item to the impact calculator, with its unit and impact in grams of CO2e per unit, so supporters can offset it.",
+      "publishMethod": "Publish evaluation method",
+      "publishMethodDescription": "Publish a method or project that helps inspectors estimate trees and biodiversity. Each researcher can publish only one method.",
+      "inviteResearcher": "Invite researcher",
+      "inviteResearcherDescription": "Researchers with a level above the average can invite new researchers.",
+      "inviteDeveloper": "Invite developer",
+      "inviteDeveloperDescription": "Developers with a level above the average can invite new developers.",
+      "inviteContributor": "Invite contributor",
+      "inviteContributorDescription": "Contributors with a level above the average can invite new contributors.",
+      "researchTitle": "Research title",
+      "thesis": "Thesis (summary)",
+      "description": "Description",
+      "file": "File (PDF)",
+      "publish": "Publish",
+      "published": "Published",
+      "itemName": "Item name",
+      "itemNamePlaceholder": "E.g.: Gasoline",
+      "itemThesis": "Impact justification",
+      "itemUnit": "Unit",
+      "itemUnitPlaceholder": "E.g.: L, kWh, kg",
+      "carbonImpact": "Impact in grams of CO2e per unit",
+      "carbonImpactRange": "Use a whole number between 1 and 1,000,000 grams",
+      "methodTitle": "Method title",
+      "methodResearch": "Related research (link or IPFS hash)",
+      "methodProjectUrl": "Project link",
+      "methodAlreadyPublished": "You have already published your evaluation method. The contract allows only one per researcher.",
+      "waitTitle": "Wait to publish again",
+      "waitDescription": "The contract requires an interval between publications. Next publication opens in {{duration}}.",
+      "eraEndingTitle": "Era ending",
+      "eraEndingDescription": "Publications are blocked at the end of each era while validation finishes. The next era starts in {{duration}}.",
+      "inviteLevelRequired": "To invite, your pool level must be above the average of your user type. Keep publishing to level up.",
+      "inviteDelay": "You invited someone recently. Next invitation opens in {{duration}}."
+    },
+    "timers": {
+      "title": "Your actions",
+      "availableNow": "Available now",
+      "availableIn": "Available in {{duration}}",
+      "opensNextEra": "Blocked at the end of the era. Opens in {{duration}}",
+      "pendingInspection": "Request open, waiting for an inspector",
+      "inspectionInProgress": "Inspection in progress. Expires in {{duration}}",
+      "missionComplete": "Done: all 6 inspections completed",
+      "blocked": {
+        "giveUps": "Blocked: limit of 3 give-ups reached",
+        "levelRequired": "Requires a pool level above your type average",
+        "minimumInspections": "Requires 3 completed inspections"
+      },
+      "actions": {
+        "requestInspection": "Request inspection",
+        "acceptInspection": "Accept inspection",
+        "publishResearch": "Publish research",
+        "publishCalculatorItem": "Publish calculator item",
+        "publishReport": "Publish report",
+        "publishContribution": "Publish contribution",
+        "vote": "Vote to invalidate",
+        "invite": "Invite",
+        "inviteRegeneratorInspector": "Invite regenerator or inspector",
+        "withdraw": "Withdraw tokens",
+        "offset": "New offset",
+        "inviteSupporter": "Invite supporter · 5% commission"
+      },
+      "tickerAvailable_one": "You have {{count}} action available",
+      "tickerAvailable_other": "You have {{count}} actions available",
+      "allActions": "All actions"
+    },
+    "invalidation": {
+      "title": "Invalidation votes",
+      "votes": "{{votes}}/{{needed}} votes",
+      "openUntil": "Voting open until the end of the era, in {{duration}}.",
+      "closed": {
+        "eraClosed": "Era ended: this resource can no longer be invalidated.",
+        "alreadyInvalidated": "This resource has already been invalidated.",
+        "notInspected": "Only completed inspections can be invalidated.",
+        "supporter": "Supporters cannot be invalidated.",
+        "regeneratorImmune": "Regenerators with 6 inspections are immune to invalidation.",
+        "alreadyDenied": "This user has already been invalidated."
+      },
+      "voterBlocked": {
+        "levelRequired": "To vote, your level must be above the average of your user type.",
+        "alreadyVoted": "You have already voted here.",
+        "waitTimeBetweenVotes": "You voted recently. Next vote opens in {{duration}}.",
+        "voterDenied": "Your account was invalidated and cannot vote."
+      },
+      "voteButton": "Vote to invalidate",
+      "voteDescription": {
+        "resource": "Vote to invalidate if the resource is fake, plagiarized or breaks the rules. Once the required votes are reached, it is invalidated and the author receives a penalty.",
+        "user": "Vote to invalidate if the user is fake or acting in bad faith. Once the required votes are reached, the user is blocked from the system."
+      },
+      "justification": "Justification",
+      "confirmVote": "Confirm vote",
+      "voteSent": "Vote registered",
+      "openChip": "Voting open: {{votes}}/{{needed}}"
+    },
+    "pools": {
+      "yourPool": "Your pool",
+      "distributedOf": "{{distributed}} of {{total}} RC distributed",
+      "perEra": "Per era",
+      "inPool": "In the pool",
+      "howItWorksTitle": "How withdrawing works",
+      "howItWorks": "Each pool distributes an amount of Regeneration Credits per era, split among users by the levels they earned in that era. An era can only be withdrawn after it ends, one era per withdrawal.",
+      "eraEndsIn": "Era ends in",
+      "distributed": "Distributed",
+      "ofTotal": "of {{total}} RC in total · {{balance}} RC still in the pool",
+      "epoch": "Epoch",
+      "epochHint": "Every 12 eras the amount per era halves",
+      "yourPosition": "Your position",
+      "yourEra": "Your era in the pool",
+      "levelsThisEra": "Your levels in era {{era}}",
+      "nextWithdraw": "Next withdrawal: era {{era}}",
+      "emptyEra": "You have no levels in era {{era}}. Withdrawing only advances you to era {{next}}.",
+      "estimateDetail": "Your {{levels}} of the era's {{total}} levels",
+      "waitEraEnd": "Your era {{era}} is still running. Withdrawal opens in {{duration}}.",
+      "advanceEra": "Advance to era {{next}}",
+      "withdrawEra": "Withdraw era {{era}} credits",
+      "oneEraPerWithdraw_one": "Each withdrawal processes one era.",
+      "oneEraPerWithdraw_other": "Each withdrawal processes one era. You have {{count}} eras to process.",
+      "withdrawDone": "Withdrawal completed",
+      "erasTitle": "Distribution per era",
+      "eraChip": "Era {{era}}",
+      "now": "current",
+      "phaseCurrent": "Era in progress: withdrawals open when it ends",
+      "phaseClaimable": "Era ended: withdrawals open",
+      "withdrawnInEra": "Withdrawn in this era",
+      "eraTokens": "of {{tokens}} RC allocated to this era",
+      "levels": "Levels",
+      "withdrawalsCount": "Withdrawals",
+      "whoWithdrew": "Who has withdrawn",
+      "noWithdrawals": "Nobody has withdrawn from this era yet.",
+      "noWithdrawalsCurrent": "Withdrawals for this era open when it ends.",
+      "advancedOnly": "Advanced only",
+      "toReceive": "Credits to receive",
+      "inWithdrawals_one": "in {{count}} withdrawal",
+      "inWithdrawals_other": "in {{count}} withdrawals, one per ended era"
+    },
+    "supporterProfile": {
+      "totalCompensated": "Total offset",
+      "compensationsCount_one": "in {{count}} offset",
+      "compensationsCount_other": "in {{count}} offsets",
+      "fundingImpact": "Funding the impact of",
+      "carbon": "CO₂ sequestered",
+      "impactNote": "Equivalence based on the impact per credit recorded on the blockchain.",
+      "certificateHint": "Public, verifiable certificate. It can be saved and shared, and the QR code opens the supporter profile.",
+      "compensations": "Offsets",
+      "offset": "Offset",
+      "treeFunding": "Funded tree planting",
+      "noCompensations": "No offsets yet.",
+      "ago": "{{duration}} ago",
+      "commitmentImpact": "{{impact}} t CO₂ offset",
+      "commitmentsHint": "Items the supporter publicly committed to reduce."
+    },
+    "invitedUsers": {
+      "title": "Invited users",
+      "as": "as",
+      "registered": "Registered",
+      "pending": "Waiting for registration",
+      "empty": "No invitations sent yet."
+    },
+    "regeneratorProfile": {
+      "journey": "Regenerator journey",
+      "statusComplete": "Mission complete: 6 inspections done",
+      "statusEarning": "Earning Regeneration Credits",
+      "statusToPool_one": "{{count}} inspection left to start earning",
+      "statusToPool_other": "{{count}} inspections left to start earning",
+      "pendingInspection": "Inspection request open",
+      "inspectionsDone": "{{done}} of {{total}} inspections",
+      "lastTrees": "Trees (latest)",
+      "technicalData": "Technical data"
+    },
+    "feedNews": {
+      "stage": {
+        "requested": "Inspection request #{{id}}",
+        "accepted": "Inspection #{{id}} accepted",
+        "realized": "Inspection #{{id}} completed"
+      },
+      "requested": "{{regenerator}} requested an inspection of their regeneration area.",
+      "accepted": "{{inspector}} accepted to inspect the area of {{regenerator}}.",
+      "realized": "{{inspector}} inspected the area of {{regenerator}}.",
+      "waitingInspector": "Waiting for an inspector to accept.",
+      "seeInspection": "See inspection",
+      "offsetBadge": "Offset",
+      "offsetItem": "offsetting {{item}}",
+      "offsetImpact": "Funds the sequestration of ~{{amount}} of CO₂.",
+      "seeSupporter": "See supporter",
+      "treeFundingBadge": "Tree planting",
+      "treesFunded": "~{{trees}} trees funded",
+      "researchBadge": "Research #{{id}}",
+      "reportBadge": "Development report #{{id}}",
+      "contributionBadge": "Contribution #{{id}}",
+      "read": "Read",
+      "commitmentBadge": "Reduction commitment",
+      "commitment": "Publicly committed to reduce the use of {{item}}.",
+      "withdrawBadge": "Withdrawal · {{pool}} pool",
+      "newUserBadge": "New member",
+      "newUser": "{{name}} joined the community as {{type}}.",
+      "invitationBadge": "Invitation",
+      "poolBadge": "Milestone",
+      "marketBadge": "Market",
+      "transferBadge": "Transfer",
+      "transferTo": "To"
+    },
+    "settings": {
+      "title": "Settings",
+      "network": "Network (RPC)",
+      "rpcDescription": "The app reads Sintrop blockchain data through a public RPC server. If the default is unstable, you can use another Sintrop network endpoint.",
+      "currentRpc": "RPC in use",
+      "default": "default",
+      "rpcOnline": "Online · {{ms}} ms · block {{block}}",
+      "testAgain": "Test again",
+      "customRpc": "Another RPC endpoint",
+      "testAndSave": "Test and use this RPC",
+      "restoreDefault": "Back to default ({{rpc}})",
+      "rpcSaved": "RPC updated",
+      "rpcRestored": "Default RPC restored",
+      "chainNote": "Only Sintrop network RPCs are accepted (chain ID 250225). Transactions are still sent through your wallet.",
+      "rpcError": {
+        "invalidUrl": "Invalid address. Use an address starting with https://",
+        "timeout": "The RPC did not answer in time.",
+        "unreachable": "Could not connect to this RPC.",
+        "wrongChain": "This RPC is not on the Sintrop network."
+      },
+      "wallet": "Wallet",
+      "connectedWallet": "Connected wallet",
+      "disconnect": "Disconnect wallet",
+      "disconnectTitle": "Disconnect wallet?",
+      "disconnectMessage": "The app stops using this wallet. You can connect the same or another wallet later with the Connect button."
+    },
+    "rpcStatus": {
+      "title": "Network connection unstable",
+      "description": "The RPC server the app uses to read the blockchain is not responding, so some data may not load. You can switch to another Sintrop network RPC or come back later.",
+      "changeRpc": "Change RPC",
+      "retry": "Try again"
+    },
+    "help": {
+      "title": "Help",
+      "welcomeTitle": "Welcome to Regeneration Credit",
+      "welcomeText": "Peer-to-peer Nature regeneration system. Here are the steps to get started, the Sintrop network data and answers to the most common questions.",
+      "newcomerTitle": "New here?",
+      "newcomerText": "See how to get started, set up your wallet and register.",
+      "settingsLink": "Getting started, network data, contract addresses and FAQ.",
+      "stepsTitle": "Getting started",
+      "steps": {
+        "wallet": {
+          "title": "Install MetaMask",
+          "text": "The app uses the MetaMask wallet to sign transactions. Install the MetaMask app and create your wallet. Keep the recovery phrase in a safe place and never share it."
+        },
+        "network": {
+          "title": "Add the Sintrop network",
+          "text": "Regeneration Credit runs on the Sintrop network. Tap the button below and approve in MetaMask: the network is added and selected, and if your wallet is not connected yet, it connects in the same step. If you prefer, add the network by hand with the data further below."
+        },
+        "connect": {
+          "title": "Connect your wallet",
+          "text": "Tap Connect at the top of the home screen and approve in MetaMask. After approving, come back to the app."
+        },
+        "gas": {
+          "title": "Buy, receive or mine SINTROP",
+          "text": "SINTROP is the Sintrop network unit and pays the fee of every transaction, such as registration. You can receive it from another user, copying your wallet address from your profile, or mine it with your own computer."
+        },
+        "register": {
+          "title": "Register",
+          "text": "Supporter registration is open to any wallet. The other user types need an invitation recorded on the blockchain for your wallet address. With your wallet connected, the home screen shows the registration option."
+        },
+        "earn": {
+          "title": "Buy RC or provide a service",
+          "text": "To have credits in your wallet, buy RC from another user in the Market or provide a service to the system, such as regenerating, inspecting, researching, developing, contributing or inviting new users. Each service earns tokens from the pools every era."
+        },
+        "token": {
+          "title": "See your RC in MetaMask",
+          "text": "In MetaMask, with the Sintrop network selected, use Import token and paste the RC token contract address shown below."
+        }
+      },
+      "downloadMetamask": "Download MetaMask",
+      "metamaskManual": "MetaMask guide (PDF, Portuguese)",
+      "addNetwork": "Add Sintrop network to MetaMask",
+      "copy": "Copy",
+      "networkTitle": "Sintrop network data",
+      "networkText": "Use this data to add the network by hand in MetaMask. Tap a field to copy it.",
+      "networkName": "Network name",
+      "rpcUrl": "RPC URL",
+      "chainId": "Chain ID",
+      "currencySymbol": "Currency symbol (in MetaMask)",
+      "explorer": "Block explorer",
+      "tokenTitle": "Regeneration Credit token (RC)",
+      "tokenText": "Data to import RC into your wallet.",
+      "tokenAddress": "Contract address",
+      "tokenSymbol": "Symbol",
+      "tokenDecimals": "Decimals",
+      "contractsTitle": "Protocol contracts",
+      "contractsText": "The contracts are deployed on the Sintrop network, were audited by Nethermind Security and are open source on GitHub.",
+      "showContracts": "Show the {{count}} addresses",
+      "hideContracts": "Hide addresses",
+      "faqTitle": "Frequently asked questions",
+      "faq": {
+        "whatIs": {
+          "q": "What is Regeneration Credit?",
+          "a": "It is a peer-to-peer payment for environmental services. Those who regenerate ecosystems earn Regeneration Credit (RC) tokens, and the impact behind each token is verified by a decentralized inspection process."
+        },
+        "howEarn": {
+          "q": "How does someone earn RC?",
+          "a": "Each user type has a pool that distributes tokens every era, in proportion to each user's level within their type. The level goes up by doing the role's work: the regenerator through the results of their area's inspections, the inspector per inspection carried out, the researcher per published research, the developer and the contributor per report, and the activist when an invited user completes their first inspections."
+        },
+        "buy": {
+          "q": "How do I buy Regeneration Credit?",
+          "a": "Through the app's Market. It lists the offers published by users, with the amount, the price per RC, the payment method and the seller's contact. Arrange the purchase directly with the seller and give them your wallet address to receive the RC. The app does not handle the payment, so check the seller's address before paying, since names can repeat."
+        },
+        "invite": {
+          "q": "Do I need an invitation to register?",
+          "a": "Only Supporters register without an invitation. Activists invite regenerators, inspectors and other activists. Researchers, developers and contributors are invited by users of the same type. The invitation is recorded on the blockchain for the invited wallet address, so ask for the invitation and then register with the same wallet."
+        },
+        "sin": {
+          "q": "What is SINTROP and why do I need it?",
+          "a": "Regeneration Credit uses the Sintrop blockchain, a distributed database kept by the computers connected to the network. The computers that find blocks earn SINTROP, the network's unit of syntropy, which pays transaction fees: registration, invitations, inspections, publications, votes, withdrawals and offsets. Browsing data in the app is free. You can receive SINTROP from another user or mine it on your computer. In MetaMask the currency shows with the symbol SIN."
+        },
+        "eras": {
+          "q": "What are eras and epochs?",
+          "a": "The protocol is divided into eras of about 6 months. In each era, the pools distribute a fixed amount of tokens. Every 12 eras (one epoch), the emission per era is cut in half. The time until the next era is shown at the top of the home screen."
+        },
+        "withdraw": {
+          "q": "How do I withdraw my tokens?",
+          "a": "In Withdraw tokens, choose the pool for your user type. The tokens of an era become available for withdrawal after it ends, according to your level in that era."
+        },
+        "inspection": {
+          "q": "How does an inspection work?",
+          "a": "The regenerator requests an inspection of their area. An inspector accepts the request, visits the area within the deadline and records the tree and species counts, with photos and a report. Each inspector can inspect the same regenerator only once. The regenerator starts receiving tokens after 3 inspections by 3 different inspectors."
+        },
+        "validation": {
+          "q": "Who checks that the information is true?",
+          "a": "Researchers, developers and contributors form the validation layer and vote to invalidate fraudulent users, inspections and publications. Each record can only be challenged during the era in which it was created."
+        },
+        "offset": {
+          "q": "What is offsetting?",
+          "a": "The supporter exchanges RC for a certificate: the tokens are burned and the certificate records on the blockchain how much verified regeneration that offset funded. If the supporter was invited, 5% of an offset made through the app goes to whoever invited them."
+        },
+        "security": {
+          "q": "Are my funds safe?",
+          "a": "MetaMask is a self-custody wallet, which means only you hold the keys. The app never asks for your recovery phrase, and every transaction must be confirmed by you in MetaMask. Never share your recovery phrase with anyone."
+        },
+        "rpc": {
+          "q": "The app does not load data. What should I do?",
+          "a": "The app reads the blockchain through a public RPC server. If it becomes unstable, a warning appears at the top of the screen. You can switch the RPC in Settings or try again later."
+        }
+      },
+      "moreInfo": "More information on the Regeneration Credit website",
+      "openProfile": "Open my profile",
+      "openMarket": "Open Market",
+      "connected": "Wallet connected ✓",
+      "howToMine": "How to mine SINTROP"
+    },
+    "contracts": {
+      "title": "Contracts",
+      "settingsTitle": "Contracts (advanced)",
+      "settingsText": "Query and call the protocol contracts' functions directly.",
+      "openFromHelp": "Read and interact with the contracts",
+      "introTitle": "Direct access to the contracts",
+      "introText": "Here are all the protocol contracts on the Sintrop network, with their read and write functions. Reads are free. Writes send a transaction through your wallet, as in the desktop core.",
+      "searchPlaceholder": "Search contract, address or function",
+      "noResults": "No contract found.",
+      "notFound": "Contract not found.",
+      "readCount_one": "{{count}} read",
+      "readCount_other": "{{count}} reads",
+      "writeCount_one": "{{count}} write",
+      "writeCount_other": "{{count}} writes",
+      "groups": {
+        "token": "Token and impact",
+        "community": "Community",
+        "inspection": "Inspections",
+        "roles": "User rules",
+        "pools": "Pools",
+        "governance": "Validation",
+        "market": "Market"
+      },
+      "tab": {
+        "read": "Read",
+        "write": "Write"
+      },
+      "viewOnExplorer": "View on explorer",
+      "natspecNote": "Descriptions taken from the contract source comments.",
+      "readHint": "Free queries, no wallet needed. Open a function, fill in the fields and tap Query.",
+      "searchFunction": "Search function",
+      "noFunctions": "No function found.",
+      "writeWarningTitle": "Direct contract call",
+      "writeWarning": "These functions send a transaction through your wallet without the checks the app makes on other screens. A wrong parameter can revert the transaction and spend SINTROP on fees. Use them only if you know what the function does.",
+      "query": "Query",
+      "sendTransaction": "Send transaction",
+      "send": "Send",
+      "result": "Result",
+      "asTokenAmount": "Amount in RC (convert to 18 decimals)",
+      "confirmTitle": "Send transaction?",
+      "confirmMessage": "You are about to call {{fn}} on the {{contract}} contract. The transaction opens in MetaMask for you to confirm.",
+      "txDone": "Transaction {{fn}} confirmed",
+      "placeholder": {
+        "integer": "Whole number",
+        "address": "0x...",
+        "bool": "true or false",
+        "hex": "0x...",
+        "json": "[1, 2, 3]",
+        "text": "Text"
+      },
+      "argError": {
+        "required": "Required field.",
+        "integer": "Use a whole number, without decimals.",
+        "negative": "This field does not accept negative numbers.",
+        "address": "Invalid address.",
+        "bool": "Use true or false.",
+        "hex": "Use a hexadecimal value starting with 0x.",
+        "bytes32": "Wrong length for this type.",
+        "json": "Use list format, e.g. [1, 2].",
+        "array": "This field expects a list.",
+        "amount": "Invalid amount."
+      }
+    },
+    "mining": {
+      "title": "Mine SINTROP",
+      "settingsTitle": "Mine SINTROP (advanced)",
+      "settingsText": "Run a Sintrop network node on your computer and earn SINTROP for the blocks you find.",
+      "introTitle": "The network behind Regeneration Credit",
+      "introText": "Regeneration Credit runs on the Sintrop blockchain, a distributed database kept by the computers connected to the network, the nodes. Each node stores a copy of every transaction and helps process new ones. The computers that find blocks are rewarded with SINTROP, the network's unit of syntropy, which also pays every transaction fee.",
+      "introSmallNetwork": "Results depend on the network difficulty, but it is possible to find some blocks even mining with the processor alone. That way anyone can get SINTROP for fees and register as a supporter without depending on anyone.",
+      "addressTitle": "Address that receives the reward",
+      "addressConnected": "The reward goes to the connected wallet. The address is already filled in the commands below.",
+      "addressPaste": "Paste your wallet address. It is filled in the commands below.",
+      "os": {
+        "windows": "Windows",
+        "ubuntu": "Ubuntu",
+        "macos": "macOS"
+      },
+      "downloadTitle": "Download go-sintrop",
+      "download": {
+        "windows": "On your computer, download the {{file}} file from the go-sintrop releases page.",
+        "ubuntu": "On your computer, download the {{file}} file from the go-sintrop releases page.",
+        "macos": "On your computer, download the {{file}} file from the go-sintrop releases page."
+      },
+      "macAppleSilicon": "The macOS build runs on Macs with Apple chips (M1 or newer).",
+      "downloadButton": "Download go-sintrop {{version}}",
+      "openReleases": "Open releases page",
+      "extractTitle": "Extract the file",
+      "extract": {
+        "windows": "In the Downloads folder, right-click the file and choose Extract All. Open the extracted folder, which contains geth.exe.",
+        "ubuntu": "Extract the file from the folder itself (right-click > Extract Here) and open Terminal inside the extracted folder. If you prefer to do it all in Terminal, use the commands below. Tap a command to copy it.",
+        "macos": "Extract the file from the folder itself (double-click the .zip) and open Terminal inside the extracted folder. Before the first run, run the last command below: it unblocks geth, which macOS blocks because it came from the internet. If you prefer to do it all in Terminal, run all the commands in order."
+      },
+      "runTitle": "Start the node",
+      "run": {
+        "windows": "In the geth.exe folder, click the address bar, type powershell and press Enter. In the PowerShell window, paste and run the command below.",
+        "ubuntu": "In the same Terminal, paste and run the command below.",
+        "macos": "In the same Terminal, paste and run the command below."
+      },
+      "runAddressFilled": "Your address is already in the command, in the miner.etherbase field.",
+      "runAddressMissing": "Enter your wallet address above so it goes into the command, in the miner.etherbase field.",
+      "syncTitle": "Wait for the sync",
+      "syncText": "The node starts downloading a full copy of the blockchain. This takes a while. It is in sync when the block number in the Terminal reaches the network's current block.",
+      "currentBlock": "Network's current block: {{block}}",
+      "mineTitle": "Start mining",
+      "mineText": "With the node in sync, type in the geth console:",
+      "stopText": "To stop mining:",
+      "exitText": "To shut the node down safely, press Ctrl + D. Do not just close the window.",
+      "rewardTitle": "Receive and use SINTROP",
+      "rewardText": "Each block found sends the reward to your address. The balance shows in My tokens. With SINTROP in your wallet you can pay fees and register as a supporter.",
+      "openMyTokens": "Open My tokens",
+      "registerSupporter": "Register",
+      "tipsTitle": "Tips",
+      "tipComputerOn": "The computer must stay on and online while mining. The longer it mines, the more chances to find blocks.",
+      "tipRenewable": "The Sintrop network encourages renewable energy, such as solar, wind or hydro, for mining computers.",
+      "guideTitle": "Complete guide",
+      "guideText": "To build a dedicated computer, mine with a graphics card and solve common problems, see the complete node and mining guide for Ubuntu, published as a community contribution.",
+      "openGuide": "Open the complete guide",
+      "openTutorials": "Tutorials at sintrop.com",
+      "commandCopied": "Command copied",
+      "unknownSourceTitle": "Unknown source warning",
+      "unknownSourceText": "Your browser and system will warn that the program comes from an unknown source. This is expected: go-sintrop is open source and comes straight from Sintrop's official GitHub repository. Allow the download and the execution to continue.",
+      "unknownSource": {
+        "windows": "On Windows, keep the file when the browser asks. If \"Windows protected your PC\" appears, click More info and then Run anyway.",
+        "ubuntu": "On Ubuntu, keep the file when the browser asks.",
+        "macos": "On macOS, the unblock command in step 2 clears the block. If the warning still appears, open System Settings > Privacy & Security and click Open Anyway."
+      }
     }
   }
 }

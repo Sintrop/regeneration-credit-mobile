@@ -33,6 +33,11 @@ export function Offset({ children, item }: Props) {
     offsetModal.current?.close();
   }
 
+  function handleOffsetDone() {
+    closeModal();
+    if (!item) setSelectedItem(null);
+  }
+
  const enhancedChildren = Children.map(children, child => {
     if (isValidElement<ModalControls>(child)) {
       return cloneElement(child, { openModal, closeModal });
@@ -51,7 +56,7 @@ export function Offset({ children, item }: Props) {
           modalStyle={{ backgroundColor: 'transparent' }}
         >
           {selectedItem ? (
-            <OffsetModalContent item={selectedItem} />
+            <OffsetModalContent item={selectedItem} onDone={handleOffsetDone} />
           ) : (
             <SelectItem onSelect={setSelectedItem} />
           )}

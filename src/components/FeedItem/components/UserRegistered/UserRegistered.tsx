@@ -2,10 +2,13 @@ import { View } from "react-native";
 import { useTranslation } from "react-i18next";
 
 import { UserRegisteredProps, useUserBasicData } from "@domain";
-import { BaseComponentsProps, Text, UserTypeText } from "@components";
+import { BaseComponentsProps, Text } from "@components";
 
 import { LoadingFeedItem } from "../LoadingFeedItem";
 import { HeaderItem } from "../HeaderItem/HeaderItem";
+import { FeedBadge } from "../FeedBadge";
+
+const USER_TYPE_KEY: Record<number, string> = { 1: "regenerator", 2: "inspector", 3: "researcher", 4: "developer", 5: "contributor", 6: "activist", 7: "supporter" };
 
 export function UserRegistered({ additionalData }: BaseComponentsProps) {
   const { t } = useTranslation();
@@ -18,7 +21,7 @@ export function UserRegistered({ additionalData }: BaseComponentsProps) {
   if (isLoadingUser) return <LoadingFeedItem />
 
   return (
-    <View>
+    <View className="gap-3">
       <HeaderItem
         name={user?.name}
         address={newUser?.address}
@@ -27,16 +30,10 @@ export function UserRegistered({ additionalData }: BaseComponentsProps) {
         isLoading={isLoadingUser}
       />
 
-      <View className="my-3 relative">
-        <Text className="font-bold text-white mb-2">{t("feed.newUser")}</Text>
-        <Text className="text-white">
-          {t('feed.theUser')}{' '}
-          <Text className="font-semibold text-green-600">{user?.name} </Text>
-          {t('feed.registeredAs')}{' '}
-          {/* @ts-ignore  */}
-          {newUser?.userType && <UserTypeText userType={newUser?.userType} className="text-green-600 font-semibold"/>}
-        </Text>
-      </View>
+      <FeedBadge label={t("feedNews.newUserBadge")} tone="green" />
+      <Text className="text-white text-base leading-6">
+        {t("feedNews.newUser", { name: user?.name ?? "", type: t(`common.${USER_TYPE_KEY[newUser?.userType ?? 0] ?? "user"}`) })}
+      </Text>
     </View>
   )
 }

@@ -3,7 +3,9 @@ import { Platform } from 'react-native';
 
 interface UploadToIpfsProps {
   file: string;
-  ipfsApiUrl: string
+  ipfsApiUrl: string;
+  fileName?: string;
+  mimeType?: string;
 }
 
 interface ReturnUploadToIpfsProps {
@@ -12,15 +14,15 @@ interface ReturnUploadToIpfsProps {
 }
 
 export async function uploadToIpfs(props: UploadToIpfsProps): Promise<ReturnUploadToIpfsProps> {
-  const { file, ipfsApiUrl } = props
+  const { file, ipfsApiUrl, fileName = 'photo.jpg', mimeType = 'image/jpeg' } = props
 
   try {
     const formData = new FormData();
 
     formData.append('file', {
       uri: Platform.OS === 'android' ? file : file.replace('file://', ''),
-      name: 'photo.jpg',
-      type: 'image/jpeg',
+      name: fileName,
+      type: mimeType,
     });
 
     const response = await axios.postForm(`${ipfsApiUrl}/api/v0/add?pin=true`, formData, {
@@ -40,14 +42,4 @@ export async function uploadToIpfs(props: UploadToIpfsProps): Promise<ReturnUplo
       hash: ''
     }
   }
-}
-
-export function base64ToBlob(base64String: string): Blob {
-  const base64WithoutPrefix = base64String.split(';base64,').pop()
-  const byteCharacters = atob(base64WithoutPrefix as string)
-  const byteNumbers = new Array(byteCharacters.length)
-    .fill(0)
-    .map((_, i) => byteCharacters.charCodeAt(i))
-  const byteArray = new Uint8Array(byteNumbers)
-  return new Blob([byteArray], { type: 'image/png' })
 }

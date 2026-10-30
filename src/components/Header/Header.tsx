@@ -1,9 +1,10 @@
 import { ReactNode } from "react";
 import { View, Image, TouchableOpacity, ActivityIndicator } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import { useTranslation } from "react-i18next";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 
-import { Avatar, Icon, Text } from "@components";
+import { Avatar, HelpButton, Icon, SettingsButton, Text } from "@components";
 import { useUserContext } from "@hooks";
 import { AppStackParamsList } from "@routes";
 
@@ -29,6 +30,7 @@ function Container({ children }: { children: ReactNode }) {
 export function Header({ home, title, showBackButton }: HeaderProps) {
   const { isConnected, handleConnect, address, connecting } = useUserContext();
   const navigation = useNavigation<NavigationProps>();
+  const { t } = useTranslation();
 
   function handleGoBack() {
     navigation.goBack();
@@ -41,12 +43,14 @@ export function Header({ home, title, showBackButton }: HeaderProps) {
   if (home) {
     return (
       <Container>
-        <View className="flex-row items-center gap-3">
+        <View className="flex-row items-center gap-3 flex-1 mr-2">
           <Image source={RCIcon} className="w-10 h-10" resizeMode="contain"/>
-          <Text className="text-white">Regeneration Credit</Text>
+          <Text className="text-white flex-shrink" numberOfLines={2}>Regeneration Credit</Text>
         </View>
 
-        <View className="flex items-center gap-3">
+        <View className="flex-row items-center gap-2">
+          <HelpButton />
+          <SettingsButton />
           {isConnected ? (
             <TouchableOpacity 
               className="flex-row items-center gap-2"
@@ -57,14 +61,14 @@ export function Header({ home, title, showBackButton }: HeaderProps) {
             </TouchableOpacity>
           ) : (
             <TouchableOpacity
-              className="h-8 w-32 items-center justify-center bg-green-500 rounded-2xl disabled:opacity-50"
+              className="h-8 px-4 min-w-[84] items-center justify-center bg-green-500 rounded-2xl disabled:opacity-50"
               onPress={handleConnect}
               disabled={connecting}
             >
               {connecting ? (
                 <ActivityIndicator size={25} color="white" />
               ) : (
-                <Text className="text-white">Connect</Text>
+                <Text className="text-white">{t('common.connect')}</Text>
               )}
             </TouchableOpacity>
           )}

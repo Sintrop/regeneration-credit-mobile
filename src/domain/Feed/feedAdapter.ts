@@ -6,6 +6,8 @@ import { ResearchPublishedProps } from "../ResearcherRules/types";
 import { ContributionAddedProps } from "../ContributorRules/types";
 import { UserRegisteredProps } from "../CommunityRules/types";
 import { PoolWithdrawalProps } from "../Pools/useCases/useWithdrawals";
+import { eventFeedId } from "./events/fetchEvents";
+import { InvitationEvent, MarketOfferEvent, RegeneratorEnteredPoolEvent, TransferEvent, TreeFundingEvent } from "./events/types";
 
 function parseRequestedInspectionToFeed(data: RequestedInspectionProps): FeedItemProps {
   return {
@@ -106,7 +108,62 @@ function parseWithdrawalToFeed(data: PoolWithdrawalProps): FeedItemProps {
   }
 }
 
+function parseInvitationToFeed(data: InvitationEvent): FeedItemProps {
+  return {
+    id: eventFeedId(data.blockNumber, 1, data.logIndex),
+    createdAt: data.blockNumber,
+    resourceId: data.blockNumber,
+    resourceType: 'invitation',
+    additionalData: JSON.stringify(data)
+  }
+}
+
+function parseTreeFundingToFeed(data: TreeFundingEvent): FeedItemProps {
+  return {
+    id: eventFeedId(data.blockNumber, 2, data.logIndex),
+    createdAt: data.blockNumber,
+    resourceId: data.blockNumber,
+    resourceType: 'tree-funding',
+    additionalData: JSON.stringify(data)
+  }
+}
+
+function parseRegeneratorEnteredPoolToFeed(data: RegeneratorEnteredPoolEvent): FeedItemProps {
+  return {
+    id: eventFeedId(data.blockNumber, 3, data.logIndex),
+    createdAt: data.blockNumber,
+    resourceId: data.blockNumber,
+    resourceType: 'regenerator-entered-pool',
+    additionalData: JSON.stringify(data)
+  }
+}
+
+function parseMarketOfferToFeed(data: MarketOfferEvent): FeedItemProps {
+  return {
+    id: eventFeedId(data.blockNumber, 4, data.logIndex),
+    createdAt: data.blockNumber,
+    resourceId: data.offerId,
+    resourceType: 'market-offer',
+    additionalData: JSON.stringify(data)
+  }
+}
+
+function parseTransferToFeed(data: TransferEvent): FeedItemProps {
+  return {
+    id: eventFeedId(data.blockNumber, 5, data.logIndex),
+    createdAt: data.blockNumber,
+    resourceId: data.blockNumber,
+    resourceType: 'rc-transfer',
+    additionalData: JSON.stringify(data)
+  }
+}
+
 export const feedAdapter = {
+  parseTransferToFeed,
+  parseInvitationToFeed,
+  parseTreeFundingToFeed,
+  parseRegeneratorEnteredPoolToFeed,
+  parseMarketOfferToFeed,
   parseRealizedInspectionToFeed,
   parseOffsetToFeed,
   parseReportAddedToFeed,

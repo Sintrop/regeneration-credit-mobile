@@ -11,6 +11,11 @@ import { Offset } from "./components/Offset/Offset";
 import { UserRegistered } from "./components/UserRegistered/UserRegistered";
 import { DeclaredCommitment } from "./components/DeclaredCommitment/DeclaredCommitment";
 import { PoolWithdrawal } from "./components/PoolWithdrawal/PoolWithdrawal";
+import { Invitation } from "./components/Invitation/Invitation";
+import { TreeFunding } from "./components/TreeFunding/TreeFunding";
+import { RegeneratorEnteredPool } from "./components/RegeneratorEnteredPool/RegeneratorEnteredPool";
+import { MarketOffer } from "./components/MarketOffer/MarketOffer";
+import { RcTransfer } from "./components/RcTransfer/RcTransfer";
 
 export interface BaseComponentsProps {
   id: number;
@@ -25,7 +30,7 @@ interface Props {
 export function FeedItem({ id, type, additionalData }: Props) {
   const Component = componentByType[type];
   return (
-    <View className="w-full bg-card-primary p-5">
+    <View className="mx-3 mb-3 rounded-2xl bg-card-primary p-4">
       <Component id={id} additionalData={additionalData} />
     </View>
   )
@@ -39,5 +44,10 @@ const componentByType: Record<ResourcesTypes, ComponentType<BaseComponentsProps>
   offset: Offset,
   "user-registered": UserRegistered,
   "declared-commitment": DeclaredCommitment,
-  "pool-withdrawal": PoolWithdrawal
+  "pool-withdrawal": PoolWithdrawal,
+  invitation: Invitation,
+  "tree-funding": TreeFunding,
+  "regenerator-entered-pool": RegeneratorEnteredPool,
+  "market-offer": MarketOffer,
+  "rc-transfer": RcTransfer
 }

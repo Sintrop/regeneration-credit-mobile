@@ -1,4 +1,4 @@
-import { View, FlatList, ListRenderItemInfo } from "react-native";
+import { View, FlatList, ListRenderItemInfo, TouchableOpacity } from "react-native";
 import { useTranslation } from "react-i18next";
 
 import { Screen, Text } from "@components";
@@ -14,8 +14,8 @@ import { TransferModal } from "./components/TransferModal";
 
 export function MyTokensScreen() {
   const { t } = useTranslation();
-  const { address } = useUserContext();
-  const { txs, isLoading: isLoadingTxs } = useTransfers({ address });
+  const { address, isConnected, handleConnect } = useUserContext();
+  const { txs, isLoading: isLoadingTxs, refetch, isRefetching } = useTransfers({ address });
   const { commissions, isLoading: isLoadingCommissions } = useCommissions({ address });
 
   const [selectedTab, setSelectedTab] = useState<Tabs>('txs');
@@ -27,11 +27,29 @@ export function MyTokensScreen() {
     )
   }
 
+  if (!isConnected) {
+    return (
+      <Screen title={t('myTokens.title')} showBackButton>
+        <View className="p-5 gap-5">
+          <Balance onConnect={handleConnect} />
+          <View className="p-5 rounded-2xl bg-card-primary items-center gap-4">
+            <Text className="text-white text-center">{t('myTokens.connectToSee')}</Text>
+            <TouchableOpacity className="h-12 px-8 rounded-2xl items-center justify-center bg-green-primary" onPress={handleConnect}>
+              <Text className="text-green-secondary font-bold">{t('common.connect')}</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </Screen>
+    );
+  }
+
   return (
     <Screen title={t('myTokens.title')} showBackButton>
       <FlatList
         data={selectedTab === 'txs' ? txs : commissions}
-        keyExtractor={item => item.hash}
+        keyExtractor={(item, index) => `${item.hash}-${index}`}
+        refreshing={isRefetching}
+        onRefresh={refetch}
         renderItem={renderTxItem}
         ListHeaderComponent={<HeaderList selectedTab={selectedTab} changeTab={setSelectedTab} onTransfer={() => setShowTransferModal(true)} />}
         ListEmptyComponent={<EmptyList selectedTab={selectedTab} isLoading={selectedTab === 'txs' ? isLoadingTxs : isLoadingCommissions} />}
@@ -79,7 +97,7 @@ function HeaderList({ changeTab, selectedTab, onTransfer }: HeaderListProps & { 
       <SelectorTab selectedTab={selectedTab} changeTab={changeTab} />
 
       {selectedTab === 'txs' && (
-        <Text className="text-white text-center mb-2">{t('myTokens.onlyRcTxsWillBeShowHere')}</Text>
+        <Text className="text-gray-400 text-xs text-center">{t('myTokens.onlyRcTxsWillBeShowHere')}</Text>
       )}
     </View>
   )

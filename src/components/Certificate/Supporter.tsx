@@ -8,23 +8,17 @@ import { Icon, Text } from "@components";
 //@ts-ignore
 import RCLogo from "../../assets/images/rc.png";
 import { DownloadContainer } from "./DownloadContainer";
+import { formatArea, formatCarbon } from "@utils";
 
 interface Props {
   address: string;
 }
 
-// Helper to format numbers with 5 decimal places using comma as decimal separator
-function formatImpact(value: number): string {
-  return value.toFixed(5).replace('.', ',');
-}
-
-// Helper to format whole numbers with dot for thousands
-function formatWhole(value: number): string {
-  return Math.round(value).toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
-}
 
 export function Supporter({ address }: Props) {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const formatImpact = (value: number) => Intl.NumberFormat(i18n.language, { minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(value);
+  const formatWhole = (value: number) => Intl.NumberFormat(i18n.language, { maximumFractionDigits: 2 }).format(value);
   const { supporter } = useGetSupporter({ address });
   const { certificated } = useCertificatedTokens({ address });
   const { area, biodiversity, carbon, trees } = useImpactPerToken();
@@ -35,10 +29,8 @@ export function Supporter({ address }: Props) {
   const areaImpact = certificated * area;
   const bioImpact = certificated * biodiversity;
 
-  // Carbon in tonnes (g -> tonnes: divide by 1e6)
-  const carbonTonnes = carbonImpact / 1e6;
 
-  const parsedName = supporter?.name.replaceAll(' ', '-').toLowerCase();
+  const parsedName = supporter?.name?.replaceAll(' ', '-').toLowerCase() ?? '';
   const qrLink = 'https://users.regenerationcredit.org/supporter/' + address + '/' + parsedName;
 
   return (
@@ -57,11 +49,11 @@ export function Supporter({ address }: Props) {
               <Text className="text-white">RC</Text>
             </View>
 
-            <Text className="text-gray-300 text-xs mt-3">Financiando o impacto de:</Text>
+            <Text className="text-gray-300 text-xs mt-3">{t('common.fundingImpactOf')}</Text>
             <View className="flex-row items-center gap-1">
               <Text className="text-white text-sm">{t('common.carbon')}:</Text>
               <Text className="text-white text-sm font-semibold">
-                {formatImpact(carbonTonnes)} t
+                {formatCarbon(carbonImpact, i18n.language)}
               </Text>
             </View>
             <View className="flex-row items-center gap-1">
@@ -79,7 +71,7 @@ export function Supporter({ address }: Props) {
             <View className="flex-row items-center gap-1">
               <Text className="text-white text-sm">{t('common.area')}:</Text>
               <Text className="text-white text-sm font-semibold">
-                {formatImpact(areaImpact)} m²
+                {formatArea(areaImpact, i18n.language)}
               </Text>
             </View>
           </View>

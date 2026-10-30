@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 
 import { Map, Text } from "@components";
 import { useCoordinates } from "@domain";
+import { formatArea } from "@utils";
 
 interface Props {
   address: string;
@@ -10,7 +11,7 @@ interface Props {
   changeScrollEnabled: (enable: boolean) => void;
 }
 export function RegenerationArea({ address, totalArea, changeScrollEnabled }: Props) {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const { coordinates } = useCoordinates({ address });
 
   return (
@@ -36,7 +37,7 @@ export function RegenerationArea({ address, totalArea, changeScrollEnabled }: Pr
       ))}
 
       <Text className="mt-2 text-white">
-        {t('profile.totalArea')}: {Intl.NumberFormat('pt-BR').format(totalArea)} m²
+        {t('profile.totalArea')}: {formatArea(totalArea, i18n.language)}
       </Text>
     </View>
   );

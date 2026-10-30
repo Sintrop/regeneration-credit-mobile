@@ -20,10 +20,14 @@ LogBox.ignoreLogs([
   'Message ignored because invalid key exchange status',
   "MetaMask: 'ethereum._metamask' exposes",
   '`new NativeEventEmitter()` was called with a non-null',
-  'Sender: Failed to send batch Error',
+  'Sender: Failed to send batch',
 ]);
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: { retry: 2 },
+  },
+});
 
 function App() {
   useEffect(() => {

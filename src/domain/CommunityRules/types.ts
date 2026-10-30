@@ -18,6 +18,7 @@ export interface DelationContractProps {
   reported: string;
   title: string;
   testimony: string;
+  createdAtBlock: string;
 }
 
 export interface DelationProps {

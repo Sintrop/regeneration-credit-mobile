@@ -1,7 +1,9 @@
 import { createContext, ReactNode } from "react";
+import { useTranslation } from "react-i18next";
 import { Linking, Alert } from "react-native";
 import { useSDK } from "@metamask/sdk-react";
-import { useGetUser } from "@domain";
+import { useGetUser, useNativeBalance } from "@domain";
+import { SINTROP_CHAIN_PARAMS, isUserRejection, switchToSintrop } from "@services";
 
 export interface UserProviderProps {
   children: ReactNode;
@@ -14,8 +16,9 @@ export interface UserContextProps {
   userType: number;
   balanceSIN: number;
   handleConnect: () => void;
+  handleDisconnect: () => void;
+  addSintropNetwork: () => void;
   switchToSintropChain: () => void;
-  sendTransaction: () => void;
   refetchUser: () => void;
 }
 
@@ -28,99 +31,83 @@ export function UserProvider({ children }: UserProviderProps) {
     account,
     connected,
     connecting,
-    balance,
   } = useSDK();
+  const { t } = useTranslation();
   const { userType, refetch: refetchUserType } = useGetUser({ address: account })
-  const balanceSIN = balance ? parseInt(balance, 16) / 10 ** 18 : 0;
+  const { balance: balanceSIN, refetch: refetchBalanceSIN } = useNativeBalance(account);
+
+  function showWalletNotFound() {
+    Alert.alert(
+      t('common.walletNotFound'),
+      t('common.walletNotFoundDescription'),
+      [
+        { text: t('common.cancel'), style: "cancel" },
+        {
+          text: t('common.install'),
+          onPress: () => Linking.openURL("https://metamask.io/download/")
+        },
+      ]
+    );
+  }
 
   async function handleConnect() {
+    if (!sdk) {
+      showWalletNotFound();
+      return;
+    }
+
+    // Connects and adds/selects the Sintrop network in a single trip to the wallet.
     try {
-      // Check if SDK is available
-      if (!sdk) {
-        Alert.alert(
-          "Carteira não encontrada",
-          "Para conectar, você precisa ter uma carteira Web3 instalada como MetaMask. Deseja instalar o MetaMask?",
-          [
-            { text: "Cancelar", style: "cancel" },
-            { 
-              text: "Instalar", 
-              onPress: () => Linking.openURL("https://metamask.io/download/") 
-            },
-          ]
-        );
-        return;
-      }
-      
+      await sdk.connectWith({ method: 'wallet_addEthereumChain', params: [SINTROP_CHAIN_PARAMS] });
+      return;
+    } catch (e: any) {
+      if (isUserRejection(e) || e?.message?.includes('user rejected')) return;
+    }
+
+    // Wallets without connectWith support: connect, then switch network.
+    try {
       const accounts = await sdk.connect();
       if (accounts && (accounts as string[])[0]) {
-        console.log((accounts as string[])[0]);
         switchToSintropChain();
-      } else {
-        // User cancelled or no accounts returned
-        console.log('No accounts returned or user cancelled');
       }
     } catch (e: any) {
-      console.log('ERROR', e);
-      // Check if it's a "user rejected" error
-      if (e?.message?.includes('user rejected') || e?.code === 4001) {
-        // User cancelled, do nothing
-        return;
-      }
-      // For any other error (including no MetaMask), show instructions
-      Alert.alert(
-        "Carteira não encontrada",
-        "Para conectar, você precisa ter uma carteira Web3 instalada como MetaMask. Deseja instalar o MetaMask?",
-        [
-          { text: "Cancelar", style: "cancel" },
-          { 
-            text: "Instalar", 
-            onPress: () => Linking.openURL("https://metamask.io/download/") 
-          },
-        ]
-      );
+      if (isUserRejection(e) || e?.message?.includes('user rejected')) return;
+      showWalletNotFound();
     }
+  }
+
+  /** Adds and selects Sintrop in the wallet, connecting first in the same trip when needed. */
+  async function addSintropNetwork() {
+    if (connected) {
+      await switchToSintropChain();
+      return;
+    }
+    await handleConnect();
+  }
+
+  function handleDisconnect() {
+    Alert.alert(
+      t('settings.disconnectTitle'),
+      t('settings.disconnectMessage'),
+      [
+        { text: t('common.cancel'), style: "cancel" },
+        {
+          text: t('settings.disconnect'),
+          style: "destructive",
+          onPress: () => { sdk?.terminate().catch(() => {}); },
+        },
+      ]
+    );
   }
 
   async function switchToSintropChain() {
-    try {
-      const result = await ethereum?.request({
-        method: 'wallet_switchEthereumChain',
-        params: [
-          {
-            chainId: '0x3D171',
-          },
-        ],
-      });
-      console.log('exampleRequest', result);
-    } catch (e) {
-      console.log('ERROR', e);
-    }
+    if (!ethereum) return;
+    await switchToSintrop(ethereum);
   }
-
-  const sendTransaction = async () => {
-    const to = '0x0000000000000000000000000000000000000000';
-    const transactionParameters = {
-      to, // Required except during contract publications.
-      from: ethereum?.getSelectedAddress(), // must match user's active address.
-      value: '0x5AF3107A4000', // Only required to send ether to the recipient from the initiating external account.
-    };
-
-    try {
-      // txHash is a hex string
-      // As with any RPC call, it may throw an error
-      const txHash = await ethereum?.request({
-        method: 'eth_sendTransaction',
-        params: [transactionParameters],
-      });
-
-      console.log(txHash);
-    } catch (e) {
-      console.log(e);
-    }
-  };
 
   function refetchUser() {
     refetchUserType();
+    refetchBalanceSIN();
   }
 
   return (
@@ -131,8 +118,9 @@ export function UserProvider({ children }: UserProviderProps) {
         connecting,
         userType,
         handleConnect, 
+        handleDisconnect,
+        addSintropNetwork,
         switchToSintropChain,
-        sendTransaction,
         refetchUser,
         balanceSIN
       }}
