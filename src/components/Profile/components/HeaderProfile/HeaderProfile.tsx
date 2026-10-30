@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Image, View, TouchableOpacity, Alert } from "react-native";
 import Clipboard from "@react-native-clipboard/clipboard";
 import { useTranslation } from "react-i18next";
@@ -7,7 +8,9 @@ import { Text, UserTypeText, UserTypeTextType } from "@components";
 //@ts-ignore
 import BGFlorest from "../../../../assets/images/bg-florest.jpg";
 import Jazzicon from "react-native-jazzicon";
-import { useSettingsContext } from "@hooks";
+import { useSettingsContext, useUserContext } from "@hooks";
+
+import { TransferModal } from "../../../../screens/MyTokensScreen/components/TransferModal";
 
 interface Props {
   address: string;
@@ -20,6 +23,9 @@ interface Props {
 export function HeaderProfile({ address, photoHash, name, userType }: Props) {
   const { ipfsGateway } = useSettingsContext();
   const { t } = useTranslation();
+  const { address: connectedAddress, isConnected } = useUserContext();
+  const [showTransfer, setShowTransfer] = useState(false);
+  const canTransfer = isConnected && !!connectedAddress && connectedAddress.toLowerCase() !== address.toLowerCase();
 
   const handleAddressClick = () => {
     Clipboard.setString(address);
@@ -55,7 +61,24 @@ export function HeaderProfile({ address, photoHash, name, userType }: Props) {
         </TouchableOpacity>
 
         <UserTypeText userType={userType} className="text-gray-300 text-sm"/>
-      </View>      
+
+        {canTransfer && (
+          <TouchableOpacity
+            className="mt-3 h-10 px-5 rounded-xl items-center justify-center bg-green-primary"
+            onPress={() => setShowTransfer(true)}
+          >
+            <Text className="text-green-secondary font-semibold">{t("profile.transferTo")}</Text>
+          </TouchableOpacity>
+        )}
+      </View>
+
+      {canTransfer && (
+        <TransferModal
+          visible={showTransfer}
+          onClose={() => setShowTransfer(false)}
+          recipient={{ address, name }}
+        />
+      )}
     </View>
   )
 }

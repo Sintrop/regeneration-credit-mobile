@@ -13,18 +13,20 @@ import { amountToWei, balanceToInput, parseAmountInput, NATIVE_UNIT } from "@uti
 interface Props {
   visible: boolean;
   onClose: () => void;
+  /** Fixed recipient, e.g. when transferring from a user's profile; the address field is then hidden. */
+  recipient?: { address: string; name?: string };
 }
 
 export type TokenType = 'RC' | 'SIN';
 
-export function TransferModal({ visible, onClose }: Props) {
+export function TransferModal({ visible, onClose, recipient }: Props) {
   const { t, i18n } = useTranslation();
   const { address, balanceSIN } = useUserContext();
   const { balance: balanceRC, refetch: refetchBalance } = useBalance({ address });
   const { registerContinueAction, sendTransaction } = useTxContext();
 
   const [selectedToken, setSelectedToken] = useState<TokenType>('RC');
-  const [toAddress, setToAddress] = useState('');
+  const [toAddress, setToAddress] = useState(recipient?.address ?? '');
   const [amount, setAmount] = useState('');
   const [isAddressValid, setIsAddressValid] = useState(true);
 
@@ -32,7 +34,7 @@ export function TransferModal({ visible, onClose }: Props) {
     Toast.show({ type: 'success', text1: t('myTokens.transferDone') });
     onClose();
     refetchBalance();
-    setToAddress('');
+    setToAddress(recipient?.address ?? '');
     setAmount('');
   }
 
@@ -143,6 +145,13 @@ export function TransferModal({ visible, onClose }: Props) {
             </TextComponent>
           </View>
 
+          {recipient ? (
+            <View className="mb-4 p-3 rounded-xl bg-card-secondary">
+              <TextComponent className="text-gray-400 text-xs">{t('myTokens.recipient')}</TextComponent>
+              {!!recipient.name && <TextComponent className="text-white font-semibold">{recipient.name}</TextComponent>}
+              <TextComponent className="text-gray-300 text-xs" selectable>{recipient.address}</TextComponent>
+            </View>
+          ) : (
           <View className="mb-4">
             <TextComponent className="text-gray-300 text-sm mb-2">{t('myTokens.recipientAddress')}</TextComponent>
             <RNTextInput
@@ -161,6 +170,7 @@ export function TransferModal({ visible, onClose }: Props) {
               <TextComponent className="text-red-400 text-xs mt-1">{t('myTokens.invalidAddress')}</TextComponent>
             )}
           </View>
+          )}
 
           <View className="mb-5">
             <View className="flex-row items-center justify-between mb-2">
@@ -182,7 +192,7 @@ export function TransferModal({ visible, onClose }: Props) {
                 onSubmitEditing={() => Keyboard.dismiss()}
               />
               <TextComponent className="text-white text-lg font-semibold w-16 text-center">
-                {selectedToken}
+                {selectedToken === 'RC' ? 'RC' : NATIVE_UNIT}
               </TextComponent>
             </View>
             {insufficientBalance && (

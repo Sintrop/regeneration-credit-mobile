@@ -15,6 +15,7 @@ import { Invitation } from "./components/Invitation/Invitation";
 import { TreeFunding } from "./components/TreeFunding/TreeFunding";
 import { RegeneratorEnteredPool } from "./components/RegeneratorEnteredPool/RegeneratorEnteredPool";
 import { MarketOffer } from "./components/MarketOffer/MarketOffer";
+import { RcTransfer } from "./components/RcTransfer/RcTransfer";
 
 export interface BaseComponentsProps {
   id: number;
@@ -47,5 +48,6 @@ const componentByType: Record<ResourcesTypes, ComponentType<BaseComponentsProps>
   invitation: Invitation,
   "tree-funding": TreeFunding,
   "regenerator-entered-pool": RegeneratorEnteredPool,
-  "market-offer": MarketOffer
+  "market-offer": MarketOffer,
+  "rc-transfer": RcTransfer
 }

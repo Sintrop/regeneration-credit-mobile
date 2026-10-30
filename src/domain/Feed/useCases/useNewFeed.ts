@@ -34,7 +34,7 @@ export function useNewFeed(): ReturnUseNewFeed {
 
   useEffect(() => {
     createFeedList()
-  }, [offsets, realizedInspections, reports, researchs, contributions, usersRegistered, requestedInspections, acceptedInspections, commitments, withdrawals, feedEvents.invitations, feedEvents.treeFundings, feedEvents.regeneratorsEnteredPool, feedEvents.marketOffers])
+  }, [offsets, realizedInspections, reports, researchs, contributions, usersRegistered, requestedInspections, acceptedInspections, commitments, withdrawals, feedEvents.invitations, feedEvents.treeFundings, feedEvents.regeneratorsEnteredPool, feedEvents.marketOffers, feedEvents.transfers])
 
   function createFeedList() {
     const newListFeed: FeedItemProps[] = [];
@@ -72,6 +72,7 @@ export function useNewFeed(): ReturnUseNewFeed {
     newListFeed.push(...feedEvents.treeFundings.map(feedAdapter.parseTreeFundingToFeed));
     newListFeed.push(...feedEvents.regeneratorsEnteredPool.map(feedAdapter.parseRegeneratorEnteredPoolToFeed));
     newListFeed.push(...feedEvents.marketOffers.map(feedAdapter.parseMarketOfferToFeed));
+    newListFeed.push(...feedEvents.transfers.map(feedAdapter.parseTransferToFeed));
 
     const sortedList = newListFeed.sort((a, b) => b.createdAt - a.createdAt)
     const paginate = paginateList<FeedItemProps>({ atualPage, itemsPerPage, list: sortedList });

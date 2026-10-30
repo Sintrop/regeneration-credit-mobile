@@ -20,6 +20,14 @@ export interface RegeneratorEnteredPoolEvent {
   logIndex: number;
 }
 
+export interface TransferEvent {
+  from: string;
+  to: string;
+  amount: number;
+  blockNumber: number;
+  logIndex: number;
+}
+
 export interface MarketOfferEvent {
   offerId: number;
   seller: string;

@@ -112,7 +112,8 @@
       "declaredReductionCommitments": "Compromissos de redução declarados",
       "publishedResources": "Recursos publicados",
       "noPublishedResources": "Nenhum recurso publicado ainda.",
-      "invitedBy": "Convidado por"
+      "invitedBy": "Convidado por",
+      "transferTo": "Transferir"
     },
     "pdfView": {
       "title": "Visualização de PDF",
@@ -299,7 +300,8 @@
         "burn": "Compensação / queima",
         "poolWithdraw": "Saque do pool de {{pool}}"
       },
-      "transferDone": "Transferência realizada"
+      "transferDone": "Transferência realizada",
+      "recipient": "Destinatário"
     },
     "tx": {
       "title": "Transação",
@@ -808,7 +810,9 @@
       "newUser": "{{name}} entrou na comunidade como {{type}}.",
       "invitationBadge": "Convite",
       "poolBadge": "Marco",
-      "marketBadge": "Mercado"
+      "marketBadge": "Mercado",
+      "transferBadge": "Transferência",
+      "transferTo": "Para"
     },
     "settings": {
       "title": "Configurações",

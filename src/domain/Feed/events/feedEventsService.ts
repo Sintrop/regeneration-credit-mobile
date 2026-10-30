@@ -1,9 +1,12 @@
 import { InvitationRules, RCMarket, RegenerationCredit, RegeneratorRules, SupporterRules } from "@contracts";
 
 import { fetchEvents, toNumber } from "./fetchEvents";
-import { InvitationEvent, MarketOfferEvent, RegeneratorEnteredPoolEvent, TreeFundingEvent } from "./types";
+import { CONTRACT_REGISTRY } from "../../../contracts/registry";
+
+import { InvitationEvent, MarketOfferEvent, RegeneratorEnteredPoolEvent, TransferEvent, TreeFundingEvent } from "./types";
 
 const WEI = 10 ** 18;
+const ZERO_ADDRESS = "0x0000000000000000000000000000000000000000";
 
 interface TransactionLog {
   transactionHash?: string;
@@ -13,6 +16,46 @@ interface TransactionLog {
 export function excludeOffsetBurns<T extends TransactionLog>(certified: T[], offsets: TransactionLog[]): T[] {
   const offsetTransactions = new Set(offsets.map(event => event.transactionHash));
   return certified.filter(event => !offsetTransactions.has(event.transactionHash));
+}
+
+interface RawTransfer extends TransactionLog {
+  from: string;
+  to: string;
+}
+
+/**
+ * RegenerationCredit.Transfer between two people: drops mints and burns (zero address),
+ * movements to or from protocol contracts (pool rewards) and the inviter commission
+ * paid inside SupporterRules.offset (same transaction as an OffsetMade log).
+ */
+export function peerToPeerTransfers<T extends RawTransfer>(transfers: T[], contractAddresses: string[], offsets: TransactionLog[]): T[] {
+  const contracts = new Set([ZERO_ADDRESS, ...contractAddresses].map(address => address.toLowerCase()));
+  const offsetTransactions = new Set(offsets.map(event => event.transactionHash));
+  return transfers.filter(transfer =>
+    !contracts.has(transfer.from.toLowerCase()) &&
+    !contracts.has(transfer.to.toLowerCase()) &&
+    !offsetTransactions.has(transfer.transactionHash));
+}
+
+async function getTransfers(rpc: string): Promise<TransferEvent[]> {
+  const [transfers, offsets] = await Promise.all([
+    fetchEvents(rpc, RegenerationCredit, "Transfer"),
+    fetchEvents(rpc, SupporterRules, "OffsetMade"),
+  ]);
+  const raw = transfers.map(event => ({
+    from: String(event.returnValues.from),
+    to: String(event.returnValues.to),
+    transactionHash: event.transactionHash as string,
+    event,
+  }));
+  return peerToPeerTransfers(raw, CONTRACT_REGISTRY.map(entry => entry.address), offsets)
+    .map(({ from, to, event }) => ({
+      from,
+      to,
+      amount: toNumber(event.returnValues.value) / WEI,
+      blockNumber: toNumber(event.blockNumber),
+      logIndex: toNumber(event.logIndex),
+    }));
 }
 
 /** InvitationRules.UserInvited: one per successful invite transaction. */
@@ -75,5 +118,6 @@ export const feedEventsService = {
   getTreeFundings,
   getRegeneratorsEnteredPool,
   getMarketOffers,
+  getTransfers,
 };
 

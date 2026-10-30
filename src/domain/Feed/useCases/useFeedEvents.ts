@@ -22,18 +22,21 @@ export function useFeedEvents() {
   const treeFundings = useEventsQuery(QueryKeys.FeedTreeFundings, feedEventsService.getTreeFundings);
   const enteredPool = useEventsQuery(QueryKeys.FeedRegeneratorsEnteredPool, feedEventsService.getRegeneratorsEnteredPool);
   const marketOffers = useEventsQuery(QueryKeys.FeedMarketOffers, feedEventsService.getMarketOffers);
+  const transfers = useEventsQuery(QueryKeys.FeedTransfers, feedEventsService.getTransfers);
 
   return {
     invitations: invitations.data,
     treeFundings: treeFundings.data,
     regeneratorsEnteredPool: enteredPool.data,
     marketOffers: marketOffers.data,
-    isLoading: invitations.isLoading || treeFundings.isLoading || enteredPool.isLoading || marketOffers.isLoading,
+    transfers: transfers.data,
+    isLoading: invitations.isLoading || treeFundings.isLoading || enteredPool.isLoading || marketOffers.isLoading || transfers.isLoading,
     refetch: () => {
       invitations.refetch();
       treeFundings.refetch();
       enteredPool.refetch();
       marketOffers.refetch();
+      transfers.refetch();
     },
   };
 }

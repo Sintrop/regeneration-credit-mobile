@@ -7,7 +7,7 @@ import { ContributionAddedProps } from "../ContributorRules/types";
 import { UserRegisteredProps } from "../CommunityRules/types";
 import { PoolWithdrawalProps } from "../Pools/useCases/useWithdrawals";
 import { eventFeedId } from "./events/fetchEvents";
-import { InvitationEvent, MarketOfferEvent, RegeneratorEnteredPoolEvent, TreeFundingEvent } from "./events/types";
+import { InvitationEvent, MarketOfferEvent, RegeneratorEnteredPoolEvent, TransferEvent, TreeFundingEvent } from "./events/types";
 
 function parseRequestedInspectionToFeed(data: RequestedInspectionProps): FeedItemProps {
   return {
@@ -148,7 +148,18 @@ function parseMarketOfferToFeed(data: MarketOfferEvent): FeedItemProps {
   }
 }
 
+function parseTransferToFeed(data: TransferEvent): FeedItemProps {
+  return {
+    id: eventFeedId(data.blockNumber, 5, data.logIndex),
+    createdAt: data.blockNumber,
+    resourceId: data.blockNumber,
+    resourceType: 'rc-transfer',
+    additionalData: JSON.stringify(data)
+  }
+}
+
 export const feedAdapter = {
+  parseTransferToFeed,
   parseInvitationToFeed,
   parseTreeFundingToFeed,
   parseRegeneratorEnteredPoolToFeed,

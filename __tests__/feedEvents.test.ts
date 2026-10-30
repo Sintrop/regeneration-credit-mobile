@@ -1,6 +1,7 @@
 jest.mock('@contracts', () => ({}));
+jest.mock('../src/contracts/registry', () => ({ CONTRACT_REGISTRY: [] }));
 
-import { excludeOffsetBurns } from '../src/domain/Feed/events/feedEventsService';
+import { excludeOffsetBurns, peerToPeerTransfers } from '../src/domain/Feed/events/feedEventsService';
 import { eventFeedId } from '../src/domain/Feed/events/fetchEvents';
 
 describe('excludeOffsetBurns', () => {
@@ -28,5 +29,24 @@ describe('eventFeedId', () => {
 
   it('stays a safe integer for current block heights', () => {
     expect(Number.isSafeInteger(eventFeedId(99999999, 4, 999))).toBe(true);
+  });
+});
+
+describe('peerToPeerTransfers', () => {
+  const pool = '0xFC222077860d34dEfA62Dd8A848703025B7b75f7';
+  const alice = '0x1111111111111111111111111111111111111111';
+  const bob = '0x2222222222222222222222222222222222222222';
+  const zero = '0x0000000000000000000000000000000000000000';
+
+  it('keeps only person-to-person transfers', () => {
+    const transfers = [
+      { from: alice, to: bob, transactionHash: '0xa' },
+      { from: pool, to: alice, transactionHash: '0xb' },
+      { from: zero, to: pool, transactionHash: '0xc' },
+      { from: alice, to: zero, transactionHash: '0xd' },
+      { from: bob, to: alice, transactionHash: '0xe' },
+    ];
+    const result = peerToPeerTransfers(transfers, [pool.toLowerCase()], [{ transactionHash: '0xe' }]);
+    expect(result.map(item => item.transactionHash)).toEqual(['0xa']);
   });
 });
