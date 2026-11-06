@@ -7,6 +7,7 @@ import { useGetInspector } from "@domain";
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { AppStackParamsList } from "@routes";
+import colors from "../../../../theme/colors";
 
 interface Props {
   address: string;
@@ -51,8 +52,8 @@ function Loading() {
       width={200}
       height={30}
       viewBox={`0 0 ${200} 30`}
-      backgroundColor="#012939"
-      foregroundColor="#ecebeb"
+      backgroundColor={colors.card.secondary}
+      foregroundColor={colors.skeleton}
     >
       <Circle cx="15" cy="15" r="15" /> 
       <Rect x="40" y="10" rx="3" ry="3" width="150" height="10" /> 

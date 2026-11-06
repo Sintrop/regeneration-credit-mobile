@@ -1784,7 +1784,7 @@ PODS:
     - ReactCommon/turbomodule/core
     - SocketRocket
     - Yoga
-  - react-native-pdf (6.7.7):
+  - react-native-pdf (7.0.5):
     - boost
     - DoubleConversion
     - fast_float
@@ -3285,7 +3285,7 @@ SPEC CHECKSUMS:
   react-native-geolocation-service: 608e1da71a1ac31b4de64d9ef2815f697978c55b
   react-native-get-random-values: 21325b2244dfa6b58878f51f9aa42821e7ba3d06
   react-native-image-picker: df98fd6bf821b49ae97a383fd4adb1430f659a67
-  react-native-pdf: 2cf27361d860386ecd6d7743dffcba23ef41ef31
+  react-native-pdf: f0c980d403deebc841410c5be3b0773d07e02e2e
   react-native-randombytes: ddf6edfd3fb9091af8c6ed1b35e57c308b5f5f2c
   react-native-safe-area-context: 47c1782a327ca2affa9bec5a2f95534cbabb620a
   react-native-view-shot: a18275ac858eb4866365148517774182319c7aee

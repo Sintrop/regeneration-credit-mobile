@@ -2,7 +2,7 @@ import { View } from "react-native";
 import { useTranslation } from "react-i18next";
 
 import { useGetInspector } from "@domain";
-import { DataItem } from "@components";
+import { DataItem, InvalidationCard } from "@components";
 
 import { HeaderProfile } from "../HeaderProfile/HeaderProfile";
 import { Invitation } from "../Invitation/Invitation";
@@ -29,6 +29,8 @@ export function Inspector({ address }: Props) {
       />
 
       <View className="gap-3 px-2">
+        <InvalidationCard target="user" idOrAddress={address} />
+
         <View className="gap-1 p-5 rounded-2xl bg-card-primary">
           <DataItem title="ID" value={inspector.id} />
           <DataItem title={t("profile.hashProofPhoto")} value={inspector.proofPhoto} />

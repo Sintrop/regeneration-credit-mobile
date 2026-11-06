@@ -28,4 +28,6 @@ export function Polyline({coordinates, lineColor, lineWidth}: Props) {
       </ShapeSource>
     );
   }
+
+  return null;
 }

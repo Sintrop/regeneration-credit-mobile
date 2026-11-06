@@ -6,6 +6,8 @@ export interface TxProps {
   to: string;
   hash: string;
   blockNumber: number;
+  kind?: "receive" | "send" | "poolWithdraw" | "burn";
+  poolType?: number;
 }
 
 export interface TransferEventProps {

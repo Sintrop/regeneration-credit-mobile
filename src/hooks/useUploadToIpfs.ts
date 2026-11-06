@@ -8,6 +8,8 @@ import { useSettingsContext } from "./useSettingsContext";
 
 interface UploadProps {
   uri: string;
+  name?: string;
+  type?: string;
 }
 interface ReturnUploadProps {
   isSuccess: boolean;
@@ -32,7 +34,9 @@ export function useUploadToIpfs(): ReturnUseUploadToIpfs {
     setUploading(true);
     const response = await uploadToIpfs({
       ipfsApiUrl: ipfsApi,
-      file: data.uri
+      file: data.uri,
+      fileName: data.name,
+      mimeType: data.type
     });
 
     setIsSuccess(response.success);

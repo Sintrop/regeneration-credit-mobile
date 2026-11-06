@@ -1,53 +1,62 @@
 import { Image, View } from "react-native";
 import { useTranslation } from "react-i18next";
+import { useNavigation } from "@react-navigation/native";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 
-import { OffsetProps, useGetCalculatorItem, useUserBasicData } from "@domain";
+import { OffsetProps, useGetCalculatorItem, useImpactPerToken, useUserBasicData } from "@domain";
 import { BaseComponentsProps, Text } from "@components";
+import { AppStackParamsList } from "@routes";
+import { formatCarbon } from "@utils";
 
 import { LoadingFeedItem } from "../LoadingFeedItem";
 import { HeaderItem } from "../HeaderItem/HeaderItem";
+import { FeedBadge } from "../FeedBadge";
+import { FeedLink } from "../FeedLink";
 
 //@ts-ignore
 import RCLogo from "../../../../assets/images/rc.png";
 
-export function Offset({ additionalData }: BaseComponentsProps) {
-  const { t } = useTranslation();
-  const offset = additionalData ? JSON.parse(additionalData) as OffsetProps : null
-  const { user, isLoading: isLoadingUser } = useUserBasicData({ address: offset?.address, userType: 7 });
-  const { item } = useGetCalculatorItem({ itemId: offset?.calculatorItemId ?? 1})
+type NavigationProps = NativeStackNavigationProp<AppStackParamsList, "HomeScreen">;
 
-  if (!offset) return <LoadingFeedItem />
+export function Offset({ additionalData }: BaseComponentsProps) {
+  const { t, i18n } = useTranslation();
+  const navigation = useNavigation<NavigationProps>();
+  const offset = additionalData ? JSON.parse(additionalData) as OffsetProps : null;
+  const { user, isLoading: isLoadingUser } = useUserBasicData({ address: offset?.address, userType: 7 });
+  const { item } = useGetCalculatorItem({ itemId: offset?.calculatorItemId ?? 0 });
+  const { carbon } = useImpactPerToken();
+
+  if (!offset) return <LoadingFeedItem />;
+
+  const amount = offset.amountBurned / 10 ** 18;
+  const format = (value: number) => Intl.NumberFormat(i18n.language, { maximumFractionDigits: 2 }).format(value);
+  const co2Grams = amount * carbon;
 
   return (
-    <View>
-      <HeaderItem
-        name={user?.name}
-        address={offset?.address}
-        createdAt={offset?.blockNumber}
-        photo={user?.photo}
-        isLoading={isLoadingUser}
-      />
+    <View className="gap-3">
+      <HeaderItem name={user?.name} address={offset.address} createdAt={offset.blockNumber} photo={user?.photo} isLoading={isLoadingUser} />
 
-      <View className="my-3">
-        <View className="flex-row w-full justify-between items-center">
-          <Text className="font-bold text-white">{t("feed.burnedTokens")}</Text>
-          <View className="flex-row items-center gap-3">
-            <Image source={RCLogo} className="w-7 h-7" resizeMode="contain"/>
-            <Text className="font-bold text-white">
-              {Intl.NumberFormat('pt-BR', {maximumFractionDigits: 5}).format(offset?.amountBurned / 10 ** 18)}
-            </Text>
-          </View>
-        </View>
+      <FeedBadge label={t("feedNews.offsetBadge")} tone="teal" />
 
-        {offset?.message && offset.message !== "" && (
-          <Text className="text-white mt-3">{offset.message}</Text>
-        )}
-
-        <View className="mt-3">
-          <Text className="text-gray-300">{t('feed.compensatedItem')}</Text>
-          <Text className="text-white">{item?.item}</Text>
+      <View className="flex-row items-center gap-3">
+        <Image source={RCLogo} className="w-9 h-9" resizeMode="contain" />
+        <View className="flex-1">
+          <Text className="text-white text-2xl font-bold">{format(amount)} RC</Text>
+          {!!item?.item && <Text className="text-gray-300 text-sm">{t("feedNews.offsetItem", { item: item.item })}</Text>}
         </View>
       </View>
+
+      {!!offset.message?.trim() && (
+        <View className="pl-3 border-l-2 border-teal-300/60">
+          <Text className="text-gray-100 italic leading-6">“{offset.message.trim()}”</Text>
+        </View>
+      )}
+
+      {co2Grams > 0 && (
+        <Text className="text-gray-400 text-sm">{t("feedNews.offsetImpact", { amount: formatCarbon(co2Grams, i18n.language) })}</Text>
+      )}
+
+      <FeedLink label={t("feedNews.seeSupporter")} onPress={() => navigation.navigate("UserDetailsScreen", { address: offset.address })} />
     </View>
-  )
+  );
 }

@@ -1,11 +1,6 @@
-import { View } from "react-native";
-
 import { BaseRegistrationProps } from "./UserRegistration";
+import { PublisherRegistration } from "./PublisherRegistration";
 
-export function Developer({}: BaseRegistrationProps) {
-  return (
-    <View>
-
-    </View>
-  )
+export function Developer(props: BaseRegistrationProps) {
+  return <PublisherRegistration {...props} userType={4} />;
 }

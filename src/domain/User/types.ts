@@ -3,6 +3,7 @@ export interface BasicUserProps {
   name: string;
   photo: string;
   poolLevel: number;
+  /** i18n key of the label shown next to extraInfoValue */
   extraInfo?: string;
   extraInfoValue?: number;
 }

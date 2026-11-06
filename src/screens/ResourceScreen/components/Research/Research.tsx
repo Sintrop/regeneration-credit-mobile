@@ -3,7 +3,7 @@ import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { useNavigation } from "@react-navigation/native";
 import { useTranslation } from "react-i18next";
 
-import { DataItem, Icon, Text } from "@components";
+import { DataItem, Icon, Text, InvalidationCard } from "@components";
 import { useGetResearch } from "@domain";
 import { AppStackParamsList } from "@routes";
 import { useSettingsContext } from "@hooks";
@@ -34,10 +34,10 @@ export function Research({ id }: Props) {
 
         <DataItem title="ID" value={id} />
         <DataItem title={t("resourceScreen.createdAt")} value={research?.createdAt} />
-        <DataItem title="Era" value={research?.era} />
+        <DataItem title={t('resourceScreen.era')} value={research?.era} />
         <DataItem title={t("resourceScreen.invalidatedAt")} value={research?.invalidatedAt} />
         <DataItem title={t("resourceScreen.validationsCount")} value={research?.validationsCount} />
-        <DataItem title="Valid" value={research?.valid.toString()} />
+        <DataItem title={t('resourceScreen.valid')} value={research?.valid ? t('common.yes') : t('common.no')} />
       </View>
 
       <View className="p-3 rounded-2xl bg-card-primary gap-1">
@@ -53,6 +53,8 @@ export function Research({ id }: Props) {
 
         <Text className="text-white">{research?.thesis}</Text>
       </View>
+
+      <InvalidationCard target="research" idOrAddress={id} />
 
       <Researcher address={research?.researcher ? research.researcher : ""} />
 

@@ -1,4 +1,4 @@
-import { Children, cloneElement, isValidElement, ReactNode, useEffect, useRef } from "react";
+import { Children, cloneElement, isValidElement, ReactNode, useRef } from "react";
 import { View } from "react-native";
 import { Modalize } from "react-native-modalize";
 import { Portal } from "react-native-portalize";
@@ -6,7 +6,6 @@ import { useTranslation } from "react-i18next";
 import Toast from "react-native-toast-message";
 
 import { BurnTokensModalContent } from "./BurnTokensModalContent/BurnTokensModalContent";
-import { useTxContext } from "@hooks";
 
 interface ModalControls {
   openModal: () => void;
@@ -19,19 +18,16 @@ interface Props {
 
 export function BurnTokens({ children }: Props) {
   const { t } = useTranslation();
-  const { registerContinueAction } = useTxContext();  
   
   const offsetModal = useRef<Modalize>(null);
 
-  useEffect(() => {
-    registerContinueAction(() => {
-      Toast.show({
-        type: 'success',
-        text1: t('actions.burnedTokens')
-      });
-      closeModal();
-    })
-  }, []);
+  function onBurned() {
+    Toast.show({
+      type: 'success',
+      text1: t('actions.burnedTokens')
+    });
+    closeModal();
+  }
 
   function openModal() {
     offsetModal.current?.open();
@@ -58,7 +54,7 @@ export function BurnTokens({ children }: Props) {
           adjustToContentHeight
           modalStyle={{ backgroundColor: 'transparent' }}
         >
-          <BurnTokensModalContent />
+          <BurnTokensModalContent onDone={onBurned} />
         </Modalize>
       </Portal>
     </View>

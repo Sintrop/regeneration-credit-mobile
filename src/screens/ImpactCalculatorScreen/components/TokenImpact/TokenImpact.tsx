@@ -3,18 +3,12 @@ import { useTranslation } from "react-i18next";
 
 import { Icon, Text } from "@components";
 import { useImpactPerToken } from "@domain";
-
-// Helper function to format numbers with 6 decimal places and comma as decimal separator
-function formatNumber(value?: number | string): string {
-  if (value === undefined || value === null) return '0';
-  const num = typeof value === 'string' ? parseFloat(value) : value;
-  if (isNaN(num)) return '0';
-  return num.toFixed(6).replace('.', ',');
-}
+import { formatArea } from "@utils";
 
 export function TokenImpact() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const { carbon, trees, biodiversity, area } = useImpactPerToken();
+  const formatNumber = (value: number) => Intl.NumberFormat(i18n.language, { maximumSignificantDigits: 4 }).format(value || 0);
 
   return (
     <View>
@@ -41,8 +35,7 @@ export function TokenImpact() {
           />
           <ImpactItem 
             label={t('common.area')}
-            value={formatNumber(area)}
-            suffix="m²"
+            value={formatArea(area, i18n.language)}
           />
         </View>
       </View>

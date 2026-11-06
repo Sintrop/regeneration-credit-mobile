@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { TouchableOpacity, View } from "react-native";
+import { useTranslation } from "react-i18next";
 
 import { Avatar, Text } from "@components";
 import { 
@@ -24,6 +25,7 @@ interface Props {
 
 export function UserItem({ id , userType, handleGoToUserDetail }: Props) {
   const { rpc } = useSettingsContext();
+  const { t } = useTranslation();
   const [address, setAddress] = useState<string>('');
 
   const { user, isLoading } = useUserBasicData({ address, userType });
@@ -95,7 +97,7 @@ export function UserItem({ id , userType, handleGoToUserDetail }: Props) {
         <Text className="text-white text-sm" numberOfLines={1}>{address}</Text>
         {user?.extraInfo && (
           <Text className="text-green-400 text-sm">
-            {user.extraInfo}: {userType === 7 ? (user.extraInfoValue?.toFixed(2) || '0.00') : Math.floor(user.extraInfoValue || 0)}
+            {t(user.extraInfo)}: {userType === 7 ? (user.extraInfoValue?.toFixed(2) || '0.00') : Math.floor(user.extraInfoValue || 0)}
           </Text>
         )}
       </View>

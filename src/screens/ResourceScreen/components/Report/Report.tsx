@@ -3,7 +3,7 @@ import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { useNavigation } from "@react-navigation/native";
 import { useTranslation } from "react-i18next";
 
-import { DataItem, Icon, Text } from "@components";
+import { DataItem, Icon, Text, InvalidationCard } from "@components";
 import { useGetReport } from "@domain";
 import { AppStackParamsList } from "@routes";
 import { useSettingsContext } from "@hooks";
@@ -35,10 +35,10 @@ export function Report({ id }: Props) {
 
         <DataItem title="ID" value={id} />
         <DataItem title={t("resourceScreen.createdAt")} value={report?.createdAtBlockNumber} />
-        <DataItem title="Era" value={report?.era} />
+        <DataItem title={t('resourceScreen.era')} value={report?.era} />
         <DataItem title={t("resourceScreen.invalidatedAt")} value={report?.invalidatedAt} />
         <DataItem title={t("resourceScreen.validationsCount")} value={report?.validationsCount} />
-        <DataItem title="Valid" value={report?.valid.toString()} />
+        <DataItem title={t('resourceScreen.valid')} value={report?.valid ? t('common.yes') : t('common.no')} />
       </View>
 
       <View className="p-3 rounded-2xl bg-card-primary gap-1">
@@ -48,6 +48,8 @@ export function Report({ id }: Props) {
 
         <Text className="text-white">{report?.description}</Text>
       </View>
+
+      <InvalidationCard target="report" idOrAddress={id} />
 
       <Developer address={report?.developer ? report.developer : ""} />
 

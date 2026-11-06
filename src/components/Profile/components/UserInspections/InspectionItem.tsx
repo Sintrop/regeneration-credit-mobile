@@ -4,7 +4,7 @@ import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 
 import { InspectionProps } from "@domain";
-import { Icon, Text } from "@components";
+import { Icon, Text, StatBox } from "@components";
 import { AppStackParamsList } from "@routes";
 
 type NavigationProps = NativeStackNavigationProp<AppStackParamsList, 'UserDetailsScreen'>
@@ -26,17 +26,17 @@ export function InspectionItem({ inspection }: Props) {
     <View className="w-full py-3 border-b border-card-secondary">
       <Text className="text-white font-semibold">{t('profile.inspection')} #{inspection.id}</Text>
       <View className="flex-row justify-between gap-5 mt-3">
-        <ResultItem 
+        <StatBox 
           title={t("feed.rScore")}
           value={inspection.regenerationScore}
         />
 
-        <ResultItem 
+        <StatBox 
           title={t("common.biodiversity")}
           value={inspection.biodiversityResult}
         />
 
-        <ResultItem 
+        <StatBox 
           title={t("common.trees")}
           value={inspection.treesResult}
         />
@@ -52,17 +52,4 @@ export function InspectionItem({ inspection }: Props) {
       </TouchableOpacity>
     </View>
   );
-}
-
-interface ResultItemProps {
-  title: string;
-  value: string | number;
-}
-function ResultItem({ title, value }: ResultItemProps) {
-  return (
-    <View className="w-28 p-3 border-2 border-white rounded-2xl items-center">
-      <Text className="font-bold text-white text-xl">{value}</Text>
-      <Text className="text-sm text-white text-center">{title}</Text>
-    </View>
-  )
 }

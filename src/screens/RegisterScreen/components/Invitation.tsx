@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { ActivityIndicator, View } from "react-native";
 import { useTranslation } from "react-i18next";
 
-import { Text, UserTypeText } from "@components";
+import { Text, UserTypeText, UserBadge } from "@components";
 import { useUserContext } from "@hooks";
 import { useInvitation } from "@domain";
 
@@ -54,8 +54,7 @@ export function Invitation({ userType, invitationIsOk }: Props) {
 
               {invitation?.userType !== 0 && (
                 <View>
-                  <Text className="text-gray-300 text-sm">{t('common.activist')}</Text>
-                  <Text className="text-white" numberOfLines={1}>{invitation?.inviter}</Text>
+                  <UserBadge address={invitation.inviter} label={t('profile.inviter')} />
 
                   <Text className="text-gray-300 text-sm mt-3">{t('register.toRegisterAs')}</Text>
                   {/* @ts-ignore */}

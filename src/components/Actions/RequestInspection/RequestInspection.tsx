@@ -1,4 +1,4 @@
-import { Children, cloneElement, isValidElement, ReactNode, useEffect, useRef } from "react";
+import { Children, cloneElement, isValidElement, ReactNode, useRef } from "react";
 import { TouchableOpacity, View } from "react-native";
 import { Modalize } from "react-native-modalize";
 import { Portal } from "react-native-portalize";
@@ -26,18 +26,17 @@ export function RequestInspection({ children }: Props) {
   const { registerContinueAction } = useTxContext();
   const { requestInspection } = useRequestInspection();
 
-  useEffect(() => {
-    registerContinueAction(() => {
-      //action success
-      Toast.show({
-        type: 'success',
-        text1: t('actions.requestedInspection')
-      });
-      closeModal();
-    })
-  }, []);
+  function onTxSuccess() {
+    //action success
+    Toast.show({
+      type: 'success',
+      text1: t('actions.requestedInspection')
+    });
+    closeModal();
+  }
 
   function handleAccept() {
+    registerContinueAction(onTxSuccess);
     requestInspection();
   }
 

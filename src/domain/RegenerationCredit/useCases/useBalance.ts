@@ -19,11 +19,12 @@ export function useBalance({ address }: Props): ReturnUseBalance {
   const { rpc } = useSettingsContext();
   const { data, isLoading, isError, refetch } = useQuery({
     queryKey: [QueryKeys.GetBalance, address],
-    queryFn: () => rcService.getBalance({ address, rpc })
+    queryFn: () => rcService.getBalance({ address, rpc }),
+    enabled: !!address,
   });
 
   return {
-    isLoading,
+    isLoading: !!address && isLoading,
     refetch: refetch,
     balance: data ? data : 0,
     isError

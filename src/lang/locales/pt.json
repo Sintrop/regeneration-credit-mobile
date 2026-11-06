@@ -5,8 +5,20 @@
       "userWithoutRegister": "Usuário sem registro",
       "descriptionRegister": "Para realizar algumas ações no sistema você precisa se registrar",
       "register": "Registrar",
-      "newPubli": "Nova publicação",
-      "": ""
+      "newPubli": "Nova compensação",
+      "loadingEraInfo": "Carregando informações...",
+      "currentEraTicker": "Fase atual: {{era}}  •  Próxima fase em {{duration}}",
+      "feedUnavailable": "Não foi possível carregar o feed agora.",
+      "shortcuts": {
+        "myTokens": "Meus tokens",
+        "withdrawTokens": "Sacar tokens",
+        "market": "Mercado",
+        "calculator": "Calculadora",
+        "impact": "Impacto",
+        "community": "Comunidade",
+        "inspections": "Inspeções",
+        "resources": "Recursos"
+      }
     },
     "feed": {
       "requestedAnInspection": "Solicitou uma inspeção",
@@ -15,19 +27,32 @@
       "rScore": "Pontuação",
       "burnedTokens": "Tokens queimados",
       "compensatedItem": "Item compensado",
-      "compensate": "Compensar", 
+      "compensate": "Compensar",
       "newUser": "Novo usuário",
       "theUser": "O usuário",
       "registeredAs": "registrado como",
       "seeResource": "Ver recurso",
       "declaredCommitmentItem": "Declarou o compromisso de redução",
-      "declaredItem": "Item declarado"
+      "declaredItem": "Item declarado",
+      "advancedToEra": "Avançou para a fase {{era}}",
+      "creditsReceived": "Créditos recebidos",
+      "poolPaymentDescription": "Pagamento de Créditos de Regeneração pelos serviços prestados na fase {{era}}",
+      "invitationSent": "Convite enviado",
+      "invitedToBe": "Convidou um novo usuário para entrar como",
+      "invitationAccepted": "Convite aceito: usuário cadastrado",
+      "invitationPending": "Aguardando o cadastro do convidado",
+      "fundedTreePlanting": "Financiou o plantio de árvores",
+      "certificateTotal": "Total do certificado: {{amount}} RC",
+      "enteredPoolTitle": "Começou a receber Créditos de Regeneração",
+      "enteredPoolDescription": "Concluiu as 3 inspeções mínimas e entrou no pool de regeneradores.",
+      "newMarketOffer": "Nova oferta no Mercado #{{id}}",
+      "seeOnMarket": "Ver no Mercado"
     },
     "userDetails": {
       "title": "Detalhes do usuário",
       "errorOnGetUser": "Erro ao obter usuário"
     },
-    "resourceScreen" : {
+    "resourceScreen": {
       "title": "Detalhes do recurso",
       "inspectionData": "Dados da inspeção",
       "rScore": "Pontuação",
@@ -46,7 +71,9 @@
       "seeResearch": "Ver pesquisa",
       "researchData": "Dados da pesquisa",
       "contributionData": "Dados da contribuição",
-      "seeContribution": "Ver contribuição"
+      "seeContribution": "Ver contribuição",
+      "valid": "Válido",
+      "era": "Fase"
     },
     "profile": {
       "title": "Perfil",
@@ -80,10 +107,21 @@
       "inspection": "Inspeção",
       "seeMore": "Ver mais",
       "contributedWith": "Contribuiu com",
-      "certificates": "Certificados"
+      "certificates": "Certificados",
+      "errorOnGetUser": "Erro ao carregar o perfil",
+      "declaredReductionCommitments": "Compromissos de redução declarados",
+      "publishedResources": "Recursos publicados",
+      "noPublishedResources": "Nenhum recurso publicado ainda.",
+      "invitedBy": "Convidado por",
+      "transferTo": "Transferir"
     },
     "pdfView": {
-      "title": "Visualização de PDF"
+      "title": "Visualização de PDF",
+      "loading": "Carregando PDF...",
+      "loadingProgress": "Carregando PDF... {{percent}}%",
+      "errorTitle": "Não foi possível abrir o PDF aqui",
+      "errorDescription": "O arquivo fica no IPFS e pode demorar a ficar disponível. Tente abrir no navegador.",
+      "openInBrowser": "Abrir no navegador"
     },
     "common": {
       "regenerator": "Regenerador",
@@ -114,7 +152,7 @@
       "invalidAddress": "Endereço inválido",
       "block": "Bloco",
       "value": "Valor",
-      "copiedToClipboard": "Copiado para à área de transferência",
+      "copiedToClipboard": "Copiado para a área de transferência",
       "you": "Você",
       "inspections": "Inspeções",
       "area": "Área",
@@ -124,7 +162,30 @@
       "impact": "Impacto",
       "data": "Dados",
       "share": "Compartilhar",
-      "ago": "atrás"
+      "ago": "atrás",
+      "takeAnother": "Tirar outra",
+      "confirm": "Confirmar",
+      "walletNotFound": "Carteira não encontrada",
+      "walletNotFoundDescription": "Para conectar, você precisa ter uma carteira Web3 instalada como MetaMask. Deseja instalar o MetaMask?",
+      "cancel": "Cancelar",
+      "install": "Instalar",
+      "integerAmountRequired": "A quantidade deve ser um número inteiro de RC",
+      "loading": "Carregando",
+      "loadingData": "Carregando dados...",
+      "compensateTokens": "Compense {{tokens}} Créditos de Regeneração",
+      "addressCopied": "Endereço copiado",
+      "addressCopiedDescription": "O endereço da carteira foi copiado para a área de transferência.",
+      "user": "Usuário",
+      "selectAnOption": "Selecione uma opção",
+      "language": "Idioma",
+      "connect": "Conectar",
+      "item": "Item",
+      "walletUnavailable": "Carteira indisponível. Conecte sua carteira e tente novamente.",
+      "errorTakingPhoto": "Erro ao tentar tirar a foto",
+      "access": "Acessar",
+      "market": "Mercado",
+      "offsetAction": "Compensar",
+      "fundingImpactOf": "Financiando o impacto de:"
     },
     "offset": {
       "title": "Compensar",
@@ -137,9 +198,13 @@
       "insufficientApprovedTokens": "Tokens aprovados insuficientes",
       "labelInputDescription": "Mensagem (Opcional)",
       "madeOffset": "Compensação realizada",
-      "newPubli": "Voce pode fazer uma publicação no feed. Para isso, vamos utilizar o sistema de compensação, onde você escolhe um item da calculadora de impacto e compensa um valor em (RC). Com isso você pode adicionar um texto como descrição da sua compensação",
+      "newPubli": "Escolha um item da calculadora de impacto e compense um valor em RC. Os tokens são queimados e o certificado registra a compensação. Você pode adicionar uma mensagem, que aparece junto da compensação no feed.",
       "selectAnItem": "Selecione um item",
-      "touchHereToSelect": "Toque aqui para selecionar"
+      "touchHereToSelect": "Toque aqui para selecionar",
+      "itemImpact": "Impacto: {{impact}} g CO2/{{unit}}",
+      "howManyUnitsToOffset": "Quantos {{unit}} deseja compensar?",
+      "newOffset": "Nova compensação",
+      "newOffsetHint": "Compense um item da calculadora e receba o certificado"
     },
     "impactCalculator": {
       "title": "Calcul. de impacto",
@@ -149,7 +214,24 @@
       "descBurnTokens": "Financie o plantio de árvores reais através do sistema de compensação do Crédito de Regeneração, contribua para a regeneração dos ecossistemas terrestres e aumente seu certificado para provar seu compromisso com o Planeta.",
       "tokenImpact": "Impacto",
       "totalImpactEra": "Impacto total da era",
-      "impactPerToken": "Impacto por Crédito de Regeneração"
+      "impactPerToken": "Impacto por Crédito de Regeneração",
+      "declareCommitment": "Declarar compromisso",
+      "declareCommitmentQuestion": "Você gostaria de declarar publicamente o compromisso de redução para \"{{item}}\"?",
+      "declare": "Declarar",
+      "commitment": "Compromisso",
+      "treeEqualsTokens": "1 Árvore = {{tokens}} RCs",
+      "tokensPerTreeDescription": "No presente {{tokens}} Créditos de Regeneração equivalem a 1 árvore",
+      "howManyTreesToFund": "Quantas árvores deseja financiar?",
+      "errorDeclaringCommitment": "Erro ao declarar compromisso",
+      "perUnit": "{{impact}} g CO₂e por {{unit}}",
+      "perOneUnit": "por 1 {{unit}}",
+      "showMore": "Ver detalhes e calcular ›",
+      "showLess": "Fechar",
+      "publishedBy": "Pesquisa publicada por",
+      "quickResult": "{{carbon}} kg de CO₂e: compense com ~{{tokens}} RC",
+      "supporterOnly": "A compensação e o compromisso de redução ficam disponíveis para apoiadores cadastrados.",
+      "searchItem": "Buscar item (ex: gasolina)",
+      "noItems": "Nenhum item encontrado."
     },
     "register": {
       "title": "Registrar",
@@ -186,7 +268,8 @@
       "areaSize": "Tamanho da área",
       "useYourLocation": "Use sua localização",
       "useYourLocationDescription": "Ao permitir usar sua localização, vamos te localizar no mapa, assim ficará mais simples de encontrar sua área de regeneração",
-      "useMyLocation": "Usar minha localização"
+      "useMyLocation": "Usar minha localização",
+      "nameTooLong": "O nome deve ter no máximo {{max}} bytes (letras acentuadas contam como 2)"
     },
     "myTokens": {
       "title": "Meus tokens",
@@ -206,7 +289,19 @@
       "invalidAddress": "Endereço inválido",
       "amount": "Quantidade",
       "max": "Máx",
-      "transferInfo": "A transação será processada na blockchain da Sintrop"
+      "transferInfo": "A transação será processada na blockchain da Sintrop",
+      "gasHint": "para taxas da rede",
+      "certified": "Total compensado (certificado)",
+      "receive": "Receber",
+      "receiveHint": "Envie RC ou SINTROP para este endereço na rede Sintrop.",
+      "copyAddress": "Copiar endereço",
+      "connectToSee": "Conecte sua carteira para ver seu saldo e suas transações.",
+      "kind": {
+        "burn": "Compensação / queima",
+        "poolWithdraw": "Saque do pool de {{pool}}"
+      },
+      "transferDone": "Transferência realizada",
+      "recipient": "Destinatário"
     },
     "tx": {
       "title": "Transação",
@@ -218,7 +313,8 @@
       "hashCopiedToTransferArea": "Hash copiado para área de transferência",
       "viewOnExplorer": "Ver no explorador",
       "errorOnGetErrorMessage": "Erro ao obter mensagem de erro",
-      "errorDetails": "Detalhes do erro"
+      "errorDetails": "Detalhes do erro",
+      "wrongChain": "Não foi possível mudar para a rede Sintrop. Abra sua carteira e selecione a rede manualmente."
     },
     "actions": {
       "title": "Ações",
@@ -245,17 +341,19 @@
       "burnTokens": "Queimar tokens",
       "howMuchDoYouWantToBurn": "Quantos tokens você quer queimar?",
       "burnedTokens": "Tokens queimados",
-      "compensate": "Compensar"
+      "compensate": "Compensar",
+      "inviteSupporterHint": "Ganhe 5% de comissão sobre as compensações dos seus convidados",
+      "inviteSupporterCommission": "Você recebe 5% de comissão, em RC, sobre cada compensação feita pelos apoiadores que você convidar. A comissão é paga pelo contrato direto na sua carteira."
     },
     "actionsDescriptions": {
-      "inviteSupporter": "Apoiadores podem convidar Apoiadores para o sistema, respeitando o atraso específico de apoiador.",
+      "inviteSupporter": "Convide outros apoiadores para o sistema. O convite fica registrado na blockchain para o endereço da carteira convidada, e é preciso respeitar o intervalo entre convites definido no contrato.",
       "inviteRegenerator": "Ativistas podem convidar Regeneradores para o sistema, respeitando o atraso específico de ativista.",
       "inviteInspector": "Ativistas podem convidar Inspetores para o sistema, respeitando o atraso específico de ativista.",
       "inviteActivist": "Ativistas podem convidar Ativistas para o sistema, respeitando o atraso específico de ativista.",
       "realizeInspection": "Inspetores devem avaliar a quantidade de árvores e espécies da área de regeneração. Quantas árvores, palmeiras e outras plantas com mais de 1m de altura e 3cm de diâmetro existem na área em regeneração? Justifique sua resposta no relatório. Quantas espécies diferentes dessas plantas/árvores foram encontradas? Cada espécie diferente equivale a uma unidade e apenas árvores e plantas manejadas ou plantadas pelo regenerador devem ser contadas. Justifique sua resposta no relatório. Resultado máximo de 200.000 árvores e 300 biodiversidade. Pontuação zero significa inspeção inválida. NOTA: Se o inspetor encontrar algo suspeito sobre o regenerador inspecionado, como área inválida, suspeita de conta falsa, ou se o Regenerador não for encontrado, os inspetores são encorajados a realizar passando 0 como valores com sua justificativa no relatório para evitar ser penalizado.",
       "acceptInspection": "Inspetores devem aceitar apenas inspeções que são capazes de realizar, estando cientes dos riscos de segurança e responsabilidades. Ao aceitar uma inspeção, os inspetores concordam que são responsáveis por sua própria segurança na coleta de dados. É recomendado usar roupas de manga comprida, chapéus, botas que possam prevenir picadas de animais, luvas para proteger de espinhos e qualquer outro equipamento de segurança útil, como facões ou spray de pimenta. Aceitar uma inspeção conta como uma 'desistência' até ser realizada. Inspetores podem aceitar apenas uma inspeção aberta por vez e não podem inspecionar o mesmo regenerador duas vezes. Eles também devem aderir a atrasos específicos e janelas de segurança.",
       "requestInspection": "Regeneradores concordam em receber um inspetor para avaliar sua área registrada. Eles podem fazer um número allowedInitialRequests de solicitações sem atraso. Depois disso, devem aguardar timeBetweenInspections blocos entre solicitações. Um limite rígido de 6 inspeções totais é aplicado.",
-      "descBurnTokens": "Financie o plantio de árvores reais através do sistema de compensação do Crédito de Regeneração, contribua para a regeneração dos ecossistemas terrestres e aumente seu certificado para provar seu compromisso com o Planeta."
+      "burnTokens": "Financie o plantio de árvores reais através do sistema de compensação do Crédito de Regeneração, contribua para a regeneração dos ecossistemas terrestres e aumente seu certificado para provar seu compromisso com o Planeta."
     },
     "fileInput": {
       "selectAnother": "Selecionar outro",
@@ -263,19 +361,51 @@
     },
     "map": {
       "clearSelection": "Limpar seleção",
-      "removeLastPoint": "Remover último ponto",
-      "": ""
+      "removeLastPoint": "Remover último ponto"
     },
     "tokenImpact": {
       "title": "Impacto",
-      "totalSupply": "Oferta total",
-      "totalLocked": "Total bloqueado",
-      "totalCertified": "Total compensado",
-      "circulatingSupply": "Oferta circulante",
-      "tokenData": "Dados do token",
+      "systemImpact": "Impacto verificado do sistema",
+      "carbonSequestered": "de CO₂ sequestrado nas áreas em regeneração",
+      "species": "Espécies",
+      "areaInRegeneration": "Área em regeneração",
+      "systemImpactNote": "Calculado pelo contrato RegenerationCreditImpact a partir das inspeções já contabilizadas.",
       "impactPerToken": "Impacto por Crédito de Regeneração",
-      "totalImpact": "Impacto total",
-      "totalImpactPerEra": "Impacto total por era"
+      "impactPerTokenDescription": "O que cada RC representa hoje: o impacto total dividido pela oferta efetiva de tokens.",
+      "howTitle": "Como o impacto é calculado",
+      "howDescription": "Todos os números vêm dos contratos, com os valores de agora.",
+      "howAverage_one": "Média de árvores por inspeção ({{count}} inspeção contabilizada)",
+      "howAverage_other": "Média de árvores por inspeção ({{count}} inspeções contabilizadas)",
+      "howRegenerators": "Regeneradores certificados",
+      "howTrees": "Árvores estimadas no sistema",
+      "howCarbon": "{{kg}} kg de CO₂ por árvore",
+      "howPerToken": "Dividido pela oferta efetiva",
+      "howNote": "A média por inspeção é multiplicada pelos regeneradores que completaram as inspeções de certificação. Cada árvore equivale a 100 kg de carbono sequestrado.",
+      "tokenData": "Oferta do token",
+      "tokenDataDescription": "Os RC nascem nos pools e chegam à circulação como recompensa. Os certificados foram queimados em compensações.",
+      "inPools": "Ainda nos pools",
+      "circulatingSupply": "Em circulação",
+      "totalCertified": "Certificados (queimados)",
+      "totalSupply": "Oferta atual",
+      "effectiveSupply": "Oferta efetiva (circulação + certificados)",
+      "totalImpactPerEra": "Impacto por fase",
+      "perEraDescription": "Árvores e espécies registradas nas inspeções de cada fase.",
+      "era": "Fase {{era}}",
+      "current": "atual",
+      "treesCounted": "Árvores contadas",
+      "speciesCounted": "Espécies registradas",
+      "treesPerInspection": "Árvores por inspeção",
+      "status": {
+        "settled": "Contabilizada no impacto",
+        "pending": "Encerrada, aguardando contabilização",
+        "current": "Em andamento"
+      },
+      "statusNote": {
+        "settled": "Os números desta fase já fazem parte do impacto do sistema.",
+        "pending": "A fase terminou. Os números entram no impacto do sistema na próxima atualização do contrato, que acontece com a próxima inspeção realizada.",
+        "current": "Os números entram no impacto do sistema depois que a fase terminar e passar pela validação."
+      },
+      "source": "Dados lidos dos contratos na rede Sintrop"
     },
     "community": {
       "title": "Comunidade",
@@ -303,7 +433,17 @@
       "descDevelopers": "Os desenvolvedores são os principais responsáveis ​​pelo desenvolvimento do projeto por meio do envio de relatórios de desenvolvimento, que estão sujeitos a mecanismos de validação e penalidade.",
       "descContributors": "Os colaboradores realizam contribuições genéricas ao projeto e estão sujeitos a mecanismos de validação e penalidade.",
       "descActivists": "Os ativistas são responsáveis ​​por convidar novos Regeneradores e Inspetores, e eles ganham recompensas com base na aprovação dos usuários convidados.",
-      "descSupporters": "Financie a regeneração de ecossistemas, compre o Crédito de Regeneração diretamente da comunidade, troque-o pelo certificado e prove seu compromisso com a regeneração dos ecossistemas terrestres."
+      "descSupporters": "Financie a regeneração de ecossistemas, compre o Crédito de Regeneração diretamente da comunidade, troque-o pelo certificado e prove seu compromisso com a regeneração dos ecossistemas terrestres.",
+      "vacancies_one": "{{count}} vaga aberta",
+      "vacancies_other": "{{count}} vagas abertas",
+      "noVacancies": "Sem vagas no momento",
+      "unlimited": "Vagas ilimitadas",
+      "openRegistration": "Cadastro livre, sem convite",
+      "invitedBy": "Convite de",
+      "poolPerEra": "Pool: {{tokens}} RC por fase",
+      "seeMembers": "Ver membros",
+      "join": "Fazer meu cadastro",
+      "regeneratorCap": "Vagas abertas (até 500 mil ativos)"
     },
     "inspections": {
       "title": "Inspeções",
@@ -311,9 +451,28 @@
       "score": "Pontuação",
       "seeInspection": "Ver",
       "acceptInspection": "Aceitar inspeção",
-      "thisInspectionCanAcceptIn": "Essa inspeção pode ser aceita em",
-      "expireIn": "Expira em",
-      "expired": "Expirou há"
+      "thisInspectionCanAcceptIn": "Essa inspeção pode ser aceita em {{duration}}",
+      "expireIn": "Expira em {{duration}}",
+      "expiredAgo": "Expirou há {{duration}}",
+      "view": {
+        "cards": "Cards",
+        "table": "Tabela"
+      },
+      "loadingAll": "Carregando todas as inspeções...",
+      "realizedCount": "Realizadas",
+      "treesCounted": "Árvores contadas",
+      "avgScore": "Pontuação média",
+      "columns": {
+        "id": "ID",
+        "status": "Status",
+        "regenerator": "Regenerador",
+        "inspector": "Inspetor",
+        "trees": "Árvores",
+        "biodiversity": "Biodiv.",
+        "score": "Pont.",
+        "era": "Fase",
+        "inspectedAt": "Bloco"
+      }
     },
     "inspectionStatus": {
       "open": "Aberta",
@@ -323,8 +482,7 @@
       "invalidated": "Invalidada"
     },
     "poolsScreen": {
-      "title": "Distribuição de tokens",
-      "titleBtn": "Distrib. de tokens",
+      "title": "Sacar tokens",
       "regeneratorsPool": "Pool de regeneradores",
       "inspectorsPool": "Pool de inspetores",
       "researchersPool": "Pool de pesquisadores",
@@ -361,10 +519,15 @@
       "yourEraOnPool": "Sua era no pool",
       "availablesWithdraws": "Saques disponíveis",
       "withdraw": "Sacar",
-      "advanceToNextEra": "Avançar para a próxima era"
+      "advanceToNextEra": "Avançar para a próxima era",
+      "nextEra": "Próxima fase",
+      "nextEraDescription": "Quando o botão estiver habilitado, você pode avançar de fase e se tiver direito vai receber seus Créditos de Regeneração como recompensa dos serviços prestados na fase anterior.",
+      "yourLevel": "Seu nível",
+      "maxLevel": "Nível máx.",
+      "distributedTokens": "Tokens distribuídos"
     },
     "poolsDetailsScreen": {
-      "title": "Detalhes",
+      "title": "Pool",
       "totalTokens": "Total de tokens",
       "currentEra": "Fase atual",
       "balance": "Saldo disponível",
@@ -374,6 +537,557 @@
       "claimsCount": "Saques realizados",
       "tokens": "Tokens Distribuidos",
       "levels": "Dificuldade"
+    },
+    "market": {
+      "title": "Mercado RC",
+      "back": "Voltar",
+      "loadingOffers": "Carregando ofertas...",
+      "noOffers": "Nenhuma oferta disponível",
+      "offer": "Oferta #{{id}}",
+      "statusActive": "Ativa",
+      "statusSold": "Vendida",
+      "statusCancelled": "Cancelada",
+      "statusUnknown": "Desconhecido",
+      "amount": "Quantidade",
+      "unitPrice": "Preço unitário",
+      "payment": "Pagamento",
+      "seller": "Vendedor",
+      "buy": "Comprar",
+      "cancel": "Cancelar",
+      "complete": "Concluir",
+      "publishOffer": "+ Publicar oferta",
+      "newOffer": "Nova oferta",
+      "amountLabel": "Quantidade de RC",
+      "priceLabel": "Preço por RC (R$)",
+      "paymentMethodLabel": "Método de pagamento",
+      "cash": "Dinheiro",
+      "descriptionLabel": "Descrição e contato",
+      "descriptionPlaceholder": "Ex: Vendo X Créditos por Y BRL cada. Contato: meucontato@contato.com",
+      "publish": "Publicar",
+      "buyTitle": "Comprar",
+      "buyMessage": "O mercado é apenas informativo, entre em contato com o vendedor através das informações descritas na oferta e compre diretamente com ele.",
+      "cancelOfferTitle": "Cancelar oferta",
+      "cancelOfferMessage": "Tem certeza que deseja cancelar esta oferta?",
+      "confirmSaleTitle": "Concluir venda",
+      "confirmSaleMessage": "Digite o endereço da carteira do comprador:",
+      "connectWalletFirst": "Conecte a carteira primeiro",
+      "fillAllFields": "Preencha todos os campos",
+      "descriptionTooLong": "A descrição deve ter no máximo 500 caracteres",
+      "priceTooLong": "O preço deve ter no máximo 50 caracteres",
+      "error": "Erro",
+      "errorCreatingOffer": "Erro ao criar oferta",
+      "errorCancelingOffer": "Erro ao cancelar oferta",
+      "errorConfirmingSale": "Erro ao concluir venda",
+      "offerCreated": "Oferta publicada",
+      "offerCancelled": "Oferta cancelada",
+      "saleConfirmed": "Venda concluída"
+    },
+    "duration": {
+      "days_one": "~{{count}} dia",
+      "days_other": "~{{count}} dias",
+      "hours_one": "~{{count}} hora",
+      "hours_other": "~{{count}} horas",
+      "minutes_one": "~{{count}} minuto",
+      "minutes_other": "~{{count}} minutos",
+      "withBlocks": "{{duration}} ({{blocks}} blocos)"
+    },
+    "resourcesList": {
+      "title": "Recursos",
+      "filterAll": "Todos",
+      "researches": "Pesquisas",
+      "contributions": "Contribuições",
+      "reports": "Relatórios",
+      "research": "Pesquisa",
+      "contribution": "Contribuição",
+      "report": "Relatório de desenvolvimento",
+      "era": "Fase {{era}}",
+      "open": "Ver",
+      "loading": "Carregando recursos...",
+      "empty": "Nenhum recurso publicado ainda",
+      "error": "Não foi possível carregar os recursos",
+      "publishedBy": "Publicado por"
+    },
+    "publisher": {
+      "publishResearch": "Publicar pesquisa",
+      "publishResearchDescription": "Publique uma pesquisa: um novo item da calculadora, uma melhoria de metodologia ou uma pesquisa sobre regeneração. Cada publicação válida adiciona um nível no pool de pesquisadores.",
+      "publishReport": "Publicar relatório de desenvolvimento",
+      "publishReportDescription": "Publique um relatório do trabalho de desenvolvimento feito no sistema. Cada relatório válido adiciona um nível no pool de desenvolvedores.",
+      "publishContribution": "Publicar contribuição",
+      "publishContributionDescription": "Publique um relatório da sua contribuição ao sistema (tradução, apoio à comunidade, design, divulgação etc.). Cada contribuição válida adiciona um nível no pool de contribuidores.",
+      "publishItem": "Publicar item da calculadora",
+      "publishItemDescription": "Adicione um item à calculadora de impacto, com a unidade e o impacto em gramas de CO2e por unidade, para que apoiadores possam compensá-lo.",
+      "publishMethod": "Publicar método de avaliação",
+      "publishMethodDescription": "Publique um método ou projeto que ajude os inspetores a estimar árvores e biodiversidade. Cada pesquisador pode publicar apenas um método.",
+      "inviteResearcher": "Convidar pesquisador",
+      "inviteResearcherDescription": "Pesquisadores com nível acima da média podem convidar novos pesquisadores.",
+      "inviteDeveloper": "Convidar desenvolvedor",
+      "inviteDeveloperDescription": "Desenvolvedores com nível acima da média podem convidar novos desenvolvedores.",
+      "inviteContributor": "Convidar contribuidor",
+      "inviteContributorDescription": "Contribuidores com nível acima da média podem convidar novos contribuidores.",
+      "researchTitle": "Título da pesquisa",
+      "thesis": "Tese (resumo)",
+      "description": "Descrição",
+      "file": "Arquivo (PDF)",
+      "publish": "Publicar",
+      "published": "Publicação realizada",
+      "itemName": "Nome do item",
+      "itemNamePlaceholder": "Ex: Gasolina",
+      "itemThesis": "Justificativa do impacto",
+      "itemUnit": "Unidade",
+      "itemUnitPlaceholder": "Ex: L, kWh, kg",
+      "carbonImpact": "Impacto em gramas de CO2e por unidade",
+      "carbonImpactRange": "Use um número inteiro entre 1 e 1.000.000 gramas",
+      "methodTitle": "Título do método",
+      "methodResearch": "Pesquisa associada (link ou hash IPFS)",
+      "methodProjectUrl": "Link do projeto",
+      "methodAlreadyPublished": "Você já publicou seu método de avaliação. O contrato permite apenas um por pesquisador.",
+      "waitTitle": "Aguarde para publicar de novo",
+      "waitDescription": "O contrato exige um intervalo entre publicações. Próxima publicação liberada em {{duration}}.",
+      "eraEndingTitle": "Fase terminando",
+      "eraEndingDescription": "Publicações ficam bloqueadas no fim de cada fase, enquanto a validação é concluída. A próxima fase começa em {{duration}}.",
+      "inviteLevelRequired": "Para convidar, seu nível no pool precisa estar acima da média do seu tipo de usuário. Continue publicando para subir de nível.",
+      "inviteDelay": "Você convidou alguém recentemente. Próximo convite liberado em {{duration}}."
+    },
+    "timers": {
+      "title": "Suas ações",
+      "availableNow": "Disponível agora",
+      "availableIn": "Disponível em {{duration}}",
+      "opensNextEra": "Bloqueado no fim da fase. Abre em {{duration}}",
+      "pendingInspection": "Pedido em aberto, aguardando um inspetor",
+      "inspectionInProgress": "Inspeção em andamento. Expira em {{duration}}",
+      "missionComplete": "Concluído: as 6 inspeções foram feitas",
+      "blocked": {
+        "giveUps": "Bloqueado: limite de 3 desistências atingido",
+        "levelRequired": "Requer nível no pool acima da média do seu tipo",
+        "minimumInspections": "Requer 3 inspeções realizadas"
+      },
+      "actions": {
+        "requestInspection": "Pedir inspeção",
+        "acceptInspection": "Aceitar inspeção",
+        "publishResearch": "Publicar pesquisa",
+        "publishCalculatorItem": "Publicar item da calculadora",
+        "publishReport": "Publicar relatório",
+        "publishContribution": "Publicar contribuição",
+        "vote": "Votar para invalidar",
+        "invite": "Convidar",
+        "inviteRegeneratorInspector": "Convidar regenerador ou inspetor",
+        "withdraw": "Sacar tokens",
+        "offset": "Nova compensação",
+        "inviteSupporter": "Convidar apoiador · 5% de comissão"
+      },
+      "tickerAvailable_one": "Você tem {{count}} ação disponível",
+      "tickerAvailable_other": "Você tem {{count}} ações disponíveis",
+      "allActions": "Todas as ações"
+    },
+    "invalidation": {
+      "title": "Votos para invalidar",
+      "votes": "{{votes}}/{{needed}} votos",
+      "openUntil": "Votação aberta até o fim da fase, em {{duration}}.",
+      "closed": {
+        "eraClosed": "Fase encerrada: este recurso não pode mais ser invalidado.",
+        "alreadyInvalidated": "Este recurso já foi invalidado.",
+        "notInspected": "Apenas inspeções realizadas podem ser invalidadas.",
+        "supporter": "Apoiadores não podem ser invalidados.",
+        "regeneratorImmune": "Regeneradores com 6 inspeções ficam imunes à invalidação.",
+        "alreadyDenied": "Este usuário já foi invalidado."
+      },
+      "voterBlocked": {
+        "levelRequired": "Para votar, seu nível precisa estar acima da média do seu tipo de usuário.",
+        "alreadyVoted": "Você já votou aqui.",
+        "waitTimeBetweenVotes": "Você votou recentemente. Próximo voto liberado em {{duration}}.",
+        "voterDenied": "Sua conta foi invalidada e não pode votar."
+      },
+      "voteButton": "Votar para invalidar",
+      "voteDescription": {
+        "resource": "Vote para invalidar se o recurso for falso, plagiado ou não cumprir as regras. Ao atingir os votos necessários, ele é invalidado e o autor recebe uma penalidade.",
+        "user": "Vote para invalidar se o usuário for falso ou estiver agindo de má-fé. Ao atingir os votos necessários, o usuário é bloqueado no sistema."
+      },
+      "justification": "Justificativa",
+      "confirmVote": "Confirmar voto",
+      "voteSent": "Voto registrado",
+      "openChip": "Votação aberta: {{votes}}/{{needed}}"
+    },
+    "pools": {
+      "yourPool": "Seu pool",
+      "distributedOf": "{{distributed}} de {{total}} RC distribuídos",
+      "perEra": "Por fase",
+      "inPool": "No pool",
+      "howItWorksTitle": "Como funciona o saque",
+      "howItWorks": "Cada pool distribui uma quantidade de Créditos de Regeneração por fase, dividida entre os usuários pelos níveis que conquistaram naquela fase. Os créditos de uma fase só podem ser sacados depois que ela termina, uma fase por saque.",
+      "eraEndsIn": "Fase termina em",
+      "distributed": "Distribuído",
+      "ofTotal": "de {{total}} RC no total · {{balance}} RC ainda no pool",
+      "epoch": "Época",
+      "epochHint": "A cada 12 fases o valor por fase cai pela metade",
+      "yourPosition": "Sua posição",
+      "yourEra": "Sua fase no pool",
+      "levelsThisEra": "Seus níveis na fase {{era}}",
+      "nextWithdraw": "Próximo saque: fase {{era}}",
+      "emptyEra": "Você não tem níveis na fase {{era}}. O saque apenas avança sua fase para a {{next}}.",
+      "estimateDetail": "Seus {{levels}} de {{total}} níveis da fase",
+      "waitEraEnd": "Sua fase {{era}} ainda está em andamento. Saque liberado em {{duration}}.",
+      "advanceEra": "Avançar para a fase {{next}}",
+      "withdrawEra": "Sacar créditos da fase {{era}}",
+      "oneEraPerWithdraw_one": "Cada saque processa uma fase.",
+      "oneEraPerWithdraw_other": "Cada saque processa uma fase. Você tem {{count}} fases para processar.",
+      "withdrawDone": "Saque realizado",
+      "erasTitle": "Distribuição por fase",
+      "eraChip": "Fase {{era}}",
+      "now": "atual",
+      "phaseCurrent": "Fase em andamento: os saques abrem quando ela terminar",
+      "phaseClaimable": "Fase encerrada: saques liberados",
+      "withdrawnInEra": "Sacado nesta fase",
+      "eraTokens": "de {{tokens}} RC destinados a esta fase",
+      "levels": "Níveis",
+      "withdrawalsCount": "Saques",
+      "whoWithdrew": "Quem já sacou",
+      "noWithdrawals": "Ninguém sacou desta fase ainda.",
+      "noWithdrawalsCurrent": "Os saques desta fase abrem quando ela terminar.",
+      "advancedOnly": "Só avançou",
+      "toReceive": "Créditos a receber",
+      "inWithdrawals_one": "em {{count}} saque",
+      "inWithdrawals_other": "em {{count}} saques, um por fase encerrada"
+    },
+    "supporterProfile": {
+      "totalCompensated": "Total compensado",
+      "compensationsCount_one": "em {{count}} compensação",
+      "compensationsCount_other": "em {{count}} compensações",
+      "fundingImpact": "Financiando o impacto de",
+      "carbon": "CO₂ sequestrado",
+      "impactNote": "Equivalência calculada com o impacto por crédito registrado na blockchain.",
+      "certificateHint": "Certificado público e verificável. Pode ser salvo e compartilhado, e o QR code abre o perfil do apoiador.",
+      "compensations": "Compensações",
+      "offset": "Compensação",
+      "treeFunding": "Financiou o plantio de árvores",
+      "noCompensations": "Nenhuma compensação ainda.",
+      "ago": "há {{duration}}",
+      "commitmentImpact": "{{impact}} t CO₂ compensadas",
+      "commitmentsHint": "Itens que o apoiador se comprometeu publicamente a reduzir."
+    },
+    "invitedUsers": {
+      "title": "Usuários convidados",
+      "as": "como",
+      "registered": "Cadastrado",
+      "pending": "Aguardando cadastro",
+      "empty": "Nenhum convite enviado ainda."
+    },
+    "regeneratorProfile": {
+      "journey": "Jornada do regenerador",
+      "statusComplete": "Missão concluída: 6 inspeções realizadas",
+      "statusEarning": "Recebendo Créditos de Regeneração",
+      "statusToPool_one": "Falta {{count}} inspeção para começar a receber",
+      "statusToPool_other": "Faltam {{count}} inspeções para começar a receber",
+      "pendingInspection": "Pedido de inspeção em aberto",
+      "inspectionsDone": "{{done}} de {{total}} inspeções",
+      "lastTrees": "Árvores (última)",
+      "technicalData": "Dados técnicos"
+    },
+    "feedNews": {
+      "stage": {
+        "requested": "Pedido de inspeção #{{id}}",
+        "accepted": "Inspeção #{{id}} aceita",
+        "realized": "Inspeção #{{id}} realizada"
+      },
+      "requested": "{{regenerator}} pediu uma inspeção da sua área de regeneração.",
+      "accepted": "{{inspector}} aceitou inspecionar a área de {{regenerator}}.",
+      "realized": "{{inspector}} inspecionou a área de {{regenerator}}.",
+      "waitingInspector": "Aguardando um inspetor aceitar.",
+      "seeInspection": "Ver inspeção",
+      "offsetBadge": "Compensação",
+      "offsetItem": "compensando {{item}}",
+      "offsetImpact": "Financia o sequestro de ~{{amount}} de CO₂.",
+      "seeSupporter": "Ver apoiador",
+      "treeFundingBadge": "Plantio de árvores",
+      "treesFunded": "~{{trees}} árvores financiadas",
+      "researchBadge": "Pesquisa #{{id}}",
+      "reportBadge": "Relatório de desenvolvimento #{{id}}",
+      "contributionBadge": "Contribuição #{{id}}",
+      "read": "Ler",
+      "commitmentBadge": "Compromisso de redução",
+      "commitment": "Assumiu publicamente o compromisso de reduzir o consumo de {{item}}.",
+      "withdrawBadge": "Saque · pool de {{pool}}",
+      "newUserBadge": "Novo membro",
+      "newUser": "{{name}} entrou na comunidade como {{type}}.",
+      "invitationBadge": "Convite",
+      "poolBadge": "Marco",
+      "marketBadge": "Mercado",
+      "transferBadge": "Transferência",
+      "transferTo": "Para"
+    },
+    "settings": {
+      "title": "Configurações",
+      "network": "Rede (RPC)",
+      "rpcDescription": "O app lê os dados da blockchain Sintrop por um servidor RPC público. Se o padrão estiver instável, você pode usar outro endereço da rede Sintrop.",
+      "currentRpc": "RPC em uso",
+      "default": "padrão",
+      "rpcOnline": "Online · {{ms}} ms · bloco {{block}}",
+      "testAgain": "Testar novamente",
+      "customRpc": "Outro endereço de RPC",
+      "testAndSave": "Testar e usar este RPC",
+      "restoreDefault": "Voltar para o padrão ({{rpc}})",
+      "rpcSaved": "RPC atualizado",
+      "rpcRestored": "RPC padrão restaurado",
+      "chainNote": "Só são aceitos RPCs da rede Sintrop (chain ID 250225). As transações continuam sendo enviadas pela sua carteira.",
+      "rpcError": {
+        "invalidUrl": "Endereço inválido. Use um endereço começando com https://",
+        "timeout": "O RPC não respondeu a tempo.",
+        "unreachable": "Não foi possível conectar a este RPC.",
+        "wrongChain": "Este RPC não é da rede Sintrop."
+      },
+      "wallet": "Carteira",
+      "connectedWallet": "Carteira conectada",
+      "disconnect": "Desconectar carteira",
+      "disconnectTitle": "Desconectar carteira?",
+      "disconnectMessage": "O app deixa de usar esta carteira. Você pode conectar a mesma ou outra carteira depois pelo botão Conectar."
+    },
+    "rpcStatus": {
+      "title": "Instabilidade na conexão com a rede",
+      "description": "O servidor RPC que o app usa para ler a blockchain não está respondendo, por isso alguns dados podem não carregar. Você pode trocar para outro RPC da rede Sintrop ou voltar mais tarde.",
+      "changeRpc": "Trocar RPC",
+      "retry": "Tentar novamente"
+    },
+    "help": {
+      "title": "Ajuda",
+      "welcomeTitle": "Boas-vindas ao Crédito de Regeneração",
+      "welcomeText": "Sistema de regeneração da Natureza pessoa a pessoa. Aqui estão os passos para começar, os dados da rede Sintrop e as respostas para as dúvidas mais comuns.",
+      "newcomerTitle": "Novo por aqui?",
+      "newcomerText": "Veja como começar, configurar a carteira e se cadastrar.",
+      "settingsLink": "Como começar, dados da rede, endereços dos contratos e perguntas frequentes.",
+      "stepsTitle": "Como começar",
+      "steps": {
+        "wallet": {
+          "title": "Instale o MetaMask",
+          "text": "O app usa a carteira MetaMask para assinar as transações. Instale o app do MetaMask e crie a sua carteira. Guarde a frase de recuperação em um lugar seguro e nunca a compartilhe."
+        },
+        "network": {
+          "title": "Adicione a rede Sintrop",
+          "text": "O Crédito de Regeneração roda na rede Sintrop. Toque no botão abaixo e aprove no MetaMask: a rede é adicionada e selecionada, e se a carteira ainda não estiver conectada, a conexão acontece na mesma etapa. Se preferir, adicione a rede à mão com os dados mais abaixo."
+        },
+        "connect": {
+          "title": "Conecte a carteira",
+          "text": "Toque em Conectar no topo da tela inicial e aprove no MetaMask. Depois de aprovar, volte para o app."
+        },
+        "gas": {
+          "title": "Compre, receba ou minere SINTROP",
+          "text": "SINTROP é a unidade da rede Sintrop e paga as taxas de cada transação, como o cadastro. Você pode receber de outro usuário, copiando o endereço da sua carteira no seu perfil, ou minerar com o seu próprio computador."
+        },
+        "register": {
+          "title": "Faça o seu cadastro",
+          "text": "O cadastro de Apoiador é aberto a qualquer carteira. Os demais tipos de usuário precisam de um convite registrado na blockchain para o endereço da sua carteira. Com a carteira conectada, a tela inicial mostra a opção de cadastro."
+        },
+        "earn": {
+          "title": "Compre RC ou preste um serviço",
+          "text": "Para ter créditos na sua carteira, compre RC de outro usuário pelo Mercado ou preste um serviço ao sistema, como regenerar, inspecionar, pesquisar, desenvolver, contribuir ou convidar novos usuários. Cada serviço rende tokens dos pools a cada era."
+        },
+        "token": {
+          "title": "Veja seus RC no MetaMask",
+          "text": "No MetaMask, com a rede Sintrop selecionada, use Importar token e cole o endereço do contrato do token RC, que está logo abaixo."
+        }
+      },
+      "downloadMetamask": "Baixar MetaMask",
+      "metamaskManual": "Manual do MetaMask (PDF)",
+      "addNetwork": "Adicionar rede Sintrop no MetaMask",
+      "copy": "Copiar",
+      "networkTitle": "Dados da rede Sintrop",
+      "networkText": "Use estes dados para adicionar a rede à mão no MetaMask. Toque em um campo para copiar.",
+      "networkName": "Nome da rede",
+      "rpcUrl": "URL do RPC",
+      "chainId": "ID da chain",
+      "currencySymbol": "Símbolo da moeda (no MetaMask)",
+      "explorer": "Explorador de blocos",
+      "tokenTitle": "Token Crédito de Regeneração (RC)",
+      "tokenText": "Dados para importar o RC na sua carteira.",
+      "tokenAddress": "Endereço do contrato",
+      "tokenSymbol": "Símbolo",
+      "tokenDecimals": "Casas decimais",
+      "contractsTitle": "Contratos do protocolo",
+      "contractsText": "Os contratos estão implantados na rede Sintrop, foram auditados pela Nethermind Security e têm o código aberto no GitHub.",
+      "showContracts": "Mostrar os {{count}} endereços",
+      "hideContracts": "Ocultar endereços",
+      "faqTitle": "Perguntas frequentes",
+      "faq": {
+        "whatIs": {
+          "q": "O que é o Crédito de Regeneração?",
+          "a": "É um pagamento por serviços ambientais pessoa a pessoa. Quem regenera ecossistemas ganha tokens de Crédito de Regeneração (RC), e o impacto por trás de cada token é verificado por um processo de inspeção descentralizado."
+        },
+        "howEarn": {
+          "q": "Como alguém ganha RC?",
+          "a": "Cada tipo de usuário tem um pool que distribui tokens a cada era, proporcionalmente ao nível de cada um dentro do seu tipo. O nível sobe fazendo o trabalho do papel: o regenerador pelo resultado das inspeções da sua área, o inspetor por inspeção realizada, o pesquisador por pesquisa publicada, o desenvolvedor e o contribuidor por relatório e o ativista quando um convidado completa as primeiras inspeções."
+        },
+        "buy": {
+          "q": "Como comprar o Crédito de Regeneração?",
+          "a": "Pelo Mercado do app. Lá ficam as ofertas publicadas pelos usuários, com a quantidade, o preço por RC, a forma de pagamento e o contato do vendedor. Combine a compra diretamente com o vendedor e passe o endereço da sua carteira para receber os RC. O app não intermedeia o pagamento, então confira o endereço do vendedor antes de pagar, já que nomes podem se repetir."
+        },
+        "invite": {
+          "q": "Preciso de convite para me cadastrar?",
+          "a": "Só o Apoiador se cadastra sem convite. Ativistas convidam regeneradores, inspetores e outros ativistas. Pesquisadores, desenvolvedores e contribuidores são convidados por usuários do mesmo tipo. O convite fica registrado na blockchain para o endereço da carteira convidada, então peça o convite e depois faça o cadastro com a mesma carteira."
+        },
+        "sin": {
+          "q": "O que é SINTROP e por que preciso dele?",
+          "a": "O Crédito de Regeneração usa a blockchain Sintrop, um banco de dados distribuído mantido pelos computadores conectados à rede. Os computadores que encontram os blocos recebem SINTROP, a unidade de sintropia da rede, que paga as taxas das transações: cadastro, convites, inspeções, publicações, votos, saques e compensações. Consultar dados no app é gratuito. Você pode receber SINTROP de outro usuário ou minerar no seu computador. No MetaMask, a moeda aparece com o símbolo SIN."
+        },
+        "eras": {
+          "q": "O que são eras e épocas?",
+          "a": "O protocolo é dividido em eras de cerca de 6 meses. Em cada era, os pools distribuem uma quantidade fixa de tokens. A cada 12 eras (uma época), a emissão por era cai pela metade. O tempo até a próxima era aparece no topo da tela inicial."
+        },
+        "withdraw": {
+          "q": "Como saco meus tokens?",
+          "a": "Em Sacar tokens, escolha o pool do seu tipo de usuário. Os tokens de uma era ficam disponíveis para saque depois que ela termina, de acordo com o seu nível naquela era."
+        },
+        "inspection": {
+          "q": "Como funciona uma inspeção?",
+          "a": "O regenerador pede a inspeção da sua área. Um inspetor aceita o pedido, vai até a área dentro do prazo e registra a contagem de árvores e de espécies, com fotos e relatório. Cada inspetor só pode inspecionar um mesmo regenerador uma vez. O regenerador passa a receber tokens depois de 3 inspeções feitas por 3 inspetores diferentes."
+        },
+        "validation": {
+          "q": "Quem verifica se as informações são verdadeiras?",
+          "a": "Pesquisadores, desenvolvedores e contribuidores formam a camada de validação e votam para invalidar usuários, inspeções e publicações fraudulentas. Cada registro só pode ser contestado durante a era em que foi criado."
+        },
+        "offset": {
+          "q": "O que é compensar?",
+          "a": "O apoiador troca RC por um certificado: os tokens são queimados e o certificado registra na blockchain quanto de regeneração verificada aquela compensação financiou. Se o apoiador foi convidado, 5% da compensação feita pelo app vão para quem o convidou."
+        },
+        "security": {
+          "q": "Meus fundos estão seguros?",
+          "a": "O MetaMask é uma carteira de autocustódia, ou seja, só você tem as chaves. O app nunca pede a sua frase de recuperação, e toda transação precisa ser confirmada por você no MetaMask. Nunca compartilhe a frase de recuperação com ninguém."
+        },
+        "rpc": {
+          "q": "O app não carrega os dados. O que faço?",
+          "a": "O app lê a blockchain por um servidor RPC público. Se ele ficar instável, um aviso aparece no topo da tela. Você pode trocar o RPC em Configurações ou tentar de novo mais tarde."
+        }
+      },
+      "moreInfo": "Mais informações no site do Crédito de Regeneração",
+      "openProfile": "Abrir meu perfil",
+      "openMarket": "Abrir Mercado",
+      "connected": "Carteira conectada ✓",
+      "howToMine": "Como minerar SINTROP"
+    },
+    "contracts": {
+      "title": "Contratos",
+      "settingsTitle": "Contratos (avançado)",
+      "settingsText": "Consulte e chame diretamente as funções dos contratos do protocolo.",
+      "openFromHelp": "Ler e interagir com os contratos",
+      "introTitle": "Acesso direto aos contratos",
+      "introText": "Aqui estão todos os contratos do protocolo na rede Sintrop, com as funções de leitura e de escrita. As leituras são gratuitas. As escritas enviam uma transação pela sua carteira, como no core desktop.",
+      "searchPlaceholder": "Buscar contrato, endereço ou função",
+      "noResults": "Nenhum contrato encontrado.",
+      "notFound": "Contrato não encontrado.",
+      "readCount_one": "{{count}} leitura",
+      "readCount_other": "{{count}} leituras",
+      "writeCount_one": "{{count}} escrita",
+      "writeCount_other": "{{count}} escritas",
+      "groups": {
+        "token": "Token e impacto",
+        "community": "Comunidade",
+        "inspection": "Inspeções",
+        "roles": "Regras dos usuários",
+        "pools": "Pools",
+        "governance": "Validação",
+        "market": "Mercado"
+      },
+      "tab": {
+        "read": "Leitura",
+        "write": "Escrita"
+      },
+      "viewOnExplorer": "Ver no explorador",
+      "natspecNote": "Descrições tiradas dos comentários do código do contrato (em inglês).",
+      "readHint": "Consultas gratuitas, sem carteira. Abra uma função, preencha os campos e toque em Consultar.",
+      "searchFunction": "Buscar função",
+      "noFunctions": "Nenhuma função encontrada.",
+      "writeWarningTitle": "Chamada direta ao contrato",
+      "writeWarning": "Estas funções enviam uma transação pela sua carteira sem as checagens que o app faz nas outras telas. Um parâmetro errado pode reverter a transação e gastar taxa em SINTROP. Use só se souber o que a função faz.",
+      "query": "Consultar",
+      "sendTransaction": "Enviar transação",
+      "send": "Enviar",
+      "result": "Resultado",
+      "asTokenAmount": "Valor em RC (converter para 18 casas)",
+      "confirmTitle": "Enviar transação?",
+      "confirmMessage": "Você vai chamar {{fn}} no contrato {{contract}}. A transação será aberta no MetaMask para você confirmar.",
+      "txDone": "Transação {{fn}} confirmada",
+      "placeholder": {
+        "integer": "Número inteiro",
+        "address": "0x...",
+        "bool": "true ou false",
+        "hex": "0x...",
+        "json": "[1, 2, 3]",
+        "text": "Texto"
+      },
+      "argError": {
+        "required": "Campo obrigatório.",
+        "integer": "Use um número inteiro, sem vírgula.",
+        "negative": "Este campo não aceita números negativos.",
+        "address": "Endereço inválido.",
+        "bool": "Use true ou false.",
+        "hex": "Use um valor hexadecimal começando com 0x.",
+        "bytes32": "Tamanho incorreto para este tipo.",
+        "json": "Use o formato de lista, ex.: [1, 2].",
+        "array": "Este campo espera uma lista.",
+        "amount": "Valor inválido."
+      }
+    },
+    "mining": {
+      "title": "Minerar SINTROP",
+      "settingsTitle": "Minerar SINTROP (avançado)",
+      "settingsText": "Rode um nó da rede Sintrop no seu computador e receba SINTROP pelos blocos encontrados.",
+      "introTitle": "A rede por trás do Crédito de Regeneração",
+      "introText": "O Crédito de Regeneração roda na blockchain Sintrop, um banco de dados distribuído mantido pelos computadores conectados à rede, os nós. Cada nó guarda uma cópia de todas as transações e ajuda a processar as novas. Os computadores que encontram os blocos são remunerados com SINTROP, a unidade de sintropia da rede, que também paga as taxas de cada transação.",
+      "introSmallNetwork": "O resultado depende da dificuldade da rede, mas é possível encontrar alguns blocos mesmo minerando só com o processador. Assim, qualquer pessoa consegue o SINTROP para as taxas e faz o cadastro de apoiador sem depender de ninguém.",
+      "addressTitle": "Endereço que vai receber a recompensa",
+      "addressConnected": "A recompensa vai para a carteira conectada. O endereço já está preenchido nos comandos abaixo.",
+      "addressPaste": "Cole o endereço da sua carteira. Ele é preenchido nos comandos abaixo.",
+      "os": {
+        "windows": "Windows",
+        "ubuntu": "Ubuntu",
+        "macos": "macOS"
+      },
+      "downloadTitle": "Baixe o go-sintrop",
+      "download": {
+        "windows": "No computador, baixe o arquivo {{file}} da página de versões do go-sintrop.",
+        "ubuntu": "No computador, baixe o arquivo {{file}} da página de versões do go-sintrop.",
+        "macos": "No computador, baixe o arquivo {{file}} da página de versões do go-sintrop."
+      },
+      "macAppleSilicon": "A versão para macOS funciona em Macs com processador Apple (M1 ou mais novo).",
+      "downloadButton": "Baixar go-sintrop {{version}}",
+      "openReleases": "Abrir página de versões",
+      "extractTitle": "Extraia o arquivo",
+      "extract": {
+        "windows": "Na pasta Downloads, clique com o botão direito no arquivo e escolha Extrair tudo. Abra a pasta extraída, que tem o arquivo geth.exe.",
+        "ubuntu": "Extraia o arquivo pela própria pasta (botão direito > Extrair aqui) e abra o Terminal dentro da pasta extraída. Se preferir fazer tudo pelo Terminal, use os comandos abaixo. Toque em um comando para copiar.",
+        "macos": "Extraia o arquivo pela própria pasta (dois cliques no .zip) e abra o Terminal dentro da pasta extraída. Antes da primeira execução, rode o último comando abaixo: ele libera o geth, que o macOS bloqueia por ter vindo da internet. Se preferir fazer tudo pelo Terminal, use todos os comandos na ordem."
+      },
+      "runTitle": "Inicie o nó",
+      "run": {
+        "windows": "Na pasta do geth.exe, clique na barra de endereço, digite powershell e aperte Enter. No PowerShell que abrir, cole e rode o comando abaixo.",
+        "ubuntu": "No mesmo Terminal, cole e rode o comando abaixo.",
+        "macos": "No mesmo Terminal, cole e rode o comando abaixo."
+      },
+      "runAddressFilled": "O seu endereço já está no comando, no campo miner.etherbase.",
+      "runAddressMissing": "Informe o endereço da sua carteira acima para ele entrar no comando, no campo miner.etherbase.",
+      "syncTitle": "Espere a sincronização",
+      "syncText": "O nó começa a baixar uma cópia completa da blockchain. Isso leva um tempo. Ele está sincronizado quando o número do bloco no Terminal chegar ao bloco atual da rede.",
+      "currentBlock": "Bloco atual da rede: {{block}}",
+      "mineTitle": "Comece a minerar",
+      "mineText": "Com o nó sincronizado, digite no próprio console do geth:",
+      "stopText": "Para parar a mineração:",
+      "exitText": "Para desligar o nó com segurança, aperte Ctrl + D. Não feche a janela direto.",
+      "rewardTitle": "Receba e use os SINTROP",
+      "rewardText": "Cada bloco encontrado envia a recompensa para o seu endereço. O saldo aparece em Meus tokens. Com SINTROP na carteira, você já pode pagar as taxas e fazer o cadastro de apoiador.",
+      "openMyTokens": "Abrir Meus tokens",
+      "registerSupporter": "Fazer cadastro",
+      "tipsTitle": "Dicas",
+      "tipComputerOn": "O computador precisa ficar ligado e conectado à internet enquanto minera. Quanto mais tempo minerando, mais chances de encontrar blocos.",
+      "tipRenewable": "A rede Sintrop incentiva o uso de energia renovável, como solar, eólica ou hídrica, nos computadores que mineram.",
+      "guideTitle": "Guia completo",
+      "guideText": "Para montar um computador dedicado, minerar com placa de vídeo e resolver problemas comuns, veja o guia completo de nó e mineração no Ubuntu, publicado como contribuição na comunidade.",
+      "openGuide": "Abrir o guia completo",
+      "openTutorials": "Tutoriais em sintrop.com",
+      "commandCopied": "Comando copiado",
+      "unknownSourceTitle": "Aviso de origem desconhecida",
+      "unknownSourceText": "O navegador e o sistema vão avisar que o programa é de origem desconhecida. Isso é esperado: o go-sintrop é de código aberto e vem direto do repositório oficial da Sintrop no GitHub. Autorize o download e a execução para continuar.",
+      "unknownSource": {
+        "windows": "No Windows, mantenha o arquivo quando o navegador perguntar. Se aparecer \"O Windows protegeu o computador\", clique em Mais informações e depois em Executar assim mesmo.",
+        "ubuntu": "No Ubuntu, mantenha o arquivo quando o navegador perguntar.",
+        "macos": "No macOS, o comando de liberação do passo 2 resolve o bloqueio. Se ainda aparecer o aviso, abra Ajustes do Sistema > Privacidade e Segurança e clique em Abrir mesmo assim."
+      }
     }
   }
 }

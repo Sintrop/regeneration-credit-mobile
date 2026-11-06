@@ -22,7 +22,7 @@ async function getBasicData({ address, rpc, userType }: GetBasicDataProps): Prom
       name: response.name,
       photo: response.proofPhoto,
       poolLevel: response.pool.currentEra,
-      extraInfo: 'Regeneration Score',
+      extraInfo: 'profile.regenerationScore',
       extraInfoValue: response.regenerationScore?.score || 0
     }
   }
@@ -34,7 +34,7 @@ async function getBasicData({ address, rpc, userType }: GetBasicDataProps): Prom
       name: response.name,
       photo: response.proofPhoto,
       poolLevel: response.pool.currentEra,
-      extraInfo: 'Level',
+      extraInfo: 'profile.level',
       extraInfoValue: response.pool?.level || 0
     }
   }
@@ -46,7 +46,7 @@ async function getBasicData({ address, rpc, userType }: GetBasicDataProps): Prom
       name: response.name,
       photo: response.proofPhoto,
       poolLevel: response.pool.currentEra,
-      extraInfo: 'Level',
+      extraInfo: 'profile.level',
       extraInfoValue: response.pool?.level || 0
     }
   }
@@ -58,7 +58,7 @@ async function getBasicData({ address, rpc, userType }: GetBasicDataProps): Prom
       name: response.name,
       photo: response.proofPhoto,
       poolLevel: response.pool.currentEra,
-      extraInfo: 'Level',
+      extraInfo: 'profile.level',
       extraInfoValue: response.pool?.level || 0
     }
   }
@@ -70,7 +70,7 @@ async function getBasicData({ address, rpc, userType }: GetBasicDataProps): Prom
       name: response.name,
       photo: response.proofPhoto,
       poolLevel: response.pool.currentEra,
-      extraInfo: 'Level',
+      extraInfo: 'profile.level',
       extraInfoValue: response.pool?.level || 0
     }
   }
@@ -82,7 +82,7 @@ async function getBasicData({ address, rpc, userType }: GetBasicDataProps): Prom
       name: response.name,
       photo: response.proofPhoto,
       poolLevel: response.pool.currentEra,
-      extraInfo: 'Level',
+      extraInfo: 'profile.level',
       extraInfoValue: response.pool?.level || 0
     }
   }
@@ -104,7 +104,7 @@ async function getBasicData({ address, rpc, userType }: GetBasicDataProps): Prom
       name: response.name,
       photo: response.profilePhoto,
       poolLevel: 0,
-      extraInfo: 'Tokens Compensados',
+      extraInfo: 'tokenImpact.totalCertified',
       extraInfoValue: certificatedTokens
     }
   }

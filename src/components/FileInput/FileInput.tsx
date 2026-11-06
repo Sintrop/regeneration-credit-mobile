@@ -5,11 +5,18 @@ import { useTranslation } from "react-i18next";
 import { Icon, Text } from "@components";
 import { useDocumentPick } from "@hooks";
 
+export interface PickedFile {
+  uri: string;
+  name?: string;
+  type?: string;
+}
+
 interface Props {
   label?: string;
   onChange: (uri: string) => void;
+  onPickFile?: (file: PickedFile) => void;
 }
-export function FileInput({ onChange, label }: Props) {
+export function FileInput({ onChange, onPickFile, label }: Props) {
   const { t } = useTranslation();
   const { pick } = useDocumentPick();
 
@@ -23,6 +30,11 @@ export function FileInput({ onChange, label }: Props) {
         setFileName(response?.document?.name);
         setFileUri(response?.document?.uri);
         onChange(response?.document?.uri);
+        onPickFile?.({
+          uri: response.document.uri,
+          name: response.document.name ?? undefined,
+          type: response.document.type ?? undefined,
+        });
       }
     }
   }

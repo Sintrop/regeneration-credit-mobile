@@ -1,3 +1,4 @@
+import i18next from "i18next";
 import { useSDK } from "@metamask/sdk-react";
 import Toast from "react-native-toast-message";
 
@@ -12,7 +13,7 @@ export function useDeclareReductionCommitment() {
     if (!ethereum) {
       Toast.show({
         type: 'error',
-        text1: 'Provider is undefined'
+        text1: i18next.t('common.walletUnavailable')
       });
       return;
     }
@@ -28,7 +29,7 @@ export function useDeclareReductionCommitment() {
     } catch (error) {
       Toast.show({
         type: 'error',
-        text1: 'Error declaring commitment',
+        text1: i18next.t('impactCalculator.errorDeclaringCommitment'),
         text2: String(error)
       });
     }

@@ -1,3 +1,4 @@
+import i18next from "i18next";
 import { useSDK } from "@metamask/sdk-react";
 import Toast from "react-native-toast-message";
 
@@ -26,7 +27,7 @@ export function useAddRegenerator(): ReturnUseAddRegenerator {
     if (!ethereum) {
       Toast.show({
         type: 'error',
-        text1: 'Provider is undefined'
+        text1: i18next.t('common.walletUnavailable')
       });
       return;
     }

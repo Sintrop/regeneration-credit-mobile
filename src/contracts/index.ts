@@ -17,6 +17,8 @@ import ResearcherPoolJson from "./ResearcherPool.json";
 import DeveloperPoolJson from "./DeveloperPool.json";
 import ContributorPoolJson from "./ContributorPool.json";
 import ActivistPoolJson from "./ActivistPool.json";
+import ValidationRulesJson from "./ValidationRules.json";
+import VoteRulesJson from "./VoteRules.json";
 
 export const RegenerationCredit = {
   abi: RegenerationCreditJson.abi,
@@ -94,4 +96,12 @@ export const ActivistPool = {
 export const RCMarket = {
   abi: RCMarketJson.abi,
   address: '0xA59CE87F2637084f13057357c9Ee49A47232A769'
+}
+export const ValidationRules = {
+  abi: ValidationRulesJson.abi,
+  address: '0xB6b72b88227E81a5b634697a09fffD082Ef22Da2'
+}
+export const VoteRules = {
+  abi: VoteRulesJson.abi,
+  address: '0xA1235c6f57C330CF564A94E3fdE4e5Bb6F588029'
 }

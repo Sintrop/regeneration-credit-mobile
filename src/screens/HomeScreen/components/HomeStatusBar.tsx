@@ -8,7 +8,8 @@ import Animated, {
   Easing,
 } from 'react-native-reanimated';
 import { useTranslation } from 'react-i18next';
-import { useCurrentEra } from '@domain';
+import { useCurrentEra, useUserTimers } from '@domain';
+import { useBlocksDuration } from '@hooks';
 
 function MarqueeText({ text }: { text: string }) {
   const [textWidth, setTextWidth] = useState(0);
@@ -51,22 +52,34 @@ function MarqueeText({ text }: { text: string }) {
 
 export function HomeStatusBar() {
   const { t } = useTranslation();
-  const { data, isLoading } = useCurrentEra();
+  const { data, isLoading, isError } = useCurrentEra();
+  const formatBlocks = useBlocksDuration();
+  const { timers } = useUserTimers();
+  // Offsetting is always open, so it would keep the ticker permanently on.
+  const availableCount = timers.filter(timer => timer.status === 'available' && timer.key !== 'offset').length;
 
-  const { currentEra = 0, currentEpoch = 0, nextEraIn = 0 } = data || {};
+  const { currentEra = 0, nextEraIn = 0 } = data || {};
+
+  if (isError || (!isLoading && currentEra < 1)) return null;
 
   if (isLoading) {
     return (
-      <View className="bg-blue-primary/20 -mx-3 mb-4 h-8 flex-row items-center justify-center">
-        <Animated.Text style={{ color: '#fff', fontSize: 12 }}>Carregando informações...</Animated.Text>
+      <View className="bg-green-primary/10 -mx-3 mb-4 h-8 flex-row items-center justify-center">
+        <Animated.Text style={{ color: '#fff', fontSize: 12 }}>{t('homeScreen.loadingEraInfo')}</Animated.Text>
       </View>
     );
   }
 
-  const tickerText = `Fase atual: ${currentEra}  •  Próxima fase em: ${Intl.NumberFormat('pt-BR').format(nextEraIn)} blocos`;
+  const eraText = t('homeScreen.currentEraTicker', {
+    era: currentEra,
+    duration: formatBlocks(nextEraIn),
+  });
+  const tickerText = availableCount > 0
+    ? `${eraText}  •  ${t('timers.tickerAvailable', { count: availableCount })}`
+    : eraText;
 
   return (
-    <View className="bg-blue-primary/20 -mx-3 mb-4 h-8 flex-row items-center border-y border-blue-primary/30">
+    <View className="bg-green-primary/10 -mx-3 mb-4 h-8 flex-row items-center border-y border-green-primary/20">
       <MarqueeText text={tickerText} />
     </View>
   );

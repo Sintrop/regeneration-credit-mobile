@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { TouchableOpacity, View, ViewStyle } from "react-native";
 import { Camera, MapView, PointAnnotation, StyleURL, UserLocation, UserTrackingMode } from "@rnmapbox/maps";
 import { useTranslation } from "react-i18next";
@@ -8,6 +8,41 @@ import { CoordinateProps } from "@domain";
 import { usePermissions } from "@hooks";
 
 import { Polyline } from "./Polyline";
+
+const BRAZIL_CENTER: [number, number] = [-51.9253, -14.235];
+const BRAZIL_ZOOM = 3;
+const FIT_PADDING = 40;
+
+function filterValidCoords(coords?: CoordinateProps[]): CoordinateProps[] {
+  return (coords ?? []).filter(c =>
+    Number.isFinite(c?.latitude) &&
+    Number.isFinite(c?.longitude) &&
+    c.latitude !== 0 &&
+    c.longitude !== 0
+  );
+}
+
+function fitCameraToCoords(camera: Camera | null, coords: CoordinateProps[], zoom: number) {
+  if (!camera || coords.length === 0) return;
+
+  if (coords.length === 1) {
+    camera.setCamera({
+      centerCoordinate: [coords[0].longitude, coords[0].latitude],
+      zoomLevel: zoom,
+      animationDuration: 0,
+    });
+    return;
+  }
+
+  const longitudes = coords.map(c => c.longitude);
+  const latitudes = coords.map(c => c.latitude);
+  camera.fitBounds(
+    [Math.max(...longitudes), Math.max(...latitudes)],
+    [Math.min(...longitudes), Math.min(...latitudes)],
+    FIT_PADDING,
+    0,
+  );
+}
 
 interface Props {
   coords?: CoordinateProps[];
@@ -42,40 +77,36 @@ export function Map({
   showMyLocation
 }: Props) {
   const { t } = useTranslation();
+  const cameraRef = useRef<Camera>(null);
   const [markers, setMarkers] = useState<CoordinateProps[]>([]);
   const [pathPolyline, setPathPolyline] = useState<[number, number][]>([]);
-  const [mapPosition, setMapPosition] = useState<[number, number] | null>(null);
-  const [isReady, setIsReady] = useState(false);
+  const [mapLoaded, setMapLoaded] = useState(false);
   const { locationStatus } = usePermissions();
 
+  const validCoords = useMemo(() => filterValidCoords(coords), [coords]);
+  const followUser = !!showMyLocation && locationStatus === 'granted';
+
   useEffect(() => {
-    if (coords && coords.length > 0) {
-      const validCoords = coords.filter(c => c.latitude && c.longitude && c.latitude !== 0 && c.longitude !== 0);
-      console.log('[Map] Received coords:', validCoords);
-      setMarkers(validCoords);
-      if (validCoords.length > 0) {
-        setMapPosition([validCoords[0].longitude, validCoords[0].latitude]);
-      }
-      setIsReady(true);
-    } else {
-      setMarkers([]);
-      setMapPosition(null);
-      setIsReady(false);
-    }
-  }, [coords])
+    setMarkers(validCoords);
+  }, [validCoords])
 
   useEffect(() => {
     if (markers.length > 0) {
       createPathPolyline();
-      if (markers[0].latitude !== 0) {
-        setMapPosition([markers[0].longitude, markers[0].latitude]);
-      }
     } else {
       setPathPolyline([]);
     }
 
     if (onChangeCoords) onChangeCoords(markers);
   }, [markers])
+
+  // The camera is only positioned after the map finishes loading: on iOS a
+  // camera set before the style loads is overridden by the style's default
+  // center, which made the map open in Manhattan.
+  useEffect(() => {
+    if (!mapLoaded || followUser || validCoords.length === 0) return;
+    fitCameraToCoords(cameraRef.current, validCoords, zoom);
+  }, [mapLoaded, followUser, validCoords, zoom])
 
   function createPathPolyline() {
     let array: [number, number][] = [];
@@ -121,6 +152,7 @@ export function Map({
       <MapView
         style={mapStyle}
         styleURL={StyleURL.SatelliteStreet}
+        onDidFinishLoadingMap={() => setMapLoaded(true)}
         onPress={(e) => {
           const coord = {
             //@ts-ignore
@@ -135,43 +167,24 @@ export function Map({
         onTouchEnd={() => disableScroll && disableScroll(false)}
         onTouchCancel={() => disableScroll && disableScroll(false)}
       >
-        {showMyLocation ? (
+        {followUser ? (
           <>
-            {locationStatus === 'granted' ? (
-              <>
-                <Camera
-                  followUserLocation={true}
-                  followUserMode={UserTrackingMode.Follow}
-                  followZoomLevel={18}
-                />
-                <UserLocation showsUserHeadingIndicator minDisplacement={1} />
-              </>
-            ) : (
-              <>
-                {mapPosition && mapPosition[0] !== 0 && (
-                  <Camera
-                    defaultSettings={{ centerCoordinate: mapPosition, zoomLevel: zoom }}
-                    zoomLevel={zoom}
-                    centerCoordinate={mapPosition}
-                    animationMode="flyTo"
-                    animationDuration={1000}
-                  />
-                )}
-              </>
-            )}
+            <Camera
+              followUserLocation={true}
+              followUserMode={UserTrackingMode.Follow}
+              followZoomLevel={18}
+            />
+            <UserLocation showsUserHeadingIndicator minDisplacement={1} />
           </>
         ) : (
-          <>
-            {mapPosition && mapPosition[0] !== 0 && (
-              <Camera
-                defaultSettings={{ centerCoordinate: mapPosition, zoomLevel: zoom }}
-                zoomLevel={zoom}
-                centerCoordinate={mapPosition}
-                animationMode="flyTo"
-                animationDuration={1000}
-              />
-            )}
-          </>
+          <Camera
+            ref={cameraRef}
+            defaultSettings={
+              validCoords.length > 0
+                ? { centerCoordinate: [validCoords[0].longitude, validCoords[0].latitude], zoomLevel: zoom }
+                : { centerCoordinate: BRAZIL_CENTER, zoomLevel: BRAZIL_ZOOM }
+            }
+          />
         )}
 
         {markers.length > 0 && (
@@ -180,9 +193,9 @@ export function Map({
               <>
                 {markers.map((item, index) => (
                   <PointAnnotation
-                    id='marker'
+                    id={`marker-${index}`}
                     coordinate={[item?.longitude, item?.latitude]}
-                    key={index.toString()}
+                    key={`marker-${index}`}
                     children={<View/>}
                   />
                 ))}

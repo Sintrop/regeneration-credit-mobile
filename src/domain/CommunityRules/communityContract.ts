@@ -35,8 +35,11 @@ async function getUserDelations({ rpc, address }: GetDelationsProps): Promise<De
   const provider = new Web3(new Web3.providers.HttpProvider(rpc));
   const contract = new provider.eth.Contract(CommunityRules.abi, CommunityRules.address);
 
-  const response = await contract.methods.getUserDelations(address).call() as DelationContractProps[];
-  return response;
+  const ids = await contract.methods.getUserDelations(address).call() as string[];
+  const delations = await Promise.all(
+    ids.map(id => contract.methods.delationsById(id).call() as Promise<DelationContractProps>)
+  );
+  return delations;
 }
 
 interface UserTypesCountProps {

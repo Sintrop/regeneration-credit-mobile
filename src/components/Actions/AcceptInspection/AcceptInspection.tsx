@@ -31,20 +31,21 @@ export function AcceptInspection({ children, inspectionIdProp }: Props) {
   const { acceptInspection } = useAcceptInspection();
 
   useEffect(() => {
-    registerContinueAction(() => {
-      //action success
-      Toast.show({
-        type: 'success',
-        text1: t('actions.acceptedInspection')
-      });
-      setInspectionId('');
-      closeModal();
-    })
-
     if (inspectionIdProp) setInspectionId(inspectionIdProp.toString());
   }, []);
 
+  function onTxSuccess() {
+    //action success
+    Toast.show({
+      type: 'success',
+      text1: t('actions.acceptedInspection')
+    });
+    setInspectionId('');
+    closeModal();
+  }
+
   function handleAccept() {
+    registerContinueAction(onTxSuccess);
     acceptInspection({
       inspectionId: parseInt(inspectionId)
     })

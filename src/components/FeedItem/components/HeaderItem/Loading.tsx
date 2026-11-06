@@ -1,5 +1,6 @@
 import ContentLoader, {Rect, Circle} from 'react-content-loader/native';
 import { useWindowDimensions } from 'react-native';
+import colors from "../../../../theme/colors";
 
 export function Loading() {
   const { width } = useWindowDimensions();
@@ -10,8 +11,8 @@ export function Loading() {
       width={width - 50}
       height={50}
       viewBox={`0 0 ${width - 50} 50`}
-      backgroundColor="#012939"
-      foregroundColor="#ecebeb"
+      backgroundColor={colors.card.secondary}
+      foregroundColor={colors.skeleton}
     >
       <Circle cx="25" cy="25" r="25" />
       <Rect x="64" y="27" rx="3" ry="3" width="100" height="6" /> 

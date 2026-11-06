@@ -1,3 +1,4 @@
+import i18next from "i18next";
 import { useSDK } from "@metamask/sdk-react";
 import Toast from "react-native-toast-message";
 
@@ -36,7 +37,7 @@ export function useWithdraw(): ReturnUseWithdraw {
     if (!ethereum) {
       Toast.show({
         type: 'error',
-        text1: 'Provider is undefined'
+        text1: i18next.t('common.walletUnavailable')
       });
       return;
     }
@@ -46,7 +47,7 @@ export function useWithdraw(): ReturnUseWithdraw {
     if (!contract) {
       Toast.show({
         type: 'error',
-        text1: 'Contract not found for user type'
+        text1: i18next.t('tx.txFailed')
       });
       return;
     }

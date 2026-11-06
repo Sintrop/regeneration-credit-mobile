@@ -1,3 +1,4 @@
+import i18next from "i18next";
 import React from "react";
 import { useSDK } from "@metamask/sdk-react";
 import Toast from "react-native-toast-message";
@@ -23,7 +24,7 @@ export function useCancelOffer(): ReturnUseCancelOffer {
     if (!ethereum) {
       Toast.show({
         type: 'error',
-        text1: 'Provider is undefined'
+        text1: i18next.t('common.walletUnavailable')
       });
       return;
     }
@@ -41,7 +42,7 @@ export function useCancelOffer(): ReturnUseCancelOffer {
     } catch (error) {
       Toast.show({
         type: 'error',
-        text1: 'Error canceling offer',
+        text1: i18next.t('market.errorCancelingOffer'),
         text2: String(error)
       });
     } finally {

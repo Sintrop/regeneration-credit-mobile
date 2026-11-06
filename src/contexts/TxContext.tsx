@@ -3,12 +3,16 @@ import { createContext, ReactNode, useEffect, useState } from "react";
 import { ActivityIndicator, Alert, Linking, Modal, TouchableOpacity, View } from "react-native";
 import { useTranslation } from "react-i18next";
 import { useSDK } from "@metamask/sdk-react";
-import Web3, { utils } from "web3";
+import { useQueryClient } from "@tanstack/react-query";
+import Web3 from "web3";
 import Clipboard from "@react-native-clipboard/clipboard";
 import { ethers } from "ethers";
 
 import { Icon, Text } from "@components";
 import { useSettingsContext } from "@hooks";
+import { isUserRejection, sendTransactionOnSintrop } from "@services";
+
+/** Data that every confirmed transaction may change. */
 import Toast from "react-native-toast-message";
 
 interface SendTransactionProps {
@@ -61,6 +65,7 @@ export function TxProvider({ children }: TxProviderProps) {
   const { rpc } = useSettingsContext();
   const { t } = useTranslation();
   const { provider: ethereum } = useSDK();
+  const queryClient = useQueryClient();
   const [hash, setHash] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [showModalTx, setShowModalTx] = useState(false);
@@ -78,7 +83,7 @@ export function TxProvider({ children }: TxProviderProps) {
 
   async function sendTransaction(txData: SendTransactionProps) {
     if (!ethereum) {
-      Alert.alert('Error', 'provider is undefined');
+      Alert.alert(t('market.error'), t('common.walletUnavailable'));
       return;
     }
 
@@ -87,54 +92,45 @@ export function TxProvider({ children }: TxProviderProps) {
     setShowModalTx(true);
     setIsError(false);
     setIsSuccess(false);
+    setErrorMessage('');
 
-    if (txData.interactWithContract) {
-      const web3 = new Web3(ethereum as any);
-      const accounts = await web3.eth.getAccounts();
-      const contract = new web3.eth.Contract(txData?.contractAbi, txData?.contractAddress);
-    
-      try {
-        const response = await ethereum.request({
-          method: 'eth_sendTransaction',
-          params: [{
-            from: accounts[0],
-            to: txData.contractAddress,
-            data: contract.methods[txData?.methodName ?? ''](...txData.params).encodeABI(),
-          }],
-        });
-        setHash(response as string);
-      } catch (e) {
-        console.log(e);
-        setIsLoading(false);
-        setIsError(true);
-        setIsSuccess(false);
-      }
-    } else {
-      try {
-        const accounts = await (ethereum as any).request({ method: 'eth_accounts' });
+    try {
+      let txParams: Record<string, string>;
 
-        /**
-         * Robust conversion of Wei decimal string to Hexadecimal.
-         * Using BigInt ensures precision for 18-decimal values.
-         */
+      if (txData.interactWithContract) {
+        const web3 = new Web3(ethereum as any);
+        const accounts = await web3.eth.getAccounts();
+        const contract = new web3.eth.Contract(txData?.contractAbi, txData?.contractAddress);
+
+        txParams = {
+          from: accounts[0],
+          to: txData.contractAddress as string,
+          data: contract.methods[txData?.methodName ?? ''](...txData.params).encodeABI(),
+        };
+      } else {
+        const accounts = await (ethereum as any).request({ method: 'eth_accounts' }) as string[];
         const valueInWei = txData.params?.[0]?.value;
-        const hexValue = '0x' + BigInt(valueInWei).toString(16);
 
-        const response = await ethereum.request({
-          method: 'eth_sendTransaction',
-          params: [{
-            from: accounts[0],
-            to: txData.params?.[0]?.to,
-            value: hexValue,
-          }],
-        });
-        setHash(response as string);
-      } catch (e) {
-        console.log(e);
-        setIsLoading(false);
-        setIsError(true);
-        setIsSuccess(false);
+        txParams = {
+          from: accounts[0],
+          to: txData.params?.[0]?.to,
+          value: '0x' + BigInt(valueInWei).toString(16),
+        };
       }
+
+      try {
+        setHash(await sendTransactionOnSintrop(ethereum, txParams));
+      } catch (error) {
+        if (!isUserRejection(error) && (error as Error)?.message?.includes('Sintrop network')) {
+          setErrorMessage(t('tx.wrongChain'));
+        }
+        throw error;
+      }
+    } catch (e) {
+      console.log(e);
+      setIsLoading(false);
+      setIsError(true);
+      setIsSuccess(false);
     }
   }
 
@@ -142,6 +138,8 @@ export function TxProvider({ children }: TxProviderProps) {
     const response = await getReceiptTx(txHash);
     if (response.hasReceipt) {
       if (response.successTx) {
+        // Balances, timers and every on-screen read may have changed with this transaction.
+        queryClient.invalidateQueries();
         setIsSuccess(true);
         setIsError(false);
         setIsLoading(false);
@@ -170,7 +168,10 @@ export function TxProvider({ children }: TxProviderProps) {
           id: 0,
         })
       })
-      const data = await response.json() as {jsonRpc: string; id: number; result: ReceiptTxProps};
+      const data = await response.json() as {jsonRpc: string; id: number; result: ReceiptTxProps | null};
+      if (!data.result) {
+        return { hasReceipt: false, successTx: false };
+      }
       return {
         hasReceipt: true,
         successTx: data.result.status === '0x1'
@@ -219,6 +220,7 @@ export function TxProvider({ children }: TxProviderProps) {
     if (onContinueSuccessAction && isSuccess) {
       onContinueSuccessAction();
     }
+    setOnContinueSuccessAction(null);
     setShowModalTx(false);
     setIsError(false);
     setIsSuccess(false);

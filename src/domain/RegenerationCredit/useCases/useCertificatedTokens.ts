@@ -19,11 +19,12 @@ export function useCertificatedTokens({ address }: Props): ReturnUseCertificated
   const { rpc } = useSettingsContext();
   const { data, isLoading, isError, refetch } = useQuery({
     queryKey: [QueryKeys.CertificatedTokens, address],
-    queryFn: () => rcService.getCertificatedTokens({ address, rpc })
+    queryFn: () => rcService.getCertificatedTokens({ address, rpc }),
+    enabled: !!address,
   });
 
   return {
-    isLoading,
+    isLoading: !!address && isLoading,
     refetch: refetch,
     certificated: data ? data : 0,
     isError

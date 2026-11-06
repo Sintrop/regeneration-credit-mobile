@@ -62,7 +62,7 @@ export function Select({ onChange, options, value, label }: Props) {
             className="bg-card-primary rounded-t-3xl p-5 max-h-[300]" 
             style={{ paddingBottom: bottom }}
           >
-            <Text className="text-white text-center mb-5">{t('select.selectAnOption')}</Text>
+            <Text className="text-white text-center mb-5">{t('common.selectAnOption')}</Text>
 
             <ScrollView className="pb-14">
               {options.map((item, index) => {

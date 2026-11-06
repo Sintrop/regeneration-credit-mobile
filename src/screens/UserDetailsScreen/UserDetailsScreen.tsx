@@ -17,7 +17,7 @@ export function UserDetailsScreen({ route }: ScreenProps) {
   if (isLoading) {
     return (
       <Screen title={t("userDetails.title")} isLoading={isLoading} showBackButton >
-        <Text>Carregando</Text>
+        <Text>{t('common.loading')}</Text>
       </Screen>
     )
   }

@@ -54,7 +54,7 @@ export function CameraComponent({ close, photo }: Props) {
       }
     } catch (e) {
       console.log(e);
-      Alert.alert('Error', 'Erro ao tentar tirar a foto');
+      Alert.alert(t('market.error'), t('common.errorTakingPhoto'));
     } finally {
       setLoadingTake(false);
     }
@@ -95,14 +95,14 @@ export function CameraComponent({ close, photo }: Props) {
             className="bg-gray-300 rounded-2xl w-32 h-12 items-center justify-center"
             onPress={() => setImagePreview(undefined)}
           >
-            <Text className="text-black">{t('takeAnother')}</Text>
+            <Text className="text-black">{t('common.takeAnother')}</Text>
           </TouchableOpacity>
 
           <TouchableOpacity
             className="bg-green-600 rounded-2xl w-32 h-12 items-center justify-center ml-5"
             onPress={handleConfirmPhoto}
           >
-            <Text className="text-white font-semibold">{t('confirm')}</Text>
+            <Text className="text-white font-semibold">{t('common.confirm')}</Text>
           </TouchableOpacity>
         </View>
       </ModalContainer>

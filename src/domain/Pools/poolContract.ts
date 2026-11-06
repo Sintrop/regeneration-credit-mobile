@@ -10,7 +10,7 @@ import {
 import { bigNumberToFloat } from "@utils";
 import { Era } from "./types";
 
-const poolContracts: Record<number, { abi: any, address: string }> = {
+export const poolContracts: Record<number, { abi: any, address: string }> = {
   1: RegeneratorPool,
   2: InspectorPool,
   3: ResearcherPool,

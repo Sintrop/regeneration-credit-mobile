@@ -6,6 +6,7 @@ import { BaseComponentsProps, Text } from "@components";
 
 import { LoadingFeedItem } from "../LoadingFeedItem";
 import { HeaderItem } from "../HeaderItem/HeaderItem";
+import { FeedBadge } from "../FeedBadge";
 
 export function DeclaredCommitment({ additionalData }: BaseComponentsProps) {
   const { t } = useTranslation();
@@ -16,7 +17,7 @@ export function DeclaredCommitment({ additionalData }: BaseComponentsProps) {
   if (!commitment) return <LoadingFeedItem />
 
   return (
-    <View>
+    <View className="gap-3">
       <HeaderItem
         name={user?.name}
         address={commitment?.address}
@@ -25,17 +26,10 @@ export function DeclaredCommitment({ additionalData }: BaseComponentsProps) {
         isLoading={isLoadingUser}
       />
 
-      <View className="my-3">
-        <View className="flex-row w-full justify-between items-center">
-          <Text className="font-bold text-white">{t("feed.declaredCommitmentItem")}</Text>
-          
-        </View>
-
-        <View className="mt-3">
-          <Text className="text-gray-300">{t('feed.declaredItem')}</Text>
-          <Text className="text-white">{item?.item}</Text>
-        </View>
-      </View>
+      <FeedBadge label={t("feedNews.commitmentBadge")} tone="teal" />
+      <Text className="text-white text-base leading-6">
+        {t("feedNews.commitment", { item: item?.item ?? "" })}
+      </Text>
     </View>
   )
 }
