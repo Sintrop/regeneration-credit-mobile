@@ -185,7 +185,8 @@
       "access": "Open",
       "market": "Market",
       "offsetAction": "Offset",
-      "fundingImpactOf": "Funding the impact of:"
+      "fundingImpactOf": "Funding the impact of:",
+      "anonymous": "Anonymous"
     },
     "offset": {
       "title": "Offset",
@@ -314,7 +315,14 @@
       "viewOnExplorer": "View on explorer",
       "errorOnGetErrorMessage": "Error on get error message",
       "errorDetails": "Error details",
-      "wrongChain": "Could not switch to the Sintrop network. Open your wallet and select it manually."
+      "wrongChain": "Could not switch to the Sintrop network. Open your wallet and select it manually.",
+      "approveOnOtherDevice": "Open MetaMask on the phone connected by QR code to approve.",
+      "rejected": "Transaction rejected in MetaMask.",
+      "checkingSent": "Checking on the Sintrop network whether the transaction was sent...",
+      "stopChecking": "Stop checking",
+      "notConfirmed": "Could not confirm whether the transaction was sent. Check the history in MetaMask before trying again.",
+      "step": "Step {{current}} of {{total}}",
+      "firstStepDone": "The first step went through. Only this one was not sent: if you want, repeat it from My tokens."
     },
     "actions": {
       "title": "Actions",
@@ -865,7 +873,7 @@
         },
         "connect": {
           "title": "Connect your wallet",
-          "text": "Tap Connect at the top of the home screen and approve in MetaMask. After approving, come back to the app."
+          "text": "Tap Connect at the top of the home screen and approve in MetaMask. After approving, come back to the app. If MetaMask is on another phone, tap the QR code icon next to Connect and scan the code with MetaMask on that phone."
         },
         "gas": {
           "title": "Buy, receive or mine SINTROP",
@@ -1088,6 +1096,31 @@
         "ubuntu": "On Ubuntu, keep the file when the browser asks.",
         "macos": "On macOS, the unblock command in step 2 clears the block. If the warning still appears, open System Settings > Privacy & Security and click Open Anyway."
       }
+    },
+    "wallet": {
+      "connectWithQrCode": "Connect with MetaMask on another phone",
+      "qrTitle": "Connect MetaMask from another phone",
+      "qrInstructions": "On the phone that has MetaMask, open the app, tap the QR code scanner and scan this code. Then approve the connection in MetaMask.",
+      "qrApprovalNote": "The next approvals, such as adding the Sintrop network and confirming transactions, also show up in MetaMask on that phone. Keep MetaMask open there.",
+      "connectionFailed": "Could not connect the wallet. Please try again.",
+      "addNetworkFailed": "Could not add the Sintrop network. Please try again.",
+      "connectionSlowTitle": "MetaMask has not answered yet",
+      "connectionSlow": "If you already approved, wait a few seconds. Otherwise, tap Connect again."
+    },
+    "anonymousProfile": {
+      "description": "This wallet is not registered in Regeneration Credit yet. It can transfer tokens and burn RC directly in the token contract, and every burn goes into the certificate below. Offsetting through the calculator is for supporters only.",
+      "certificateHint": "Public, verifiable certificate. It can be saved and shared, and the QR code opens the wallet transactions in the explorer.",
+      "burn": "Burn RC"
+    },
+    "invite": {
+      "sendSintrop": "Send {{unit}} to the invitee",
+      "sendSintropHint": "So they can pay the registration fee. MetaMask asks for two approvals: the invite and the transfer.",
+      "otherAmount": "Other amount",
+      "amountLabel": "Amount of {{unit}}",
+      "balance": "Your balance: {{balance}} {{unit}}",
+      "insufficientBalance": "Not enough balance for this amount.",
+      "stepInvite": "Invite",
+      "stepSintrop": "SINTROP sent to the invitee"
     }
   }
 }

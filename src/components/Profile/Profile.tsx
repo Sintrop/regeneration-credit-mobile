@@ -1,4 +1,5 @@
 import { Activist } from "./components/Activist/Activist";
+import { Anonymous } from "./components/Anonymous/Anonymous";
 import { Contributor } from "./components/Contributor/Contributor";
 import { Developer } from "./components/Developer/Developer";
 import { Inspector } from "./components/Inspector/Inspector";
@@ -17,6 +18,7 @@ export function Profile({ address, userType, changeScrollEnabled }: Props) {
 }
 
 const userData = {
+  0: Anonymous,
   1: Regenerator,
   2: Inspector,
   3: Researcher,

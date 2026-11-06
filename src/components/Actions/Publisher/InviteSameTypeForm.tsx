@@ -9,6 +9,7 @@ import { PublisherUserType, useBlockNumber, usePublisherTransactions } from "@do
 import { useBlocksDuration, useTxContext } from "@hooks";
 
 import { SubmitButton } from "./SubmitButton";
+import { SendSintropOption, useSendSintrop } from "../Invite/SendSintropOption";
 import { usePublishAvailability } from "./usePublishAvailability";
 
 /** InvitationRules.invite: researchers invite researchers, developers invite developers, contributors invite contributors. */
@@ -21,6 +22,7 @@ export function InviteSameTypeForm({ userType, onDone }: { userType: PublisherUs
   const formatBlocks = useBlocksDuration();
   const [wallet, setWallet] = useState("");
   const isAddress = utils.isAddress(wallet.trim());
+  const sintrop = useSendSintrop();
 
   // InvitationRules: block.number - lastInviteBlock >= invitationDelayBlocks, or never invited
   const delayLeft = rules && rules.lastInviteBlock > 0
@@ -34,7 +36,7 @@ export function InviteSameTypeForm({ userType, onDone }: { userType: PublisherUs
       setWallet("");
       onDone();
     });
-    invite(wallet.trim());
+    invite(wallet.trim(), sintrop.wei);
   }
 
   if (isLoading || !rules) {
@@ -65,7 +67,8 @@ export function InviteSameTypeForm({ userType, onDone }: { userType: PublisherUs
         />
         {!!wallet && !isAddress && <Text className="text-red-400 text-xs">{t("common.invalidAddress")}</Text>}
       </View>
-      <SubmitButton label={t("actions.invite")} onPress={handleInvite} disabled={!isAddress || !!blockedReason} />
+      <SendSintropOption choice={sintrop} />
+      <SubmitButton label={t("actions.invite")} onPress={handleInvite} disabled={!isAddress || !!blockedReason || sintrop.invalid} />
     </View>
   );
 }

@@ -14,7 +14,6 @@ module.exports = {
         '@utils': './src/utils',
         '@domain': './src/domain',
         '@contexts': './src/contexts',
-        '@providers': './src/providers',
         '@services': './src/services',
         '@types': './src/types',
         '@icons': './src/assets/icons',

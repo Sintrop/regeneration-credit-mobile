@@ -1,5 +1,4 @@
 import i18next from "i18next";
-import { useSDK } from "@metamask/sdk-react";
 import Toast from "react-native-toast-message";
 
 import { 
@@ -10,7 +9,7 @@ import {
   ContributorRules, 
   ActivistRules 
 } from "@contracts";
-import { useTxContext } from "@hooks";
+import { useTxContext, useWalletContext } from "@hooks";
 
 const contractMap: Record<number, { abi: any, address: string }> = {
   1: RegeneratorRules,
@@ -31,10 +30,10 @@ interface ReturnUseWithdraw {
 
 export function useWithdraw(): ReturnUseWithdraw {
   const { sendTransaction } = useTxContext();
-  const { provider: ethereum } = useSDK();
+  const { wallet } = useWalletContext();
 
   async function handleWithdraw(data: WithdrawProps) {
-    if (!ethereum) {
+    if (!wallet) {
       Toast.show({
         type: 'error',
         text1: i18next.t('common.walletUnavailable')

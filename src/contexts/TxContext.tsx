@@ -1,21 +1,20 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { createContext, ReactNode, useEffect, useState } from "react";
+import { createContext, ReactNode, useEffect, useRef, useState } from "react";
 import { ActivityIndicator, Alert, Linking, Modal, TouchableOpacity, View } from "react-native";
 import { useTranslation } from "react-i18next";
-import { useSDK } from "@metamask/sdk-react";
 import { useQueryClient } from "@tanstack/react-query";
 import Web3 from "web3";
 import Clipboard from "@react-native-clipboard/clipboard";
 import { ethers } from "ethers";
 
 import { Icon, Text } from "@components";
-import { useSettingsContext } from "@hooks";
-import { isUserRejection, sendTransactionOnSintrop } from "@services";
+import { useSettingsContext, useWalletContext } from "@hooks";
+import { createRpcCall, getSendStart, isUserRejection, sendTransactionOnSintrop, waitForSentTransaction } from "@services";
 
 /** Data that every confirmed transaction may change. */
 import Toast from "react-native-toast-message";
 
-interface SendTransactionProps {
+export interface SendTransactionProps {
   contractAddress?: string;
   contractAbi?: any;
   params?: any;
@@ -48,12 +47,25 @@ interface TraceTxProps {
   structLogs: []
 }
 
+export interface SendTransactionOptions {
+  /** Shown as step 1 when a follow-up is given. */
+  label?: string;
+  /** Second transaction, sent right after this one is confirmed, in the same flow. */
+  followUp?: { tx: SendTransactionProps; label: string };
+}
+
+interface TxStep {
+  current: number;
+  total: number;
+  label?: string;
+}
+
 interface TxProviderProps {
   children: ReactNode;
 }
 export interface TxContextProps {
   hash: string;
-  sendTransaction: (txData: SendTransactionProps) => Promise<void>;
+  sendTransaction: (txData: SendTransactionProps, options?: SendTransactionOptions) => Promise<void>;
   isError: boolean;
   isSuccess: boolean;
   isLoading: boolean;
@@ -64,7 +76,7 @@ export const TxContext = createContext({} as TxContextProps);
 export function TxProvider({ children }: TxProviderProps) {
   const { rpc } = useSettingsContext();
   const { t } = useTranslation();
-  const { provider: ethereum } = useSDK();
+  const { wallet, linkMode } = useWalletContext();
   const queryClient = useQueryClient();
   const [hash, setHash] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -73,6 +85,11 @@ export function TxProvider({ children }: TxProviderProps) {
   const [isSuccess, setIsSuccess] = useState(false);
   const [isLoadingError, setIsLoadingError] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
+  const [checkingSent, setCheckingSent] = useState(false);
+  const stopCheckingRef = useRef(false);
+  const [step, setStep] = useState<TxStep | null>(null);
+  const [firstStepDone, setFirstStepDone] = useState(false);
+  const followUpRef = useRef<SendTransactionOptions['followUp']>(undefined);
   const [onContinueSuccessAction, setOnContinueSuccessAction] = useState<(() => void) | null>(null);
 
   useEffect(() => {
@@ -81,8 +98,16 @@ export function TxProvider({ children }: TxProviderProps) {
     }
   }, [hash, showModalTx])
 
-  async function sendTransaction(txData: SendTransactionProps) {
-    if (!ethereum) {
+  async function sendTransaction(txData: SendTransactionProps, options?: SendTransactionOptions) {
+    followUpRef.current = options?.followUp;
+    setFirstStepDone(false);
+    setStep(options?.followUp ? { current: 1, total: 2, label: options.label } : null);
+    await startTransaction(txData);
+  }
+
+  async function startTransaction(txData: SendTransactionProps) {
+    const from = wallet?.getAccount();
+    if (!wallet || !from) {
       Alert.alert(t('market.error'), t('common.walletUnavailable'));
       return;
     }
@@ -98,32 +123,51 @@ export function TxProvider({ children }: TxProviderProps) {
       let txParams: Record<string, string>;
 
       if (txData.interactWithContract) {
-        const web3 = new Web3(ethereum as any);
-        const accounts = await web3.eth.getAccounts();
+        const web3 = new Web3();
         const contract = new web3.eth.Contract(txData?.contractAbi, txData?.contractAddress);
 
         txParams = {
-          from: accounts[0],
+          from,
           to: txData.contractAddress as string,
           data: contract.methods[txData?.methodName ?? ''](...txData.params).encodeABI(),
         };
       } else {
-        const accounts = await (ethereum as any).request({ method: 'eth_accounts' }) as string[];
         const valueInWei = txData.params?.[0]?.value;
 
         txParams = {
-          from: accounts[0],
+          from,
           to: txData.params?.[0]?.to,
           value: '0x' + BigInt(valueInWei).toString(16),
         };
       }
 
+      const rpcCall = createRpcCall(rpc);
+      const start = await getSendStart(rpcCall, from).catch(() => undefined);
+
       try {
-        setHash(await sendTransactionOnSintrop(ethereum, txParams));
+        setHash(await sendTransactionOnSintrop(wallet, txParams));
       } catch (error) {
-        if (!isUserRejection(error) && (error as Error)?.message?.includes('Sintrop network')) {
-          setErrorMessage(t('tx.wrongChain'));
+        if (isUserRejection(error)) {
+          setErrorMessage(t('tx.rejected'));
+          throw error;
         }
+        if ((error as Error)?.message?.includes('Sintrop network')) {
+          setErrorMessage(t('tx.wrongChain'));
+          throw error;
+        }
+
+        // The wallet may have sent it and the answer got lost while the app was
+        // in the background: look for it on-chain before reporting a failure.
+        const sentHash = start
+          ? await checkIfSent(() => waitForSentTransaction(rpcCall, from, start, {
+            isCancelled: () => stopCheckingRef.current,
+          }))
+          : undefined;
+        if (sentHash) {
+          setHash(sentHash);
+          return;
+        }
+        setErrorMessage(t('tx.notConfirmed'));
         throw error;
       }
     } catch (e) {
@@ -134,12 +178,34 @@ export function TxProvider({ children }: TxProviderProps) {
     }
   }
 
+  async function checkIfSent(wait: () => Promise<string | undefined>) {
+    stopCheckingRef.current = false;
+    setCheckingSent(true);
+    try {
+      return await wait();
+    } finally {
+      setCheckingSent(false);
+    }
+  }
+
+  function stopChecking() {
+    stopCheckingRef.current = true;
+  }
+
   async function watchTransaction(txHash: string) {
     const response = await getReceiptTx(txHash);
     if (response.hasReceipt) {
       if (response.successTx) {
         // Balances, timers and every on-screen read may have changed with this transaction.
         queryClient.invalidateQueries();
+        const followUp = followUpRef.current;
+        if (followUp) {
+          followUpRef.current = undefined;
+          setFirstStepDone(true);
+          setStep({ current: 2, total: 2, label: followUp.label });
+          startTransaction(followUp.tx);
+          return;
+        }
         setIsSuccess(true);
         setIsError(false);
         setIsLoading(false);
@@ -217,9 +283,13 @@ export function TxProvider({ children }: TxProviderProps) {
   }
 
   function handleContinue() {
-    if (onContinueSuccessAction && isSuccess) {
+    // When only the follow-up failed, the main transaction went through: finish its flow too.
+    if (onContinueSuccessAction && (isSuccess || firstStepDone)) {
       onContinueSuccessAction();
     }
+    followUpRef.current = undefined;
+    setStep(null);
+    setFirstStepDone(false);
     setOnContinueSuccessAction(null);
     setShowModalTx(false);
     setIsError(false);
@@ -256,13 +326,40 @@ export function TxProvider({ children }: TxProviderProps) {
               <Text className="text-white">{t('tx.title')}</Text>
               <View className=""/>
             </View>
+            {step && (
+              <Text className="text-gray-300 text-xs text-center mt-1">
+                {t('tx.step', { current: step.current, total: step.total })}{step.label ? ` · ${step.label}` : ''}
+              </Text>
+            )}
 
             {isLoading ? (
               <View className="h-[150] items-center justify-center w-full">
-                {hash === '' ? (
-                  <Text className="text-white font-semibold">
-                    {t('tx.confirmInYourWallet')}
-                  </Text>
+                {checkingSent ? (
+                  <View className="gap-4 items-center px-2">
+                    <View className="flex-row gap-3 items-center">
+                      <ActivityIndicator size={30} color="white"/>
+                      <Text className="text-white font-semibold text-center flex-shrink">
+                        {t('tx.checkingSent')}
+                      </Text>
+                    </View>
+                    <TouchableOpacity
+                      className="h-10 px-6 rounded-2xl items-center justify-center border border-white/40"
+                      onPress={stopChecking}
+                    >
+                      <Text className="text-white">{t('tx.stopChecking')}</Text>
+                    </TouchableOpacity>
+                  </View>
+                ) : hash === '' ? (
+                  <View className="gap-2 items-center px-2">
+                    <Text className="text-white font-semibold text-center">
+                      {t('tx.confirmInYourWallet')}
+                    </Text>
+                    {linkMode === 'remote' && (
+                      <Text className="text-gray-300 text-sm text-center">
+                        {t('tx.approveOnOtherDevice')}
+                      </Text>
+                    )}
+                  </View>
                 ) : (
                   <View className="gap-5 items-center">
                     <View className="flex-row gap-5 items-center">
@@ -289,6 +386,11 @@ export function TxProvider({ children }: TxProviderProps) {
                       <Text className="text-red-500 font-semibold text-center">
                         {t('tx.txFailed')}
                       </Text>
+                      {firstStepDone && (
+                        <Text className="text-gray-200 text-sm text-center">
+                          {t('tx.firstStepDone')}
+                        </Text>
+                      )}
 
                       <View className="gap-1 w-full">
                         <Text className="text-gray-300 text-sm">

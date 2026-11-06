@@ -185,7 +185,8 @@
       "access": "Acceder",
       "market": "Mercado",
       "offsetAction": "Compensar",
-      "fundingImpactOf": "Financiando el impacto de:"
+      "fundingImpactOf": "Financiando el impacto de:",
+      "anonymous": "Anónimo"
     },
     "offset": {
       "title": "Compensar",
@@ -314,7 +315,14 @@
       "viewOnExplorer": "Ver en el explorador",
       "errorOnGetErrorMessage": "Error al obtener el mensaje de error",
       "errorDetails": "Detalles del error",
-      "wrongChain": "No fue posible cambiar a la red Sintrop. Abre tu billetera y selecciona la red manualmente."
+      "wrongChain": "No fue posible cambiar a la red Sintrop. Abre tu billetera y selecciona la red manualmente.",
+      "approveOnOtherDevice": "Abre MetaMask en el celular conectado por código QR para aprobar.",
+      "rejected": "Transacción rechazada en MetaMask.",
+      "checkingSent": "Verificando en la red Sintrop si la transacción fue enviada...",
+      "stopChecking": "Dejar de verificar",
+      "notConfirmed": "No se pudo confirmar si la transacción fue enviada. Revisa el historial en MetaMask antes de intentarlo de nuevo.",
+      "step": "Etapa {{current}} de {{total}}",
+      "firstStepDone": "La primera etapa se completó. Solo esta no se envió: si quieres, repítela desde Mis tokens."
     },
     "actions": {
       "title": "Acciones",
@@ -865,7 +873,7 @@
         },
         "connect": {
           "title": "Conecta la billetera",
-          "text": "Toca Conectar en la parte superior de la pantalla de inicio y aprueba en MetaMask. Después de aprobar, vuelve a la app."
+          "text": "Toca Conectar en la parte superior de la pantalla de inicio y aprueba en MetaMask. Después de aprobar, vuelve a la app. Si MetaMask está en otro celular, toca el ícono de código QR junto a Conectar y escanea el código con el MetaMask de ese celular."
         },
         "gas": {
           "title": "Compra, recibe o mina SINTROP",
@@ -1088,6 +1096,31 @@
         "ubuntu": "En Ubuntu, conserva el archivo cuando el navegador pregunte.",
         "macos": "En macOS, el comando de desbloqueo del paso 2 resuelve el bloqueo. Si el aviso sigue apareciendo, abre Ajustes del Sistema > Privacidad y seguridad y haz clic en Abrir igualmente."
       }
+    },
+    "wallet": {
+      "connectWithQrCode": "Conectar con MetaMask en otro celular",
+      "qrTitle": "Conectar el MetaMask de otro celular",
+      "qrInstructions": "En el celular que tiene MetaMask, abre la app, toca el lector de código QR y escanea este código. Después, aprueba la conexión en MetaMask.",
+      "qrApprovalNote": "Las próximas aprobaciones, como agregar la red Sintrop y confirmar transacciones, también aparecen en el MetaMask de ese celular. Deja MetaMask abierto allí.",
+      "connectionFailed": "No se pudo conectar la billetera. Inténtalo de nuevo.",
+      "addNetworkFailed": "No se pudo agregar la red Sintrop. Inténtalo de nuevo.",
+      "connectionSlowTitle": "MetaMask todavía no respondió",
+      "connectionSlow": "Si ya aprobaste, espera unos segundos. Si no, toca Conectar de nuevo."
+    },
+    "anonymousProfile": {
+      "description": "Esta billetera todavía no está registrada en Crédito de Regeneración. Puede transferir tokens y quemar RC directamente en el contrato del token, y cada quema entra en el certificado de abajo. La compensación vinculada a la calculadora es exclusiva de los apoyadores.",
+      "certificateHint": "Certificado público y verificable. Se puede guardar y compartir, y el código QR abre las transacciones de la billetera en el explorador.",
+      "burn": "Quemar RC"
+    },
+    "invite": {
+      "sendSintrop": "Enviar {{unit}} al invitado",
+      "sendSintropHint": "Para que pague la tasa del registro. MetaMask pide dos aprobaciones: la invitación y el envío.",
+      "otherAmount": "Otro valor",
+      "amountLabel": "Cantidad de {{unit}}",
+      "balance": "Tu saldo: {{balance}} {{unit}}",
+      "insufficientBalance": "Saldo insuficiente para ese valor.",
+      "stepInvite": "Invitación",
+      "stepSintrop": "Envío de SINTROP al invitado"
     }
   }
 }
