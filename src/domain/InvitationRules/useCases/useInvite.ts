@@ -1,13 +1,15 @@
 import i18next from "i18next";
-import { useSDK } from "@metamask/sdk-react";
 import Toast from "react-native-toast-message";
 
 import { InvitationRules } from "@contracts";
-import { useTxContext } from "@hooks";
+import { useTxContext, useWalletContext } from "@hooks";
+import { inviteWithSintrop } from "./inviteWithSintrop";
 
 interface InviteProps {
   address: string;
   userType: number;
+  /** SINTROP (in wei) sent to the invited wallet right after the invite, so it can pay the registration fee. */
+  sintropWei?: string | null;
 }
 interface ReturnUseInvite {
   hash: string;
@@ -15,10 +17,10 @@ interface ReturnUseInvite {
 }
 export function useInvite(): ReturnUseInvite {
   const { sendTransaction } = useTxContext();
-  const { provider: ethereum } = useSDK();
+  const { wallet } = useWalletContext();
 
   async function handleInvite(data: InviteProps) {
-    if (!ethereum) {
+    if (!wallet) {
       Toast.show({
         type: 'error',
         text1: i18next.t('common.walletUnavailable')
@@ -27,13 +29,16 @@ export function useInvite(): ReturnUseInvite {
     }
 
     const methodName = data.userType === 1 || data.userType === 2 ? 'inviteRegeneratorInspector' : 'invite';
-    sendTransaction({
-      interactWithContract: true,
-      contractAbi: InvitationRules.abi,
-      contractAddress: InvitationRules.address,
-      methodName,
-      params: [data.address, data.userType]
-    })
+    sendTransaction(
+      {
+        interactWithContract: true,
+        contractAbi: InvitationRules.abi,
+        contractAddress: InvitationRules.address,
+        methodName,
+        params: [data.address, data.userType]
+      },
+      inviteWithSintrop(data.address, data.sintropWei),
+    )
   }
 
   return {

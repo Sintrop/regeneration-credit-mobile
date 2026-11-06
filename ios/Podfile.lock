@@ -1658,8 +1658,6 @@ PODS:
     - React-RCTFBReactNativeSpec
     - ReactCommon/turbomodule/core
     - SocketRocket
-  - react-native-background-timer (2.4.1):
-    - React-Core
   - react-native-blob-util (0.22.2):
     - boost
     - DoubleConversion
@@ -2969,7 +2967,6 @@ DEPENDENCIES:
   - React-logger (from `../node_modules/react-native/ReactCommon/logger`)
   - React-Mapbuffer (from `../node_modules/react-native/ReactCommon`)
   - React-microtasksnativemodule (from `../node_modules/react-native/ReactCommon/react/nativemodule/microtasks`)
-  - react-native-background-timer (from `../node_modules/react-native-background-timer`)
   - react-native-blob-util (from `../node_modules/react-native-blob-util`)
   - react-native-config (from `../node_modules/react-native-config`)
   - "react-native-document-picker (from `../node_modules/@react-native-documents/picker`)"
@@ -3119,8 +3116,6 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon"
   React-microtasksnativemodule:
     :path: "../node_modules/react-native/ReactCommon/react/nativemodule/microtasks"
-  react-native-background-timer:
-    :path: "../node_modules/react-native-background-timer"
   react-native-blob-util:
     :path: "../node_modules/react-native-blob-util"
   react-native-config:
@@ -3277,7 +3272,6 @@ SPEC CHECKSUMS:
   React-logger: ea80169d826e0cd112fa4d68f58b2b3b968f1ecb
   React-Mapbuffer: a5d550d1add940ed2bc65b20dc1413407bf1a63f
   React-microtasksnativemodule: 5d00fefc19f0bc9a6432e5533683d6fc9c3da4e1
-  react-native-background-timer: 17ea5e06803401a379ebf1f20505b793ac44d0fe
   react-native-blob-util: a8487513233d9b7c24e1a0184cb7a611cb397c76
   react-native-config: 9f48ad1ee7f4fcb9482c66988e30bd60572bb963
   react-native-document-picker: a51b7f859bab49bee35a0bc63e2455ffaeea5505

@@ -1,6 +1,6 @@
 const { getDefaultConfig, mergeConfig } = require('@react-native/metro-config');
 const { withNativeWind } = require("nativewind/metro");
-// const path = require('path');
+const path = require('path');
 
 /**
  * Metro configuration
@@ -9,6 +9,14 @@ const { withNativeWind } = require("nativewind/metro");
  * @type {import('metro-config').MetroConfig}
  */
 const defaultConfig = getDefaultConfig(__dirname);
+
+// Node built-ins with no React Native shim, referenced by code paths that never
+// run in the app (the ws server side used by MetaMask Connect, for instance).
+const emptyModule = path.resolve(__dirname, 'src/empty-module.js');
+const nodeLibs = require('node-libs-react-native');
+const nodeLibsWithStubs = Object.fromEntries(
+  Object.entries(nodeLibs).map(([name, shim]) => [name, shim ?? emptyModule]),
+);
 
 const config = {
   transformer: {
@@ -21,7 +29,7 @@ const config = {
   },
   resolver: {
     extraNodeModules: {
-      ...require('node-libs-react-native'),
+      ...nodeLibsWithStubs,
       'node:crypto': require.resolve('react-native-crypto'),
     },
     sourceExts: ['jsx', 'js', 'ts', 'tsx', 'cjs', 'json'], //add here

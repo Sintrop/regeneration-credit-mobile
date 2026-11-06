@@ -1,9 +1,8 @@
 import i18next from "i18next";
 import { Alert } from "react-native";
-import { useSDK } from "@metamask/sdk-react";
 
 import { SupporterRules } from "@contracts";
-import { useTxContext } from "@hooks";
+import { useTxContext, useWalletContext } from "@hooks";
 
 interface AddSupporterProps {
   name: string;
@@ -16,10 +15,10 @@ interface ReturnUseAddSupporter {
 }
 export function useAddSupporter(): ReturnUseAddSupporter {
   const { sendTransaction } = useTxContext();
-  const { provider: ethereum } = useSDK();
+  const { wallet } = useWalletContext();
 
   async function handleAddSupporter(data: AddSupporterProps) {
-    if (!ethereum) {
+    if (!wallet) {
       Alert.alert(i18next.t('market.error'), i18next.t('common.walletUnavailable'));
       return;
     }

@@ -1,9 +1,8 @@
 import i18next from "i18next";
-import { useSDK } from "@metamask/sdk-react";
 import Toast from "react-native-toast-message";
 
 import { InspectorRules } from "@contracts";
-import { useTxContext } from "@hooks";
+import { useTxContext, useWalletContext } from "@hooks";
 
 interface AddInspectorProps {
   name: string;
@@ -15,10 +14,10 @@ interface ReturnUseAddInspector {
 }
 export function useAddInspector(): ReturnUseAddInspector {
   const { sendTransaction } = useTxContext();
-  const { provider: ethereum } = useSDK();
+  const { wallet } = useWalletContext();
 
   async function handleAddInspector(data: AddInspectorProps) {
-    if (!ethereum) {
+    if (!wallet) {
       Toast.show({
         type: 'error',
         text1: i18next.t('common.walletUnavailable')

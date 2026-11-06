@@ -1,18 +1,17 @@
 import i18next from "i18next";
-import { useSDK } from "@metamask/sdk-react";
 import Toast from "react-native-toast-message";
 
-import { useTxContext } from "@hooks";
+import { useTxContext, useWalletContext } from "@hooks";
 
 import { getVoteTransaction } from "../validationService";
 import { ValidationTarget } from "../voteEligibility";
 
 export function useVoteToInvalidate() {
   const { sendTransaction } = useTxContext();
-  const { provider: ethereum } = useSDK();
+  const { wallet } = useWalletContext();
 
   function vote(target: ValidationTarget, idOrAddress: string | number, justification: string) {
-    if (!ethereum) {
+    if (!wallet) {
       Toast.show({ type: "error", text1: i18next.t("common.walletUnavailable") });
       return;
     }

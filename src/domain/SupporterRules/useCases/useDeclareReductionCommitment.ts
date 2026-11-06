@@ -1,16 +1,15 @@
 import i18next from "i18next";
-import { useSDK } from "@metamask/sdk-react";
 import Toast from "react-native-toast-message";
 
 import { SupporterRules } from "@contracts";
-import { useTxContext } from "@hooks";
+import { useTxContext, useWalletContext } from "@hooks";
 
 export function useDeclareReductionCommitment() {
-  const { provider: ethereum } = useSDK();
+  const { wallet } = useWalletContext();
   const { sendTransaction } = useTxContext();
 
   async function declareReductionCommitment(calculatorItemId: number) {
-    if (!ethereum) {
+    if (!wallet) {
       Toast.show({
         type: 'error',
         text1: i18next.t('common.walletUnavailable')

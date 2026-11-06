@@ -28,7 +28,7 @@ function Container({ children }: { children: ReactNode }) {
 }
 
 export function Header({ home, title, showBackButton }: HeaderProps) {
-  const { isConnected, handleConnect, address, connecting } = useUserContext();
+  const { isConnected, handleConnect, handleConnectWithQrCode, address, connecting } = useUserContext();
   const navigation = useNavigation<NavigationProps>();
   const { t } = useTranslation();
 
@@ -60,17 +60,28 @@ export function Header({ home, title, showBackButton }: HeaderProps) {
               <Avatar address={address} size={25} />
             </TouchableOpacity>
           ) : (
-            <TouchableOpacity
-              className="h-8 px-4 min-w-[84] items-center justify-center bg-green-500 rounded-2xl disabled:opacity-50"
-              onPress={handleConnect}
-              disabled={connecting}
-            >
-              {connecting ? (
-                <ActivityIndicator size={25} color="white" />
-              ) : (
-                <Text className="text-white">{t('common.connect')}</Text>
-              )}
-            </TouchableOpacity>
+            <View className="flex-row items-center gap-2">
+              <TouchableOpacity
+                className="h-8 w-8 items-center justify-center rounded-full border border-white/40"
+                onPress={handleConnectWithQrCode}
+                hitSlop={8}
+                accessibilityRole="button"
+                accessibilityLabel={t('wallet.connectWithQrCode')}
+              >
+                <Icon name="qrCode" size={16} />
+              </TouchableOpacity>
+              {/* Stays tappable while connecting: a second tap starts a fresh request in MetaMask. */}
+              <TouchableOpacity
+                className="h-8 px-4 min-w-[84] items-center justify-center bg-green-500 rounded-2xl"
+                onPress={handleConnect}
+              >
+                {connecting ? (
+                  <ActivityIndicator size={25} color="white" />
+                ) : (
+                  <Text className="text-white">{t('common.connect')}</Text>
+                )}
+              </TouchableOpacity>
+            </View>
           )}
         </View>
       </Container>

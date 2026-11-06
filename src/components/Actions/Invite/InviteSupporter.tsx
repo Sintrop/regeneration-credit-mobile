@@ -10,12 +10,14 @@ import { useTxContext } from "@hooks";
 
 import { ActionSheet } from "../Publisher/ActionSheet";
 import { SubmitButton } from "../Publisher/SubmitButton";
+import { SendSintropOption, useSendSintrop } from "./SendSintropOption";
 
 /** SupporterRules.offset pays INVITER_PERCENTAGE (5%) of each offset made by an invited supporter to the inviter. */
 function InviteSupporterForm({ onDone }: { onDone: () => void }) {
   const { t } = useTranslation();
   const { registerContinueAction } = useTxContext();
   const { invite } = useInvite();
+  const sintrop = useSendSintrop();
   const [wallet, setWallet] = useState("");
   const isAddress = utils.isAddress(wallet.trim());
 
@@ -26,7 +28,7 @@ function InviteSupporterForm({ onDone }: { onDone: () => void }) {
       setWallet("");
       onDone();
     });
-    invite({ address: wallet.trim(), userType: 7 });
+    invite({ address: wallet.trim(), userType: 7, sintropWei: sintrop.wei });
   }
 
   return (
@@ -45,7 +47,8 @@ function InviteSupporterForm({ onDone }: { onDone: () => void }) {
         />
         {!!wallet && !isAddress && <Text className="text-red-400 text-xs">{t("common.invalidAddress")}</Text>}
       </View>
-      <SubmitButton label={t("actions.invite")} onPress={handleInvite} disabled={!isAddress} />
+      <SendSintropOption choice={sintrop} />
+      <SubmitButton label={t("actions.invite")} onPress={handleInvite} disabled={!isAddress || sintrop.invalid} />
     </View>
   );
 }

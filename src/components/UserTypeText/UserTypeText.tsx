@@ -16,6 +16,7 @@ export function UserTypeText({ userType, ...textProps}: Props) {
 }
 
 const userTypeToText = {
+  0: "anonymous",
   1: "regenerator",
   2: "inspector",
   3: "researcher",

@@ -185,7 +185,8 @@
       "access": "Acessar",
       "market": "Mercado",
       "offsetAction": "Compensar",
-      "fundingImpactOf": "Financiando o impacto de:"
+      "fundingImpactOf": "Financiando o impacto de:",
+      "anonymous": "Anônimo"
     },
     "offset": {
       "title": "Compensar",
@@ -314,7 +315,14 @@
       "viewOnExplorer": "Ver no explorador",
       "errorOnGetErrorMessage": "Erro ao obter mensagem de erro",
       "errorDetails": "Detalhes do erro",
-      "wrongChain": "Não foi possível mudar para a rede Sintrop. Abra sua carteira e selecione a rede manualmente."
+      "wrongChain": "Não foi possível mudar para a rede Sintrop. Abra sua carteira e selecione a rede manualmente.",
+      "approveOnOtherDevice": "Abra o MetaMask no celular conectado por QR code para aprovar.",
+      "rejected": "Transação recusada no MetaMask.",
+      "checkingSent": "Confirmando na rede Sintrop se a transação foi enviada...",
+      "stopChecking": "Parar de verificar",
+      "notConfirmed": "Não foi possível confirmar se a transação foi enviada. Confira o histórico no MetaMask antes de tentar de novo.",
+      "step": "Etapa {{current}} de {{total}}",
+      "firstStepDone": "A primeira etapa foi concluída. Só esta não foi enviada: se quiser, repita pela tela Meus tokens."
     },
     "actions": {
       "title": "Ações",
@@ -865,7 +873,7 @@
         },
         "connect": {
           "title": "Conecte a carteira",
-          "text": "Toque em Conectar no topo da tela inicial e aprove no MetaMask. Depois de aprovar, volte para o app."
+          "text": "Toque em Conectar no topo da tela inicial e aprove no MetaMask. Depois de aprovar, volte para o app. Se o MetaMask estiver em outro celular, toque no ícone de QR code ao lado de Conectar e escaneie o código com o MetaMask desse celular."
         },
         "gas": {
           "title": "Compre, receba ou minere SINTROP",
@@ -1088,6 +1096,31 @@
         "ubuntu": "No Ubuntu, mantenha o arquivo quando o navegador perguntar.",
         "macos": "No macOS, o comando de liberação do passo 2 resolve o bloqueio. Se ainda aparecer o aviso, abra Ajustes do Sistema > Privacidade e Segurança e clique em Abrir mesmo assim."
       }
+    },
+    "wallet": {
+      "connectWithQrCode": "Conectar com MetaMask em outro celular",
+      "qrTitle": "Conectar o MetaMask de outro celular",
+      "qrInstructions": "No celular que tem o MetaMask, abra o app, toque no leitor de QR code e escaneie este código. Depois, aprove a conexão no MetaMask.",
+      "qrApprovalNote": "As próximas aprovações, como adicionar a rede Sintrop e confirmar transações, também aparecem no MetaMask desse celular. Deixe o MetaMask aberto nele.",
+      "connectionFailed": "Não foi possível conectar a carteira. Tente novamente.",
+      "addNetworkFailed": "Não foi possível adicionar a rede Sintrop. Tente novamente.",
+      "connectionSlowTitle": "O MetaMask ainda não respondeu",
+      "connectionSlow": "Se você já aprovou, aguarde alguns segundos. Se não, toque em Conectar de novo."
+    },
+    "anonymousProfile": {
+      "description": "Esta carteira ainda não tem cadastro no Crédito de Regeneração. Ela pode transferir tokens e queimar RC diretamente no contrato do token, e cada queima entra no certificado abaixo. A compensação vinculada à calculadora é exclusiva de apoiadores.",
+      "certificateHint": "Certificado público e verificável. Pode ser salvo e compartilhado, e o QR code abre as transações da carteira no explorador.",
+      "burn": "Queimar RC"
+    },
+    "invite": {
+      "sendSintrop": "Enviar {{unit}} para o convidado",
+      "sendSintropHint": "Para ele pagar a taxa do cadastro. São duas aprovações no MetaMask: o convite e o envio.",
+      "otherAmount": "Outro valor",
+      "amountLabel": "Quantidade de {{unit}}",
+      "balance": "Seu saldo: {{balance}} {{unit}}",
+      "insufficientBalance": "Saldo insuficiente para esse valor.",
+      "stepInvite": "Convite",
+      "stepSintrop": "Envio de SINTROP ao convidado"
     }
   }
 }
