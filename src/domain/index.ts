@@ -20,6 +20,7 @@ export * from "./InspectionRules/useCases/useRealizeInspection";
 export * from "./InspectionRules/useCases/useAcceptInspection";
 export * from "./InspectionRules/useCases/useRequestInspection";
 export * from "./InspectionRules/useCases/useImpactPerEra";
+export * from "./InspectionRules/useCases/useInspectionRequestRules";
 export * from "./InspectionRules/useCases/useInspectionsList";
 export * from "./InspectionRules/events/useRealizedInspections";
 export * from "./InspectionRules/events/useRequestedInspections";

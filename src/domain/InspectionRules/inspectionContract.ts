@@ -73,8 +73,27 @@ async function impactSettlement({ rpc }: { rpc: string }): Promise<ImpactSettlem
   return { lastSettledEra, realizedInspectionsCount, inspectionsTreesImpact, inspectionsBiodiversityImpact, totalImpactRegenerators };
 }
 
+export interface RequestRulesContractProps {
+  allowedInitialRequests: string;
+  timeBetweenInspections: string;
+}
+
+/** Limits a regenerator follows when requesting inspections. */
+async function requestRules({ rpc }: { rpc: string }): Promise<RequestRulesContractProps> {
+  const provider = new Web3(new Web3.providers.HttpProvider(rpc));
+  const contract = new provider.eth.Contract(InspectionRules.abi, InspectionRules.address);
+
+  const [allowedInitialRequests, timeBetweenInspections] = await Promise.all([
+    contract.methods.allowedInitialRequests().call(),
+    contract.methods.timeBetweenInspections().call(),
+  ]) as unknown as string[];
+
+  return { allowedInitialRequests, timeBetweenInspections };
+}
+
 export const inspectionContract = {
   impactSettlement,
+  requestRules,
   inspectionsTotalCount,
   getInspection,
   getInspectionsHistory,

@@ -1,13 +1,13 @@
 import { Children, cloneElement, isValidElement, ReactNode, useRef } from "react";
-import { TouchableOpacity, View } from "react-native";
+import { ActivityIndicator, TouchableOpacity, View } from "react-native";
 import { Modalize } from "react-native-modalize";
 import { Portal } from "react-native-portalize";
 import { useTranslation } from "react-i18next";
 import Toast from "react-native-toast-message";
 
-import { useAppSafeArea, useTxContext } from "@hooks";
+import { useAppSafeArea, useBlocksDuration, useTxContext } from "@hooks";
 import { Text } from "@components";
-import { useRequestInspection } from "@domain";
+import { useInspectionRequestRules, useRequestInspection } from "@domain";
 
 interface ModalControls {
   openModal: () => void;
@@ -25,6 +25,8 @@ export function RequestInspection({ children }: Props) {
   
   const { registerContinueAction } = useTxContext();
   const { requestInspection } = useRequestInspection();
+  const { requestRules } = useInspectionRequestRules();
+  const formatBlocks = useBlocksDuration();
 
   function onTxSuccess() {
     //action success
@@ -72,7 +74,16 @@ export function RequestInspection({ children }: Props) {
             <Text className="text-white text-center">{t('actions.requestInspection')}</Text>
 
             <View className="mt-5 gap-5">
-              <Text className="text-white">{t('actionsDescriptions.requestInspection')}</Text>
+              {requestRules ? (
+                <Text className="text-white">
+                  {t('actionsDescriptions.requestInspection', {
+                    count: requestRules.allowedInitialRequests,
+                    wait: formatBlocks(requestRules.timeBetweenInspections),
+                  })}
+                </Text>
+              ) : (
+                <ActivityIndicator color="white" />
+              )}
 
               <TouchableOpacity
                 className="w-full h-12 rounded-2xl flex-row items-center justify-center bg-green-primary disabled:opacity-50"

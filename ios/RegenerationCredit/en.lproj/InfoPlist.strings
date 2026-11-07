@@ -1,0 +1,4 @@
+"NSCameraUsageDescription" = "Regeneration Credit needs access to your camera to take the registration photo.";
+"NSLocationWhenInUseUsageDescription" = "Regeneration Credit uses your location to help regenerators register the coordinates of their area.";
+"NSLocationAlwaysAndWhenInUseUsageDescription" = "Regeneration Credit uses your location to help regenerators register the coordinates of their area.";
+"NSPhotoLibraryUsageDescription" = "Regeneration Credit needs access to your photo library so you can upload your registration photo.";

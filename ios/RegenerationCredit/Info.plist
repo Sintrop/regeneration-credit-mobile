@@ -38,9 +38,9 @@
 	<key>NSCameraUsageDescription</key>
 	<string>$(PRODUCT_NAME) needs access to your Camera to take registration photo.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>$(PRODUCT_NAME) needs access to your library to help regenerators register area coordinate points.</string>
+	<string>$(PRODUCT_NAME) uses your location to help regenerators register the coordinates of their area.</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>$(PRODUCT_NAME) needs access to your library to help regenerators register area coordinate points.</string>
+	<string>$(PRODUCT_NAME) uses your location to help regenerators register the coordinates of their area.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>$(PRODUCT_NAME) needs access to your library for you to upload your registration photo.</string>
 	<key>RCTNewArchEnabled</key>

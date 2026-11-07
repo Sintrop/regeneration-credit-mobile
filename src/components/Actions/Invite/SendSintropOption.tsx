@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Switch, TouchableOpacity, View } from "react-native";
+import { Pressable, Switch, TouchableOpacity, View } from "react-native";
 import { useTranslation } from "react-i18next";
 
 import { Text, TextInput } from "@components";
@@ -48,13 +48,20 @@ export function SendSintropOption({ choice }: { choice: SendSintropChoice }) {
 
   return (
     <View className="gap-3 p-3 rounded-xl bg-card-secondary">
-      <View className="flex-row items-center justify-between gap-3">
+      <Pressable
+        className="flex-row items-center justify-between gap-3"
+        onPress={() => choice.setEnabled(!choice.enabled)}
+        accessibilityRole="switch"
+        accessibilityState={{ checked: choice.enabled }}
+      >
         <View className="flex-1">
           <Text className="text-white font-semibold">{t("invite.sendSintrop", { unit: NATIVE_UNIT })}</Text>
           <Text className="text-gray-400 text-xs">{t("invite.sendSintropHint")}</Text>
         </View>
-        <Switch value={choice.enabled} onValueChange={choice.setEnabled} />
-      </View>
+        <View pointerEvents="none">
+          <Switch value={choice.enabled} />
+        </View>
+      </Pressable>
 
       {choice.enabled && (
         <View className="gap-2">
