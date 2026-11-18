@@ -8,19 +8,15 @@ import Mapbox from "@rnmapbox/maps";
 import Config from 'react-native-config';
 import BootSplash from "react-native-bootsplash";
 
-import { MMProvider } from '@providers';
 import { AppRoutes } from '@routes';
-import { SettingsProvider, TxProvider, UserProvider } from '@contexts';
+import { SettingsProvider, TxProvider, UserProvider, WalletProvider } from '@contexts';
 
 import "./global.css";
 import "./src/lang/i18n";
 
 LogBox.ignoreLogs([
   'Possible Unhandled Promise Rejection',
-  'Message ignored because invalid key exchange status',
-  "MetaMask: 'ethereum._metamask' exposes",
   '`new NativeEventEmitter()` was called with a non-null',
-  'Sender: Failed to send batch',
 ]);
 
 const queryClient = new QueryClient({
@@ -42,7 +38,7 @@ function App() {
   return (
     <SafeAreaProvider>
       <GestureHandlerRootView>
-        <MMProvider>
+        <WalletProvider>
           <QueryClientProvider client={queryClient}>
             <SettingsProvider>
               <UserProvider>
@@ -53,7 +49,7 @@ function App() {
               </UserProvider>
             </SettingsProvider>
           </QueryClientProvider>
-        </MMProvider>
+        </WalletProvider>
       </GestureHandlerRootView>
     </SafeAreaProvider>
   );

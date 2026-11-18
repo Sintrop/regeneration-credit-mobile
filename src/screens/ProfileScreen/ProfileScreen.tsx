@@ -24,7 +24,7 @@ export function ProfileScreen({ route }: ScreenProps) {
     );
   }
 
-  if (isError || !userType) {
+  if (isError) {
     return (
       <Screen title={t("profile.title")} showBackButton >
         <View className="w-full h-screen items-center justify-center">
@@ -51,7 +51,7 @@ export function ProfileScreen({ route }: ScreenProps) {
     >
       <Profile
         address={address}
-        userType={userType}
+        userType={userType ?? 0}
         changeScrollEnabled={setScrollEnabled}
       />
     </Screen>

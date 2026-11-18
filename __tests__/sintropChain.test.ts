@@ -1,24 +1,40 @@
 import {
+  SINTROP_CHAIN_ID,
   SINTROP_CHAIN_PARAMS,
-  ensureSintropChain,
+  SintropWallet,
+  addSintrop,
   isSintropChain,
+  isUserRejection,
+  selectSintrop,
   sendTransactionOnSintrop,
-  switchToSintrop,
 } from '../src/services/sintropChain';
 
-type Handler = (params?: unknown[]) => unknown;
+type Handler = (params?: unknown) => unknown;
 
-function createWallet(handlers: Record<string, Handler>) {
-  const request = jest.fn(async ({ method, params }: { method: string; params?: unknown[] }) => {
+function rpcError(code: number) {
+  return Object.assign(new Error(`rpc error ${code}`), { code });
+}
+
+function createWallet({
+  chainId = '0x1',
+  switchChain = async () => {},
+  handlers = {},
+}: {
+  chainId?: string;
+  switchChain?: SintropWallet['switchChain'];
+  handlers?: Record<string, Handler>;
+}) {
+  const request = jest.fn(async ({ method, params }: { method: string; params?: unknown }) => {
     const handler = handlers[method];
     if (!handler) throw new Error(`unexpected ${method}`);
     return handler(params);
   });
-  return { request };
-}
-
-function rpcError(code: number) {
-  return Object.assign(new Error(`rpc error ${code}`), { code });
+  const wallet = {
+    getChainId: () => chainId,
+    switchChain: jest.fn(switchChain),
+    getProvider: () => ({ request }),
+  };
+  return { wallet, request };
 }
 
 describe('isSintropChain', () => {
@@ -30,110 +46,105 @@ describe('isSintropChain', () => {
   });
 });
 
-describe('switchToSintrop', () => {
-  it('switches when the wallet already knows the network', async () => {
-    const wallet = createWallet({ wallet_switchEthereumChain: () => null });
-    await expect(switchToSintrop(wallet)).resolves.toBe(true);
-    expect(wallet.request).toHaveBeenCalledTimes(1);
+describe('isUserRejection', () => {
+  it('recognises the rejection in the forms MetaMask Connect delivers it', () => {
+    expect(isUserRejection(rpcError(4001))).toBe(true);
+    expect(isUserRejection({ code: 53, rpcCode: 4001 })).toBe(true);
+    expect(isUserRejection({ code: -32603, data: { originalError: { code: 4001 } } })).toBe(true);
+    expect(isUserRejection(new Error('User rejected the request.'))).toBe(true);
   });
 
-  it('adds the network when the wallet does not know it (4902)', async () => {
-    const wallet = createWallet({
-      wallet_switchEthereumChain: () => { throw rpcError(4902); },
-      wallet_addEthereumChain: () => null,
-    });
-    await expect(switchToSintrop(wallet)).resolves.toBe(true);
-    expect(wallet.request).toHaveBeenLastCalledWith({
+  it('does not treat other errors as a rejection', () => {
+    expect(isUserRejection(rpcError(4902))).toBe(false);
+    expect(isUserRejection(new Error('network down'))).toBe(false);
+    expect(isUserRejection(undefined)).toBe(false);
+  });
+});
+
+describe('addSintrop', () => {
+  it('asks the wallet to add the Sintrop network', async () => {
+    const { wallet, request } = createWallet({ handlers: { wallet_addEthereumChain: () => null } });
+    await addSintrop(wallet);
+    expect(request).toHaveBeenCalledWith({
       method: 'wallet_addEthereumChain',
       params: [SINTROP_CHAIN_PARAMS],
     });
   });
-
-  it('does not add the network when the user rejects the switch', async () => {
-    const wallet = createWallet({
-      wallet_switchEthereumChain: () => { throw rpcError(4001); },
-      wallet_addEthereumChain: () => null,
-    });
-    await expect(switchToSintrop(wallet)).resolves.toBe(false);
-    expect(wallet.request).toHaveBeenCalledTimes(1);
-  });
 });
 
-describe('ensureSintropChain', () => {
-  it('does nothing when already on Sintrop', async () => {
-    const wallet = createWallet({ eth_chainId: () => '0x3d171' });
-    await expect(ensureSintropChain(wallet)).resolves.toBe(true);
-    expect(wallet.request).toHaveBeenCalledTimes(1);
+describe('selectSintrop', () => {
+  it('does nothing when Sintrop is already selected', async () => {
+    const { wallet } = createWallet({ chainId: SINTROP_CHAIN_ID });
+    await expect(selectSintrop(wallet)).resolves.toBe(true);
+    expect(wallet.switchChain).not.toHaveBeenCalled();
   });
 
-  it('trusts the switch result even before the cached chain id updates', async () => {
-    const wallet = createWallet({
-      eth_chainId: () => '0x1',
-      wallet_switchEthereumChain: () => null,
+  it('switches with the network data, so an unknown network gets added', async () => {
+    const { wallet } = createWallet({});
+    await expect(selectSintrop(wallet)).resolves.toBe(true);
+    expect(wallet.switchChain).toHaveBeenCalledWith({
+      chainId: SINTROP_CHAIN_ID,
+      chainConfiguration: SINTROP_CHAIN_PARAMS,
     });
-    await expect(ensureSintropChain(wallet)).resolves.toBe(true);
   });
 
-  it('fails when the wallet stays on another chain', async () => {
-    const wallet = createWallet({
-      eth_chainId: () => '0x1',
-      wallet_switchEthereumChain: () => { throw rpcError(4001); },
+  it('adds the network directly when the switch fails for another reason', async () => {
+    const { wallet, request } = createWallet({
+      switchChain: async () => { throw rpcError(-32603); },
+      handlers: { wallet_addEthereumChain: () => null },
     });
-    await expect(ensureSintropChain(wallet)).resolves.toBe(false);
+    await expect(selectSintrop(wallet)).resolves.toBe(true);
+    expect(request).toHaveBeenCalledTimes(1);
+  });
+
+  it('stops when the user rejects the switch', async () => {
+    const { wallet, request } = createWallet({
+      switchChain: async () => { throw rpcError(4001); },
+    });
+    await expect(selectSintrop(wallet)).resolves.toBe(false);
+    expect(request).not.toHaveBeenCalled();
+  });
+
+  it('fails when the network can be neither selected nor added', async () => {
+    const { wallet } = createWallet({
+      switchChain: async () => { throw rpcError(4902); },
+      handlers: { wallet_addEthereumChain: () => { throw rpcError(4001); } },
+    });
+    await expect(selectSintrop(wallet)).resolves.toBe(false);
   });
 });
 
 describe('sendTransactionOnSintrop', () => {
   const tx = { from: '0xabc', to: '0xdef', data: '0x' };
 
-  it('sends directly when the wallet is already on Sintrop', async () => {
-    const wallet = createWallet({
-      eth_chainId: () => '0x3d171',
-      eth_sendTransaction: () => '0xhash',
+  it('sends directly when Sintrop is selected', async () => {
+    const { wallet, request } = createWallet({
+      chainId: SINTROP_CHAIN_ID,
+      handlers: { eth_sendTransaction: () => '0xhash' },
     });
     await expect(sendTransactionOnSintrop(wallet, tx)).resolves.toBe('0xhash');
-    expect(wallet.request).toHaveBeenCalledTimes(2);
+    expect(request).toHaveBeenCalledWith({ method: 'eth_sendTransaction', params: [tx] });
+    expect(wallet.switchChain).not.toHaveBeenCalled();
   });
 
-  it('switches network and sends in one batch when on another network', async () => {
-    const wallet = createWallet({
-      eth_chainId: () => '0x1',
-      metamask_batch: params => {
-        const [network, send] = params as { method: string }[];
-        expect(network.method).toBe('wallet_switchEthereumChain');
-        expect(send.method).toBe('eth_sendTransaction');
-        return [null, '0xhash'];
-      },
-    });
+  it('selects Sintrop before sending when another network is selected', async () => {
+    const { wallet } = createWallet({ handlers: { eth_sendTransaction: () => '0xhash' } });
     await expect(sendTransactionOnSintrop(wallet, tx)).resolves.toBe('0xhash');
+    expect(wallet.switchChain).toHaveBeenCalledTimes(1);
   });
 
-  it('adds the network in the batch when the wallet does not know it', async () => {
-    const wallet = createWallet({
-      eth_chainId: () => '0x1',
-      metamask_batch: params => {
-        const [network] = params as { method: string }[];
-        if (network.method === 'wallet_switchEthereumChain') throw rpcError(4902);
-        return [null, '0xhash'];
-      },
+  it('does not send when the wallet stays on another network', async () => {
+    const { wallet, request } = createWallet({
+      switchChain: async () => { throw rpcError(4001); },
     });
-    await expect(sendTransactionOnSintrop(wallet, tx)).resolves.toBe('0xhash');
+    await expect(sendTransactionOnSintrop(wallet, tx)).rejects.toThrow('Sintrop network');
+    expect(request).not.toHaveBeenCalled();
   });
 
-  it('falls back to switch then send when the wallet has no batch support', async () => {
-    const wallet = createWallet({
-      eth_chainId: () => '0x1',
-      metamask_batch: () => { throw rpcError(-32601); },
-      wallet_switchEthereumChain: () => null,
-      eth_sendTransaction: () => '0xhash',
-    });
-    await expect(sendTransactionOnSintrop(wallet, tx)).resolves.toBe('0xhash');
-  });
-
-  it('propagates a user rejection without retrying', async () => {
-    const wallet = createWallet({
-      eth_chainId: () => '0x1',
-      metamask_batch: () => { throw rpcError(4001); },
+  it('propagates a rejected transaction', async () => {
+    const { wallet } = createWallet({
+      chainId: SINTROP_CHAIN_ID,
+      handlers: { eth_sendTransaction: () => { throw rpcError(4001); } },
     });
     await expect(sendTransactionOnSintrop(wallet, tx)).rejects.toMatchObject({ code: 4001 });
   });

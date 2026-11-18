@@ -31,7 +31,10 @@ export function Supporter({ address }: Props) {
 
 
   const parsedName = supporter?.name?.replaceAll(' ', '-').toLowerCase() ?? '';
-  const qrLink = 'https://users.regenerationcredit.org/supporter/' + address + '/' + parsedName;
+  // Wallets without registration have no supporter page: the QR code points to their burns on the explorer.
+  const qrLink = supporter
+    ? 'https://users.regenerationcredit.org/supporter/' + address + '/' + parsedName
+    : 'https://explorer.sintrop.com/address/' + address;
 
   return (
     <DownloadContainer>
@@ -42,7 +45,7 @@ export function Supporter({ address }: Props) {
         </View>
         <View className="flex-row justify-between">
           <View className="w-[48%]">
-            <Text className="text-white font-semibold" numberOfLines={1}>{supporter?.name}</Text>
+            <Text className="text-white font-semibold" numberOfLines={1}>{supporter?.name ?? t('common.anonymous')}</Text>
             <View className="flex-row items-center flex-wrap">
               <Text className="text-white">{t('profile.contributedWith')}</Text>
               <Text className="font-bold text-green-500 mx-1">{formatWhole(certificated)}</Text>

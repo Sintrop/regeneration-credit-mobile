@@ -1,10 +1,9 @@
 import i18next from "i18next";
 import React from "react";
-import { useSDK } from "@metamask/sdk-react";
 import Toast from "react-native-toast-message";
 
 import { RCMarket } from "@contracts";
-import { useTxContext } from "@hooks";
+import { useTxContext, useWalletContext } from "@hooks";
 
 interface CreateOfferProps {
   amountRC: string;
@@ -20,11 +19,11 @@ interface ReturnUseCreateOffer {
 
 export function useCreateOffer(): ReturnUseCreateOffer {
   const { sendTransaction } = useTxContext();
-  const { provider: ethereum } = useSDK();
+  const { wallet } = useWalletContext();
   const [isLoading, setIsLoading] = React.useState(false);
 
   async function createOffer(data: CreateOfferProps) {
-    if (!ethereum) {
+    if (!wallet) {
       Toast.show({
         type: 'error',
         text1: i18next.t('common.walletUnavailable')

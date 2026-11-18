@@ -9,3 +9,4 @@ export * from "./useDocumentPick";
 export * from "./useKeyboardStatus";
 export * from "./useLocation";
 export * from "./useBlocksDuration";
+export * from "./useWalletContext";

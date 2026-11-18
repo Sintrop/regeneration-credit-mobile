@@ -1,0 +1,4 @@
+"NSCameraUsageDescription" = "Crédito de Regeneración necesita acceder a la cámara para tomar la foto del registro.";
+"NSLocationWhenInUseUsageDescription" = "Crédito de Regeneración usa tu ubicación para ayudar a los regeneradores a registrar las coordenadas de su área.";
+"NSLocationAlwaysAndWhenInUseUsageDescription" = "Crédito de Regeneración usa tu ubicación para ayudar a los regeneradores a registrar las coordenadas de su área.";
+"NSPhotoLibraryUsageDescription" = "Crédito de Regeneración necesita acceder a tus fotos para que subas la foto del registro.";

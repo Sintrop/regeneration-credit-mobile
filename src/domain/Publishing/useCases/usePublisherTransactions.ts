@@ -1,11 +1,12 @@
 import i18next from "i18next";
-import { useSDK } from "@metamask/sdk-react";
 import Toast from "react-native-toast-message";
 
 import { InvitationRules, ResearcherRules } from "@contracts";
-import { useTxContext } from "@hooks";
+import { useTxContext, useWalletContext } from "@hooks";
 
 import { PUBLISHER_CONTRACTS, PublisherUserType, REGISTER_METHOD } from "../publishingContracts";
+import { inviteWithSintrop } from "../../InvitationRules/useCases/inviteWithSintrop";
+import type { SendTransactionOptions } from "@contexts";
 
 const PUBLISH_METHOD: Record<PublisherUserType, string> = {
   3: "addResearch",
@@ -16,11 +17,16 @@ const PUBLISH_METHOD: Record<PublisherUserType, string> = {
 /** Transactions available to researchers, developers and contributors. */
 export function usePublisherTransactions(userType: PublisherUserType) {
   const { sendTransaction } = useTxContext();
-  const { provider: ethereum } = useSDK();
+  const { wallet } = useWalletContext();
   const contract = PUBLISHER_CONTRACTS[userType];
 
-  function send(contractRef: { abi: any; address: string }, methodName: string, params: unknown[]) {
-    if (!ethereum) {
+  function send(
+    contractRef: { abi: any; address: string },
+    methodName: string,
+    params: unknown[],
+    options?: SendTransactionOptions,
+  ) {
+    if (!wallet) {
       Toast.show({ type: "error", text1: i18next.t("common.walletUnavailable") });
       return;
     }
@@ -30,7 +36,7 @@ export function usePublisherTransactions(userType: PublisherUserType) {
       contractAddress: contractRef.address,
       methodName,
       params,
-    });
+    }, options);
   }
 
   return {
@@ -41,6 +47,7 @@ export function usePublisherTransactions(userType: PublisherUserType) {
       send(ResearcherRules, "addCalculatorItem", [item, thesis, unit, carbonImpact]),
     addEvaluationMethod: (title: string, research: string, projectURL: string) =>
       send(ResearcherRules, "addEvaluationMethod", [title, research, projectURL]),
-    invite: (address: string) => send(InvitationRules, "invite", [address, userType]),
+    invite: (address: string, sintropWei?: string | null) =>
+      send(InvitationRules, "invite", [address, userType], inviteWithSintrop(address, sintropWei)),
   };
 }

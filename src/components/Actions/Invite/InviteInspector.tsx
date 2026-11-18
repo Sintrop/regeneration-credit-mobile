@@ -10,6 +10,8 @@ import { utils } from "web3";
 import Toast from "react-native-toast-message";
 import { useInvite } from "@domain";
 
+import { SendSintropOption, useSendSintrop } from "./SendSintropOption";
+
 interface ModalControls {
   openModal: () => void;
   closeModal: () => void;
@@ -31,6 +33,7 @@ export function InviteInspector({ children }: Props) {
   const isAddress = utils.isAddress(walletToInvite);
 
   const { invite } = useInvite();
+  const sintrop = useSendSintrop();
 
   function onTxSuccess() {
     //action success
@@ -46,7 +49,8 @@ export function InviteInspector({ children }: Props) {
     registerContinueAction(onTxSuccess);
     invite({
       address: walletToInvite,
-      userType: 2
+      userType: 2,
+      sintropWei: sintrop.wei,
     })
   }
 
@@ -96,10 +100,12 @@ export function InviteInspector({ children }: Props) {
                 )}
               </View>
 
+              <SendSintropOption choice={sintrop} />
+
               <TouchableOpacity
                 className="w-full h-12 rounded-2xl flex-row items-center justify-center bg-green-primary disabled:opacity-50"
                 onPress={handleInvite}
-                disabled={!walletToInvite.trim() || !isAddress}
+                disabled={!walletToInvite.trim() || !isAddress || sintrop.invalid}
               >
                 <Text className="text-white font-semibold">{t('actions.invite')}</Text>
               </TouchableOpacity>

@@ -29,3 +29,4 @@ export * from "./ProgressBar/ProgressBar";
 export * from "./RpcStatusBanner/RpcStatusBanner";
 export * from "./LanguageSelector/SettingsButton";
 export * from "./HelpButton/HelpButton";
+export * from "./WalletQrModal/WalletQrModal";

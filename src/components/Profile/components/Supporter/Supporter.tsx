@@ -27,7 +27,7 @@ function useFormat() {
 }
 
 /** Total certified RC and its impact equivalents (impact per token from RegenerationCreditImpact). */
-function ImpactSummary({ address, compensationsCount }: { address: string; compensationsCount: number }) {
+export function ImpactSummary({ address, compensationsCount }: { address: string; compensationsCount: number }) {
   const { t, i18n } = useTranslation();
   const format = useFormat();
   const { certificated } = useCertificatedTokens({ address });
@@ -92,7 +92,7 @@ function CompensationRow({ compensation, currentBlock }: { compensation: Compens
   );
 }
 
-function CompensationsList({ compensations, isLoading }: { compensations: Compensation[]; isLoading: boolean }) {
+export function CompensationsList({ compensations, isLoading }: { compensations: Compensation[]; isLoading: boolean }) {
   const { t } = useTranslation();
   const { blockNumber } = useBlockNumber();
 

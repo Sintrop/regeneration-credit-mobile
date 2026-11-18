@@ -1,9 +1,10 @@
 import { createContext, ReactNode } from "react";
 import { useTranslation } from "react-i18next";
-import { Linking, Alert } from "react-native";
-import { useSDK } from "@metamask/sdk-react";
+import { Alert } from "react-native";
+import Toast from "react-native-toast-message";
 import { useGetUser, useNativeBalance } from "@domain";
-import { SINTROP_CHAIN_PARAMS, isUserRejection, switchToSintrop } from "@services";
+import { useWalletContext } from "@hooks";
+import { isLostWalletResponse, isPendingConnection, isUserRejection, selectSintrop } from "@services";
 
 export interface UserProviderProps {
   children: ReactNode;
@@ -16,6 +17,7 @@ export interface UserContextProps {
   userType: number;
   balanceSIN: number;
   handleConnect: () => void;
+  handleConnectWithQrCode: () => void;
   handleDisconnect: () => void;
   addSintropNetwork: () => void;
   switchToSintropChain: () => void;
@@ -26,63 +28,61 @@ export const UserContext = createContext({} as UserContextProps);
 
 export function UserProvider({ children }: UserProviderProps) {
   const {
-    sdk,
-    provider: ethereum,
+    wallet,
     account,
-    connected,
+    isConnected,
     connecting,
-  } = useSDK();
+    connect,
+    connectWithQrCode,
+    addSintropNetwork: addNetwork,
+    disconnect,
+  } = useWalletContext();
   const { t } = useTranslation();
-  const { userType, refetch: refetchUserType } = useGetUser({ address: account })
-  const { balance: balanceSIN, refetch: refetchBalanceSIN } = useNativeBalance(account);
+  const { userType, refetch: refetchUserType } = useGetUser({ address: account as string })
+  const { balance: balanceSIN, refetch: refetchBalanceSIN } = useNativeBalance(account as string);
 
-  function showWalletNotFound() {
-    Alert.alert(
-      t('common.walletNotFound'),
-      t('common.walletNotFoundDescription'),
-      [
-        { text: t('common.cancel'), style: "cancel" },
-        {
-          text: t('common.install'),
-          onPress: () => Linking.openURL("https://metamask.io/download/")
-        },
-      ]
-    );
+  function showConnectionError(error: unknown) {
+    if (isUserRejection(error)) return;
+    if (isLostWalletResponse(error)) {
+      Toast.show({
+        type: 'info',
+        text1: t('wallet.connectionSlowTitle'),
+        text2: t('wallet.connectionSlow'),
+      });
+      return;
+    }
+    Toast.show({
+      type: 'error',
+      text1: t('wallet.connectionFailed'),
+    });
   }
 
   async function handleConnect() {
-    if (!sdk) {
-      showWalletNotFound();
-      return;
-    }
-
-    // Connects and adds/selects the Sintrop network in a single trip to the wallet.
     try {
-      await sdk.connectWith({ method: 'wallet_addEthereumChain', params: [SINTROP_CHAIN_PARAMS] });
-      return;
-    } catch (e: any) {
-      if (isUserRejection(e) || e?.message?.includes('user rejected')) return;
-    }
-
-    // Wallets without connectWith support: connect, then switch network.
-    try {
-      const accounts = await sdk.connect();
-      if (accounts && (accounts as string[])[0]) {
-        switchToSintropChain();
-      }
-    } catch (e: any) {
-      if (isUserRejection(e) || e?.message?.includes('user rejected')) return;
-      showWalletNotFound();
+      await connect();
+    } catch (error) {
+      showConnectionError(error);
     }
   }
 
-  /** Adds and selects Sintrop in the wallet, connecting first in the same trip when needed. */
-  async function addSintropNetwork() {
-    if (connected) {
-      await switchToSintropChain();
-      return;
+  async function handleConnectWithQrCode() {
+    try {
+      await connectWithQrCode();
+    } catch (error) {
+      showConnectionError(error);
     }
-    await handleConnect();
+  }
+
+  async function addSintropNetwork() {
+    try {
+      await addNetwork();
+    } catch (error) {
+      if (isUserRejection(error) || isPendingConnection(error)) return;
+      Toast.show({
+        type: 'error',
+        text1: t('wallet.addNetworkFailed'),
+      });
+    }
   }
 
   function handleDisconnect() {
@@ -94,15 +94,15 @@ export function UserProvider({ children }: UserProviderProps) {
         {
           text: t('settings.disconnect'),
           style: "destructive",
-          onPress: () => { sdk?.terminate().catch(() => {}); },
+          onPress: () => { disconnect().catch(() => {}); },
         },
       ]
     );
   }
 
   async function switchToSintropChain() {
-    if (!ethereum) return;
-    await switchToSintrop(ethereum);
+    if (!wallet) return;
+    await selectSintrop(wallet);
   }
 
   function refetchUser() {
@@ -112,12 +112,13 @@ export function UserProvider({ children }: UserProviderProps) {
 
   return (
     <UserContext.Provider
-      value={{ 
-        address: account as string, 
-        isConnected: connected, 
+      value={{
+        address: account as string,
+        isConnected,
         connecting,
         userType,
-        handleConnect, 
+        handleConnect,
+        handleConnectWithQrCode,
         handleDisconnect,
         addSintropNetwork,
         switchToSintropChain,

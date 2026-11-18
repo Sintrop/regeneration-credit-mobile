@@ -185,7 +185,8 @@
       "access": "Acessar",
       "market": "Mercado",
       "offsetAction": "Compensar",
-      "fundingImpactOf": "Financiando o impacto de:"
+      "fundingImpactOf": "Financiando o impacto de:",
+      "anonymous": "Anônimo"
     },
     "offset": {
       "title": "Compensar",
@@ -314,7 +315,14 @@
       "viewOnExplorer": "Ver no explorador",
       "errorOnGetErrorMessage": "Erro ao obter mensagem de erro",
       "errorDetails": "Detalhes do erro",
-      "wrongChain": "Não foi possível mudar para a rede Sintrop. Abra sua carteira e selecione a rede manualmente."
+      "wrongChain": "Não foi possível mudar para a rede Sintrop. Abra sua carteira e selecione a rede manualmente.",
+      "approveOnOtherDevice": "Abra o MetaMask no celular conectado por QR code para aprovar.",
+      "rejected": "Transação recusada no MetaMask.",
+      "checkingSent": "Confirmando na rede Sintrop se a transação foi enviada...",
+      "stopChecking": "Parar de verificar",
+      "notConfirmed": "Não foi possível confirmar se a transação foi enviada. Confira o histórico no MetaMask antes de tentar de novo.",
+      "step": "Etapa {{current}} de {{total}}",
+      "firstStepDone": "A primeira etapa foi concluída. Só esta não foi enviada: se quiser, repita pela tela Meus tokens."
     },
     "actions": {
       "title": "Ações",
@@ -352,7 +360,8 @@
       "inviteActivist": "Ativistas podem convidar Ativistas para o sistema, respeitando o atraso específico de ativista.",
       "realizeInspection": "Inspetores devem avaliar a quantidade de árvores e espécies da área de regeneração. Quantas árvores, palmeiras e outras plantas com mais de 1m de altura e 3cm de diâmetro existem na área em regeneração? Justifique sua resposta no relatório. Quantas espécies diferentes dessas plantas/árvores foram encontradas? Cada espécie diferente equivale a uma unidade e apenas árvores e plantas manejadas ou plantadas pelo regenerador devem ser contadas. Justifique sua resposta no relatório. Resultado máximo de 200.000 árvores e 300 biodiversidade. Pontuação zero significa inspeção inválida. NOTA: Se o inspetor encontrar algo suspeito sobre o regenerador inspecionado, como área inválida, suspeita de conta falsa, ou se o Regenerador não for encontrado, os inspetores são encorajados a realizar passando 0 como valores com sua justificativa no relatório para evitar ser penalizado.",
       "acceptInspection": "Inspetores devem aceitar apenas inspeções que são capazes de realizar, estando cientes dos riscos de segurança e responsabilidades. Ao aceitar uma inspeção, os inspetores concordam que são responsáveis por sua própria segurança na coleta de dados. É recomendado usar roupas de manga comprida, chapéus, botas que possam prevenir picadas de animais, luvas para proteger de espinhos e qualquer outro equipamento de segurança útil, como facões ou spray de pimenta. Aceitar uma inspeção conta como uma 'desistência' até ser realizada. Inspetores podem aceitar apenas uma inspeção aberta por vez e não podem inspecionar o mesmo regenerador duas vezes. Eles também devem aderir a atrasos específicos e janelas de segurança.",
-      "requestInspection": "Regeneradores concordam em receber um inspetor para avaliar sua área registrada. Eles podem fazer um número allowedInitialRequests de solicitações sem atraso. Depois disso, devem aguardar timeBetweenInspections blocos entre solicitações. Um limite rígido de 6 inspeções totais é aplicado.",
+      "requestInspection_one": "Regeneradores concordam em receber um inspetor para avaliar sua área registrada. A primeira solicitação pode ser feita sem espera. Depois disso, é preciso aguardar {{wait}} entre uma solicitação e outra. O limite é de 6 inspeções no total.",
+      "requestInspection_other": "Regeneradores concordam em receber um inspetor para avaliar sua área registrada. As primeiras {{count}} solicitações podem ser feitas sem espera. Depois disso, é preciso aguardar {{wait}} entre uma solicitação e outra. O limite é de 6 inspeções no total.",
       "burnTokens": "Financie o plantio de árvores reais através do sistema de compensação do Crédito de Regeneração, contribua para a regeneração dos ecossistemas terrestres e aumente seu certificado para provar seu compromisso com o Planeta."
     },
     "fileInput": {
@@ -865,7 +874,7 @@
         },
         "connect": {
           "title": "Conecte a carteira",
-          "text": "Toque em Conectar no topo da tela inicial e aprove no MetaMask. Depois de aprovar, volte para o app."
+          "text": "Toque em Conectar no topo da tela inicial e aprove no MetaMask. Depois de aprovar, volte para o app. Se o MetaMask estiver em outro celular, toque no ícone de QR code ao lado de Conectar e escaneie o código com o MetaMask desse celular."
         },
         "gas": {
           "title": "Compre, receba ou minere SINTROP",
@@ -1088,6 +1097,31 @@
         "ubuntu": "No Ubuntu, mantenha o arquivo quando o navegador perguntar.",
         "macos": "No macOS, o comando de liberação do passo 2 resolve o bloqueio. Se ainda aparecer o aviso, abra Ajustes do Sistema > Privacidade e Segurança e clique em Abrir mesmo assim."
       }
+    },
+    "wallet": {
+      "connectWithQrCode": "Conectar com MetaMask em outro celular",
+      "qrTitle": "Conectar o MetaMask de outro celular",
+      "qrInstructions": "No celular que tem o MetaMask, abra o app, toque no leitor de QR code e escaneie este código. Depois, aprove a conexão no MetaMask.",
+      "qrApprovalNote": "As próximas aprovações, como adicionar a rede Sintrop e confirmar transações, também aparecem no MetaMask desse celular. Deixe o MetaMask aberto nele.",
+      "connectionFailed": "Não foi possível conectar a carteira. Tente novamente.",
+      "addNetworkFailed": "Não foi possível adicionar a rede Sintrop. Tente novamente.",
+      "connectionSlowTitle": "O MetaMask ainda não respondeu",
+      "connectionSlow": "Se você já aprovou, aguarde alguns segundos. Se não, toque em Conectar de novo."
+    },
+    "anonymousProfile": {
+      "description": "Esta carteira ainda não tem cadastro no Crédito de Regeneração. Ela pode transferir tokens e queimar RC diretamente no contrato do token, e cada queima entra no certificado abaixo. A compensação vinculada à calculadora é exclusiva de apoiadores.",
+      "certificateHint": "Certificado público e verificável. Pode ser salvo e compartilhado, e o QR code abre as transações da carteira no explorador.",
+      "burn": "Queimar RC"
+    },
+    "invite": {
+      "sendSintrop": "Enviar {{unit}} para o convidado",
+      "sendSintropHint": "Para ele pagar a taxa do cadastro. São duas aprovações no MetaMask: o convite e o envio.",
+      "otherAmount": "Outro valor",
+      "amountLabel": "Quantidade de {{unit}}",
+      "balance": "Seu saldo: {{balance}} {{unit}}",
+      "insufficientBalance": "Saldo insuficiente para esse valor.",
+      "stepInvite": "Convite",
+      "stepSintrop": "Envio de SINTROP ao convidado"
     }
   }
 }

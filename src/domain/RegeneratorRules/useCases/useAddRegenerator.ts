@@ -1,9 +1,8 @@
 import i18next from "i18next";
-import { useSDK } from "@metamask/sdk-react";
 import Toast from "react-native-toast-message";
 
 import { RegeneratorRules } from "@contracts";
-import { useTxContext } from "@hooks";
+import { useTxContext, useWalletContext } from "@hooks";
 
 import { CoordinateProps } from "../types";
 import { regeneratorAdapter } from "../regeneratorAdapter";
@@ -21,10 +20,10 @@ interface ReturnUseAddRegenerator {
 }
 export function useAddRegenerator(): ReturnUseAddRegenerator {
   const { sendTransaction } = useTxContext();
-  const { provider: ethereum } = useSDK();
+  const { wallet } = useWalletContext();
 
   async function handleAddRegenerator(data: AddRegeneratorProps) {
-    if (!ethereum) {
+    if (!wallet) {
       Toast.show({
         type: 'error',
         text1: i18next.t('common.walletUnavailable')
